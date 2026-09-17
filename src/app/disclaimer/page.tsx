@@ -1,0 +1,92 @@
+import React from 'react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ChevronRight, ShieldAlert, AlertTriangle, Building2, Landmark } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Mandatory Legal & Institutional Disclaimers | IEM Admissions',
+  description:
+    'Institutional disclaimers, operating model disclosure, payee instructions, and warnings against unauthorized admission agents.',
+};
+
+export default function DisclaimerPage() {
+  return (
+    <>
+      <div className="bg-slate-100 border-b border-slate-200 py-2.5 px-4 text-xs text-slate-600">
+        <div className="max-w-4xl mx-auto flex items-center gap-1.5">
+          <Link href="/" className="hover:text-brandBlue-600 font-medium">Home</Link>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          <span className="text-slate-900 font-semibold">Legal Disclaimers</span>
+        </div>
+      </div>
+
+      <div className="py-12 md:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-xs sm:text-sm text-slate-700 leading-relaxed">
+          
+          <div className="border-b border-slate-200 pb-6">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+              Mandatory Legal &amp; Institutional Disclaimers
+            </h1>
+            <p className="text-xs text-slate-500 mt-1">
+              Statutory Consumer &amp; Regulatory Disclosures
+            </p>
+          </div>
+
+          {/* Operational Model Disclosure */}
+          <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <h2 className="text-base font-bold text-slate-900 font-heading flex items-center gap-2">
+              <Building2 className="w-5 h-5 text-brandBlue-600" />
+              <span>Operational Model Disclosure (Model B Guidance)</span>
+            </h2>
+            <p>
+              This portal operates as an independent candidate acquisition and educational counselling system dedicated to B.Tech programs at the Institute of Engineering &amp; Management (IEM), Kolkata. Submitting an inquiry on this platform initiates a request for academic counselling and does NOT constitute a formal university application, seat reservation, or grant of admission.
+            </p>
+          </div>
+
+          {/* Warning on Unauthorized Agents */}
+          <div className="p-5 rounded-xl bg-amber-50 border border-amber-200 space-y-3 text-amber-900">
+            <h2 className="text-base font-bold text-amber-950 font-heading flex items-center gap-2">
+              <ShieldAlert className="w-5 h-5 text-amber-600" />
+              <span>Strict Warning Against Fraudulent Admission Agents</span>
+            </h2>
+            <p className="leading-relaxed">
+              The IEM-UEM Group operates its primary admissions and counselling facilities strictly at <strong>Ashram Building, 1st Floor, GN-34/2, Sector – V, Salt Lake, Kolkata – 700091</strong>. The institute does NOT endorse, partner with, or authorize any third-party brokers, outside touts, or unofficial consultants claiming to provide &quot;guaranteed management quota seats&quot;.
+            </p>
+            <p className="font-semibold text-amber-950">
+              Never pay cash or transfer personal funds to any individual. The institute accepts NO responsibility for financial dealings conducted with unauthorized persons.
+            </p>
+          </div>
+
+          {/* Fee Payment Instructions */}
+          <div className="space-y-3">
+            <h2 className="text-base font-bold text-slate-900 font-heading flex items-center gap-2">
+              <Landmark className="w-5 h-5 text-brandBlue-600" />
+              <span>Authorized Fee Payment Protocol</span>
+            </h2>
+            <p>
+              All academic and hostel fees payable to the institution must be remitted exclusively via Demand Draft, Official NEFT, Net Banking, or Card Swipe at the institutional accounts office:
+            </p>
+            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200 font-mono text-xs space-y-1">
+              <div><strong>Payee Name:</strong> Institute of Engineering &amp; Management Trust</div>
+              <div><strong>Bank:</strong> Indian Overseas Bank (Salt Lake Branch)</div>
+              <div><strong>Payable At:</strong> Kolkata</div>
+              <div><strong>Account Number:</strong> 164201000000488</div>
+              <div><strong>IFSC Code:</strong> IOBA0001642</div>
+            </div>
+          </div>
+
+          {/* Regulatory Non-Guarantee */}
+          <div className="space-y-3">
+            <h2 className="text-base font-bold text-slate-900 font-heading">
+              Non-Guarantee of Admission &amp; Placement Outcomes
+            </h2>
+            <p>
+              Preliminary percentage evaluations generated by this system indicate whether your declared scores match published historical cutoffs. They do not constitute an official offer. Final admission eligibility is determined by WBJEEB / IEMJEE / MAKAUT statutory regulations, original document verification, and seat availability. Placement statistics reflect past cohort performance and do not represent a legal guarantee of employment.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </>
+  );
+}
