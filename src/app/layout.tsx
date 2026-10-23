@@ -5,7 +5,9 @@ import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { ComparisonDock } from '@/components/ComparisonDock';
 import { StudentEnquiryModal } from '@/components/StudentEnquiryModal';
+import { LoginModal } from '@/components/LoginModal';
 import { ComparisonProvider } from '@/context/ComparisonContext';
+import { AuthProvider } from '@/context/AuthContext';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -83,16 +85,19 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <ComparisonProvider>
-          <Header />
-          <main id="main-content" className="flex-grow focus:outline-none">
-            {children}
-          </main>
-          <Footer />
-          <ComparisonDock />
-          <CookieConsent />
-          <StudentEnquiryModal />
-        </ComparisonProvider>
+        <AuthProvider>
+          <ComparisonProvider>
+            <Header />
+            <main id="main-content" className="flex-grow focus:outline-none">
+              {children}
+            </main>
+            <Footer />
+            <ComparisonDock />
+            <CookieConsent />
+            <StudentEnquiryModal />
+            <LoginModal />
+          </ComparisonProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Scale, Compass, BookOpen, Info, Mail, Sparkles, Building2, Award, Search } from 'lucide-react';
+import { Menu, X, Scale, Compass, BookOpen, Info, Mail, Sparkles, Building2, Award, Search, User, LogOut, ChevronDown, Bookmark } from 'lucide-react';
 import { useComparison } from '@/context/ComparisonContext';
+import { useAuth } from '@/context/AuthContext';
 import { QuickSearchDialog } from './QuickSearchDialog';
 
 export function Header() {
@@ -13,6 +14,8 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const { selectedSlugs } = useComparison();
+  const { user, logout, openLoginModal } = useAuth();
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -172,6 +175,84 @@ export function Header() {
               <Compass className="w-3.5 h-3.5" />
               <span>Explore Directory</span>
             </Link>
+
+            {/* User Account / Login Button */}
+            {user ? (
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen((prev) => !prev)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors border border-slate-200"
+                >
+                  <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] uppercase font-bold">
+                    {user.name.charAt(0)}
+                  </span>
+                  <span className="truncate max-w-[100px]">{user.name.split(' ')[0]}</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                </button>
+
+                {userMenuOpen && (
+                  <div className="absolute right-0 mt-1.5 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl py-1.5 z-50 text-xs">
+                    <div className="px-3 py-2 border-b border-slate-100">
+                      <div className="font-bold text-slate-900 truncate">{user.name}</div>
+                      <div className="text-[10px] text-slate-500 truncate font-mono">{user.email}</div>
+                    </div>
+
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition-colors"
+                    >
+                      <User className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Student Dashboard</span>
+                    </Link>
+
+                    <Link
+                      href="/dashboard#saved"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition-colors"
+                    >
+                      <Bookmark className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Saved Colleges</span>
+                    </Link>
+
+                    {(user.role === 'counsellor' || user.role === 'admin') && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 text-blue-700 hover:bg-blue-50 font-semibold transition-colors"
+                      >
+                        <Building2 className="w-3.5 h-3.5 text-blue-600" />
+                        <span>Counsellor Desk</span>
+                      </Link>
+                    )}
+
+                    <div className="border-t border-slate-100 my-1" />
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        logout();
+                      }}
+                      className="w-full flex items-center gap-2 px-3 py-2 text-rose-600 hover:bg-rose-50 transition-colors text-left font-medium"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={openLoginModal}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors border border-emerald-200"
+              >
+                <User className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Sign In</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile menu and search buttons */}

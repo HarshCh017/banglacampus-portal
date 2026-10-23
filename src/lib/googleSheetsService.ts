@@ -8,6 +8,7 @@ import {
   validateCollegeBranchCompatibility,
 } from './enquiryValidation';
 import { getCollegeBySlug, VERIFIED_COLLEGES } from '@/data/colleges';
+import { triggerEnquiryEmailAlert } from './emailService';
 
 export interface GoogleSheetsEnquiryRow {
   submissionId: string;
@@ -219,6 +220,11 @@ export async function persistStudentEnquiry(input: StudentEnquiryInput): Promise
   } catch (err: any) {
     console.warn('[EnquiryStore] Local disk write skipped in serverless environment:', err?.message);
   }
+
+  // Trigger automatic email alert to hc8986234943@gmail.com
+  triggerEnquiryEmailAlert(row).catch((emailErr) => {
+    console.error(`[Email Alert Error] Failed for ${submissionId}:`, emailErr?.message);
+  });
 
   return {
     success: true,
