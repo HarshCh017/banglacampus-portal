@@ -76,6 +76,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-900">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-emerald-700 focus:text-white focus:rounded-md focus:shadow-xl focus:ring-2 focus:ring-white font-medium"
+        >
+          Skip to main content
+        </a>
         <ComparisonProvider>
           <Header />
           <main id="main-content" className="flex-grow focus:outline-none">

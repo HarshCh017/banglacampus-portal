@@ -128,6 +128,95 @@ Under AICTE regulations, every approved engineering institution must publish a s
 - Anti-ragging committee contacts and Ombudsman details.
 `,
   },
+  {
+    slug: 'wb-scholarships-svmcm-credit-card-guide',
+    title: 'West Bengal Engineering Scholarships & Credit Card: SVMCM, TFW, and WBSCC Guide',
+    description:
+      'Complete eligibility criteria, required documents, and application steps for the ₹60,000/yr Swami Vivekananda scholarship, 100% Tuition Fee Waiver, and the ₹10 Lakh student credit card.',
+    publishedAt: '2026-09-01T10:00:00Z',
+    updatedAt: '2026-10-20T14:30:00Z',
+    author: {
+      name: 'BanglaCampus Editorial Desk',
+      title: 'State Financial Aid & Welfare Desk',
+    },
+    readTimeMinutes: 9,
+    tags: ['Scholarships', 'SVMCM', 'Student Credit Card', 'TFW Quota', 'West Bengal'],
+    content: `## Financing Engineering Education in West Bengal
+
+Pursuing a four-year B.Tech degree involves tuition fees ranging from ₹12,000 (at government universities like Jadavpur) to ₹4,50,000 – ₹6,50,000 (at private autonomous colleges). The Government of West Bengal and central agencies run multiple financial aid mechanisms to ensure no deserving student is turned away due to financial constraints.
+
+### 1. Swami Vivekananda Merit-cum-Means Scholarship (SVMCM)
+The SVMCM is the premier merit-means scholarship program funded by the Higher Education Department, Government of West Bengal.
+- **Disbursement Amount**: **₹60,000 per year** (₹5,000 per month) for undergraduate engineering (B.Tech / B.E.) students.
+- **Academic Eligibility**: Minimum **60% aggregate marks** in Class 12 (Higher Secondary / CBSE / ISC) examination.
+- **Family Income Ceiling**: Gross annual family income from all sources must not exceed **₹2,50,000 per annum**.
+- **Official Application Portal**: \`svmcm.wbhed.gov.in\`.
+- **Key Documents**: Family income certificate issued by an officer not below the rank of BDO / SDO / Joint BDO / Executive Officer of Municipality, Class 10 admit card, Class 12 marksheet, and institutional admission receipt.
+
+### 2. AICTE Tuition Fee Waiver (TFW) Quota
+- **Scope**: 5% supernumerary seats in every AICTE-approved engineering branch in West Bengal.
+- **Benefit**: **100% waiver of tuition fee component** for all 4 years (8 semesters). Caution deposit and examination fees remain payable.
+- **Eligibility**: Candidates must be permanent residents of West Bengal with family income strictly below **₹2.50 Lakhs per annum**.
+- **Important Rule**: TFW is claimed **during the WBJEE application form filling** and verified during physical e-counselling document verification. TFW seats cannot be applied for post-admission.
+
+### 3. West Bengal Student Credit Card (WBSCC)
+- **Maximum Limit**: Up to **₹10,00,000 (Ten Lakhs)** collateral-free education loan.
+- **Interest Rate**: Fixed **4% simple interest per annum** (concession available for female students and timely payers).
+- **Repayment Moratorium**: Repayment begins **1 year after course completion** or after securing employment (whichever is earlier), with an extended repayment window of up to **15 years**.
+- **Covered Expenses**: College tuition, hostel accommodation, laptop/computer purchases, and examination books.
+- **Application Portal**: \`wbscc.wb.gov.in\`.
+
+### 4. AICTE Pragati Scholarship for Girls
+- **Benefit**: **₹50,000 per year** for every year of technical degree study.
+- **Eligibility**: Up to two girl children per family admitted to first-year B.Tech through centralized state counselling, family income under ₹8 Lakhs/year.
+- **Portal**: National Scholarship Portal (\`scholarships.gov.in\`).
+`,
+  },
+  {
+    slug: 'wbjee-domicile-rules-proforma-explained',
+    title: 'WBJEE Domicile Rules: Proforma a1, a2, and b Explained with Certifying Authorities',
+    description:
+      'Understanding West Bengal residential eligibility criteria, which proforma to download, and who is legally empowered to sign your domicile certificate.',
+    publishedAt: '2026-08-05T11:00:00Z',
+    updatedAt: '2026-10-16T12:00:00Z',
+    author: {
+      name: 'BanglaCampus Editorial Desk',
+      title: 'Admissions & Statutory Regulatory Cell',
+    },
+    readTimeMinutes: 7,
+    tags: ['WBJEE', 'Domicile', 'Proforma', 'Counselling Verification', 'Eligibility'],
+    content: `## Why West Bengal Domicile is Critical in WBJEE
+
+In West Bengal engineering admissions, **100% of seats in state government engineering colleges and universities** (such as Jadavpur University FET, KGEC Kalyani, JGEC Jalpaiguri, and Government College of Engineering and Ceramic Technology) and **90% of seats in private colleges** are strictly reserved for candidates with confirmed West Bengal domicile. Furthermore, Tuition Fee Waiver (TFW) and caste reservation quotas (SC, ST, OBC-A, OBC-B, EWS) require state domicile verification without exception.
+
+### The Three Official Proformas
+
+The West Bengal Joint Entrance Examinations Board (WBJEEB) prescribes three distinct proformas in the official Information Bulletin:
+
+#### 1. Proforma a1 (Resident of West Bengal for at least 10 continuous years)
+- **Who uses it**: Candidates who have resided in West Bengal continuously for at least 10 years as of December 31 of the examination qualifying year.
+- **Who can sign**:
+  - District Magistrate, Additional DM, SDO, or Joint BDO.
+  - Collector, Additional Collector, or Deputy Collector.
+  - Commissioner, Additional Commissioner, or Joint Commissioner of Police.
+  - Deputy Director of Youth Services or Executive Officer of Municipality.
+- *Note: Gram Panchayat Pradhans, Ward Councillors, and Notaries are NOT authorized to sign Proforma a1.*
+
+#### 2. Proforma a2 (10-Year Resident who passed 10+2 from a West Bengal School)
+- **Who uses it**: Candidates residing in West Bengal continuously for 10 years who have also passed or are appearing in their 10+2 examination from an institution located in West Bengal.
+- **Who can sign**: The **Head of the Institution** (Headmaster / Principal / Teacher-in-Charge) of the school from which the candidate passed or is appearing in Class 12.
+- *Tip: Proforma a2 is generally the easiest and fastest to secure because it is certified directly by your school principal.*
+
+#### 3. Proforma b (Candidate residing outside WB, but parents are permanent WB residents)
+- **Who uses it**: Candidates who did NOT reside in West Bengal continuously for 10 years, but whose parent(s) are permanent residents of West Bengal having a permanent residence in the state for at least 10 continuous years.
+- **Who can sign**: Must be certified by the authorized government officials listed under Proforma a1 (DM, SDO, BDO, etc.). Parent's voter ID, land deeds (porcha), or residential proof must be produced.
+
+### Essential Verification Checkpoints
+1. Photograph on the domicile proforma must match your WBJEE admit card and must be attested/stamped by the issuing authority.
+2. Ensure the seal includes the officer's designation, office address, and contact number.
+3. Keep at least 4 self-attested photocopies of the certified proforma along with the original for Reporting Centre verification.
+`,
+  },
 ];
 
 export function getArticleBySlug(slug: string): Article | undefined {
