@@ -233,3 +233,113 @@ export async function persistStudentEnquiry(input: StudentEnquiryInput): Promise
     message: 'Thank you! Your preferences have been submitted successfully.',
   };
 }
+
+/**
+ * Synchronizes any pending enquiries (such as submissions made while offline or before webhook configuration).
+ */
+export async function syncPendingEnquiries(): Promise<{
+  total: number;
+  synced: number;
+  failed: number;
+  webhookConfigured: boolean;
+  message: string;
+}> {
+  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  if (!webhookUrl || !webhookUrl.startsWith('http')) {
+    return {
+      total: 0,
+      synced: 0,
+      failed: 0,
+      webhookConfigured: false,
+      message: 'GOOGLE_SHEETS_WEBHOOK_URL is not configured in .env.local',
+    };
+  }
+
+  const filePath = getEnquiriesFilePath();
+  let records: StoredEnquiryRecord[] = [];
+  try {
+    if (fs.existsSync(filePath)) {
+      records = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    }
+  } catch {
+    return { total: 0, synced: 0, failed: 0, webhookConfigured: true, message: 'Could not read local enquiries' };
+  }
+
+  const pending = records.filter((r) => r.syncStatus !== 'CONFIRMED_GOOGLE_SHEETS');
+  let synced = 0;
+  let failed = 0;
+
+  for (const record of pending) {
+    const row: GoogleSheetsEnquiryRow = {
+      submissionId: record.submissionId,
+      submissionTimestamp: record.submissionTimestamp,
+      studentName: record.studentName,
+      class10Percentage: record.class10Percentage,
+      class12Percentage: record.class12Percentage,
+      state: record.state,
+      preferredCollege: record.preferredCollege,
+      preferredBranch: record.preferredBranch,
+      sourceUrl: record.sourceUrl,
+      consentStatus: record.consentStatus,
+    };
+
+    const res = await postToGoogleSheetsWebhook(row, webhookUrl);
+    if (res.success) {
+      record.syncStatus = 'CONFIRMED_GOOGLE_SHEETS';
+      synced++;
+    } else {
+      failed++;
+    }
+  }
+
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(records, null, 2), 'utf-8');
+  } catch (err: any) {
+    console.warn('[EnquiryStore] Disk write failed:', err?.message);
+  }
+
+  return {
+    total: pending.length,
+    synced,
+    failed,
+    webhookConfigured: true,
+    message: `Successfully synchronized ${synced} of ${pending.length} pending enquiries to Google Sheets.`,
+  };
+}
+
+/**
+ * Tests connection to Google Sheets Webhook endpoint
+ */
+export async function testGoogleSheetsWebhook(testUrl?: string): Promise<{
+  success: boolean;
+  message: string;
+}> {
+  const targetUrl = testUrl || process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  if (!targetUrl || !targetUrl.startsWith('http')) {
+    return {
+      success: false,
+      message: 'GOOGLE_SHEETS_WEBHOOK_URL is not configured.',
+    };
+  }
+
+  const testPayload: GoogleSheetsEnquiryRow = {
+    submissionId: `BC-TEST-${Date.now().toString(36).toUpperCase()}`,
+    submissionTimestamp: new Date().toISOString(),
+    studentName: 'BanglaCampus Test Connection',
+    class10Percentage: '90.0',
+    class12Percentage: '85.0',
+    state: 'West Bengal',
+    preferredCollege: 'Jadavpur University',
+    preferredBranch: 'Computer Science & Engineering',
+    sourceUrl: 'http://localhost:3000/admin',
+    consentStatus: 'Test Ping',
+  };
+
+  const res = await postToGoogleSheetsWebhook(testPayload, targetUrl);
+  return {
+    success: res.success,
+    message: res.success
+      ? 'Connection successful! Webhook returned positive response.'
+      : (res.error || 'Webhook ping failed.'),
+  };
+}

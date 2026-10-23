@@ -7,6 +7,7 @@ import os from 'os';
 import { getServerSession } from '@/lib/auth';
 import { StoredEnquiryRecord } from '@/lib/googleSheetsService';
 import { EmailDispatchRecord } from '@/lib/emailService';
+import { AdminSyncControl } from './AdminSyncControl';
 import {
   ShieldCheck,
   Users,
@@ -82,6 +83,10 @@ export default async function AdminPage() {
 
   const enquiries = getEnquiries().reverse(); // newest first
   const emailLogs = getEmailLogs().reverse();
+  const pendingCount = enquiries.filter((e) => e.syncStatus !== 'CONFIRMED_GOOGLE_SHEETS').length;
+  const isConfigured = Boolean(
+    process.env.GOOGLE_SHEETS_WEBHOOK_URL && process.env.GOOGLE_SHEETS_WEBHOOK_URL.startsWith('http')
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
@@ -106,6 +111,9 @@ export default async function AdminPage() {
           </span>
         </div>
       </div>
+
+      {/* Interactive Sync and Webhook Control */}
+      <AdminSyncControl pendingCount={pendingCount} isConfigured={isConfigured} />
 
       {/* Metrics Row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">

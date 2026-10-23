@@ -41,9 +41,20 @@ The sheet uses the following **ten columns in a strict, stable order**:
 
 ```javascript
 /**
- * BANGLACAMPUS — SECURE STUDENT ENQUIRY WEBHOOK RECEIVER
- * Receives POST payloads from the Next.js /api/enquiry route.
+ * BANGLACAMPUS — SECURE STUDENT ENQUIRY WEBHOOK & EMAIL ALERT DISPATCHER
+ * 1. Appends student preferences to Google Sheet ("Student Enquiries" tab)
+ * 2. Sends automated admissions alert to hc8986234943@gmail.com
  */
+
+var RECIPIENT_EMAIL = "hc8986234943@gmail.com";
+
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({
+    status: "online",
+    service: "BanglaCampus Google Sheets & Email Webhook",
+    recipient: RECIPIENT_EMAIL
+  })).setMimeType(ContentService.MimeType.JSON);
+}
 
 function doPost(e) {
   try {
@@ -57,18 +68,10 @@ function doPost(e) {
 
     var data = JSON.parse(rawData);
 
-    // Validate essential fields
-    if (!data.studentName || !data.preferredCollege || !data.preferredBranch) {
-      return ContentService.createTextOutput(JSON.stringify({
-        status: "error",
-        message: "Missing mandatory enquiry fields"
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
-
+    // 1. Get or create worksheet "Student Enquiries"
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName("Student Enquiries");
 
-    // Auto-create worksheet if missing
     if (!sheet) {
       sheet = ss.insertSheet("Student Enquiries");
       sheet.appendRow([
@@ -86,24 +89,66 @@ function doPost(e) {
       sheet.setFrozenRows(1);
     }
 
-    // Append enquiry row in Column A to J order
+    // 2. Append row
+    var submissionId = data.submissionId || ("BC-" + new Date().getTime());
+    var timestamp = data.submissionTimestamp || new Date().toISOString();
+    var studentName = data.studentName || "";
+    var class10 = data.class10Percentage || "";
+    var class12 = data.class12Percentage || "";
+    var state = data.state || "";
+    var college = data.preferredCollege || "";
+    var branch = data.preferredBranch || "";
+    var sourceUrl = data.sourceUrl || "";
+    var consent = data.consentStatus || "Explicit Consent Granted";
+
     sheet.appendRow([
-      data.submissionId || ("BC-" + new Date().getTime()),
-      data.submissionTimestamp || new Date().toISOString(),
-      data.studentName || "",
-      data.class10Percentage || "",
-      data.class12Percentage || "",
-      data.state || "",
-      data.preferredCollege || "",
-      data.preferredBranch || "",
-      data.sourceUrl || "",
-      data.consentStatus || "Explicit Consent Granted"
+      submissionId,
+      timestamp,
+      studentName,
+      class10,
+      class12,
+      state,
+      college,
+      branch,
+      sourceUrl,
+      consent
     ]);
+
+    // 3. Trigger email alert directly to hc8986234943@gmail.com
+    var emailSubject = "[BanglaCampus New Enquiry] " + studentName + " — " + college + " (" + branch + ")";
+    var emailBody = 
+      "======================================================\n" +
+      "BANGLACAMPUS — NEW STUDENT ENQUIRY ALERT\n" +
+      "======================================================\n\n" +
+      "A new student has submitted their academic preferences on BanglaCampus.\n\n" +
+      "SUBMISSION DETAILS:\n" +
+      "• Submission ID:        " + submissionId + "\n" +
+      "• Timestamp (UTC):      " + timestamp + "\n" +
+      "• Student Full Name:    " + studentName + "\n" +
+      "• Class 10 Percentage:  " + class10 + "%\n" +
+      "• Class 12 Percentage:  " + class12 + "%\n" +
+      "• State / UT:           " + state + "\n" +
+      "• Preferred College:    " + college + "\n" +
+      "• Preferred Branch:     " + branch + "\n" +
+      "• Source Page URL:      " + sourceUrl + "\n" +
+      "• Consent Status:       " + consent + "\n\n" +
+      "Recipient: " + RECIPIENT_EMAIL + "\n" +
+      "======================================================\n";
+
+    try {
+      MailApp.sendEmail({
+        to: RECIPIENT_EMAIL,
+        subject: emailSubject,
+        body: emailBody
+      });
+    } catch (mailErr) {
+      Logger.log("MailApp notice: " + mailErr.toString());
+    }
 
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",
-      submissionId: data.submissionId,
-      message: "Enquiry successfully recorded in Google Sheets"
+      submissionId: submissionId,
+      message: "Enquiry recorded in Google Sheet and email sent to " + RECIPIENT_EMAIL
     })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
