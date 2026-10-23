@@ -74,9 +74,9 @@ export default function HomePage() {
             <span>100% Traceable Regulatory Data · Zero Agent Commissions</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight max-w-4xl mx-auto">
-            Discover & Compare Engineering Colleges in{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight max-w-4xl mx-auto text-white">
+            <span className="text-white drop-shadow-md">Discover & Compare Engineering Colleges in</span>{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 font-black">
               West Bengal
             </span>
           </h1>

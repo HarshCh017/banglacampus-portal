@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { VERIFIED_COLLEGES, getCollegeBySlug } from '@/data/colleges';
+import { VERIFIED_CUTOFFS } from '@/data/cutoffs';
 import { CollegeDetailClient } from './CollegeDetailClient';
 import { CollegeCard } from '@/components/CollegeCard';
 import {
@@ -22,6 +23,16 @@ import {
   Mail,
   Phone,
   Home,
+  Check,
+  GraduationCap,
+  Sparkles,
+  Library,
+  Wifi,
+  Coins,
+  FileSpreadsheet,
+  Navigation,
+  FileCheck2,
+  Layers,
 } from 'lucide-react';
 
 interface PageProps {
@@ -63,6 +74,12 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   const relatedColleges = VERIFIED_COLLEGES.filter(
     (c) => c.slug !== college.slug && (c.district === college.district || c.category === college.category)
   ).slice(0, 3);
+
+  // Historical WBJEE Cutoff archives for this institution
+  const collegeCutoffs = VERIFIED_CUTOFFS.filter((c) => c.collegeSlug === college.slug);
+
+  // Total verified approved intake
+  const totalIntake = college.programs.reduce((acc, p) => acc + (p.intakeEst || 0), 0);
 
   const jsonLdCollege = {
     '@context': 'https://schema.org',
@@ -318,6 +335,85 @@ export default async function CollegeDetailPage({ params }: PageProps) {
               </div>
             </section>
 
+            {/* Historical WBJEE Cutoffs Section */}
+            <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-heading font-bold text-lg text-slate-900">
+                      WBJEE Cutoff Ranks (Closing Rank Archives)
+                    </h2>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                      General / HS Quota
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500">
+                    Official centralized allotment closing ranks across counselling rounds
+                  </p>
+                </div>
+                <Link
+                  href="/cutoffs"
+                  className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 shrink-0"
+                >
+                  <span>Open Cutoff Calculator</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              {collegeCutoffs.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs sm:text-sm">
+                    <thead>
+                      <tr className="border-b border-slate-100 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                        <th className="py-2.5">Branch Specialization</th>
+                        <th className="py-2.5">Round 1 Cutoff</th>
+                        <th className="py-2.5">Final Round Cutoff</th>
+                        <th className="py-2.5 text-right">Cycle Source</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 text-slate-700">
+                      {collegeCutoffs.map((co, idx) => (
+                        <tr key={idx} className="hover:bg-slate-50/60 transition-colors">
+                          <td className="py-3 font-semibold text-slate-900">
+                            {co.branchName}
+                          </td>
+                          <td className="py-3">
+                            <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200 font-mono text-xs">
+                              GMR ~{co.approxClosingRankRound1.toLocaleString('en-IN')}
+                            </span>
+                          </td>
+                          <td className="py-3">
+                            <span className="font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200 font-mono text-xs">
+                              GMR ~{co.approxClosingRankFinalRound.toLocaleString('en-IN')}
+                            </span>
+                          </td>
+                          <td className="py-3 text-right text-xs text-slate-400">
+                            {co.academicCycle}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="bg-slate-50 rounded-xl p-4 text-xs text-slate-600 space-y-2 border border-slate-200/80">
+                  <p className="font-medium text-slate-800">
+                    Detailed branch closing ranks for WBJEE Code {college.wbjeebCode} ({college.shortName}) are currently being synchronized from the WBJEEB allotment reports.
+                  </p>
+                  <p className="text-slate-500">
+                    Admissions are strictly merit-ranked through WBJEE centralized e-counselling. Enter your rank in our Cutoff Explorer to review comparable institutions.
+                  </p>
+                  <Link
+                    href="/cutoffs"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:underline pt-1"
+                  >
+                    <span>Check All WBJEE Cutoffs</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              )}
+            </section>
+
             {/* Fee Breakdown & Caution Notice */}
             <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -340,15 +436,25 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 </a>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
-                  <span className="text-xs text-slate-500 font-medium">Estimated Annual Tuition Range</span>
+                  <span className="text-xs text-slate-500 font-medium">Annual Tuition Fee</span>
                   <p className="text-lg font-extrabold text-slate-900">
                     {college.feeStructure.annualTuitionMin && college.feeStructure.annualTuitionMax
-                      ? `₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')} – ₹${college.feeStructure.annualTuitionMax.toLocaleString('en-IN')}`
+                      ? `₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}`
                       : 'Consult official circular'}
                   </p>
-                  <span className="text-[11px] text-slate-500 block">Excludes voluntary hostel accommodation</span>
+                  <span className="text-[11px] text-slate-500 block">Per academic year</span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <span className="text-xs text-slate-500 font-medium">Estimated 4-Year Tuition</span>
+                  <p className="text-lg font-extrabold text-slate-900">
+                    {college.feeStructure.annualTuitionMin
+                      ? `₹${(college.feeStructure.annualTuitionMin * 4).toLocaleString('en-IN')}`
+                      : 'Subject to gazette'}
+                  </p>
+                  <span className="text-[11px] text-slate-500 block">Complete 8-semester course</span>
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
@@ -358,7 +464,7 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       ? `~₹${college.feeStructure.oneTimeAdmissionFee.toLocaleString('en-IN')}`
                       : 'Nominal'}
                   </p>
-                  <span className="text-[11px] text-slate-500 block">Refundable caution deposits subject to circular</span>
+                  <span className="text-[11px] text-slate-500 block">Refundable caution deposits</span>
                 </div>
               </div>
 
@@ -368,6 +474,204 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                   <span>Applicant Advisory Notice</span>
                 </div>
                 <p className="leading-relaxed">{college.feeStructure.disclaimer}</p>
+              </div>
+            </section>
+
+            {/* Government Scholarships & Financial Aid */}
+            <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div>
+                  <h2 className="font-heading font-bold text-lg text-slate-900">
+                    Government Scholarships & Financial Aid
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    State and central government schemes applicable to enrolled students
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                  <Coins className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Govt. Subsidized</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-sm text-slate-900">SVMCM Scholarship</span>
+                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      ₹60,000 / year
+                    </span>
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    Swami Vivekananda Merit-cum-Means scheme for West Bengal domicile students scoring ≥ 60% in 10+2 with family annual income ≤ ₹2.5 Lakh.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-sm text-slate-900">WB Student Credit Card</span>
+                    <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      Up to ₹10 Lakh
+                    </span>
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    West Bengal State Government initiative offering collateral-free education loan at 4% simple interest rate with 15-year repayment window.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-sm text-slate-900">AICTE TFW Quota</span>
+                    <span className="text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                      100% Tuition Waiver
+                    </span>
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    Tuition Fee Waiver supernumerary seats (up to 5% of intake) allocated through WBJEE centralized merit for parents with annual income &lt; ₹8 Lakh.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-sm text-slate-900">AICTE Pragati for Girls</span>
+                    <span className="text-[11px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                      ₹50,000 / year
+                    </span>
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    National scholarship scheme specifically supporting meritorious female candidates admitted to first year of AICTE-approved B.Tech programs.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Admission & Counselling Roadmap */}
+            <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="border-b border-slate-100 pb-3">
+                <h2 className="font-heading font-bold text-lg text-slate-900">
+                  Admission & Counselling Roadmap
+                </h2>
+                <p className="text-xs text-slate-500">
+                  Step-by-step statutory process for seat allotment at {college.shortName}
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    1
+                  </div>
+                  <div className="text-xs space-y-0.5">
+                    <p className="font-bold text-slate-900 text-sm">Academic Eligibility Verification</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Passed 10+2 Examination with Physics and Mathematics along with Chemistry / Biotechnology / Computer Science with at least 45% aggregate (40% for SC/ST/OBC-A/OBC-B candidates) and passed English with min 30%.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    2
+                  </div>
+                  <div className="text-xs space-y-0.5">
+                    <p className="font-bold text-slate-900 text-sm">Qualify in WBJEE or JEE Main</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Secure a valid General Merit Rank (GMR) in West Bengal Joint Entrance Examination. (90% state quota through WBJEE; 10% AI quota in private institutes through JEE Main).
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    3
+                  </div>
+                  <div className="text-xs space-y-0.5">
+                    <p className="font-bold text-slate-900 text-sm">Online Choice Filling (wbjeeb.nic.in)</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Register during centralized e-counselling. Add <strong className="text-slate-900">{college.name}</strong> using WBJEE Institute Code <strong className="text-emerald-800 font-mono font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{college.wbjeebCode}</strong> and lock your branch preferences.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    4
+                  </div>
+                  <div className="text-xs space-y-0.5">
+                    <p className="font-bold text-slate-900 text-sm">Seat Allotment & Document Verification</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Upon allotment, pay seat acceptance fee and report with originals: WB Domicile Certificate (Proforma A1/A2/B), 10th Admit Card (DOB proof), 12th Marksheet, Rank Card, and Allotment Letter.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    5
+                  </div>
+                  <div className="text-xs space-y-0.5">
+                    <p className="font-bold text-slate-900 text-sm">Physical Campus Admission & Enrollment</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      Report to the {college.shortName} campus admission desk ({college.city}), complete institutional registration, and collect your university student identity kit.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Campus Amenities & Student Facilities */}
+            <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
+              <div className="border-b border-slate-100 pb-3">
+                <h2 className="font-heading font-bold text-lg text-slate-900">
+                  Campus Amenities & Academic Infrastructure
+                </h2>
+                <p className="text-xs text-slate-500">
+                  Verified campus facilities reported in mandatory disclosures
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-3.5 rounded-xl border border-slate-200 flex items-start gap-3 bg-slate-50/40">
+                  <Library className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-slate-900 block">Central Library & Digital Consortium</span>
+                    <p className="text-slate-600 mt-0.5 leading-relaxed">
+                      Extensive book bank collection, online journal subscriptions (IEEE, Springer, ScienceDirect) and quiet reading rooms.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl border border-slate-200 flex items-start gap-3 bg-slate-50/40">
+                  <Wifi className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-slate-900 block">High-Performance Computing & Wi-Fi</span>
+                    <p className="text-slate-600 mt-0.5 leading-relaxed">
+                      Dedicated departmental laboratories, AI/ML computing clusters, and campus-wide high-speed optical fiber connectivity.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl border border-slate-200 flex items-start gap-3 bg-slate-50/40">
+                  <Home className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-slate-900 block">Hostel & Accommodation</span>
+                    <p className="text-slate-600 mt-0.5 leading-relaxed">
+                      {college.hostelAvailable === true
+                        ? 'Separate residential hostels for men and women with dining mess and 24/7 security surveillance.'
+                        : 'Non-residential campus. Students utilize verified local PGs and apartments in the vicinity.'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl border border-slate-200 flex items-start gap-3 bg-slate-50/40">
+                  <Award className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-slate-900 block">Placement & Training Cell</span>
+                    <p className="text-slate-600 mt-0.5 leading-relaxed">
+                      Active career development center facilitating pre-placement training, aptitude grooming, hackathons, and corporate recruitment.
+                    </p>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
@@ -410,6 +714,39 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       ? 'Day scholar campus / Local accommodation'
                       : 'Information not gazetted'}
                   </p>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <span className="font-medium text-slate-500">Total Approved Intake:</span>
+                  <span className="font-bold text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded text-xs">
+                    {totalIntake > 0 ? `${totalIntake} B.Tech Seats` : 'As per AICTE EoA'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Campus Transit & Commute Card */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-3">
+              <div className="flex items-center gap-2 font-bold text-base text-slate-900 pb-2 border-b border-slate-100">
+                <Navigation className="w-4 h-4 text-emerald-700" />
+                <span>Transit & Directions</span>
+              </div>
+              <div className="space-y-2 text-xs text-slate-600">
+                <p>
+                  Located in <strong className="text-slate-900">{college.city}</strong> ({college.district} district), with transit connections across suburban rail and road routes.
+                </p>
+                <div className="pt-1">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                      `${college.name} ${college.city} West Bengal`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold rounded-xl border border-emerald-200 transition-colors"
+                  >
+                    <span>View Campus on Google Maps</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             </div>

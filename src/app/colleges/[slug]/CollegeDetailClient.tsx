@@ -15,6 +15,8 @@ import {
   X,
   Send,
   Loader2,
+  Share2,
+  Printer,
 } from 'lucide-react';
 
 export function CollegeDetailClient({ college }: { college: College }) {
@@ -26,12 +28,23 @@ export function CollegeDetailClient({ college }: { college: College }) {
   const [errorField, setErrorField] = useState('Tuition Fees');
   const [errorNote, setErrorNote] = useState('');
   const [errorSubmitted, setErrorSubmitted] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
 
   const handleCompareToggle = () => {
     if (inCompare) {
       removeFromCompare(college.slug);
     } else {
       addToCompare(college.slug);
+    }
+  };
+
+  const handleShare = () => {
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    if (navigator.clipboard && url) {
+      navigator.clipboard.writeText(url).then(() => {
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2500);
+      });
     }
   };
 
@@ -46,13 +59,13 @@ export function CollegeDetailClient({ college }: { college: College }) {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center gap-2.5 no-print">
       {/* Compare Button */}
       <button
         type="button"
         onClick={handleCompareToggle}
         disabled={!inCompare && !canAdd}
-        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all shadow-sm ${
+        className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs transition-all shadow-xs ${
           inCompare
             ? 'bg-emerald-600 text-white shadow-emerald-950/20'
             : canAdd
@@ -61,17 +74,39 @@ export function CollegeDetailClient({ college }: { college: College }) {
         }`}
       >
         <Scale className="w-4 h-4" />
-        <span>{inCompare ? 'Added in Comparison' : 'Add to Side-by-Side Compare'}</span>
+        <span>{inCompare ? 'In Comparison Deck' : 'Add to Compare'}</span>
       </button>
 
       {inCompare && (
         <Link
           href="/compare"
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors"
         >
-          <span>View Compare Table ({selectedSlugs.length}/3)</span>
+          <span>View ({selectedSlugs.length}/3)</span>
         </Link>
       )}
+
+      {/* Share Profile Action */}
+      <button
+        type="button"
+        onClick={handleShare}
+        className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-xs"
+        title="Copy verified profile link"
+      >
+        {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5 text-slate-500" />}
+        <span>{copiedLink ? 'Link Copied!' : 'Share'}</span>
+      </button>
+
+      {/* Print Profile Action */}
+      <button
+        type="button"
+        onClick={() => window.print()}
+        className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-xs"
+        title="Print or export PDF profile report"
+      >
+        <Printer className="w-3.5 h-3.5 text-slate-500" />
+        <span>Print</span>
+      </button>
 
       {/* Report an Error Action */}
       <button
@@ -80,7 +115,7 @@ export function CollegeDetailClient({ college }: { college: College }) {
         className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors"
       >
         <AlertTriangle className="w-3.5 h-3.5 text-amber-500" />
-        <span>Report Data Correction</span>
+        <span>Correction</span>
       </button>
 
       {/* Report Error Modal */}
