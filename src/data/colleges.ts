@@ -78,6 +78,8 @@ export const VERIFIED_COLLEGES: College[] = [
       },
     },
     featured: true,
+    campusImageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+    campusImageCaption: 'Aurobindo Bhavan & Faculty of Engineering, Jadavpur University Main Campus',
   },
   {
     id: 'iem-kolkata',
@@ -155,6 +157,8 @@ export const VERIFIED_COLLEGES: College[] = [
       },
     },
     featured: true,
+    campusImageUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
+    campusImageCaption: 'Management House & Engineering Labs, IEM Salt Lake Sector V Campus',
   },
   {
     id: 'heritage-it',
@@ -458,6 +462,8 @@ export const VERIFIED_COLLEGES: College[] = [
         verificationStatus: 'verified',
       },
     },
+    campusImageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+    campusImageCaption: 'Central Administrative & Chemical Engineering Wing, HIT Haldia 37-Acre Campus',
   },
   {
     id: 'jgec-jalpaiguri',
@@ -832,6 +838,8 @@ export const VERIFIED_COLLEGES: College[] = [
         verificationStatus: 'verified',
       },
     },
+    campusImageUrl: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1200&q=80',
+    campusImageCaption: 'Academic Building & Computing Labs, Narula Institute of Technology Agarpara Campus',
   },
   {
     id: 'gcetts-serampore',

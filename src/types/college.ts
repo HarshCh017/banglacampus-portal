@@ -65,6 +65,8 @@ export interface College {
     programs: FieldProvenance;
   };
   featured?: boolean;
+  campusImageUrl?: string;
+  campusImageCaption?: string;
 }
 
 export interface CollegeFilterState {

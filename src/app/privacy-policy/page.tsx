@@ -50,6 +50,9 @@ export default function PrivacyPolicyPage() {
               <strong>General Enquiries & Error Reports:</strong> Full name, email address, topic, and message details submitted via our contact form.
             </li>
             <li>
+              <strong>Student College Preference Enquiry:</strong> When you submit the &ldquo;Find the Right Engineering College for You&rdquo; enquiry modal, we collect your full name, Class 10 percentage, Class 12 percentage, State / Union Territory, preferred engineering college, and preferred engineering branch.
+            </li>
+            <li>
               <strong>Admission Digest / Newsletter:</strong> Email address and affirmative opt-in consent record.
             </li>
             <li>
@@ -92,9 +95,12 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-lg font-bold font-heading text-slate-900">4. Data Retention & Operational Log Safeguards</h2>
+          <h2 className="text-lg font-bold font-heading text-slate-900">4. Data Retention, Google Sheets Integration &amp; Security Safeguards</h2>
           <p>
-            In accordance with data security standards, contact enquiries are retained for no longer than 180 days to resolve questions, after which they are purged. Furthermore, our server architecture deliberately suppresses raw message bodies from production operational logs to protect privacy.
+            In accordance with data security standards, student enquiry preferences are transmitted over encrypted HTTPS to our dedicated Google Sheets integration (<code className="bg-slate-100 px-1 py-0.5 rounded">Student Enquiries</code> worksheet) and verified against our local server store. Spreadsheet cells undergo rigorous formula-injection sanitization to prevent unauthorized formula execution. Access to the connected spreadsheet is strictly limited to authorized academic research and counselling personnel.
+          </p>
+          <p>
+            Contact queries are retained for no longer than 180 days to resolve questions, after which they are purged. Furthermore, our server architecture deliberately suppresses raw message bodies and personal percentages from public operational logs to protect privacy.
           </p>
         </section>
 

@@ -6,6 +6,7 @@ import { VERIFIED_COLLEGES, getCollegeBySlug } from '@/data/colleges';
 import { VERIFIED_CUTOFFS } from '@/data/cutoffs';
 import { CollegeDetailClient } from './CollegeDetailClient';
 import { CollegeCard } from '@/components/CollegeCard';
+import { CollegeCampusBanner } from '@/components/CollegeCampusBanner';
 import {
   MapPin,
   Building,
@@ -148,6 +149,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
           <span className="text-slate-800 font-semibold truncate max-w-xs">{college.shortName}</span>
         </nav>
+
+        {/* Visual Campus Photography & Architecture Banner */}
+        <CollegeCampusBanner college={college} />
 
         {/* Hero Header Card */}
         <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">

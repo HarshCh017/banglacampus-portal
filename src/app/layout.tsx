@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { ComparisonDock } from '@/components/ComparisonDock';
+import { StudentEnquiryModal } from '@/components/StudentEnquiryModal';
 import { ComparisonProvider } from '@/context/ComparisonContext';
 
 export const viewport: Viewport = {
@@ -90,6 +91,7 @@ export default function RootLayout({
           <Footer />
           <ComparisonDock />
           <CookieConsent />
+          <StudentEnquiryModal />
         </ComparisonProvider>
       </body>
     </html>
