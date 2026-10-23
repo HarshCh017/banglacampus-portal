@@ -1,162 +1,287 @@
-import React from 'react';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { LeadCaptureForm } from '@/components/LeadCaptureForm';
-import {
-  ChevronRight,
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  ShieldCheck,
-  Building2,
-  ExternalLink,
-} from 'lucide-react';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Contact Official Admission Office | IEM Kolkata',
-  description:
-    'Contact Institute of Engineering & Management (IEM), Kolkata. Registered admission office at Ashram Building (Salt Lake Sector V), helplines, emails, and office hours.',
-};
+import React, { useState } from 'react';
+import { Mail, MapPin, CheckCircle2, AlertCircle, Loader2, Send, ShieldCheck, Building2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ContactPage() {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('Data Correction / Error Report');
+  const [message, setMessage] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [responseMsg, setResponseMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!consent) {
+      setErrorMsg('Please confirm consent to submit your enquiry.');
+      return;
+    }
+
+    setLoading(true);
+    setErrorMsg('');
+    setFieldErrors({});
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName,
+          email,
+          subject,
+          message,
+          consent,
+          hp_website: honeypot,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        setResponseMsg(data.message);
+      } else {
+        setErrorMsg(data.message || 'Unable to submit your enquiry. Please verify the form.');
+        if (data.errors) {
+          setFieldErrors(data.errors);
+        }
+      }
+    } catch {
+      setErrorMsg('Network connectivity failure. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <>
-      {/* Breadcrumb Bar */}
-      <div className="bg-slate-100 border-b border-slate-200 py-2.5 px-4 text-xs text-slate-600">
-        <div className="max-w-7xl mx-auto flex items-center gap-1.5">
-          <Link href="/" className="hover:text-brandBlue-600 font-medium">Home</Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-semibold">Contact</span>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+      {/* Header */}
+      <div className="space-y-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+          <Mail className="w-4 h-4 text-emerald-600" />
+          <span>Research & Editorial Desk</span>
         </div>
+        <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight">
+          Contact BanglaCampus
+        </h1>
+        <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
+          Have an updated fee circular, accreditation correction, or query regarding our West Bengal engineering directory? Send a message to our verification team.
+        </p>
       </div>
 
-      {/* Hero Header */}
-      <section className="bg-navy-950 text-white py-14 md:py-18 engineering-grid relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-900 border border-navy-700 text-xs font-semibold text-brandTeal-500">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Registered Admissions Venue</span>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Contact Information & Disclaimers */}
+        <div className="space-y-6 md:col-span-1">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+            <h3 className="font-heading font-bold text-base text-slate-900 pb-2 border-b border-slate-100">
+              Editorial Desk
+            </h3>
+            <div className="space-y-3 text-xs text-slate-600">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-emerald-700 mt-0.5 shrink-0" />
+                <div>
+                  <strong className="text-slate-900 block font-semibold">Pre-Launch Research Cell</strong>
+                  <span>Salt Lake Sector V, Kolkata – 700091, West Bengal</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <Mail className="w-4 h-4 text-emerald-700 mt-0.5 shrink-0" />
+                <div>
+                  <strong className="text-slate-900 block font-semibold">General & Editorial Email</strong>
+                  <span className="font-mono text-emerald-800">contact@banglacampus.in</span>
+                </div>
+              </div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
-              Contact IEM Kolkata Admissions Desk
-            </h1>
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
-              Connect with academic advisors, inquire about B.Tech branch availability, or schedule physical document verification at Ashram Building in Salt Lake Sector V.
+          </div>
+
+          <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 text-xs text-slate-600 space-y-2">
+            <div className="flex items-center gap-2 font-bold text-slate-900">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span>Independent Platform Notice</span>
+            </div>
+            <p className="leading-relaxed">
+              BanglaCampus is an independent publishing platform. We do not process college tuition payments or sell application forms. If you wish to reach a specific college administration, please use the official contact links on their respective profile page.
+            </p>
+          </div>
+
+          <div className="bg-emerald-50 rounded-2xl p-5 border border-emerald-200 text-xs text-emerald-900 space-y-2">
+            <div className="flex items-center gap-2 font-bold text-emerald-950">
+              <Building2 className="w-4 h-4 text-emerald-700" />
+              <span>Looking for IEM Kolkata Admissions Desk?</span>
+            </div>
+            <p className="leading-relaxed">
+              If your enquiry specifically concerns the 2027 intake or direct callback from the IEM Ashram Campus, visit the{' '}
+              <Link href="/colleges/iem-kolkata" className="font-bold underline text-emerald-800">
+                IEM Kolkata Hub
+              </Link>{' '}
+              or the{' '}
+              <Link href="/apply" className="font-bold underline text-emerald-800">
+                IEM B.Tech Application Form
+              </Link>.
             </p>
           </div>
         </div>
-      </section>
 
-      {/* Contact Details & Lead Form */}
-      <section className="py-14 md:py-18 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            
-            {/* Left: Verified NAP Directory (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
-              
+        {/* Contact Form */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs md:col-span-2">
+          {submitted ? (
+            <div className="p-8 text-center space-y-4">
+              <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <h2 className="font-heading font-bold text-xl text-slate-900">
+                Message Successfully Submitted
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                {responseMsg}
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitted(false);
+                  setFullName('');
+                  setEmail('');
+                  setMessage('');
+                  setConsent(false);
+                }}
+                className="mt-4 px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl transition-colors"
+              >
+                Send Another Message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Bot Honeypot */}
+              <div className="hidden" aria-hidden="true">
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  autoComplete="off"
+                />
+              </div>
+
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 font-heading">
-                  Sole Authorized Admission Office
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                  The IEM-UEM Group operates its primary admissions and counselling facilities strictly at the addresses listed below:
-                </p>
+                <label htmlFor="fullName" className="text-xs font-bold text-slate-700 block mb-1">
+                  Your Full Name <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  id="fullName"
+                  type="text"
+                  required
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="e.g. Debojyoti Banerjee"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                {fieldErrors.fullName && (
+                  <p className="text-[11px] text-rose-500 mt-1">{fieldErrors.fullName[0]}</p>
+                )}
               </div>
 
-              <div className="space-y-4">
-                {/* Ashram Building Card */}
-                <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
-                  <div className="flex items-center gap-2 text-brandBlue-600 font-bold text-xs uppercase tracking-wide">
-                    <MapPin className="w-4 h-4" />
-                    <span>Primary Admission Center (Registered Office)</span>
-                  </div>
-                  <h3 className="text-base font-bold text-slate-900 font-heading">
-                    Ashram Building (1st Floor)
-                  </h3>
-                  <p className="text-xs text-slate-700 leading-relaxed">
-                    GN-34/2, 1st Floor, Sector – V, Saltlake Electronics Complex, Kolkata – 700 091, West Bengal, India.
-                  </p>
-                  <p className="text-[11px] text-slate-500">
-                    Nearest Landmark: Webel Bhawan / SDF Building, Sector V, Salt Lake.
-                  </p>
-                </div>
+              <div>
+                <label htmlFor="email" className="text-xs font-bold text-slate-700 block mb-1">
+                  Email Address <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@example.com"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                {fieldErrors.email && (
+                  <p className="text-[11px] text-rose-500 mt-1">{fieldErrors.email[0]}</p>
+                )}
+              </div>
 
-                {/* Additional Campuses Card */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-700">
-                  <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                    <strong className="text-slate-900 block font-heading mb-1">Management House</strong>
-                    <p className="text-slate-600">D-1, Sector – V, Salt Lake Electronics Complex, Kolkata – 700091.</p>
-                  </div>
-                  <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                    <strong className="text-slate-900 block font-heading mb-1">Gurukul Campus</strong>
-                    <p className="text-slate-600">Y-12, Block EP, Sector V, Salt Lake, Kolkata – 700091.</p>
-                  </div>
-                </div>
+              <div>
+                <label htmlFor="subject" className="text-xs font-bold text-slate-700 block mb-1">
+                  Topic / Subject <span className="text-rose-500">*</span>
+                </label>
+                <select
+                  id="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                >
+                  <option value="Data Correction / Error Report">Data Correction / Discrepancy Report</option>
+                  <option value="Suggestion for New College Listing">Suggestion for New College Profile</option>
+                  <option value="Editorial & Partnership Query">Editorial & Research Collaboration</option>
+                  <option value="Privacy / DPDP Request">Data Privacy & Grievance Request</option>
+                  <option value="General Query">General Question</option>
+                </select>
+              </div>
 
-                {/* Contact Channels */}
-                <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 space-y-3 text-xs">
-                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
-                    Admissions Counselling Desk
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <div>
-                        <span className="text-[11px] text-slate-500 block">Official Support</span>
-                        <span className="font-bold text-slate-900">
-                          Ashram Campus Admission Cell
-                        </span>
-                      </div>
-                    </div>
+              <div>
+                <label htmlFor="message" className="text-xs font-bold text-slate-700 block mb-1">
+                  Message Details <span className="text-rose-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Please specify college name, notification citation, or question..."
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                {fieldErrors.message && (
+                  <p className="text-[11px] text-rose-500 mt-1">{fieldErrors.message[0]}</p>
+                )}
+              </div>
 
-                    <div className="flex items-center gap-2.5">
-                      <Clock className="w-4 h-4 text-brandBlue-600 shrink-0" />
-                      <div>
-                        <span className="text-[11px] text-slate-500 block">Visiting Hours</span>
-                        <span className="font-semibold text-slate-800">
-                          Mon–Sat: 09:30 AM – 05:30 PM IST
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2.5 sm:col-span-2">
-                      <Mail className="w-4 h-4 text-brandBlue-600 shrink-0" />
-                      <div>
-                        <span className="text-[11px] text-slate-500 block">Official Admissions Email</span>
-                        <a href="mailto:admissions@iem.edu.in" className="font-bold text-brandBlue-600 hover:underline">
-                          admissions@iem.edu.in
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Operating Hours */}
-                <div className="p-4 rounded-lg bg-white border border-slate-200 flex items-center gap-3 text-xs text-slate-700">
-                  <Clock className="w-4 h-4 text-brandBlue-600 shrink-0" />
+              <div className="pt-1">
+                <label className="flex items-start gap-2.5 text-xs text-slate-600 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="w-4 h-4 mt-0.5 text-emerald-600 rounded bg-slate-50 border-slate-300 focus:ring-emerald-500"
+                  />
                   <span>
-                    <strong>Office Operating Hours:</strong> Monday through Saturday: 09:30 AM to 05:30 PM (Closed on Sundays &amp; Public Holidays).
+                    I understand that BanglaCampus will use this information strictly to respond to my enquiry in accordance with the{' '}
+                    <Link href="/privacy-policy" className="text-emerald-700 underline">
+                      DPDP Privacy Policy
+                    </Link>. No personal data is sold or shared with commercial agents.
                   </span>
-                </div>
+                </label>
+                {fieldErrors.consent && (
+                  <p className="text-[11px] text-rose-500 mt-1">{fieldErrors.consent[0]}</p>
+                )}
               </div>
-            </div>
 
-            {/* Right: Embedded Form (5 cols) */}
-            <div className="lg:col-span-5 sticky top-24">
-              <LeadCaptureForm
-                id="contact-lead-form"
-                sourceCtaId="contact-us-page"
-                headline="Inquire with an Advisor"
-                subheadline="Leave your details for an immediate callback from the Ashram Campus admission team."
-              />
-            </div>
+              {errorMsg && (
+                <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{errorMsg}</span>
+                </div>
+              )}
 
-          </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 bg-emerald-700 hover:bg-emerald-800 disabled:bg-slate-300 text-white font-bold text-xs sm:text-sm rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              >
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                <span>{loading ? 'Submitting Enquiry...' : 'Submit Message'}</span>
+              </button>
+            </form>
+          )}
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }

@@ -1,191 +1,187 @@
 import React from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, ExternalLink, Shield } from 'lucide-react';
+import { Shield, BookOpen, Compass, Scale, Mail, MapPin, ExternalLink, Award } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 text-slate-300 pt-14 pb-10 border-t border-navy-800">
+    <footer className="bg-slate-950 text-slate-300 pt-14 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-navy-800/80">
-          {/* Col 1: Institutional Profile & Entity Disambiguation */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-brandBlue-600 text-white flex items-center justify-center font-extrabold text-base">
-                IEM
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800/80">
+          {/* Brand & Purpose */}
+          <div className="lg:col-span-2 space-y-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-slate-900 text-white flex items-center justify-center font-heading font-black text-base shadow-md">
+                BC
               </div>
               <div>
-                <h3 className="text-white font-bold text-base leading-tight">
-                  Institute of Engineering & Management
+                <h3 className="text-white font-heading font-bold text-lg tracking-tight">
+                  BanglaCampus
                 </h3>
-                <p className="text-xs text-slate-400">Kolkata, West Bengal (Est. 1989)</p>
+                <p className="text-xs text-slate-400">West Bengal Engineering Discovery & Comparison</p>
               </div>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Autonomous engineering institute approved by AICTE, New Delhi and affiliated with Maulana Abul Kalam Azad University of Technology (MAKAUT), West Bengal. NAAC Accredited with &apos;A&apos; Grade.
+            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+              An independent, evidence-backed college discovery platform for students and families in West Bengal. We publish field-level provenance from official sources (AICTE, WBJEEB, NIRF, NAAC) with zero agent sponsorships or fabricated ratings.
             </p>
-            <div className="pt-1 flex flex-wrap gap-1.5">
-              <span className="px-2 py-0.5 rounded bg-navy-800 text-[11px] text-slate-300 font-mono">
-                AICTE Approved
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              <span className="px-2 py-0.5 rounded bg-slate-900 text-[11px] text-emerald-400 border border-slate-800 font-mono">
+                100% Verified Citations
               </span>
-              <span className="px-2 py-0.5 rounded bg-navy-800 text-[11px] text-slate-300 font-mono">
-                MAKAUT Affiliated
+              <span className="px-2 py-0.5 rounded bg-slate-900 text-[11px] text-slate-300 border border-slate-800 font-mono">
+                Zero Admission Commissions
               </span>
-              <span className="px-2 py-0.5 rounded bg-navy-800 text-[11px] text-slate-300 font-mono">
-                Autonomous
-              </span>
-              <span className="px-2 py-0.5 rounded bg-navy-800 text-[11px] text-slate-300 font-mono">
-                NAAC &apos;A&apos;
+              <span className="px-2 py-0.5 rounded bg-slate-900 text-[11px] text-slate-300 border border-slate-800 font-mono">
+                DPDP 2023 Compliant
               </span>
             </div>
           </div>
 
-          {/* Col 2: Programs & Direct Links */}
+          {/* Directory & Comparison */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold text-sm tracking-wide uppercase">B.Tech Programs</h4>
+            <h4 className="text-white font-semibold text-xs tracking-wider uppercase">Directory & Tools</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/courses/cse" className="hover:text-white transition-colors">
-                  B.Tech Computer Science & Engineering (CSE)
+                <Link href="/colleges" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <Compass className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>All Engineering Colleges</span>
                 </Link>
               </li>
               <li>
-                <Link href="/courses/cse-aiml" className="hover:text-white transition-colors">
-                  B.Tech CSE (Artificial Intelligence & ML)
+                <Link href="/compare" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <Scale className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>Side-by-Side Compare (Max 3)</span>
                 </Link>
               </li>
               <li>
-                <Link href="/courses/it" className="hover:text-white transition-colors">
-                  B.Tech Information Technology (IT)
+                <Link href="/cutoffs" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <Award className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>WBJEE Rank & Cutoffs Explorer</span>
                 </Link>
               </li>
               <li>
-                <Link href="/courses/ece" className="hover:text-white transition-colors">
-                  B.Tech Electronics & Communication (ECE)
+                <Link href="/colleges?category=State+University+Faculty" className="hover:text-emerald-400 transition-colors">
+                  State University Faculties
                 </Link>
               </li>
               <li>
-                <Link href="/courses/ee" className="hover:text-white transition-colors">
-                  B.Tech Electrical Engineering (EE)
+                <Link href="/colleges?category=Government+Engineering+College" className="hover:text-emerald-400 transition-colors">
+                  Govt. Engineering Colleges
                 </Link>
               </li>
               <li>
-                <Link href="/courses/me" className="hover:text-white transition-colors">
-                  B.Tech Mechanical Engineering (ME)
+                <Link href="/colleges?category=Autonomous+Private+Institute" className="hover:text-emerald-400 transition-colors">
+                  Autonomous Private Institutes
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="text-brandBlue-400 font-semibold hover:underline">
-                  View All 12 Specializations &rarr;
+                <Link href="/colleges/iem-kolkata" className="hover:text-emerald-400 transition-colors text-slate-400">
+                  IEM Kolkata Hub
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Admissions & Important Portals */}
+          {/* Educational Guides */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold text-sm tracking-wide uppercase">Admissions & Portals</h4>
+            <h4 className="text-white font-semibold text-xs tracking-wider uppercase">Guidance & Research</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/admissions" className="hover:text-white transition-colors">
-                  Admission Roadmap & Timeline 2027
+                <Link href="/blog" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>Educational Articles</span>
                 </Link>
               </li>
               <li>
-                <Link href="/admissions/fees" className="hover:text-white transition-colors">
-                  Fee Structure & Education Loans
-                </Link>
-              </li>
-              <li>
-                <Link href="/admissions/eligibility" className="hover:text-white transition-colors">
-                  Branch Eligibility Calculator
-                </Link>
-              </li>
-              <li>
-                <Link href="/iemjee" className="hover:text-white transition-colors">
-                  IEMJEE 2027 Examination Details
-                </Link>
-              </li>
-              <li>
-                <Link href="/placements" className="hover:text-white transition-colors">
-                  Sourced Placement Records
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://exam.iem.edu.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-brandBlue-400 hover:underline"
+                <Link
+                  href="/blog/wbjee-2026-counselling-choice-filling-guide"
+                  className="hover:text-emerald-400 transition-colors"
                 >
-                  <span>Official IEMJEE Test Portal</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                  WBJEE Choice Filling Guide
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog/autonomous-vs-makaut-affiliated-colleges"
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  Autonomous vs MAKAUT Degree
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog/how-to-verify-aicte-naac-nba-accreditation"
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  Auditing AICTE & NBA Approvals
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Verified NAP & Contact Information */}
+          {/* Legal, Privacy & Contact */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold text-sm tracking-wide uppercase">Official Admission Office</h4>
-            <div className="space-y-2.5 text-xs text-slate-300">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-brandTeal-500 shrink-0 mt-0.5" />
-                <span>
-                  <strong>Ashram Building (1st Floor)</strong>
-                  <br />
-                  GN-34/2, Sector – V, Saltlake Electronics Complex, Kolkata – 700 091, West Bengal, India.
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-brandTeal-500 shrink-0" />
-                <span>Admission Desk: Inquire Online or Visit Ashram Campus</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-brandTeal-500 shrink-0" />
-                <a href="mailto:admissions@iem.edu.in" className="hover:text-white">
-                  admissions@iem.edu.in
-                </a>
-              </div>
-              <p className="text-[11px] text-slate-400 pt-1">
-                Ashram Building Admission Cell (Mon–Sat: 09:30 AM – 05:30 PM IST)
-              </p>
-            </div>
+            <h4 className="text-white font-semibold text-xs tracking-wider uppercase">Legal & Compliance</h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link href="/about" className="hover:text-emerald-400 transition-colors">
+                  About BanglaCampus
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-emerald-400 transition-colors">
+                  Contact & Error Reporting
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-emerald-400 transition-colors">
+                  Privacy Policy (DPDP 2023)
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-emerald-400 transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/disclaimer" className="hover:text-emerald-400 transition-colors">
+                  Regulatory Disclaimer
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy" className="hover:text-emerald-400 transition-colors">
+                  Cookie & Storage Policy
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Legal Disclaimers & Operating Model Disclosure (Section 1 / Model B Guidance) */}
-        <div className="pt-8 pb-4 text-xs text-slate-400 space-y-3">
-          <div className="p-3.5 rounded-lg bg-navy-900 border border-navy-800 text-[11px] leading-relaxed">
-            <div className="flex items-start gap-2">
-              <Shield className="w-4 h-4 text-slate-300 shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-slate-200">Legal Disclosures & Operational Notice:</strong>
-                <p className="mt-1">
-                  This portal serves as an independent admission guidance and candidate acquisition system for B.Tech programs at the Institute of Engineering & Management (IEM), Kolkata. Completing a guidance inquiry form registers a request for admission consultation and does not constitute a formal grant of admission or seat reservation. Final admission to IEM Kolkata is governed strictly by merit in entrance examinations (WBJEE, JEE Main, IEMJEE), board eligibility, and seat allotment through centralized counselling or authorized institutional guidelines.
-                </p>
-                <p className="mt-1">
-                  Demand Drafts for fees are payable exclusively in favour of <strong>&quot;Institute of Engineering &amp; Management Trust&quot;</strong> payable at Kolkata. Never hand over cash or personal payments to third-party individuals.
-                </p>
-              </div>
+        {/* Regulatory Safeguard Notice */}
+        <div className="pt-8 space-y-4 text-xs text-slate-400">
+          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+            <Shield className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+            <div className="space-y-1">
+              <p className="font-semibold text-white">Independent Publisher Notice & Caution</p>
+              <p className="leading-relaxed">
+                BanglaCampus is an independent educational publisher and comparative discovery catalog. It is not affiliated with the West Bengal Joint Entrance Examinations Board (WBJEEB), AICTE, MAKAUT, or any higher education institution unless explicitly disclosed. All tuition figures, cutoff ranges, seat matrices, and accreditations are verified against official publications; however, fee schedules and eligibility rules are subject to institutional revisions. Candidates must verify final demand circulars directly from official college portals before remitting any academic fees.
+              </p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 text-[11px]">
-            <p>
-              &copy; {new Date().getFullYear()} Institute of Engineering & Management Admission Guidance. All rights reserved.
-            </p>
-            <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2">
-              <Link href="/privacy" className="hover:text-white underline py-1">
-                Privacy Policy (DPDP)
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 text-[11px] text-slate-500">
+            <p>© {new Date().getFullYear()} BanglaCampus. All rights reserved.</p>
+            <div className="flex items-center gap-4">
+              <Link href="/sitemap.xml" className="hover:text-slate-400">
+                Sitemap
               </Link>
-              <Link href="/terms" className="hover:text-white underline py-1">
-                Terms of Service
+              <Link href="/privacy-policy" className="hover:text-slate-400">
+                Privacy
               </Link>
-              <Link href="/disclaimer" className="hover:text-white underline py-1">
-                Mandatory Disclaimers
+              <Link href="/terms" className="hover:text-slate-400">
+                Terms
               </Link>
-              <Link href="/contact" className="hover:text-white underline py-1">
-                Contact Office
+              <Link href="/disclaimer" className="hover:text-slate-400">
+                Disclaimer
               </Link>
             </div>
           </div>

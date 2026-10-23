@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://banglacampus.in';
+
   return {
     rules: [
       {
@@ -9,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/thank-you'],
       },
     ],
-    sitemap: 'https://iem-admissions.edu.in/sitemap.xml',
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

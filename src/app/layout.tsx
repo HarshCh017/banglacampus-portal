@@ -2,34 +2,38 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { MobileStickyBar } from '@/components/MobileStickyBar';
+import { CookieConsent } from '@/components/CookieConsent';
+import { ComparisonDock } from '@/components/ComparisonDock';
+import { ComparisonProvider } from '@/context/ComparisonContext';
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#030712',
+  themeColor: '#064e3b',
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://iem-admissions.edu.in'),
+  metadataBase: new URL('https://banglacampus.in'),
   title: {
-    default: 'B.Tech Admission 2027 | Institute of Engineering & Management (IEM), Kolkata',
-    template: '%s | Institute of Engineering & Management (IEM), Kolkata',
+    default: 'BanglaCampus | Discover & Compare Engineering Colleges in West Bengal',
+    template: '%s | BanglaCampus',
   },
   description:
-    'Official B.Tech admission acquisition & guidance for Institute of Engineering & Management (IEM), Kolkata. Check preliminary branch eligibility, view transparent fees, and learn about IEMJEE 2027.',
+    'Independent, evidence-backed college discovery platform for engineering aspirants in West Bengal. Compare verified B.Tech programs, tuition fees, AICTE/NAAC accreditations, and official regulatory sources.',
   keywords: [
+    'West Bengal engineering colleges',
+    'WBJEE colleges list',
+    'B.Tech admission West Bengal',
+    'compare engineering colleges Kolkata',
+    'Jadavpur University engineering',
     'IEM Kolkata',
-    'Institute of Engineering and Management',
-    'IEM B.Tech admission',
-    'IEM Kolkata CSE fees',
-    'IEMJEE 2027',
-    'IEM Kolkata cutoffs',
-    'IEM Salt Lake Sector V',
-    'autonomous engineering college Kolkata',
+    'Heritage Institute of Technology',
+    'KGEC Kalyani',
+    'MAKAUT affiliated autonomous colleges',
+    'engineering college fees West Bengal',
   ],
-  authors: [{ name: 'Institute of Engineering & Management Admission Guidance' }],
+  authors: [{ name: 'BanglaCampus Editorial & Research Desk' }],
   robots: {
     index: true,
     follow: true,
@@ -37,11 +41,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://iem-admissions.edu.in',
-    title: 'B.Tech Admission 2027 | Institute of Engineering & Management (IEM), Kolkata',
+    url: 'https://banglacampus.in',
+    title: 'BanglaCampus | Discover & Compare Engineering Colleges in West Bengal',
     description:
-      'Check preliminary branch cutoffs, transparent semester fees, and application pathways for IEM Kolkata.',
-    siteName: 'IEM Kolkata B.Tech Admissions',
+      'Explore verified engineering colleges in West Bengal. Traceable field-level sources, side-by-side comparison, and real tuition fees.',
+    siteName: 'BanglaCampus',
   },
 };
 
@@ -50,33 +54,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLdOrg = {
+  const jsonLdWebSite = {
     '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
-    name: 'Institute of Engineering & Management',
-    alternateName: ['IEM Kolkata', 'IEM Salt Lake'],
-    disambiguatingDescription:
-      'Autonomous engineering and management college in Salt Lake Sector V, Kolkata, affiliated with MAKAUT and approved by AICTE.',
-    url: 'https://iem.edu.in',
-    email: 'admissions@iem.edu.in',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Ashram Building, GN-34/2, Sector V, Salt Lake Electronics Complex',
-      addressLocality: 'Kolkata',
-      addressRegion: 'West Bengal',
-      postalCode: '700091',
-      addressCountry: 'IN',
+    '@type': 'WebSite',
+    name: 'BanglaCampus',
+    url: 'https://banglacampus.in',
+    description: 'Evidence-backed college discovery & comparison engine for West Bengal engineering institutions.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://banglacampus.in/colleges?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
     },
-    hasCredential: [
-      {
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'NAAC Grade A Accredited',
-      },
-      {
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'AICTE Approved',
-      },
-    ],
   };
 
   return (
@@ -84,14 +72,19 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col font-sans">
-        <Header />
-        <main className="flex-grow pb-16 md:pb-0">{children}</main>
-        <Footer />
-        <MobileStickyBar />
+      <body className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-900">
+        <ComparisonProvider>
+          <Header />
+          <main id="main-content" className="flex-grow focus:outline-none">
+            {children}
+          </main>
+          <Footer />
+          <ComparisonDock />
+          <CookieConsent />
+        </ComparisonProvider>
       </body>
     </html>
   );
