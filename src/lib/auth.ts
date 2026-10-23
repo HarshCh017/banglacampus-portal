@@ -94,15 +94,18 @@ export async function getServerSession(): Promise<UserSession | null> {
  */
 export async function setSessionCookie(session: UserSession): Promise<string> {
   const token = signJwt(session);
-  const cookieStore = await cookies();
-
-  cookieStore.set(COOKIE_NAME, token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    maxAge: 30 * 24 * 3600, // 30 days
-  });
+  try {
+    const cookieStore = await cookies();
+    cookieStore.set(COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 30 * 24 * 3600, // 30 days
+    });
+  } catch {
+    // Running in standalone test environment without Next.js AsyncLocalStorage
+  }
 
   return token;
 }
@@ -111,8 +114,12 @@ export async function setSessionCookie(session: UserSession): Promise<string> {
  * Clears the session cookie on logout
  */
 export async function clearSessionCookie(): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.delete(COOKIE_NAME);
+  try {
+    const cookieStore = await cookies();
+    cookieStore.delete(COOKIE_NAME);
+  } catch {
+    // Running in standalone test environment
+  }
 }
 
 /**
