@@ -252,3 +252,37 @@ test('10. Comparison Matrix Difference Detection Engine', () => {
   assert.equal(hasDiff([c1, c1], (c) => c.regulatoryApproval), false);
 });
 
+test('11. Web App Manifest Standards & Schema Conformance', () => {
+  const manifestFn = require('@/app/manifest').default;
+  const manifestObj = manifestFn();
+
+  assert.equal(typeof manifestObj.name, 'string');
+  assert.ok(manifestObj.name.includes('BanglaCampus'));
+  assert.equal(manifestObj.start_url, '/');
+  assert.equal(manifestObj.display, 'standalone');
+  assert.ok(manifestObj.theme_color);
+  assert.ok(Array.isArray(manifestObj.icons) && manifestObj.icons.length > 0);
+});
+
+test('12. West Bengal Admissions Knowledge Base Integrity', () => {
+  assert.ok(VERIFIED_ARTICLES.length >= 5, 'Knowledge base must contain at least 5 in-depth guides');
+
+  // Verify scholarships article
+  const scholarshipGuide = VERIFIED_ARTICLES.find(
+    (a) => a.slug === 'wb-scholarships-svmcm-credit-card-guide'
+  );
+  assert.ok(scholarshipGuide, 'Scholarships guide must exist');
+  assert.ok(scholarshipGuide.content.includes('SVMCM'));
+  assert.ok(scholarshipGuide.content.includes('₹60,000'));
+  assert.ok(scholarshipGuide.content.includes('₹10,00,000'));
+
+  // Verify domicile article
+  const domicileGuide = VERIFIED_ARTICLES.find(
+    (a) => a.slug === 'wbjee-domicile-rules-proforma-explained'
+  );
+  assert.ok(domicileGuide, 'Domicile guide must exist');
+  assert.ok(domicileGuide.content.includes('Proforma a1'));
+  assert.ok(domicileGuide.content.includes('Proforma a2'));
+  assert.ok(domicileGuide.content.includes('Proforma b'));
+});
+

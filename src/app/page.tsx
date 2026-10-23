@@ -125,7 +125,14 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-slate-400"
             >
               <Scale className="w-4 h-4 text-emerald-400" />
-              <span>Compare Up to 3 Side-by-Side</span>
+              <span>Compare Up to 3</span>
+            </Link>
+            <Link
+              href="/counselling-simulator"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-amber-300"
+            >
+              <Sparkles className="w-4 h-4 text-slate-950" />
+              <span>Choice Simulator</span>
             </Link>
           </div>
         </div>
