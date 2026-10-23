@@ -59,6 +59,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/counselling-simulator" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-emerald-400 font-bold">★</span>
+                  <span>WBJEE Choice-Filling Simulator</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/colleges?category=State+University+Faculty" className="hover:text-emerald-400 transition-colors">
                   State University Faculties
                 </Link>

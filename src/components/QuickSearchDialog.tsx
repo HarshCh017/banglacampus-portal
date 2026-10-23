@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, X, Building2, Scale, Award, BookOpen, Compass, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Search, X, Building2, Scale, Award, BookOpen, Compass, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { VERIFIED_COLLEGES } from '@/data/colleges';
 import { College } from '@/types/college';
 
@@ -23,9 +23,16 @@ interface QuickAction {
 const QUICK_ACTIONS: QuickAction[] = [
   {
     title: 'Browse All Engineering Colleges',
-    subtitle: '12 verified West Bengal engineering institutions',
+    subtitle: 'Verified West Bengal engineering institutions catalog',
     href: '/colleges',
     icon: Compass,
+  },
+  {
+    title: 'WBJEE Choice-Filling Simulator',
+    subtitle: '3-tier preference sequencing (Safe, Target, Ambitious)',
+    href: '/counselling-simulator',
+    icon: Sparkles,
+    badge: 'Interactive',
   },
   {
     title: 'WBJEE Cutoff Rank Explorer',

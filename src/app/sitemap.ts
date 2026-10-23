@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/colleges`, lastModified, changeFrequency: 'daily' as const, priority: 0.95 },
     { url: `${baseUrl}/compare`, lastModified, changeFrequency: 'weekly' as const, priority: 0.9 },
     { url: `${baseUrl}/cutoffs`, lastModified, changeFrequency: 'weekly' as const, priority: 0.9 },
+    { url: `${baseUrl}/counselling-simulator`, lastModified, changeFrequency: 'weekly' as const, priority: 0.95 },
     { url: `${baseUrl}/blog`, lastModified, changeFrequency: 'weekly' as const, priority: 0.85 },
     { url: `${baseUrl}/about`, lastModified, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${baseUrl}/contact`, lastModified, changeFrequency: 'monthly' as const, priority: 0.7 },

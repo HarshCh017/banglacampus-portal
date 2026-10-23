@@ -13,6 +13,7 @@ import {
   ExternalLink,
   BookOpen,
   Award,
+  Sparkles,
 } from 'lucide-react';
 import { VERIFIED_COLLEGES } from '@/data/colleges';
 import { VERIFIED_ARTICLES } from '@/data/articles';
@@ -179,6 +180,39 @@ export default function HomePage() {
             <p className="text-xs text-slate-600 leading-relaxed">
               Select any three institutions to compare government vs autonomous status, annual tuition ranges, NIRF ranks, and program lists on an aligned mobile-ready matrix.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Choice-Filling Simulator Feature Spotlight */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden border border-emerald-900/60">
+          <div className="relative z-10 max-w-3xl space-y-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 bg-emerald-800/60 px-3 py-1 rounded-full border border-emerald-700/60 inline-flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span>3-Tier Counselling Intelligence</span>
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold font-heading tracking-tight text-white">
+              Interactive WBJEE Choice-Filling Simulator
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Don&apos;t gamble during centralized e-counselling. Input your General Merit Rank to generate an optimized, 3-tier preference sequence (Safe, Realistic, and Ambitious options) with official WBJEE institute codes ready to export.
+            </p>
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <Link
+                href="/counselling-simulator"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm rounded-xl shadow-md transition-all"
+              >
+                <span>Launch Choice Simulator</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/cutoffs"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-xl transition-all border border-white/20"
+              >
+                <span>Browse Raw Cutoff Archives</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

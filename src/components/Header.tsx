@@ -43,6 +43,7 @@ export function Header() {
     { label: 'Colleges', href: '/colleges', icon: Compass },
     { label: 'Compare', href: '/compare', icon: Scale, badge: selectedSlugs.length },
     { label: 'Cutoffs', href: '/cutoffs', icon: Award },
+    { label: 'Simulator', href: '/counselling-simulator', icon: Sparkles },
     { label: 'Articles', href: '/blog', icon: BookOpen },
     { label: 'About', href: '/about', icon: Info },
     { label: 'Contact', href: '/contact', icon: Mail },

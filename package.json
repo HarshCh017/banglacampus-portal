@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test tests/**/*.test.ts"
+    "test": "tsx --test tests/**/*.test.ts",
+    "audit": "tsx scripts/audit-provenance.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
