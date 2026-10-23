@@ -24,9 +24,19 @@ export function CutoffExplorerClient() {
   const [inputRank, setInputRank] = useState<number>(3500);
   const [selectedStream, setSelectedStream] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [collegeSearch, setCollegeSearch] = useState<string>('');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'probable' | 'competitive_above'>('all');
 
   const matches = useMemo(() => {
+    const searchLower = collegeSearch.trim().toLowerCase();
     return VERIFIED_CUTOFFS.filter((record) => {
+      if (
+        searchLower &&
+        !record.collegeName.toLowerCase().includes(searchLower) &&
+        !record.wbjeebCode.toLowerCase().includes(searchLower)
+      ) {
+        return false;
+      }
       if (selectedStream !== 'all' && record.branchSlug !== selectedStream) {
         return false;
       }
@@ -46,6 +56,12 @@ export function CutoffExplorerClient() {
         status = 'OUT_OF_RANGE';
       }
       return { ...record, status };
+    }).filter((record) => {
+      if (statusFilter === 'probable') return record.status === 'PROBABLE';
+      if (statusFilter === 'competitive_above') {
+        return record.status === 'PROBABLE' || record.status === 'COMPETITIVE';
+      }
+      return true;
     }).sort((a, b) => {
       const order = { PROBABLE: 1, COMPETITIVE: 2, ASPIRATIONAL: 3, OUT_OF_RANGE: 4 };
       if (order[a.status] !== order[b.status]) {
@@ -53,7 +69,7 @@ export function CutoffExplorerClient() {
       }
       return a.approxClosingRankRound1 - b.approxClosingRankRound1;
     });
-  }, [inputRank, selectedStream, selectedCategory]);
+  }, [inputRank, selectedStream, selectedCategory, collegeSearch, statusFilter]);
 
   const targetCount = matches.filter((m) => m.status === 'PROBABLE').length;
   const competitiveCount = matches.filter((m) => m.status === 'COMPETITIVE').length;
@@ -176,6 +192,57 @@ export function CutoffExplorerClient() {
               <option value="Autonomous Private Institute">Autonomous Private Institute</option>
               <option value="Private Engineering College">Private Engineering College</option>
             </select>
+          </div>
+        </div>
+
+        {/* Secondary Filter Row: Search by College & Probability Status Filter */}
+        <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+          <div className="relative flex-1 max-w-md">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={collegeSearch}
+              onChange={(e) => setCollegeSearch(e.target.value)}
+              placeholder="Filter by college name or code (e.g. Jadavpur, 104)..."
+              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            <span className="text-slate-500 font-semibold mr-1">Show:</span>
+            <button
+              type="button"
+              onClick={() => setStatusFilter('all')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+                statusFilter === 'all'
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              All Matches
+            </button>
+            <button
+              type="button"
+              onClick={() => setStatusFilter('probable')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+                statusFilter === 'probable'
+                  ? 'bg-emerald-700 text-white font-bold'
+                  : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
+              }`}
+            >
+              Probable Only (Round 1)
+            </button>
+            <button
+              type="button"
+              onClick={() => setStatusFilter('competitive_above')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+                statusFilter === 'competitive_above'
+                  ? 'bg-blue-700 text-white font-bold'
+                  : 'bg-blue-50 text-blue-800 hover:bg-blue-100'
+              }`}
+            >
+              Probable & Competitive
+            </button>
           </div>
         </div>
 

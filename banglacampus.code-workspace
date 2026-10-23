@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "BanglaCampus Platform",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.tabSize": 2
+  }
+}

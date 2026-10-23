@@ -103,7 +103,7 @@ export function CompareView() {
         </div>
 
         {selectedColleges.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0 no-print">
             <button
               type="button"
               onClick={() => setHighlightDifferences(!highlightDifferences)}
@@ -530,7 +530,7 @@ export function CompareView() {
                 </tr>
 
                 {/* Actions Row */}
-                <tr>
+                <tr className="no-print">
                   <td className="p-4 font-semibold text-slate-900 bg-slate-50/40">Action</td>
                   {selectedColleges.map((c) => (
                     <td key={c.id} className="p-4">

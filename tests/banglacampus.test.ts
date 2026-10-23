@@ -198,3 +198,57 @@ test('8. Cutoff Matcher Classification Logic', () => {
   // Rank 5000 is way beyond JU CSE
   assert.equal(classify(5000, juCse), 'OUT_OF_RANGE');
 });
+
+test('9. QuickSearch Query Resolution & Index Integrity', () => {
+  const querySearch = (q: string) => {
+    const trimmed = q.trim().toLowerCase();
+    return VERIFIED_COLLEGES.filter((c) => {
+      return (
+        c.name.toLowerCase().includes(trimmed) ||
+        c.shortName.toLowerCase().includes(trimmed) ||
+        c.city.toLowerCase().includes(trimmed) ||
+        c.district.toLowerCase().includes(trimmed) ||
+        c.wbjeebCode.toLowerCase().includes(trimmed) ||
+        c.category.toLowerCase().includes(trimmed) ||
+        c.programs.some((p) => p.name.toLowerCase().includes(trimmed) || p.slug.toLowerCase().includes(trimmed))
+      );
+    });
+  };
+
+  // Code search
+  const results104 = querySearch('104');
+  assert.equal(results104.length, 1);
+  assert.equal(results104[0].shortName, 'IEM Kolkata');
+
+  // City search
+  const kolkataMatches = querySearch('Kolkata');
+  assert.ok(kolkataMatches.length >= 5);
+
+  // Non-existent search
+  const zeroMatches = querySearch('xyznonexistentquery999');
+  assert.equal(zeroMatches.length, 0);
+});
+
+test('10. Comparison Matrix Difference Detection Engine', () => {
+  const hasDiff = (colleges: any[], extractor: (c: any) => any) => {
+    if (colleges.length <= 1) return false;
+    const values = colleges.map((c) => JSON.stringify(extractor(c)));
+    return new Set(values).size > 1;
+  };
+
+  const c1 = getCollegeBySlug('jadavpur-university-engineering')!;
+  const c2 = getCollegeBySlug('iem-kolkata')!;
+
+  assert.ok(c1 && c2);
+
+  // Categories differ: State University vs Autonomous Private
+  assert.equal(hasDiff([c1, c2], (c) => c.category), true);
+
+  // Fees differ: ~₹10,000 vs ~₹1,85,000
+  assert.equal(hasDiff([c1, c2], (c) => c.feeStructure.annualTuitionMin), true);
+
+  // Identical comparison of college with itself should never flag difference
+  assert.equal(hasDiff([c1, c1], (c) => c.category), false);
+  assert.equal(hasDiff([c1, c1], (c) => c.regulatoryApproval), false);
+});
+
