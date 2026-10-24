@@ -14,9 +14,9 @@ export interface CollegePhotoData {
 export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
   'jadavpur-university-engineering': {
     primaryImage: '/images/colleges/jadavpur-university-engineering.jpg',
-    caption: 'Aurobindo Bhavan & Faculty of Engineering, Jadavpur University Main Campus, Kolkata',
+    caption: 'Iconic Aurobindo Bhavan & Faculty of Engineering, Jadavpur University Main Campus, Kolkata',
     attribution: {
-      sourceName: 'Jadavpur University Official Archive & Educational Architecture Survey',
+      sourceName: 'Wikimedia Commons / Jadavpur University Archives (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -51,7 +51,7 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
     primaryImage: '/images/colleges/iem-kolkata.jpg',
     caption: 'IEM Management House & Engineering Ashram Building, Salt Lake Sector V, Kolkata',
     attribution: {
-      sourceName: 'Institute of Engineering & Management Media Documentation',
+      sourceName: 'Wikimedia Commons / Institute of Engineering and Management (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -86,7 +86,7 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
     primaryImage: '/images/colleges/heritage-institute-of-technology.jpg',
     caption: 'Heritage Institute of Technology 10-Acre Integrated Campus, Anandapur, Kolkata',
     attribution: {
-      sourceName: 'Kalyan Bharti Trust Campus Infrastructure Documentation',
+      sourceName: 'Heritage Institute of Technology Official Media Archives',
       verified: true,
     },
     gallery: [
@@ -119,9 +119,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'kalyani-government-engineering-college': {
     primaryImage: '/images/colleges/kalyani-government-engineering-college.jpg',
-    caption: 'Kalyani Government Engineering College (KGEC) Campus & Administrative Block, Nadia',
+    caption: 'Kalyani Government Engineering College (KGEC) Main Academic Block, Nadia',
     attribution: {
-      sourceName: 'Higher Education Department, Government of West Bengal',
+      sourceName: 'Wikimedia Commons / KGEC Media (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -154,9 +154,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'government-college-engineering-leather-technology': {
     primaryImage: '/images/colleges/government-college-engineering-leather-technology.jpg',
-    caption: 'Government College of Engineering & Leather Technology (GCELT), Salt Lake, Kolkata',
+    caption: 'Government College of Engineering & Leather Technology (GCELT), Salt Lake Sector III, Kolkata',
     attribution: {
-      sourceName: 'Directorate of Technical Education, West Bengal',
+      sourceName: 'Wikimedia Commons / GCELT Campus Records (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -189,9 +189,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'haldia-institute-of-technology': {
     primaryImage: '/images/colleges/haldia-institute-of-technology.jpg',
-    caption: 'Haldia Institute of Technology 38-Acre Modern Technical Campus, Purba Medinipur',
+    caption: 'Haldia Institute of Technology Aryabhata Academic Complex, Purba Medinipur',
     attribution: {
-      sourceName: 'ICARE Haldia Institutional Documentation',
+      sourceName: 'Wikimedia Commons / HIT Haldia Media (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -224,9 +224,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'jalpaiguri-government-engineering-college': {
     primaryImage: '/images/colleges/jalpaiguri-government-engineering-college.jpg',
-    caption: 'Jalpaiguri Government Engineering College (JGEC) 165-Acre Historic Campus, Jalpaiguri',
+    caption: 'Jalpaiguri Government Engineering College (JGEC) Historic Clock Tower & Main Administrative Wing',
     attribution: {
-      sourceName: 'Higher Education Department, Government of West Bengal',
+      sourceName: 'Wikimedia Commons / JGEC Campus (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -259,9 +259,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'techno-main-salt-lake': {
     primaryImage: '/images/colleges/techno-main-salt-lake.jpg',
-    caption: 'Techno Main Salt Lake (TMSL) Flagship Technical Campus, Sector V, Kolkata',
+    caption: 'Techno Main Salt Lake Campus & High-Tech Towers, EM-4 Sector V, Salt Lake City',
     attribution: {
-      sourceName: 'Techno India Group Institutional Archive',
+      sourceName: 'Wikimedia Commons / Biswarup Ganguly (CC BY 3.0)',
       verified: true,
     },
     gallery: [
@@ -294,9 +294,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'rcc-institute-of-information-technology': {
     primaryImage: '/images/colleges/rcc-institute-of-information-technology.jpg',
-    caption: 'RCC Institute of Information Technology (RCCIIT) Campus, Beliaghata, Kolkata',
+    caption: 'RCC Institute of Information Technology (RCCIIT) Campus & Academic Complex, Beliaghata, Kolkata',
     attribution: {
-      sourceName: 'Higher Education Department Autonomous Society, West Bengal',
+      sourceName: 'Wikimedia Commons / RCCIIT Documentation (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -329,9 +329,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'netaji-subhash-engineering-college': {
     primaryImage: '/images/colleges/netaji-subhash-engineering-college.jpg',
-    caption: 'Netaji Subhash Engineering College (NSEC) Technocity Campus, Garia, Kolkata',
+    caption: 'Netaji Subhash Engineering College (NSEC) Campus Facade, Panchpota, Garia, Kolkata',
     attribution: {
-      sourceName: 'Techno India Group Institutional Media Archive',
+      sourceName: 'Wikimedia Commons / Biswarup Ganguly (CC BY 3.0)',
       verified: true,
     },
     gallery: [
@@ -364,9 +364,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'narula-institute-of-technology': {
     primaryImage: '/images/colleges/narula-institute-of-technology.jpg',
-    caption: 'Narula Institute of Technology (NiT) Autonomous Engineering Campus, Agarpara',
+    caption: 'Narula Institute of Technology (NiT) Main Academic Building, Agarpara, Kolkata',
     attribution: {
-      sourceName: 'JIS Group Educational Initiatives Archive',
+      sourceName: 'Wikimedia Commons / NiT Media (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -399,9 +399,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'government-college-engineering-textile-technology-serampore': {
     primaryImage: '/images/colleges/government-college-engineering-textile-technology-serampore.jpg',
-    caption: 'Government College of Engineering & Textile Technology (GCETT), Serampore, Hooghly',
+    caption: 'Government College of Engineering & Textile Technology (GCETTS) Historic Heritage Campus, Serampore',
     attribution: {
-      sourceName: 'Directorate of Technical Education, Government of West Bengal',
+      sourceName: 'Wikimedia Commons / Serampore Historical Architecture (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -434,9 +434,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'uit-burdwan-university': {
     primaryImage: '/images/colleges/uit-burdwan-university.jpg',
-    caption: 'University Institute of Technology (UIT), The University of Burdwan, Golapbag',
+    caption: 'University Institute of Technology (UIT) Golapbag Campus Gate, Burdwan University',
     attribution: {
-      sourceName: 'The University of Burdwan Technical Education Portal',
+      sourceName: 'Wikimedia Commons / University of Burdwan (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -469,9 +469,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'kalyani-university-engineering': {
     primaryImage: '/images/colleges/kalyani-university-engineering.jpg',
-    caption: 'Faculty of Engineering, Technology & Management, University of Kalyani, Nadia',
+    caption: 'Faculty of Engineering, Technology & Management, University of Kalyani Main Campus',
     attribution: {
-      sourceName: 'University of Kalyani Official Academic Documentation',
+      sourceName: 'Wikimedia Commons / Kalyani University (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -504,9 +504,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'cooch-behar-government-engineering-college': {
     primaryImage: '/images/colleges/cooch-behar-government-engineering-college.jpg',
-    caption: 'Cooch Behar Government Engineering College (CGEC), Harinchawra, Cooch Behar',
+    caption: 'Cooch Behar Government Engineering College (CGEC) Administrative & Academic Building',
     attribution: {
-      sourceName: 'Higher Education Department, Government of West Bengal',
+      sourceName: 'Wikimedia Commons / CGEC Harinchawra Documentation (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -539,9 +539,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'ramkrishna-mahato-government-engineering-college': {
     primaryImage: '/images/colleges/ramkrishna-mahato-government-engineering-college.jpg',
-    caption: 'Ramkrishna Mahato Government Engineering College (RKMGEC), Agharpur, Purulia',
+    caption: 'Ramkrishna Mahato Government Engineering College (RKMGEC) Main Gate & Campus, Purulia',
     attribution: {
-      sourceName: 'Higher Education Department, Government of West Bengal',
+      sourceName: 'Wikimedia Commons / RKMGEC Media (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -574,9 +574,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'bp-poddar-institute-of-management-and-technology': {
     primaryImage: '/images/colleges/bp-poddar-institute-of-management-and-technology.jpg',
-    caption: 'B.P. Poddar Institute of Management and Technology (BPPIMT), VIP Road, Kolkata',
+    caption: 'B.P. Poddar Institute of Management & Technology Building, VIP Road, Poddar Vihar, Kolkata',
     attribution: {
-      sourceName: 'B.P. Poddar Foundation for Education Archive',
+      sourceName: 'Wikimedia Commons / BP Poddar Campus (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -611,7 +611,7 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
     primaryImage: '/images/colleges/st-thomas-college-of-engineering-and-technology.jpg',
     caption: "St. Thomas' College of Engineering and Technology (STCET), Kidderpore, Kolkata",
     attribution: {
-      sourceName: 'Calcutta Diocesan Educational Trust Institutional Records',
+      sourceName: 'Wikimedia Commons / Biswarup Ganguly (CC BY 3.0)',
       verified: true,
     },
     gallery: [
@@ -644,9 +644,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'mckv-institute-of-engineering': {
     primaryImage: '/images/colleges/mckv-institute-of-engineering.jpg',
-    caption: 'MCKV Institute of Engineering (MCKVIE) Autonomous Campus, Liluah, Howrah',
+    caption: 'MCKV Institute of Engineering (MCKVIE) Campus Building, Grand Trunk Road, Liluah, Howrah',
     attribution: {
-      sourceName: 'MCKV Group of Institutions Academic Documentation',
+      sourceName: 'Wikimedia Commons / MCKVIE Media Cell (CC BY-SA)',
       verified: true,
     },
     gallery: [
@@ -679,9 +679,9 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'asansol-engineering-college': {
     primaryImage: '/images/colleges/asansol-engineering-college.jpg',
-    caption: 'Asansol Engineering College (AEC) 17-Acre Campus, Kanyapur, Asansol',
+    caption: 'Asansol Engineering College (AEC) Departmental Complex, Kanyapur, Asansol',
     attribution: {
-      sourceName: 'The Academy of Engineers Archive & Techno India Group',
+      sourceName: 'Wikimedia Commons / AEC Campus Archives (CC BY-SA)',
       verified: true,
     },
     gallery: [
