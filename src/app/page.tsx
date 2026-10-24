@@ -18,6 +18,7 @@ import {
 import { VERIFIED_COLLEGES } from '@/data/colleges';
 import { VERIFIED_ARTICLES } from '@/data/articles';
 import { CollegeCard } from '@/components/CollegeCard';
+import { CollegeShowcaseCarousel } from '@/components/CollegeShowcaseCarousel';
 import { NewsletterForm } from '@/components/NewsletterForm';
 
 export default function HomePage() {
@@ -137,6 +138,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Special Horizontal Scrolling College Showcase Subsection */}
+      <CollegeShowcaseCarousel colleges={VERIFIED_COLLEGES} />
 
       {/* How BanglaCampus Works */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -68,7 +68,8 @@ export function CollegeCard({ college }: CollegeCardProps) {
       ? 'bg-emerald-600/90 text-white border-emerald-400/40'
       : 'bg-slate-900/90 text-white border-slate-700/60';
 
-  const hasPhoto = Boolean(college.campusImageUrl) && !imageError;
+  const photoSrc = college.campusImageUrl || `/images/colleges/${college.slug}.jpg`;
+  const hasPhoto = Boolean(photoSrc) && !imageError;
 
   return (
     <article className="group bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between overflow-hidden h-full">
@@ -77,7 +78,7 @@ export function CollegeCard({ college }: CollegeCardProps) {
         {hasPhoto ? (
           <>
             <Image
-              src={college.campusImageUrl!}
+              src={photoSrc}
               alt={college.campusImageCaption || `${college.name} campus architecture and academic block`}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

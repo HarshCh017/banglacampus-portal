@@ -12,15 +12,15 @@ interface CollegeCampusBannerProps {
 export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Check if college has a valid campus photo and hasn't errored
-  const hasValidImage = Boolean(college.campusImageUrl) && !imageError;
+  const photoSrc = college.campusImageUrl || `/images/colleges/${college.slug}.jpg`;
+  const hasValidImage = Boolean(photoSrc) && !imageError;
 
   return (
     <div className="relative w-full rounded-3xl overflow-hidden border border-slate-200/80 shadow-md bg-slate-950 group">
       {hasValidImage ? (
         <div className="relative h-60 sm:h-80 md:h-96 w-full overflow-hidden">
           <Image
-            src={college.campusImageUrl!}
+            src={photoSrc}
             alt={college.campusImageCaption || `${college.name} Academic Campus Architecture`}
             fill
             priority
