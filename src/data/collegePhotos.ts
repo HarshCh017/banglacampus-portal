@@ -98,21 +98,21 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
       },
       {
         url: '/images/colleges/heritage-institute-of-technology-2.jpg',
-        caption: 'Swami Vivekananda Central Auditorium & Academic Wings',
-        category: 'Facilities',
-        alt: 'Heritage auditorium entrance and landscaped gardens',
+        caption: 'Departmental Engineering Blocks & Instructional Quadrangle',
+        category: 'Academic',
+        alt: 'Heritage Institute of Technology departmental lecture wings and auditoriums',
       },
       {
         url: '/images/colleges/heritage-institute-of-technology-3.jpg',
-        caption: 'Biotechnology & Chemical Engineering Unit Operations Laboratory',
+        caption: 'Science, Technology & Computing Research Complex',
         category: 'Laboratory',
-        alt: 'Advanced biotechnology and chemical synthesis testing bay at Heritage Institute of Technology',
+        alt: 'Advanced technology testing bay and laboratories at Heritage Institute of Technology',
       },
       {
         url: '/images/colleges/heritage-institute-of-technology-4.jpg',
-        caption: 'Central Library Knowledge Commons with 85,000+ Engineering Titles',
-        category: 'Library',
-        alt: 'Spacious reading hall of the Heritage Institute of Technology Central Library',
+        caption: 'Integrated Academic Campus & Central Knowledge Facilities',
+        category: 'Facilities',
+        alt: 'Heritage Institute of Technology 10-acre integrated academic facilities',
       },
     ],
   },
@@ -399,44 +399,44 @@ export const COLLEGE_PHOTOS: Record<string, CollegePhotoData> = {
 
   'government-college-engineering-textile-technology-serampore': {
     primaryImage: '/images/colleges/government-college-engineering-textile-technology-serampore.jpg',
-    caption: 'Government College of Engineering & Textile Technology (GCETTS) Historic Heritage Campus, Serampore',
+    caption: 'Government College of Engineering & Textile Technology (GCETTS) Campus, Serampore',
     attribution: {
-      sourceName: 'Wikimedia Commons / Serampore Historical Architecture (CC BY-SA)',
+      sourceName: 'Wikimedia Commons / GCETTS Serampore Campus Archives (CC BY-SA)',
       verified: true,
     },
     gallery: [
       {
         url: '/images/colleges/government-college-engineering-textile-technology-serampore-1.jpg',
-        caption: 'Heritage Colonial Main Building Established 1908 on Hooghly Riverfront',
+        caption: 'Collegiate Main Building & Historic Textile Engineering Facade, Serampore',
         category: 'Campus',
-        alt: 'Colonial heritage building of GCETT Serampore in Hooghly district',
+        alt: 'Historic academic building of GCETT Serampore in Hooghly district',
       },
       {
         url: '/images/colleges/government-college-engineering-textile-technology-serampore-2.jpg',
-        caption: 'Modern Computer Science & Information Technology Academic Annex',
+        caption: 'Administrative & Academic Instruction Complex, GCETTS',
         category: 'Academic',
-        alt: 'Modern instructional block at GCETT Serampore',
+        alt: 'Administrative and departmental building at GCETT Serampore',
       },
       {
         url: '/images/colleges/government-college-engineering-textile-technology-serampore-3.jpg',
-        caption: 'Textile Chemistry, Fiber Characterization & Advanced Weaving Bays',
-        category: 'Laboratory',
-        alt: 'Textile machinery and tensile strength testing apparatus at GCETT Serampore',
+        caption: 'GCETTS Main Campus Gate & Entrance Boulevard',
+        category: 'Facilities',
+        alt: 'Entrance gate and boulevard of GCETT Serampore',
       },
       {
         url: '/images/colleges/government-college-engineering-textile-technology-serampore-4.jpg',
-        caption: 'Century-Old Archival Technical Library with Rare Textile Monographs',
-        category: 'Library',
-        alt: 'Historic technical library collection at GCETT Serampore',
+        caption: 'Student Residential Hostels & Campus Grounds',
+        category: 'Facilities',
+        alt: 'Campus residential hostel block at GCETT Serampore',
       },
     ],
   },
 
   'uit-burdwan-university': {
     primaryImage: '/images/colleges/uit-burdwan-university.jpg',
-    caption: 'University Institute of Technology (UIT) Golapbag Campus Gate, Burdwan University',
+    caption: 'University Institute of Technology (UITBU) Academic Complex, Burdwan University',
     attribution: {
-      sourceName: 'Wikimedia Commons / University of Burdwan (CC BY-SA)',
+      sourceName: 'Wikimedia Commons / UIT Burdwan University Archives (CC BY-SA)',
       verified: true,
     },
     gallery: [

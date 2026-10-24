@@ -109,7 +109,11 @@ export function StudentEnquiryModal() {
 
   // Support manual opening on button click via custom event
   useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
+    const handleOpen = () => {
+      setSubmitSuccess(false);
+      setGeneralError(null);
+      setIsOpen(true);
+    };
     window.addEventListener('banglacampus:open-enquiry', handleOpen);
     return () => window.removeEventListener('banglacampus:open-enquiry', handleOpen);
   }, []);

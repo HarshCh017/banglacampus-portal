@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { ComparisonDock } from '@/components/ComparisonDock';
 import { StudentEnquiryModal } from '@/components/StudentEnquiryModal';
+import { FloatingConsultationButton } from '@/components/FloatingConsultationButton';
 import { LoginModal } from '@/components/LoginModal';
 import { ComparisonProvider } from '@/context/ComparisonContext';
 import { AuthProvider } from '@/context/AuthContext';
@@ -95,6 +96,7 @@ export default function RootLayout({
             <ComparisonDock />
             <CookieConsent />
             <StudentEnquiryModal />
+            <FloatingConsultationButton />
             <LoginModal />
           </ComparisonProvider>
         </AuthProvider>
