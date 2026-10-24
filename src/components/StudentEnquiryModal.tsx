@@ -107,6 +107,13 @@ export function StudentEnquiryModal() {
     };
   }, [pathname]);
 
+  // Support manual opening on button click via custom event
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('banglacampus:open-enquiry', handleOpen);
+    return () => window.removeEventListener('banglacampus:open-enquiry', handleOpen);
+  }, []);
+
   const handleDismiss = useCallback(() => {
     setIsOpen(false);
     if (typeof window !== 'undefined' && pathname) {

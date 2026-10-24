@@ -67,6 +67,21 @@ export interface College {
   featured?: boolean;
   campusImageUrl?: string;
   campusImageCaption?: string;
+  campusImagesGallery?: CampusImageItem[];
+  imageAttribution?: CollegeImageAttribution;
+}
+
+export interface CampusImageItem {
+  url: string;
+  caption: string;
+  category: 'Campus' | 'Academic' | 'Library' | 'Laboratory' | 'Facilities';
+  alt?: string;
+}
+
+export interface CollegeImageAttribution {
+  sourceName: string;
+  sourceUrl?: string;
+  verified: boolean;
 }
 
 export interface CollegeFilterState {

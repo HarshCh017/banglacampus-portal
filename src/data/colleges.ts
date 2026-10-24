@@ -1,4 +1,5 @@
 import { College } from '@/types/college';
+import { COLLEGE_PHOTOS } from './collegePhotos';
 
 export const VERIFIED_COLLEGES: College[] = [
   {
@@ -1497,6 +1498,17 @@ export const VERIFIED_COLLEGES: College[] = [
     },
   },
 ];
+
+// Enrich every verified college with photography and gallery media
+VERIFIED_COLLEGES.forEach((college) => {
+  const photoData = COLLEGE_PHOTOS[college.slug];
+  if (photoData) {
+    college.campusImageUrl = photoData.primaryImage;
+    college.campusImageCaption = photoData.caption;
+    college.campusImagesGallery = photoData.gallery;
+    college.imageAttribution = photoData.attribution;
+  }
+});
 
 export function getCollegeBySlug(slug: string): College | undefined {
   return VERIFIED_COLLEGES.find((c) => c.slug === slug);

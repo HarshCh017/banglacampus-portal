@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { College } from '@/types/college';
 import { useComparison } from '@/context/ComparisonContext';
+import { useAuth } from '@/context/AuthContext';
 import {
   Scale,
   Check,
@@ -17,18 +18,35 @@ import {
   Loader2,
   Share2,
   Printer,
+  Bookmark,
+  MessageSquare,
 } from 'lucide-react';
 
 export function CollegeDetailClient({ college }: { college: College }) {
   const { isInCompare, addToCompare, removeFromCompare, selectedSlugs, maxLimit } = useComparison();
+  const { user, toggleBookmark } = useAuth();
   const inCompare = isInCompare(college.slug);
   const canAdd = selectedSlugs.length < maxLimit;
+  const isBookmarked = user?.bookmarkedColleges?.includes(college.slug);
 
+  const [isBookmarking, setIsBookmarking] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorField, setErrorField] = useState('Tuition Fees');
   const [errorNote, setErrorNote] = useState('');
   const [errorSubmitted, setErrorSubmitted] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+
+  const handleBookmarkToggle = async () => {
+    setIsBookmarking(true);
+    await toggleBookmark(college.slug);
+    setIsBookmarking(false);
+  };
+
+  const handleEnquireTrigger = () => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('banglacampus:open-enquiry'));
+    }
+  };
 
   const handleCompareToggle = () => {
     if (inCompare) {
@@ -60,6 +78,33 @@ export function CollegeDetailClient({ college }: { college: College }) {
 
   return (
     <div className="flex flex-wrap items-center gap-2.5 no-print">
+      {/* Save / Bookmark Button */}
+      <button
+        type="button"
+        onClick={handleBookmarkToggle}
+        disabled={isBookmarking}
+        className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs transition-all shadow-xs cursor-pointer ${
+          isBookmarked
+            ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
+            : 'bg-white text-slate-700 border border-slate-300 hover:border-emerald-500 hover:text-emerald-700'
+        }`}
+        title={isBookmarked ? 'Saved to your choice list' : 'Save this college'}
+      >
+        <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-emerald-800 text-emerald-800' : 'text-slate-500'}`} />
+        <span>{isBookmarked ? 'Saved Choice' : 'Save College'}</span>
+      </button>
+
+      {/* Instant Enquiry Modal Trigger */}
+      <button
+        type="button"
+        onClick={handleEnquireTrigger}
+        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-xs cursor-pointer"
+        title="Check admission eligibility and submit preferences"
+      >
+        <MessageSquare className="w-3.5 h-3.5" />
+        <span>Enquire Now</span>
+      </button>
+
       {/* Compare Button */}
       <button
         type="button"
