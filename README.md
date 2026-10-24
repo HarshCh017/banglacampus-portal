@@ -1,158 +1,169 @@
-# I.E.M. KOLKATA — B.TECH ADMISSION ACQUISITION SYSTEM
-**Target Institution**: Institute of Engineering & Management (IEM), Kolkata  
-**Cycle**: 2027–2028 B.Tech Admissions  
-**Engine**: Next.js 15.5.25 (App Router, React 19, TypeScript Strict, Tailwind CSS)  
-**Operating Standard**: Agent Brief Version 1.0 (Final)  
+# BanglaCampus — Engineering College Discovery & Admissions Platform
+
+**Official Repository**: [https://github.com/HarshCh017/banglacampus-portal](https://github.com/HarshCh017/banglacampus-portal)  
+**Live Application**: [https://banglacampus.in](https://banglacampus.in)  
+**Technology Stack**: Next.js 15.5.25 (App Router), React 19, TypeScript (Strict), Tailwind CSS, Lucide Icons, Zod  
 
 ---
 
-## 1. SYSTEM OVERVIEW
+## 1. Overview
 
-A high-performance, conversion-optimized B.Tech admission acquisition system engineered strictly for **qualified admission-lead generation** for the **2027–28 academic intake cycle**. Optimizes the core acquisition sequence:
+**BanglaCampus** is an independent, evidence-backed college discovery, comparison, and student admissions guidance platform for engineering aspirants across West Bengal.
 
-$$\text{ATTENTION} \to \text{CLARITY} \to \text{TRUST} \to \text{VALUE} \to \text{PERSONALIZATION} \to \text{LEAD} \to \text{ELIGIBILITY-INDICATED} \to \text{COUNSELLOR-QUALIFIED} \to \text{ENROLMENT}$$
+The platform provides complete transparency on WBJEE seat matrices, verified tuition fees, AICTE/NAAC/NIRF regulatory accreditations, historical opening and closing cutoffs, and 1-on-1 counseling consultation for **20 accredited engineering institutions** in West Bengal.
 
-### Core Operating Guardrails
-- **Strict 4-Field Lead Capture**: `fullName`, `phone`, `twelfthPercentage` with `percentageType` modifier (`Aggregate` vs `PCM`), `branch` selector from verified list, plus an affirmative DPDP-compliant consent checkbox.
-- **Honest Non-Determining Eligibility**: Evaluates percentage against published thresholds returning `POSSIBLY_MEETS`, `BELOW_THRESHOLD`, or `REVIEW_REQUIRED`. Never outputs deceptive claims like *"You are eligible"* or *"Guaranteed admission"*.
-- **Privacy First (No Raw Helplines Exposed)**: Official mobile/landline numbers are completely masked and protected across all views. Direct CTAs route applicants to immediate callback scheduling (`#lead-form`) or the physical Ashram Campus Admissions Desk. WhatsApp contact can be configured via environment variable if desired.
-- **Vercel Serverless Ready**: In-memory and ephemeral disk fallback ensures zero file-system write errors (`EROFS`) on Vercel read-only serverless lambdas.
-- **Payload Ceiling**: Homepage first-load JS is **146 kB** gzipped (well within the $\le 180\text{ KB}$ ceiling).
-- **Data Minimization & Privacy**: Digital Personal Data Protection (DPDP) Act 2023 compliant. Zero collection of caste, religion, health, or sensitive personal data.
-- **Legal Operating Model**: Defaults to **Model [B] Independent Guidance** with full institutional disclaimers, Ashram Campus registered address, and official payee instructions (*"Institute of Engineering & Management Trust"*).
+### Key Capabilities
 
----
-
-## 2. REPOSITORY DIRECTORY ARCHITECTURE
-
-```text
-├── PROJECT-STATE.md          # Live operational tracking per Section 0.2
-├── CLAIMS-SOURCES.md         # Source audit trail & preserved conflicts
-├── ELIGIBILITY-RULES.md      # Branch eligibility criteria data model
-├── CRM-MAPPING.md            # 5-stage funnel, SLA & routing logic
-├── KEYWORD-MAP.md            # Search intent & SEO content map
-├── PERSONAS.md               # Student, Parent & Lateral Entry personas
-├── tokens.md                 # Design tokens & WCAG contrast proofs
-├── LEAD-QUALITY.md           # Field purpose, attribution & DPDP retention
-├── COMPLIANCE-CHECKLIST.md   # Legal & regulatory sign-off register
-├── EXPERIMENTS.md            # Ranked CRO A/B testing hypotheses
-├── QA-REPORT.md              # Quality gates audit logs & test results
-├── ASSETS.md                 # Asset licenses & media citation registry
-├── vercel.json               # Vercel deployment configuration
-├── .env.example              # Environment variables template
-├── data/
-│   └── .gitkeep              # Data folder placeholder (.gitignore protects leads)
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx        # Root layout, EducationalOrganization JSON-LD
-│   │   ├── page.tsx          # Homepage CRO conversion sequence (2027)
-│   │   ├── apply/            # High-conversion acquisition landing page
-│   │   ├── thank-you/        # Post-submission confirmation & WhatsApp CTA
-│   │   ├── courses/          # B.Tech programs index & [slug] branch hubs
-│   │   ├── admissions/       # Process, eligibility, and verified fees hubs
-│   │   ├── iemjee/           # IEMJEE 2027 zero-fee exam guide
-│   │   ├── placements/       # Sourced recruitment medians & recruiters
-│   │   ├── campus/           # Ashram, Gurukul & Management facilities
-│   │   ├── resources/        # Comparison guides & downloadable handbooks
-│   │   ├── contact/          # Ashram campus NAP, helpline numbers
-│   │   ├── privacy/          # DPDP-aligned data retention policy
-│   │   ├── terms/ & disclaimer/ # Institutional legal safeguards
-│   │   ├── sitemap.ts & robots.ts # Dynamic technical SEO indexation
-│   │   └── api/lead/         # Authoritative lead processing endpoint
-│   ├── components/           # Accessible, responsive CRO components
-│   ├── data/                 # Verified branches, FAQs, resources data
-│   ├── lib/                  # Schema, eligibility engine, analytics, store
-│   └── types/                # Strict TypeScript contracts
-└── tests/
-    └── core-funnel.test.ts   # 10 automated unit & integration tests
-```
+- **Institutional Directory (20 Verified Campuses)**: Filter and search across government engineering colleges, state universities (Jadavpur, Kalyani), and premier autonomous private institutions with verified fee structures and intake capacities.
+- **Verified Photographic Campus Registry**: High-resolution, authentic campus building photography and multi-category architectural galleries (Campus, Academic, Labs, Libraries).
+- **Interactive Horizontal Campus Reel**: Direct visual showcase on the homepage with smooth horizontal scroll buttons, progress indicator, and 1-click college profile links.
+- **Interactive WBJEE Choice Filling Simulator**: Rank-based predictive allocation engine classifying colleges into *Ambitious*, *Competitive*, and *Safe* tiers.
+- **Side-by-Side College Comparison Matrix**: Compare up to 3 colleges simultaneously across tuition fees, NIRF rankings, NAAC grades, hostels, and accepted exams.
+- **Student Enquiry & Consultation Modal**: Full-screen, mobile-responsive data collection modal appearing after 5 seconds or via 1-click consultation triggers.
+- **Floating Sticky "Free Consultation" Action**: Permanently docked to the right edge across every page with warm complementary amber styling, live counselor indicator, and smooth hover effects.
+- **Real-Time Data Integration**:
+  - Direct sync to **Google Sheets** via Google Apps Script Webhook.
+  - Automated transactional email alerts to **`hc8986234943@gmail.com`** on every new lead.
+  - Local audit queue fallback ensuring zero data loss during network hiccups.
 
 ---
 
-## 3. GETTING STARTED
+## 2. Quick Start (Local Development)
 
 ### Prerequisites
-- Node.js LTS (v20+ or v24+)
-- npm (v10+ or v11+)
+
+- **Node.js**: v20+ or v22+
+- **npm**: v10+ or v11+
+- **Git**
 
 ### Installation
+
 ```bash
-# Clone the repository and navigate to root
-cd "e:\iem front end"
+# Clone the repository
+git clone https://github.com/HarshCh017/banglacampus-portal.git
+cd banglacampus-portal
 
 # Install dependencies
 npm install
 ```
 
 ### Local Development Server
+
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-### Running Automated Test Suite
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Verification & Testing
+
 ```bash
+# Run automated test suite (43/43 passing)
 npm test
-```
-Executes all 10 unit & integration tests via Node's native test runner with `tsx`.
 
-### Production Build & Static Generation
-```bash
+# Run data provenance audit
+npm run audit
+
+# Run TypeScript type check and linter
+npx tsc --noEmit && npm run lint
+
+# Build production bundle (82/82 routes)
 npm run build
 ```
-Compiles all 35 static routes, validates types, and generates production bundles.
-
-### Direct GitHub & Vercel Deployment
-
-#### 1. Push to GitHub
-```bash
-# Set your remote and push
-git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>.git
-git branch -M main
-git push -u origin main
-```
-
-#### 2. Deploy to Vercel (Zero Config)
-1. Go to [vercel.com/new](https://vercel.com/new) and select **Import** next to your repository.
-2. Vercel automatically detects the Next.js framework configuration.
-3. *(Optional)* Add any environment variables (e.g. `NEXT_PUBLIC_WHATSAPP_NUMBER` or `CRM_WEBHOOK_URL`).
-4. Click **Deploy** — your live site will be generated with full edge speed and serverless lead dispatch.
 
 ---
 
-## 4. ENVIRONMENT CONFIGURATION (`.env.local`)
+## 3. Deploying to Vercel (Step-by-Step Guide)
 
-Copy `.env.example` to `.env.local` to configure production webhooks and analytics:
+The project is pre-configured for zero-config deployment on **Vercel**.
 
-```env
-# Operating Environment
-NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://iem-admissions.edu.in
+### Step 1: Import Project into Vercel
 
-# Analytics & Attribution
-NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
-NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX
+1. Log into your Vercel account at [vercel.com](https://vercel.com).
+2. Click **"Add New..."** → **"Project"**.
+3. Select your GitHub repository: **`HarshCh017/banglacampus-portal`** and click **Import**.
+4. Vercel automatically detects the **Next.js** framework.
 
-# Lead Dispatch & CRM Webhooks
-CRM_WEBHOOK_URL=https://crm.example.com/api/v1/leads
-CRM_API_KEY=your_crm_api_key_here
+### Step 2: Configure Environment Variables
 
-# Notification Channels
-COUNSELLOR_NOTIFICATION_EMAIL=admissions@iem.edu.in
-COUNSELLOR_SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
+In the **Environment Variables** section during project import (or under **Project Settings → Environment Variables**), configure the following values:
 
-# WhatsApp Business API (Optional)
-WHATSAPP_API_TOKEN=your_token_here
-WHATSAPP_PHONE_NUMBER_ID=your_id_here
+| Variable Name | Required | Description | Example Value |
+| :--- | :---: | :--- | :--- |
+| `NEXT_PUBLIC_SITE_URL` | **Yes** | Your deployed domain | `https://banglacampus-portal.vercel.app` |
+| `AUTH_SECRET` | **Yes** | 32+ character signing key | `v9bK3x+M7wZ9Y0qJ6XpLt1u8R4FzQ2mK5hN3cT6vY1s=` |
+| `GOOGLE_SHEETS_WEBHOOK_URL` | **Yes** | Google Apps Script Web App URL | `https://script.google.com/macros/s/AKfycb.../exec` |
+| `ENQUIRY_NOTIFICATION_EMAIL` | **Yes** | Alert recipient for student leads | `hc8986234943@gmail.com` |
+| `GOOGLE_CLIENT_ID` | Optional | Google OAuth 2.0 Client ID | `your-id.apps.googleusercontent.com` |
+| `GOOGLE_CLIENT_SECRET` | Optional | Google OAuth 2.0 Client Secret | `your-client-secret` |
+| `RESEND_API_KEY` | Optional | Direct transactional email API key | `re_123456789...` |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER`| Optional | Admissions WhatsApp desk | `919876543210` |
+
+### Step 3: Deploy
+
+Click **"Deploy"**. Vercel will build all 82 routes and assign a live production URL.
+
+---
+
+## 4. Google Sheets & Email Alert Setup
+
+To connect submissions directly to your Google Sheet:
+
+1. Create a new Google Sheet named **"BanglaCampus Student Enquiries"**.
+2. Go to **Extensions → Apps Script**.
+3. Paste the contents of [`scripts/google-apps-script.js`](scripts/google-apps-script.js).
+4. Click **Deploy → New deployment → Web app**:
+   - **Execute as**: *Me*
+   - **Who has access**: *Anyone*
+5. Copy the Web App URL and set it as `GOOGLE_SHEETS_WEBHOOK_URL` in Vercel.
+6. Every new student entry will automatically append to the sheet and trigger an instant email alert to `hc8986234943@gmail.com`.
+
+For full step-by-step instructions, see [`GOOGLE_SHEETS_SETUP.md`](GOOGLE_SHEETS_SETUP.md).
+
+---
+
+## 5. Repository Structure
+
+```text
+banglacampus-portal/
+├── public/
+│   ├── images/
+│   │   └── colleges/          # Verified institutional campus photography (20 colleges)
+│   ├── manifest.webmanifest   # Progressive Web App manifest
+│   └── robots.txt & sitemap   # Technical SEO specifications
+├── src/
+│   ├── app/
+│   │   ├── page.tsx           # Homepage with hero, carousel & comparison engine
+│   │   ├── layout.tsx         # Root layout with floating consultation button
+│   │   ├── colleges/          # Directory and dynamic [slug] detail pages
+│   │   ├── compare/           # Multi-college comparison matrix
+│   │   ├── counselling-simulator/ # Strategic choice filling predictor
+│   │   ├── cutoffs/           # Historical WBJEE cutoff archives
+│   │   ├── admin/             # Live sync desk & webhook testing console
+│   │   └── api/
+│   │       ├── enquiry/       # Lead capture & Google Sheets dispatch
+│   │       ├── enquiry/sync/  # Offline queue processor
+│   │       └── auth/          # JWT session authentication & Google OAuth
+│   ├── components/            # Reusable UI component library
+│   │   ├── CollegeCampusBanner.tsx     # Cinematic college profile hero banner
+│   │   ├── CollegeCard.tsx             # Responsive college card with verified media
+│   │   ├── CollegeShowcaseCarousel.tsx # Horizontal campus reel
+│   │   ├── FloatingConsultationButton.tsx # Sticky Free Consultation action
+│   │   └── StudentEnquiryModal.tsx     # 5-second & on-demand enquiry modal
+│   ├── data/                  # Regulatory catalogs & photography registry
+│   │   ├── colleges.ts        # 20 verified institutions with proven intake & fees
+│   │   ├── collegePhotos.ts   # Authentic photo URLs, captions & attributions
+│   │   └── cutoffs.ts         # WBJEE closing rank history
+│   └── lib/                   # Core business logic, Google Sheets & auth services
+├── tests/                     # 43 automated unit & integration test suites
+├── scripts/                   # Provenance auditor & Google Apps Script
+├── vercel.json                # Vercel deployment configuration
+├── .env.example               # Complete environment variable template
+└── package.json
 ```
 
 ---
 
-## 5. DEVIATIONS LOG & TECHNICAL RATIONALE
+## 6. License & Provenance
 
-| Area | Default Specification | Implemented Choice | Rationale |
-| :--- | :--- | :--- | :--- |
-| **Operating Model** | Prompt asked for model A/B/C/D | Defaulted to **Model [B] (Independent Guidance)** | Operator did not provide institutional written authorization. Defaulting to Model B safely prevents trademark or consumer protection liability while maintaining full CRO capability. |
-| **Testing Framework** | Jest / Vitest / Playwright | Node 24 Native Test Runner (`node:test` via `tsx`) | Eliminates heavyweight testing dependencies (saving ~45MB of node_modules) and executes full 10-test suite in $<500\text{ms}$ with zero configuration debt. |
-| **Testimonials** | Permitted only if verified & consented | Replaced with *"Questions Students & Parents Ask"* (`FaqSection.tsx`) | Prevents Section 0.0 Red Line #1 violation (never fabricate testimonials). |
-| **Placement Superlatives** | "Highest package ₹72 LPA" | Highlighted **Median Domestic Package (₹5.5L – ₹7.2L)** | Section 10 strictly prohibits framing exceptional off-campus offers as typical outcomes. Medians represent truthful institutional reality. |
+All institutional data conforms to regulatory filings with the **West Bengal Joint Entrance Examinations Board (WBJEEB)**, **All India Council for Technical Education (AICTE)**, and **National Institutional Ranking Framework (NIRF)**.
