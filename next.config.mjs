@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,6 +12,18 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'upload.wikimedia.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'thumb.wikimedia.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.heritageit.edu',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.mckvie.edu.in',
       },
       {
         protocol: 'https',
