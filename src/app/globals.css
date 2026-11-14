@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Sapphire-Blue, Deep Navy & Soft Ivory Design System */
+  --bg-canvas: #FAFBFD;
+  --bg-surface: #FFFFFF;
+  --bg-surface-raised: #FFFFFF;
+  --bg-highlight: #EAF2FF;
+
+  --color-navy: #102A56;
+  --color-sapphire: #1455B8;
+  --color-bright-blue: #2563EB;
+  --color-light-blue: #EAF2FF;
+  --color-main-text: #172033;
+  --color-muted-text: #64748B;
+  --color-border: #E2E8F0;
+
+  --color-teal: #0F8B70;
+  --color-amber: #F4B740;
+  --color-purple: #7864C8;
+
+  --tier-safe: #0F8B70;
+  --tier-realistic: #2563EB;
+  --tier-ambitious: #F4B740;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--color-main-text);
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    touch-action: manipulation;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-navy);
+    font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    line-height: 1.625;
+    text-wrap: pretty;
+  }
+
+  /* Accessible high-contrast focus rings */
+  :focus-visible {
+    outline: 2px solid var(--color-sapphire);
+    outline-offset: 2px;
+  }
+}
+
+/* Card & Surface Utilities */
+.card-base {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 8px 24px -4px rgba(16, 42, 86, 0.08), 0 2px 6px -2px rgba(16, 42, 86, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Badge Styles */
+.badge-govt {
+  background-color: #E6F6F2;
+  color: #0B7A62;
+  border: 1px solid #A7E3D4;
+}
+
+.badge-private {
+  background-color: #F3F0FB;
+  color: #7864C8;
+  border: 1px solid #D9D1F2;
+}
+
+.badge-safe {
+  background-color: #E6F6F2;
+  color: #0B7A62;
+  border: 1px solid #A7E3D4;
+}
+
+.badge-realistic {
+  background-color: #EAF2FF;
+  color: #2563EB;
+  border: 1px solid #BFDBFE;
+}
+
+.badge-ambitious {
+  background-color: #FEF8EB;
+  color: #B45309;
+  border: 1px solid #FDE4B0;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

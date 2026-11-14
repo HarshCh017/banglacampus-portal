@@ -1,0 +1,193 @@
+{
+  "summary": {
+    "health_score": 92,
+    "grade": "A",
+    "business_type": "Higher Education Portal / EdTech Discovery",
+    "domain": "bengalcampus.in",
+    "audited_at": "2026-11-14T05:28:00+05:30",
+    "total_pages_crawled": 104,
+    "top_findings": [
+      {
+        "severity": "High",
+        "title": "Domain Canonical Mismatch (Apex vs WWW)",
+        "description": "Vercel edge router is set to www.bengalcampus.in as Primary with 308 redirect from apex, while codebase canonicals and sitemaps declare https://bengalcampus.in (apex).",
+        "action": "Set apex bengalcampus.in as Primary in Vercel Domains dashboard so canonicals, sitemaps, and edge routing match 100%."
+      },
+      {
+        "severity": "Medium",
+        "title": "Homepage Title Length Slightly Exceeds 60 Characters",
+        "description": "Homepage title is 71 characters (BengalCampus | West Bengal Engineering Colleges, WBJEE Predictor & Fees). While all 20 college titles are strictly <= 56 characters, the homepage title may truncate on mobile SERPs.",
+        "action": "Shorten homepage title to <= 60 characters: 'BengalCampus | West Bengal Colleges & WBJEE Predictor' (53 chars)."
+      },
+      {
+        "severity": "Medium",
+        "title": "Meta Description Length Across College Pages",
+        "description": "Several college detail meta descriptions exceed 160 characters (180-202 chars).",
+        "action": "Trim description templates to 150-155 characters for optimal Google SERP display."
+      },
+      {
+        "severity": "Low",
+        "title": "Explicit Image Dimensions for Layout Shift Prevention",
+        "description": "13 image elements on homepage cards lack explicit width and height attributes in raw HTML, which can contribute to minor Cumulative Layout Shift (CLS).",
+        "action": "Add explicit width/height attributes to card thumbnail containers."
+      }
+    ],
+    "quick_wins": [
+      "Switch Vercel primary domain to apex bengalcampus.in to eliminate canonical mismatch in 1 click.",
+      "Trim homepage title from 71 to 53 characters.",
+      "Trim default college meta description from 202 to 152 characters.",
+      "Add explicit width/height to homepage college cards."
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "weight": 22,
+      "score": 88,
+      "what_works": [
+        "Robots.txt properly blocks /login, /admin, /dashboard, /api/, and /thank-you.",
+        "Sitemap.xml dynamically serves all 104 verified static pages with daily/weekly change frequencies.",
+        "Strict enterprise security headers: HSTS (63M seconds with preload), strict CSP, nosniff, DENY frame-options.",
+        "Zero redirect chains: 1 single hop 308 redirect from apex to www."
+      ],
+      "findings": [
+        {
+          "title": "Vercel Primary Domain vs Canonical Tag Discrepancy",
+          "severity": "High",
+          "description": "Site canonical points to https://bengalcampus.in, but Vercel edge router redirects apex to https://www.bengalcampus.in.",
+          "recommendation": "In Vercel Project Settings > Domains, promote bengalcampus.in to Primary Domain and redirect www to apex."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality & E-E-A-T",
+      "weight": 23,
+      "score": 96,
+      "what_works": [
+        "Audited institutional data: official WBJEE closing ranks across 3 rounds, WBFSC tuition fees, AICTE approval numbers.",
+        "Named expert authors (Dr. Amitava K. Roy, Prof. Soumen Mukherjee) with verified academic credentials.",
+        "In-depth content: college detail profiles average > 2,000 words each; zero thin content.",
+        "Calibrated 2026/27 timeline: accurate WBJEE 2026 examination and counselling data with no fabricated future cutoffs."
+      ],
+      "findings": []
+    },
+    {
+      "name": "On-Page SEO",
+      "weight": 20,
+      "score": 89,
+      "what_works": [
+        "All 20 verified college detail page titles strictly <= 56 characters (35-56 chars).",
+        "Single H1 tag per page with 1.0 keyword relevance.",
+        "SSR-crawlable header navigation menus with semantic <Link> tags.",
+        "Descriptive anchor text across all internal cross-links."
+      ],
+      "findings": [
+        {
+          "title": "Homepage Title Exceeds 60 Characters",
+          "severity": "Medium",
+          "description": "Homepage title is 71 characters, which may truncate on mobile search results.",
+          "recommendation": "Shorten to: 'BengalCampus | West Bengal Colleges & WBJEE Predictor' (53 characters)."
+        },
+        {
+          "title": "Meta Description Length on Detail Pages",
+          "severity": "Medium",
+          "description": "Descriptions range between 180 and 202 characters.",
+          "recommendation": "Tighten description string to under 160 characters."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "weight": 10,
+      "score": 98,
+      "what_works": [
+        "Zero Schema.org validation errors across all 104 static pages.",
+        "Complete rich result schemas: EducationalOrganization, CollegeOrUniversity, FAQPage, BreadcrumbList, WebSite.",
+        "BlogPosting schema includes Person author entity with name and jobTitle."
+      ],
+      "findings": []
+    },
+    {
+      "name": "Performance (Core Web Vitals)",
+      "weight": 10,
+      "score": 90,
+      "what_works": [
+        "100% static site generation (SSG) with instant edge caching (x-vercel-cache: HIT / PRERENDER).",
+        "Hero background video configured with preload='none' to prioritize LCP poster image.",
+        "Modern CSS containment and responsive layout."
+      ],
+      "findings": [
+        {
+          "title": "Missing Dimensions on Card Images",
+          "severity": "Low",
+          "description": "13 card images lack explicit width and height attributes in raw HTML markup.",
+          "recommendation": "Specify width and height attributes on Image/img components to guarantee 0 CLS."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO & Agentic)",
+      "weight": 10,
+      "score": 92,
+      "what_works": [
+        "llms.txt at root passes all Lighthouse agentic criteria.",
+        "Dedicated robots.txt directives allowing GPTBot, Claude-SearchBot, and PerplexityBot.",
+        "Clean question-and-answer passage structure optimized for AI Overviews and answer engines.",
+        "No catch-all 200 responses; proper 404 status codes for agent probes."
+      ],
+      "findings": [
+        {
+          "title": "Optional Content-Signal Header",
+          "severity": "Info",
+          "description": "No Content-Signal preference declared in HTTP headers.",
+          "recommendation": "Optional: declare Content-Signal in next.config.ts headers."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "weight": 5,
+      "score": 88,
+      "what_works": [
+        "100% of images have descriptive, non-empty alt text.",
+        "Zero broken image links across the college directory."
+      ],
+      "findings": [
+        {
+          "title": "Explicit Image Dimensions",
+          "severity": "Low",
+          "description": "Card thumbnails should have explicit intrinsic dimensions to avoid layout shifts during lazy loading.",
+          "recommendation": "Set intrinsic dimensions on all thumbnail containers."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Immediate Alignment (Days 1-2)",
+        "timeframe": "Immediate",
+        "items": [
+          "Switch Vercel primary production domain to apex bengalcampus.in to match codebase canonical tags.",
+          "Shorten homepage title tag to <= 60 characters."
+        ]
+      },
+      {
+        "name": "Phase 2: Meta & Asset Optimization (Week 1)",
+        "timeframe": "Week 1",
+        "items": [
+          "Trim college page meta descriptions to 150-155 characters.",
+          "Add explicit width/height dimensions to college card thumbnails."
+        ]
+      },
+      {
+        "name": "Phase 3: Topical Authority & Citations (Weeks 2-4)",
+        "timeframe": "Weeks 2-4",
+        "items": [
+          "Monitor indexation of the 3 newly published WBJEE 2026 counselling guides in Google Search Console.",
+          "Submit updated sitemap.xml to Google Search Console and IndexNow."
+        ]
+      }
+    ]
+  }
+}

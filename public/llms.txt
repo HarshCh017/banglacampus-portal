@@ -1,0 +1,41 @@
+# BengalCampus
+
+> Independent engineering-college discovery and admission intelligence platform for West Bengal, optimized for WBJEE 2026 & 2027 admissions. Audited WBJEE opening and closing ranks, official B.Tech tuition fee gazettes, AICTE approval codes, NIRF ranking data, and transparent choice-filling guidance.
+
+## Core Services
+
+- [Colleges Directory](https://bengalcampus.in/colleges): Verified profiles for 20 premier engineering institutions in West Bengal with branch-wise WBJEE cutoffs and seat matrices.
+- [WBJEE Rank Predictor & Counselling Simulator](https://bengalcampus.in/counselling-simulator): Accurate choice-filling simulator categorizing branches into Safe, Realistic, and Ambitious tiers based on verified WBJEEB Round 1, Round 2, and Decentralized Mop-up data.
+- [College Comparison Matrix](https://bengalcampus.in/compare): Side-by-side comparison of up to 3 colleges across tuition fees, approvals, branch offerings, and placements.
+- [Cutoffs Archive](https://bengalcampus.in/cutoffs): Traceable historical opening and closing ranks across General, TFW, OBC, SC, and ST quotas.
+- [Data Sources & Provenance](https://bengalcampus.in/sources): Traceable regulatory citations including AICTE, WBJEEB, NIRF, NAAC, and WBFSC gazettes.
+
+## Verified Institutions in West Bengal
+
+- [Jadavpur University - Faculty of Engineering & Technology (FET)](https://bengalcampus.in/colleges/jadavpur-university-engineering): Premier state university faculty in Kolkata. WBJEE Code 001. NIRF rank 10.
+- [Kalyani Government Engineering College (KGEC)](https://bengalcampus.in/colleges/kalyani-government-engineering-college): Autonomous state government engineering college in Nadia. WBJEE Code 002.
+- [Jalpaiguri Government Engineering College (JGEC)](https://bengalcampus.in/colleges/jalpaiguri-government-engineering-college): Historic government college established in 1961. WBJEE Code 003.
+- [Government College of Engineering and Leather Technology (GCELT)](https://bengalcampus.in/colleges/government-college-of-engineering-and-leather-technology): Specialized government institute in Salt Lake, Kolkata. WBJEE Code 004.
+- [Government College of Engineering and Ceramic Technology (GCECT)](https://bengalcampus.in/colleges/government-college-of-engineering-and-ceramic-technology): Premier specialized materials & ceramic engineering institute in Beliaghata, Kolkata. WBJEE Code 005.
+- [Government College of Engineering and Textile Technology, Berhampore (GCETTB)](https://bengalcampus.in/colleges/government-college-of-engineering-and-textile-technology-berhampore): Centennial textile and engineering college in Murshidabad. WBJEE Code 006.
+- [Government College of Engineering and Textile Technology, Serampore (GCETTS)](https://bengalcampus.in/colleges/government-college-of-engineering-and-textile-technology-serampore): Historic institute established in 1908 in Hooghly. WBJEE Code 007.
+- [Cooch Behar Government Engineering College (CGEC)](https://bengalcampus.in/colleges/cooch-behar-government-engineering-college): State engineering college in North Bengal. WBJEE Code 008.
+- [Ramkrishna Mahato Government Engineering College, Purulia (RKMGEC)](https://bengalcampus.in/colleges/ramkrishna-mahato-government-engineering-college): Government engineering college in Purulia. WBJEE Code 009.
+- [Institute of Engineering & Management (IEM), Kolkata](https://bengalcampus.in/colleges/iem-kolkata): Autonomous private engineering institute in Salt Lake Sector V, Kolkata. WBJEE Code 101.
+- [Heritage Institute of Technology (HIT), Kolkata](https://bengalcampus.in/colleges/heritage-institute-of-technology): Autonomous engineering college with NAAC A+ accreditation in Anandapur, Kolkata. WBJEE Code 102.
+- [Techno Main Salt Lake (TMSL)](https://bengalcampus.in/colleges/techno-main-salt-lake): Pioneer private engineering campus in Salt Lake Sector V, Kolkata. WBJEE Code 103.
+- [Haldia Institute of Technology (HIT Haldia)](https://bengalcampus.in/colleges/haldia-institute-of-technology): First self-financed engineering institute in West Bengal with NAAC A++ accreditation. WBJEE Code 104.
+- [Netaji Subhash Engineering College (NSEC)](https://bengalcampus.in/colleges/netaji-subhash-engineering-college): Autonomous private college in Garia, Kolkata. WBJEE Code 105.
+- [RCC Institute of Information Technology (RCCIIT)](https://bengalcampus.in/colleges/rcc-institute-of-information-technology): Semi-autonomous government-aided institute in Beliaghata, Kolkata. WBJEE Code 106.
+- [Narula Institute of Technology (NIT Agarpara)](https://bengalcampus.in/colleges/narula-institute-of-technology): Autonomous private engineering college with NAAC A+ accreditation in Agarpara, Kolkata. WBJEE Code 107.
+- [Guru Nanak Institute of Technology (GNIT)](https://bengalcampus.in/colleges/guru-nanak-institute-of-technology): Autonomous private engineering college in Sodepur, Panihati. WBJEE Code 108.
+- [Meghnad Saha Institute of Technology (MSIT)](https://bengalcampus.in/colleges/meghnad-saha-institute-of-technology): Private engineering college in Nazirabad, Kolkata. WBJEE Code 109.
+- [Academy of Technology (AOT), Adisaptagram](https://bengalcampus.in/colleges/academy-of-technology): Private engineering institute in Hooghly. WBJEE Code 110.
+- [BP Poddar Institute of Management & Technology (BPPIEMT)](https://bengalcampus.in/colleges/bp-poddar-institute-of-management-and-technology): Engineering institute near Kolkata Airport. WBJEE Code 111.
+
+## Regulatory & Verification Framework
+
+All statistics on BengalCampus adhere to strict public verification standards:
+- Tuition Fees: Sourced from WBFSC gazettes and official college prospectuses.
+- Cutoffs: WBJEEB official counselling closing ranks from Round 1, Round 2, and mop-up sessions.
+- Approvals: AICTE Mandatory Disclosure numbers and NAAC validity certificates.
