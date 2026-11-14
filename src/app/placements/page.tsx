@@ -6,17 +6,31 @@ import { LeadCaptureForm } from '@/components/LeadCaptureForm';
 import { ChevronRight, ShieldCheck, Building2, TrendingUp, Users, AlertCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'B.Tech Placement Statistics & Industry Recruiters | IEM Kolkata',
+  title: 'IEM Kolkata Placements | Highest Package, Average CTC & Top Recruiters',
   description:
-    'Sourced B.Tech placement audit for Institute of Engineering & Management (IEM), Kolkata. Verified salary medians, prominent IT recruiters, and career outcomes.',
+    'Verified placement records for IEM Kolkata (Institute of Engineering & Management). Highest package, average CTC, top corporate recruiters, and branch-wise placement percentages.',
+  keywords: [
+    'IEM college placement',
+    'IEM Kolkata placement package',
+    'IEM highest package',
+    'IEM average package',
+    'IEM Kolkata top recruiters',
+    'IEM Salt Lake placements 2026',
+    'Institute of Engineering and Management placements',
+  ],
   alternates: {
     canonical: 'https://bengalcampus.in/placements',
   },
   openGraph: {
-    title: 'B.Tech Placement Statistics & Industry Recruiters | IEM Kolkata',
+    title: 'IEM Kolkata Placement Records & Salary Packages | BengalCampus',
     description: 'Audited placement statistics, salary packages, and prominent recruiters at IEM Kolkata.',
     url: 'https://bengalcampus.in/placements',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEM Kolkata Placements | Average Package & Top Recruiters',
+    description: 'Verified placement audit for IEM Kolkata: highest CTC, median packages, and recruiter list.',
   },
   robots: {
     index: true,

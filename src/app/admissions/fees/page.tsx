@@ -6,17 +6,31 @@ import { LeadCaptureForm } from '@/components/LeadCaptureForm';
 import { ChevronRight, ShieldCheck, Landmark, CreditCard, AlertTriangle, FileText, CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'B.Tech Fee Structure & Bank Loan Assistance (2027–28) | IEM Kolkata',
+  title: 'IEM Kolkata Fees 2026–2027 | IEM College B.Tech Semester & Hostel Fee Structure',
   description:
-    'Verified B.Tech fee schedule for IEM Kolkata. Semester-by-semester tuition estimates, Indian Overseas Bank demand letters, and merit scholarship criteria.',
+    'Complete fee structure for IEM Kolkata (Institute of Engineering & Management, Salt Lake). Semester tuition fees, 4-year total cost, hostel fees, and loan guidance.',
+  keywords: [
+    'IEM college fees',
+    'IEM Kolkata fees',
+    'IEM B.Tech fee structure',
+    'IEM hostel fees',
+    'IEM college admission fees',
+    'Institute of Engineering and Management fees',
+    'IEM Salt Lake fee per semester',
+  ],
   alternates: {
     canonical: 'https://bengalcampus.in/admissions/fees',
   },
   openGraph: {
-    title: 'B.Tech Fee Structure & Bank Loan Assistance (2027–28) | IEM Kolkata',
+    title: 'IEM Kolkata B.Tech Fee Structure & Hostel Fees | IEM College',
     description: 'Semester tuition fees, hostel expenses, and educational loan documentation for IEM Kolkata.',
     url: 'https://bengalcampus.in/admissions/fees',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEM Kolkata B.Tech Fees & Hostel Cost | BengalCampus',
+    description: 'Verified semester fees, 4-year total estimate, and hostel expenses for IEM Kolkata.',
   },
   robots: {
     index: true,

@@ -5,17 +5,32 @@ import { LeadCaptureForm } from '@/components/LeadCaptureForm';
 import { ChevronRight, ShieldCheck, Sparkles, ExternalLink, Calendar, CheckCircle2, AlertCircle, FileText, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'IEMJEE 2027 Registration, Syllabus & Exam Dates | IEM Kolkata',
+  title: 'IEMJEE 2026–2027 Registration, Exam Dates & Syllabus | IEM Kolkata Entrance Test',
   description:
-    'Complete guide to IEMJEE 2027. Zero registration fee, online/offline exam patterns, syllabus breakdown, hall tickets, and direct portal application links.',
+    'Complete guide to IEMJEE 2026–2027. Zero examination fee, online & offline exam schedules, syllabus breakdown, admit card download, and direct IEM Kolkata registration.',
+  keywords: [
+    'IEMJEE',
+    'IEMJEE 2026',
+    'IEMJEE 2027',
+    'IEM entrance exam',
+    'IEM college exam',
+    'IEM Kolkata admission test',
+    'IEMJEE syllabus',
+    'IEMJEE exam date',
+  ],
   alternates: {
     canonical: 'https://bengalcampus.in/iemjee',
   },
   openGraph: {
-    title: 'IEMJEE 2027 Registration, Syllabus & Examination Details',
+    title: 'IEMJEE 2026–2027 Exam Dates, Pattern & Syllabus | IEM Kolkata',
     description: '100% free registration, exam pattern, syllabus, and dates for IEM and UEM admissions.',
     url: 'https://bengalcampus.in/iemjee',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEMJEE Exam Dates & Syllabus | BengalCampus',
+    description: 'Free entrance test details for IEM Kolkata B.Tech engineering admissions.',
   },
   robots: {
     index: true,

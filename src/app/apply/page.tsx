@@ -4,17 +4,30 @@ import { LeadCaptureForm } from '@/components/LeadCaptureForm';
 import { ShieldCheck, Phone, CheckCircle2, Clock, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Apply for B.Tech Admission Guidance 2027 | BengalCampus Admissions Desk',
+  title: 'Apply for IEM Kolkata B.Tech Admission 2026–2027 | IEM College Admission Desk',
   description:
-    'Direct B.Tech admission acquisition & preliminary eligibility guidance for Institute of Engineering & Management (IEM), Kolkata. 4-field form with 15-min counsellor response SLA.',
+    'Direct B.Tech admission guidance and eligibility verification for IEM Kolkata (Institute of Engineering & Management). Instant branch eligibility calculation and official counselling support.',
+  keywords: [
+    'IEM admission',
+    'apply for IEM college',
+    'IEM Kolkata B.Tech admission 2026',
+    'IEM direct admission',
+    'IEM Kolkata application form',
+    'Institute of Engineering and Management admission',
+  ],
   alternates: {
     canonical: 'https://bengalcampus.in/apply',
   },
   openGraph: {
-    title: 'Apply for B.Tech Admission Guidance 2027 | IEM Kolkata',
+    title: 'Apply for B.Tech Admission | IEM Kolkata Admissions Desk',
     description: 'Direct B.Tech admission guidance and eligibility check for IEM Kolkata engineering programs.',
     url: 'https://bengalcampus.in/apply',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEM Kolkata B.Tech Admission 2026–2027 | BengalCampus',
+    description: 'Apply for IEM Kolkata: eligibility criteria, branch options, and admission support.',
   },
   robots: {
     index: true,

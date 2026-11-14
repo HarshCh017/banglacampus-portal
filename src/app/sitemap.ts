@@ -25,12 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/courses`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/blog`, lastModified: CURRENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/guides`, lastModified: CURRENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/admissions`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE_URL}/admissions/fees`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE_URL}/admissions/eligibility`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'monthly', priority: 0.75 },
-    { url: `${BASE_URL}/iemjee`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE_URL}/placements`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'monthly', priority: 0.75 },
-    { url: `${BASE_URL}/apply`, lastModified: CURRENT_DATE, changeFrequency: 'daily', priority: 0.75 },
+    { url: `${BASE_URL}/admissions`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${BASE_URL}/admissions/fees`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${BASE_URL}/admissions/eligibility`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/iemjee`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${BASE_URL}/placements`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/apply`, lastModified: CURRENT_DATE, changeFrequency: 'daily', priority: 0.85 },
     { url: `${BASE_URL}/resources`, lastModified: CURRENT_DATE, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE_URL}/about`, lastModified: FOUNDING_DATE, changeFrequency: 'monthly', priority: 0.65 },
     { url: `${BASE_URL}/contact`, lastModified: FOUNDING_DATE, changeFrequency: 'monthly', priority: 0.65 },
@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/colleges/${c.slug}`,
     lastModified: DATA_REFRESH_DATE,
     changeFrequency: 'weekly' as const,
-    priority: 0.9,
+    priority: c.slug === 'iem-kolkata' ? 0.95 : 0.9,
   }));
 
   // Branch & Course Slugs (/courses/[slug])

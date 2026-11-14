@@ -65,15 +65,47 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : `https://bengalcampus.in${rawImage}`;
   const pageUrl = `https://bengalcampus.in/colleges/${college.slug}`;
 
+  const isIem = college.slug === 'iem-kolkata';
+  const metaTitle = isIem
+    ? 'IEM Kolkata (Institute of Engineering & Management) — Cutoffs, Fees, Admission & Placement'
+    : `${college.shortName} (${college.name.replace(/\(.*?\)/g, '').trim()}) — Cutoffs, Fees & Admission`;
+
+  const metaDesc = isIem
+    ? 'Complete verified guide for IEM Kolkata (Institute of Engineering & Management, Salt Lake). Check WBJEE & IEMJEE cutoffs, B.Tech semester fees, placement packages, and direct admission eligibility.'
+    : `Verified WBJEE 2026 cutoffs, WBFSC tuition fees, approved seats, and NIRF rank for ${college.name} (Code #${college.wbjeebCode}). Calibrated benchmarks for 2026/27 choice filling.`;
+
+  const keywords = isIem
+    ? [
+        'IEM college',
+        'IEM Kolkata',
+        'IEM college Kolkata',
+        'Institute of Engineering and Management',
+        'IEM Salt Lake',
+        'IEM college cutoffs',
+        'IEM college fees',
+        'IEM placement package',
+        'IEM B.Tech admission',
+        'IEMJEE 2027',
+        'WBJEE code 104',
+      ]
+    : [
+        college.name,
+        college.shortName,
+        `${college.shortName} cutoffs`,
+        `${college.shortName} fees`,
+        `WBJEE code ${college.wbjeebCode}`,
+      ];
+
   return {
-    title: `${college.shortName}: Cutoffs & Fees`,
-    description: `Verified WBJEE 2026 cutoffs, WBFSC tuition fees, approved seats, and NIRF rank for ${college.name} (Code #${college.wbjeebCode}). Calibrated benchmarks for 2026/27 choice filling.`,
+    title: metaTitle,
+    description: metaDesc,
+    keywords,
     alternates: {
       canonical: pageUrl,
     },
     openGraph: {
-      title: `${college.shortName} | WBJEE Code #${college.wbjeebCode} Verified Profile`,
-      description: `Audited regulatory profile, tuition fees, and WBJEE cutoffs for ${college.name}.`,
+      title: isIem ? 'IEM Kolkata (Institute of Engineering & Management) — Verified Profile' : `${college.shortName} | WBJEE Code #${college.wbjeebCode} Verified Profile`,
+      description: metaDesc,
       url: pageUrl,
       siteName: 'BengalCampus',
       images: [
@@ -89,8 +121,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${college.shortName} - Cutoffs, Fees & Accreditation | BengalCampus`,
-      description: `Verified WBJEE code ${college.wbjeebCode}, approved seat matrix, and annual tuition for ${college.shortName}.`,
+      title: metaTitle,
+      description: metaDesc,
       images: [fullImageUrl],
     },
     robots: {
@@ -143,7 +175,21 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     '@context': 'https://schema.org',
     '@type': ['CollegeOrUniversity', 'EducationalOrganization'],
     name: college.name,
-    alternateName: [college.shortName, `WBJEE Code ${college.wbjeebCode}`],
+    alternateName: [
+      college.shortName,
+      `WBJEE Code ${college.wbjeebCode}`,
+      ...(college.slug === 'iem-kolkata'
+        ? [
+            'IEM College',
+            'IEM College Kolkata',
+            'IEM Kolkata',
+            'Institute of Engineering & Management',
+            'Institute of Engineering and Management',
+            'IEM Salt Lake Sector V',
+            'IEM Ashram Building'
+          ]
+        : [`${college.shortName} College`]),
+    ],
     url: `https://bengalcampus.in/colleges/${college.slug}`,
     sameAs: college.officialWebsite ? [college.officialWebsite] : undefined,
     image: college.campusImageUrl

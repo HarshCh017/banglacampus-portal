@@ -6,17 +6,30 @@ import { LeadCaptureForm } from '@/components/LeadCaptureForm';
 import { ChevronRight, ShieldCheck, CheckCircle2, AlertCircle, Info, BookOpen, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'B.Tech Eligibility Criteria & Cutoff Calculator | IEM Kolkata',
+  title: 'IEM Kolkata Eligibility Criteria & Cutoff Calculator | IEM College B.Tech Admission',
   description:
-    'Check your Class 12 aggregate and PCM percentage against published cutoffs for B.Tech CSE, IT, ECE, and other engineering branches at IEM Kolkata.',
+    'Check your Class 12 aggregate and PCM percentage against verified cutoffs for B.Tech CSE, IT, ECE, and AI/ML at IEM Kolkata (Institute of Engineering & Management).',
+  keywords: [
+    'IEM college eligibility',
+    'IEM Kolkata eligibility criteria',
+    'IEM cutoff marks',
+    'IEM Kolkata 12th percentage required',
+    'IEM college B.Tech admission criteria',
+    'Institute of Engineering and Management eligibility',
+  ],
   alternates: {
     canonical: 'https://bengalcampus.in/admissions/eligibility',
   },
   openGraph: {
-    title: 'B.Tech Eligibility Criteria & Cutoff Calculator | IEM Kolkata',
-    description: 'Verify 45% PCM minimums and WBJEE / JEE Main rank requirements for B.Tech specializations.',
+    title: 'IEM Kolkata B.Tech Eligibility Criteria & Cutoff Calculator',
+    description: 'Verify 45% PCM minimums and WBJEE / JEE Main rank requirements for B.Tech specializations at IEM Kolkata.',
     url: 'https://bengalcampus.in/admissions/eligibility',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEM Kolkata Eligibility Criteria | BengalCampus',
+    description: 'Calculate your admission eligibility for IEM Kolkata branches based on Class 12 marks.',
   },
   robots: {
     index: true,

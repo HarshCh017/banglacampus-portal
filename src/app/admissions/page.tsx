@@ -15,17 +15,30 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'B.Tech Admission Process & Timeline (2027–28) | IEM Kolkata',
+  title: 'IEM Kolkata Admission Process 2026–2027 | IEM College B.Tech Admission Guide',
   description:
-    'Comprehensive B.Tech admission guide for IEM Kolkata. WBJEE, JEE Main, and IEMJEE pathways, Ashram campus verification, and document requirements.',
+    'Comprehensive B.Tech admission guide for IEM Kolkata (Institute of Engineering & Management). WBJEE, JEE Main, and IEMJEE pathways, counselling dates, and Ashram campus verification.',
+  keywords: [
+    'IEM admission',
+    'IEM college admission',
+    'IEM Kolkata admission 2026',
+    'IEM B.Tech admission process',
+    'IEMJEE admission',
+    'Institute of Engineering and Management Kolkata admission',
+  ],
   alternates: {
     canonical: 'https://bengalcampus.in/admissions',
   },
   openGraph: {
-    title: 'B.Tech Admission Process & Timeline (2027–28) | IEM Kolkata',
-    description: 'WBJEE, JEE Main, and IEMJEE admission pathways, documents, and counselling steps.',
+    title: 'IEM Kolkata B.Tech Admission Process & Guidelines | BengalCampus',
+    description: 'WBJEE, JEE Main, and IEMJEE admission pathways, documents, and counselling steps for IEM Kolkata.',
     url: 'https://bengalcampus.in/admissions',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEM Kolkata B.Tech Admission Process & Timeline | BengalCampus',
+    description: 'Complete admission handbook for IEM Kolkata: eligibility, documents, and counselling steps.',
   },
   robots: {
     index: true,
