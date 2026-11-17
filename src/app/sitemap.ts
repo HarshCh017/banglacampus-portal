@@ -23,7 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/fee-calculator`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/counselling`, lastModified: CURRENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/courses`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/blog`, lastModified: CURRENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/guides`, lastModified: CURRENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/admissions`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/admissions/fees`, lastModified: DATA_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.85 },
@@ -59,14 +58,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Editorial Articles (/blog/[slug])
-  const blogRoutes: MetadataRoute.Sitemap = VERIFIED_ARTICLES.map((a) => ({
-    url: `${BASE_URL}/blog/${a.slug}`,
-    lastModified: new Date(a.updatedAt || a.publishedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
-
   // Guides Library Slugs (/guides/[slug])
   const guideRoutes: MetadataRoute.Sitemap = VERIFIED_ARTICLES.map((a) => ({
     url: `${BASE_URL}/guides/${a.slug}`,
@@ -87,7 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...coreRoutes,
     ...collegeRoutes,
     ...branchRoutes,
-    ...blogRoutes,
     ...guideRoutes,
     ...resourceRoutes,
   ];

@@ -169,6 +169,7 @@ export function CollegeCard({ college, layout = 'horizontal' }: CollegeCardProps
             <div className="flex items-center gap-2 pt-0.5">
               <Link
                 href={`/colleges/${college.slug}`}
+                aria-label={`View details and cutoffs for ${college.shortName}`}
                 className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#0E2856] via-[#1455B8] to-[#1D4ED8] hover:from-[#091C3E] hover:to-[#1455B8] active:scale-[0.98] text-white text-xs font-heading font-bold text-center transition-all shadow-sm hover:shadow-md hover:shadow-blue-500/20 flex items-center justify-center gap-1 cursor-pointer"
               >
                 <span>View Details</span>
@@ -177,6 +178,7 @@ export function CollegeCard({ college, layout = 'horizontal' }: CollegeCardProps
 
               <button
                 type="button"
+                aria-label={`Add ${college.shortName} to comparison`}
                 onClick={handleCompareClick}
                 className={`px-3 py-2.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1.5 cursor-pointer shrink-0 ${
                   inCompare
@@ -317,6 +319,7 @@ export function CollegeCard({ college, layout = 'horizontal' }: CollegeCardProps
           {/* View Details Button */}
           <Link
             href={`/colleges/${college.slug}`}
+            aria-label={`View details and cutoffs for ${college.shortName}`}
             className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#0E2856] via-[#1455B8] to-[#1D4ED8] hover:from-[#091C3E] hover:to-[#1455B8] active:scale-[0.98] text-white text-xs font-heading font-bold transition-all shadow-sm hover:shadow-md hover:shadow-blue-500/20 cursor-pointer"
           >
             <span>View Details</span>
@@ -326,6 +329,7 @@ export function CollegeCard({ college, layout = 'horizontal' }: CollegeCardProps
           {/* Compare Button */}
           <button
             type="button"
+            aria-label={`Add ${college.shortName} to comparison`}
             onClick={handleCompareClick}
             className={`px-3 py-2.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1.5 cursor-pointer ${
               inCompare

@@ -60,6 +60,16 @@ const nextConfig = {
         destination: '/counselling',
         permanent: true,
       },
+      {
+        source: '/blog',
+        destination: '/guides',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug',
+        destination: '/guides/:slug',
+        permanent: true,
+      },
     ];
   },
   async headers() {

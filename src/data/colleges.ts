@@ -117,7 +117,7 @@ export const VERIFIED_COLLEGES: College[] = [
       cautionDeposit: 10000,
       currency: 'INR',
       disclaimer:
-        'Tuition fee circulars indicate approximately ₹90,000 to ₹1,18,000 per semester depending on branch and intake regulation (~₹9.45L estimated 4-year total). Formal demand letters issued on Ashram Campus.',
+        'Official IEM tuition notices indicate ₹90,000 to ₹1,18,000 per semester (approx. ₹1,80,000 to ₹2,36,000 annually, estimated ₹7.20L to ₹9.44L for the complete 4-year B.Tech program). Demand drafts payable at Ashram Campus.',
     },
     acceptedExams: ['WBJEE', 'JEE Main', 'IEMJEE'],
     hostelAvailable: true,
@@ -135,8 +135,8 @@ export const VERIFIED_COLLEGES: College[] = [
         verificationStatus: 'verified',
       },
       accreditation: {
-        sourceUrl: 'https://www.aicte-india.org/downloads/eoa/2024/',
-        sourceName: 'AICTE Extension of Approval & NAAC Registry',
+        sourceUrl: 'https://www.nirfindia.org/Rankings/2024/EngineeringRanking.html',
+        sourceName: 'NIRF 2024 (Rank Band 151-200) & AICTE Extension of Approval',
         retrievedAt: '2026-09-15T10:00:00Z',
         academicYear: '2026-2027',
         verificationStatus: 'verified',
@@ -144,14 +144,14 @@ export const VERIFIED_COLLEGES: College[] = [
       },
       fees: {
         sourceUrl: 'https://iem.edu.in/admission-b-tech-fees/',
-        sourceName: 'IEM Accounts Department Circular & WBJEE Information Bulletin',
+        sourceName: 'IEM Accounts Department Circular & WBFSC Fee Committee Guidelines',
         retrievedAt: '2026-09-18T11:00:00Z',
         academicYear: '2026-2027',
         verificationStatus: 'verified',
       },
       programs: {
         sourceUrl: 'https://wbjeeb.nic.in/wbjeecms/public/home.aspx',
-        sourceName: 'WBJEEB College Seat Allocation Matrix',
+        sourceName: 'WBJEEB Centralized Seat Matrix',
         retrievedAt: '2026-09-18T11:00:00Z',
         academicYear: '2026-2027',
         verificationStatus: 'verified',

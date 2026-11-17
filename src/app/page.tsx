@@ -10,26 +10,16 @@ import { GuidanceCallout } from '@/components/home/GuidanceCallout';
 import { AnimatedFaqAccordion } from '@/components/home/AnimatedFaqAccordion';
 
 export const metadata: Metadata = {
-  title: 'BengalCampus | Top West Bengal Engineering Colleges, WBJEE Predictor & Fees 2026–2027',
+  title: 'WBJEE Predictor & WB Engineering Colleges 2027 | BengalCampus',
   description:
-    'Discover and compare verified engineering colleges in West Bengal. Audited WBJEE closing ranks, semester tuition fees, AICTE & NAAC approvals, and choice-filling predictor.',
-  keywords: [
-    'WBJEE 2026 cutoffs',
-    'West Bengal engineering colleges',
-    'WBJEE college predictor',
-    'Jadavpur University engineering cutoffs',
-    'MAKAUT colleges West Bengal',
-    'B.Tech admissions Kolkata',
-    'engineering colleges with lowest fees WB',
-    'WBJEE counselling choice filling',
-  ],
+    'Compare verified West Bengal engineering colleges. Audited WBJEE cutoffs, semester fees, NIRF & NAAC data, and choice-filling predictor for 2027.',
   alternates: {
     canonical: 'https://bengalcampus.in',
   },
   openGraph: {
-    title: 'BengalCampus | Top West Bengal Engineering Colleges, WBJEE Predictor & Fees',
+    title: 'WBJEE Predictor & WB Engineering Colleges 2027 | BengalCampus',
     description:
-      'Compare verified engineering colleges in West Bengal. Audited WBJEE closing ranks, tuition fees, and admission predictor.',
+      'Compare verified West Bengal engineering colleges. Audited WBJEE cutoffs, semester fees, NIRF & NAAC data, and choice-filling predictor for 2027.',
     url: 'https://bengalcampus.in',
     siteName: 'BengalCampus',
     images: [
@@ -45,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BengalCampus | Top West Bengal Engineering Colleges, WBJEE Predictor & Fees',
+    title: 'WBJEE Predictor & WB Engineering Colleges 2027 | BengalCampus',
     description:
-      'Compare verified engineering colleges in West Bengal. Audited WBJEE cutoffs, fees, and admission predictor.',
+      'Compare verified West Bengal engineering colleges. Audited WBJEE cutoffs, semester fees, NIRF & NAAC data, and choice-filling predictor for 2027.',
     images: ['/images/colleges/jadavpur-university-engineering.jpg'],
   },
 };

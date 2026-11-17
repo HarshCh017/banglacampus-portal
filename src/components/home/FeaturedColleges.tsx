@@ -106,7 +106,7 @@ export function FeaturedColleges() {
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs font-bold tracking-wide uppercase shadow-xs mb-2.5 backdrop-blur-sm">
               <Sparkles className="w-3.5 h-3.5 text-blue-300" />
-              <span>Top Picks for WBJEE 2026</span>
+              <span>Top Picks for WBJEE 2027</span>
             </div>
 
             <div className="flex items-center gap-2.5">
@@ -252,6 +252,7 @@ export function FeaturedColleges() {
                   <div className="pt-2 flex items-center justify-between gap-2 border-t border-white/10">
                     <Link
                       href={`/colleges/${college.slug}`}
+                      aria-label={`View profile and cutoffs for ${college.shortName}`}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-300 hover:text-blue-200 transition-colors group/link cursor-pointer"
                     >
                       <span>View Profile</span>
@@ -260,6 +261,7 @@ export function FeaturedColleges() {
 
                     <button
                       type="button"
+                      aria-label={`Compare ${college.shortName} with other colleges`}
                       onClick={() => {
                         if (selected) {
                           removeFromCompare(college.slug);
@@ -332,7 +334,7 @@ export function FeaturedColleges() {
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 pt-1 text-xs text-slate-300 font-medium">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Audited 2026 Cutoffs</span>
+                  <span>Audited Cutoffs &amp; Fees</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Headphones className="w-4 h-4 text-blue-300 shrink-0" />

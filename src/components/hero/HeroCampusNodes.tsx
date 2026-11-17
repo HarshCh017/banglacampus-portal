@@ -16,11 +16,11 @@ interface CampusNode {
 const NODES: CampusNode[] = [
   { name: 'Jadavpur University', slug: 'jadavpur-university-engineering', city: 'Kolkata', x: 72, y: 76, code: 'JU' },
   { name: 'IEM Kolkata', slug: 'iem-kolkata', city: 'Kolkata', x: 74, y: 72, code: 'IEM' },
-  { name: 'Heritage Institute', slug: 'heritage-institute-of-technology', city: 'Kolkata', x: 76, y: 78, code: 'HIT' },
+  { name: 'Heritage Institute', slug: 'heritage-institute-of-technology', city: 'Kolkata', x: 76, y: 78, code: 'HITK' },
   { name: 'KGEC Kalyani', slug: 'kalyani-government-engineering-college', city: 'Nadia', x: 70, y: 62, code: 'KGEC' },
   { name: 'JGEC Jalpaiguri', slug: 'jalpaiguri-government-engineering-college', city: 'Jalpaiguri', x: 62, y: 18, code: 'JGEC' },
   { name: 'Cooch Behar GEC', slug: 'cooch-behar-government-engineering-college', city: 'Cooch Behar', x: 70, y: 15, code: 'CGEC' },
-  { name: 'Haldia Inst of Tech', slug: 'haldia-institute-of-technology', city: 'Purba Medinipur', x: 66, y: 88, code: 'HITK' },
+  { name: 'Haldia Inst of Tech', slug: 'haldia-institute-of-technology', city: 'Purba Medinipur', x: 66, y: 88, code: 'HIT-Haldia' },
   { name: 'GCELT Kolkata', slug: 'gcelt-kolkata', city: 'Kolkata', x: 73, y: 74, code: 'GCELT' },
   { name: 'Purulia GEC', slug: 'ramkrishna-mahato-government-engineering-college', city: 'Purulia', x: 28, y: 65, code: 'RKMGEC' },
   { name: 'GCETT Serampore', slug: 'gcett-serampore', city: 'Hooghly', x: 68, y: 70, code: 'GCETTS' },

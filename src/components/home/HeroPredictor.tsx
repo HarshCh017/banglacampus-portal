@@ -203,6 +203,7 @@ export function HeroPredictor() {
             muted
             playsInline
             preload="none"
+            poster="/videos/campus-aerial-poster.jpg"
             onPlaying={handleVideoReady}
             onCanPlayThrough={handleVideoReady}
             onLoadedData={handleVideoReady}
@@ -254,7 +255,7 @@ export function HeroPredictor() {
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs font-semibold backdrop-blur-md shadow-xs">
                 <GraduationCap className="w-3.5 h-3.5 text-blue-300" />
-                <span>West Bengal Engineering Admissions</span>
+                <span>West Bengal Engineering Admissions 2027</span>
               </div>
             </div>
 
@@ -267,9 +268,14 @@ export function HeroPredictor() {
               </span>
             </h1>
 
+            {/* Keyword-Rich Target Subheading for West Bengal Engineering Colleges */}
+            <h2 className="text-sm sm:text-base font-semibold text-blue-200/90 tracking-wide">
+              Top West Bengal Engineering Colleges &amp; WBJEE Counselling Hub
+            </h2>
+
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-lg leading-relaxed font-sans pt-1">
-              Discover engineering colleges across West Bengal. Compare fees, branches and historical cutoffs before making your choice.
+            <p className="text-sm sm:text-base text-slate-300 max-w-lg leading-relaxed font-sans pt-0.5">
+              Discover accredited engineering colleges across West Bengal. Compare audited fees, branch cutoffs and verified NIRF records before locking your choices.
             </p>
 
             {/* Action Buttons */}

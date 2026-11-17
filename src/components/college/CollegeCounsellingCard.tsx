@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { College } from '@/types/college';
 import {
   Headphones,
@@ -241,6 +242,15 @@ export function CollegeCounsellingCard({
               </>
             )}
           </button>
+
+          {/* DPDP Act 2023 Consent Notice */}
+          <p className="text-[10px] text-blue-200/70 text-center leading-normal pt-1">
+            By submitting, you consent to receive admission updates &amp; guidance per our{' '}
+            <Link href="/privacy-policy" target="_blank" className="underline hover:text-white">
+              Privacy Policy
+            </Link>{' '}
+            (DPDP Act 2023).
+          </p>
 
           {/* Micro Trust Checklist */}
           <div className="flex flex-wrap items-center justify-between gap-y-1.5 pt-2 text-[11px] text-blue-100/80 font-medium">

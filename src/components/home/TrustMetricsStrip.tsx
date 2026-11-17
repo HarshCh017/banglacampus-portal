@@ -54,7 +54,7 @@ export function TrustMetricsStrip() {
             </div>
           </div>
 
-          {/* Metric 4: Updated for WBJEE 2026 */}
+          {/* Metric 4: Updated for WBJEE 2027 */}
           <div className="flex items-center gap-3 lg:px-4">
             <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1455B8] flex items-center justify-center shrink-0">
               <Clock className="w-5 h-5" />
@@ -64,7 +64,7 @@ export function TrustMetricsStrip() {
                 Updated for
               </span>
               <span className="text-xs text-[#64748B] font-medium block">
-                WBJEE 2026
+                WBJEE 2027
               </span>
             </div>
           </div>

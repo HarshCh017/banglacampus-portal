@@ -4,30 +4,22 @@ import { LeadCaptureForm } from '@/components/LeadCaptureForm';
 import { ShieldCheck, Phone, CheckCircle2, Clock, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Apply for IEM Kolkata B.Tech Admission 2026–2027 | IEM College Admission Desk',
+  title: 'Apply for IEM Kolkata B.Tech Admission 2027 | BengalCampus',
   description:
-    'Direct B.Tech admission guidance and eligibility verification for IEM Kolkata (Institute of Engineering & Management). Instant branch eligibility calculation and official counselling support.',
-  keywords: [
-    'IEM admission',
-    'apply for IEM college',
-    'IEM Kolkata B.Tech admission 2026',
-    'IEM direct admission',
-    'IEM Kolkata application form',
-    'Institute of Engineering and Management admission',
-  ],
+    'B.Tech merit admission guidance and eligibility verification for IEM Kolkata (Institute of Engineering & Management). Branch eligibility and counselling support.',
   alternates: {
     canonical: 'https://bengalcampus.in/apply',
   },
   openGraph: {
-    title: 'Apply for B.Tech Admission | IEM Kolkata Admissions Desk',
-    description: 'Direct B.Tech admission guidance and eligibility check for IEM Kolkata engineering programs.',
+    title: 'Apply for IEM Kolkata B.Tech Admission 2027 | BengalCampus',
+    description: 'B.Tech merit admission guidance and eligibility verification for IEM Kolkata engineering programs.',
     url: 'https://bengalcampus.in/apply',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'IEM Kolkata B.Tech Admission 2026–2027 | BengalCampus',
-    description: 'Apply for IEM Kolkata: eligibility criteria, branch options, and admission support.',
+    title: 'Apply for IEM Kolkata B.Tech Admission 2027 | BengalCampus',
+    description: 'Apply for IEM Kolkata: verified eligibility, branch options, and admission support.',
   },
   robots: {
     index: true,

@@ -4,14 +4,14 @@ import { CutoffExplorerClient } from './CutoffExplorerClient';
 import { Loader2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'WBJEE Cutoffs 2027 | College-wise Closing Ranks & Benchmarks',
+  title: 'WBJEE Cutoffs 2027: College Closing Ranks | BengalCampus',
   description:
-    'Explore official WBJEE 2027 projected cutoffs and closing ranks across West Bengal engineering colleges. Analyze GMR cutoffs for Jadavpur University, KGEC, IEM, Heritage, JGEC, and HIT with verified citations.',
+    'Explore official WBJEE 2027 closing ranks across West Bengal engineering colleges. Analyze GMR cutoffs for Jadavpur University, KGEC, IEM, Heritage (HITK), and HIT Haldia.',
   alternates: {
     canonical: 'https://bengalcampus.in/cutoffs',
   },
   openGraph: {
-    title: 'WBJEE Cutoffs & Closing Ranks Explorer | BengalCampus',
+    title: 'WBJEE Cutoffs 2027: College Closing Ranks | BengalCampus',
     description:
       'Explore official WBJEE Round 1, Round 2, and Mop-Up closing ranks across top West Bengal engineering colleges.',
     url: 'https://bengalcampus.in/cutoffs',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WBJEE Cutoffs & Closing Ranks Explorer | BengalCampus',
+    title: 'WBJEE Cutoffs 2027: College Closing Ranks | BengalCampus',
     description: 'Find WBJEE cutoffs for all engineering branches and category reservations.',
   },
   robots: {

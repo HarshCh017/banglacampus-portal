@@ -253,13 +253,13 @@ export function Header() {
             >
               <div className="flex items-center">
                 <Link
-                  href="/blog"
+                  href="/guides"
                   className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors ${
                     isHomePage
                       ? 'hover:text-white hover:bg-white/10'
                       : 'hover:text-[#1455B8] hover:bg-[#EAF2FF]/50'
                   } ${
-                    pathname.startsWith('/guides') || pathname.startsWith('/blog')
+                    pathname.startsWith('/guides')
                       ? isHomePage
                         ? 'text-[#38BDF8] font-semibold bg-white/10'
                         : 'text-[#1455B8] font-semibold'
@@ -279,19 +279,19 @@ export function Header() {
                 }`}
               >
                 <Link
-                  href="/blog"
+                  href="/guides"
                   className="block px-3 py-2 rounded-lg text-xs font-semibold text-[#102A56] hover:bg-[#EAF2FF] hover:text-[#1455B8] transition-colors"
                 >
                   All Admission Guides &amp; Insights
                 </Link>
                 <Link
-                  href="/blog/wbjee-2026-counselling-choice-filling-guide"
+                  href="/guides/wbjee-2026-counselling-choice-filling-guide"
                   className="block px-3 py-2 rounded-lg text-xs text-[#64748B] hover:bg-[#EAF2FF] hover:text-[#1455B8] transition-colors"
                 >
                   WBJEE Choice-Filling Strategy
                 </Link>
                 <Link
-                  href="/blog/autonomous-vs-makaut-affiliated-colleges"
+                  href="/guides/autonomous-vs-makaut-affiliated-colleges"
                   className="block px-3 py-2 rounded-lg text-xs text-[#64748B] hover:bg-[#EAF2FF] hover:text-[#1455B8] transition-colors"
                 >
                   Autonomous vs MAKAUT Affiliated

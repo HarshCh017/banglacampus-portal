@@ -145,7 +145,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/colleges/heritage-institute-of-technology" className="hover:text-white transition-colors">
-                  Heritage Institute of Technology (HIT)
+                  Heritage Institute of Technology (HITK)
                 </Link>
               </li>
               <li>
@@ -206,7 +206,7 @@ export function Footer() {
               <span className="text-xs font-bold uppercase tracking-wider text-slate-200">
                 Verified Engineering Colleges in West Bengal (Complete 20-Institution Index):
               </span>
-              <span className="text-[11px] font-mono text-slate-400">WBJEE 2026 Registry</span>
+              <span className="text-[11px] font-mono text-slate-400">WBJEE 2026–2027 Registry</span>
             </div>
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs text-slate-400">
               {VERIFIED_COLLEGES.map((c, i) => (
@@ -286,7 +286,7 @@ export function Footer() {
             © {new Date().getFullYear()} BengalCampus Academic Research Desk. All rights reserved. Truth in Admissions · Verified Sourcing.
           </p>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2">
-            <Link href="/privacy" className="hover:text-white underline py-1">
+            <Link href="/privacy-policy" className="hover:text-white underline py-1">
               Privacy Policy (DPDP Act)
             </Link>
             <Link href="/terms" className="hover:text-white underline py-1">
@@ -298,7 +298,7 @@ export function Footer() {
             <Link href="/methodology" className="hover:text-white underline py-1">
               Data Verification Methodology
             </Link>
-            <Link href="/login" className="hover:text-white underline py-1 opacity-75">
+            <Link href="/login" rel="nofollow" className="hover:text-white underline py-1 opacity-75">
               Staff Console
             </Link>
           </div>

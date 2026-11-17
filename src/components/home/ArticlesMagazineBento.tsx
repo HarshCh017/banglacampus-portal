@@ -29,7 +29,7 @@ export function ArticlesMagazineBento() {
           </div>
 
           <Link
-            href="/blog"
+            href="/guides"
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#10B981] hover:text-[#34D399] transition-colors group shrink-0"
           >
             <span>All Articles</span>
@@ -55,7 +55,7 @@ export function ArticlesMagazineBento() {
                   </div>
 
                   <h3 className="font-serif font-bold text-xl sm:text-2xl text-[#ECF4F0] group-hover:text-[#10B981] transition-colors leading-snug">
-                    <Link href={`/blog/${featured.slug}`}>{featured.title}</Link>
+                    <Link href={`/guides/${featured.slug}`}>{featured.title}</Link>
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[#9DB0A8] leading-relaxed">
@@ -87,7 +87,7 @@ export function ArticlesMagazineBento() {
                   </span>
 
                   <Link
-                    href={`/blog/${featured.slug}`}
+                    href={`/guides/${featured.slug}`}
                     className="text-xs font-bold text-[#10B981] hover:text-[#34D399] inline-flex items-center gap-1.5 group/btn"
                   >
                     <span>Read Full Guide</span>
@@ -116,7 +116,7 @@ export function ArticlesMagazineBento() {
                   </div>
 
                   <h4 className="font-serif font-bold text-base text-[#ECF4F0] group-hover:text-[#10B981] transition-colors leading-snug">
-                    <Link href={`/blog/${article.slug}`}>{article.title}</Link>
+                    <Link href={`/guides/${article.slug}`}>{article.title}</Link>
                   </h4>
 
                   <p className="text-xs text-[#9DB0A8] line-clamp-2 leading-relaxed">
@@ -134,7 +134,7 @@ export function ArticlesMagazineBento() {
                   </span>
 
                   <Link
-                    href={`/blog/${article.slug}`}
+                    href={`/guides/${article.slug}`}
                     className="text-xs font-semibold text-[#10B981] hover:text-[#34D399] inline-flex items-center gap-1"
                   >
                     <span>Read</span>

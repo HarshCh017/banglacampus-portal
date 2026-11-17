@@ -48,8 +48,8 @@ const QUICK_ACTIONS: QuickAction[] = [
     icon: Scale,
   },
   {
-    title: 'IEM Kolkata Acquisition Hub',
-    subtitle: 'Direct admission & autonomous curriculum overview',
+    title: 'IEM Kolkata College Profile',
+    subtitle: 'Cutoffs, fees, placements & curriculum overview',
     href: '/colleges/iem-kolkata',
     icon: Building2,
     badge: 'Autonomous',
@@ -57,7 +57,7 @@ const QUICK_ACTIONS: QuickAction[] = [
   {
     title: 'Admission & Counselling Guides',
     subtitle: 'Factual choice-filling, syllabus & audit articles',
-    href: '/blog',
+    href: '/guides',
     icon: BookOpen,
   },
 ];

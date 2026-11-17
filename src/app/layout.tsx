@@ -24,11 +24,11 @@ const siteUrl = rawSiteUrl && !rawSiteUrl.includes('localhost') ? rawSiteUrl : '
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'BengalCampus | Top West Bengal Engineering Colleges, WBJEE 2026 Cutoffs & Fees',
+    default: 'BengalCampus | West Bengal Engineering Colleges, WBJEE 2027 Predictor & Fees',
     template: '%s | BengalCampus',
   },
   description:
-    'Independent engineering-college discovery and admission intelligence platform for West Bengal. Compare verified 2026 B.Tech programs, tuition fees, AICTE/NAAC accreditations, and WBJEE historical cutoffs.',
+    'Independent engineering-college discovery and admission intelligence platform for West Bengal. Compare verified B.Tech programs, tuition fees, AICTE/NAAC accreditations, and WBJEE cutoffs.',
   authors: [{ name: 'BengalCampus Editorial & Research Desk' }],
   applicationName: 'BengalCampus',
   category: 'Education',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     'IEM Kolkata',
     'IEM college Kolkata',
     'Institute of Engineering and Management',
-    'WBJEE 2026 cutoffs',
+    'WBJEE 2027 cutoffs',
     'West Bengal engineering colleges',
     'WBJEE college predictor',
     'B.Tech admission West Bengal',

@@ -56,8 +56,63 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
   const related = VERIFIED_ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 2);
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    author: {
+      '@type': 'Person',
+      name: article.author.name,
+      jobTitle: article.author.title,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'BengalCampus',
+      url: 'https://bengalcampus.in',
+      logo: 'https://bengalcampus.in/icon.svg',
+    },
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt || article.publishedAt,
+    mainEntityOfPage: `https://bengalcampus.in/guides/${article.slug}`,
+  };
+
+  const breadcrumbsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://bengalcampus.in',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Admission Guides',
+        item: 'https://bengalcampus.in/guides',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: `https://bengalcampus.in/guides/${article.slug}`,
+      },
+    ],
+  };
+
   return (
-    <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsSchema) }}
+      />
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* 1. Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#64748B] mb-6">
         <Link href="/" className="hover:text-[#1455B8] transition-colors">
@@ -253,5 +308,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
         </main>
       </div>
     </div>
+    </>
   );
 }

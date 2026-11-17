@@ -12,6 +12,10 @@ export default function robots(): MetadataRoute.Robots {
     '/data-deletion',
     '/_next/',
     '/privacy', // Redirects to /privacy-policy
+    '/blog', // Redirects to /guides
+    '/*?*preselect=',
+    '/*?*branch=',
+    '/*?*colleges=',
   ];
 
   return {

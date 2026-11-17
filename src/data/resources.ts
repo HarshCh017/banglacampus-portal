@@ -35,7 +35,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     content: [
       'Prospective engineering applicants in West Bengal often ask whether they should appear for WBJEE, IEMJEE, or both when aiming for the Institute of Engineering & Management (IEM), Kolkata.',
       'WBJEE (West Bengal Joint Entrance Examination): Conducted by WBJEEB, this is the primary centralized state entrance exam. IEM Kolkata participates under College Code 104, allotting seats across General, TFW, and domicile categories based on state ranks.',
-      'IEMJEE (IEM Joint Entrance Examination): Conducted directly by the IEM-UEM group. Because registration carries zero fee, it serves as an excellent concurrent pathway for students seeking direct admission counselling.',
+      'IEMJEE (IEM Joint Entrance Examination): Conducted directly by the IEM-UEM group. Because registration carries zero fee, it serves as an excellent concurrent pathway for students seeking merit-based institutional counselling.',
       'JEE Main All-India Quota: In addition to WBJEE and IEMJEE, a designated proportion of seats are allotted based on All-India ranks achieved in NTA JEE Main.',
       'Optimal Recommendation: Serious aspirants should appear for both WBJEE and IEMJEE. This maximizes branch choice flexibility during counselling at the Ashram Campus.',
     ],
