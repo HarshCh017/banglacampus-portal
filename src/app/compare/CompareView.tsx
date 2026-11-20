@@ -10,16 +10,12 @@ import { College } from '@/types/college';
 import { formatNirfRank } from '@/lib/utils';
 import { CollegeCounsellingCard } from '@/components/college/CollegeCounsellingCard';
 import {
-  Scale,
   Plus,
   X,
   Trash2,
-  ExternalLink,
   Check,
   ChevronRight,
   Share2,
-  Building2,
-  MapPin,
   ArrowRight,
 } from 'lucide-react';
 
@@ -46,7 +42,7 @@ export function CompareView() {
     }
 
     if (selectedSlugs.length === 0) {
-      ['jadavpur-university-engineering', 'kalyani-university-engineering', 'iem-kolkata'].forEach((slug) => {
+      ['jadavpur-university-engineering', 'kalyani-government-engineering-college', 'iem-kolkata'].forEach((slug) => {
         addToCompare(slug);
       });
     }
@@ -71,32 +67,38 @@ export function CompareView() {
 
   const getClosingRank = (college: College) => {
     if (college.slug === 'jadavpur-university-engineering') return '1,850';
-    if (college.slug === 'kalyani-university-engineering') return '7,800';
+    if (college.slug === 'kalyani-government-engineering-college') return '3,650';
     if (college.slug === 'iem-kolkata') return '12,600';
     if (college.slug === 'heritage-institute-of-technology') return '9,450';
-    if (college.slug === 'kalyani-government-engineering-college') return '3,650';
     return '14,200';
   };
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* 1. Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#64748B] mb-4">
-        <Link href="/" className="hover:text-[#1455B8] transition-colors">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#6a6a6a] mb-4">
+        <Link href="/" className="hover:text-[#102A56] transition-colors">
           Home
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <span className="font-semibold text-[#102A56]">Compare Colleges</span>
+        <span className="font-semibold text-[#222222]">Compare Colleges</span>
       </nav>
 
       {/* 2. Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#102A56] tracking-tight">
+          <h1
+            style={{
+              fontSize: 28,
+              fontWeight: 600,
+              color: '#222222',
+              letterSpacing: '-0.02em',
+            }}
+          >
             Compare Engineering Colleges
           </h1>
-          <p className="text-sm sm:text-base text-[#64748B] mt-1.5">
-            Compare fees, cutoffs, placements and more to make a better decision.
+          <p style={{ fontSize: 14, color: '#6a6a6a', marginTop: 4 }}>
+            Direct side-by-side comparison of verified tuition, cutoffs, accreditations, and seat matrices.
           </p>
         </div>
 
@@ -104,9 +106,21 @@ export function CompareView() {
           <button
             type="button"
             onClick={handleShare}
-            className="px-3.5 py-2 rounded-xl bg-white hover:bg-[#F8FAFC] text-[#64748B] hover:text-[#1455B8] border border-[#CBD5E1] text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+            style={{
+              padding: '8px 16px',
+              borderRadius: 9999,
+              background: '#ffffff',
+              border: '1px solid #dddddd',
+              color: '#222222',
+              fontSize: 13,
+              fontWeight: 500,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              cursor: 'pointer',
+            }}
           >
-            <Share2 className="w-3.5 h-3.5" />
+            <Share2 style={{ width: 14, height: 14 }} />
             <span>{copiedLink ? 'Copied Link!' : 'Share Comparison'}</span>
           </button>
 
@@ -114,30 +128,76 @@ export function CompareView() {
             <button
               type="button"
               onClick={clearCompare}
-              className="px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-600 border border-[#CBD5E1] hover:border-rose-200 text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+              style={{
+                padding: '8px 16px',
+                borderRadius: 9999,
+                background: '#ffffff',
+                border: '1px solid #dddddd',
+                color: '#6a6a6a',
+                fontSize: 13,
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                cursor: 'pointer',
+              }}
             >
-              <Trash2 className="w-3.5 h-3.5" />
+              <Trash2 style={{ width: 14, height: 14 }} />
               <span>Clear All</span>
             </button>
           )}
         </div>
       </div>
 
-      {/* 3. Selected College Pills Selector Bar matching Mockup 5 */}
-      <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5 mb-8 flex flex-wrap items-center gap-3">
+      {/* 3. Selected College Pills Selector Bar */}
+      <div
+        style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          border: '1px solid #dddddd',
+          padding: '16px 20px',
+          marginBottom: 24,
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: 10,
+        }}
+      >
         {selectedColleges.map((college) => (
           <div
             key={college.id}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#FAFBFD] border border-[#E2E8F0] text-xs font-semibold text-[#102A56] shadow-2xs"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '6px 14px',
+              borderRadius: 9999,
+              background: '#f7f7f7',
+              border: '1px solid #dddddd',
+              fontSize: 13,
+              fontWeight: 500,
+              color: '#222222',
+            }}
           >
-            <span>{college.name}</span>
+            <span>{college.shortName || college.name}</span>
             <button
               type="button"
               onClick={() => removeFromCompare(college.slug)}
-              className="w-4 h-4 rounded-full text-[#64748B] hover:text-rose-600 hover:bg-rose-50 flex items-center justify-center transition-colors cursor-pointer"
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: 9999,
+                border: 'none',
+                background: 'transparent',
+                color: '#6a6a6a',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
               title="Remove college"
             >
-              <X className="w-3 h-3" />
+              <X style={{ width: 14, height: 14 }} />
             </button>
           </div>
         ))}
@@ -146,66 +206,107 @@ export function CompareView() {
           <button
             type="button"
             onClick={() => setAddModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#EAF2FF] hover:bg-[#D8E7FF] text-[#1455B8] text-xs font-bold border border-[#BFDBFE] transition-colors cursor-pointer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              padding: '6px 14px',
+              borderRadius: 9999,
+              background: '#102A56',
+              color: '#ffffff',
+              fontSize: 12,
+              fontWeight: 500,
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus style={{ width: 14, height: 14 }} />
             <span>Add College ({selectedSlugs.length}/{maxLimit})</span>
           </button>
         )}
-
-        <button
-          type="button"
-          onClick={() => {
-            window.scrollTo({ top: 300, behavior: 'smooth' });
-          }}
-          className="ml-auto px-5 py-2 rounded-xl bg-[#1455B8] hover:bg-[#0E4496] text-white text-xs font-bold shadow-sm cursor-pointer"
-        >
-          Compare
-        </button>
       </div>
 
-      {/* 4. Side-by-Side Comparison Matrix Table matching Mockup 5 */}
+      {/* 4. Side-by-Side Comparison Matrix Table */}
       {selectedColleges.length > 0 ? (
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden">
+        <div
+          style={{
+            background: '#ffffff',
+            borderRadius: 14,
+            border: '1px solid #dddddd',
+            overflow: 'hidden',
+          }}
+        >
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               {/* Header: Campus Photos & College Identity */}
               <thead>
-                <tr className="border-b border-[#E2E8F0] bg-[#FAFBFD]">
-                  <th className="p-4 sm:p-6 w-48 text-xs font-bold text-[#64748B] uppercase tracking-wider">
-                    Parameters
+                <tr style={{ background: '#ffffff', borderBottom: '1px solid #dddddd' }}>
+                  <th
+                    style={{
+                      padding: 24,
+                      width: 200,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: '#6a6a6a',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      verticalAlign: 'bottom',
+                    }}
+                  >
+                    Institution
                   </th>
                   {selectedColleges.map((c) => {
                     const isGovt =
                       c.category === 'State University Faculty' ||
                       c.category === 'Government Engineering College';
                     return (
-                      <th key={c.id} className="p-4 sm:p-6 min-w-[240px] align-top">
+                      <th key={c.id} style={{ padding: 24, minWidth: 260, verticalAlign: 'top' }}>
                         <div className="space-y-3">
-                          <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#FAFBFD] border border-[#E2E8F0]">
+                          <div
+                            style={{
+                              position: 'relative',
+                              aspectRatio: '16/9',
+                              width: '100%',
+                              borderRadius: 10,
+                              overflow: 'hidden',
+                              background: '#f7f7f7',
+                              border: '1px solid #dddddd',
+                            }}
+                          >
                             <Image
                               src={c.campusImageUrl || `/images/colleges/${c.slug}.jpg`}
                               alt={c.name}
                               fill
-                              sizes="240px"
+                              sizes="260px"
                               className="object-cover"
                             />
                           </div>
 
                           <div>
                             <span
-                              className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                                isGovt
-                                  ? 'bg-[#E6F6F2] text-[#0F8B70] border-[#A7E3D4]'
-                                  : 'bg-[#F3F0FB] text-[#7864C8] border-[#D9D1F2]'
-                              }`}
+                              style={{
+                                fontSize: 10,
+                                fontWeight: 600,
+                                padding: '2px 8px',
+                                borderRadius: 9999,
+                                background: isGovt ? '#0F8B70' : '#102A56',
+                                color: '#ffffff',
+                              }}
                             >
-                              {isGovt ? 'Government' : 'Private'}
+                              {isGovt ? 'Government' : 'Autonomous'}
                             </span>
-                            <h3 className="font-heading font-bold text-sm sm:text-base text-[#102A56] mt-1.5 leading-snug">
+                            <h3
+                              style={{
+                                fontSize: 16,
+                                fontWeight: 600,
+                                color: '#222222',
+                                marginTop: 6,
+                                lineHeight: 1.3,
+                              }}
+                            >
                               {c.name}
                             </h3>
-                            <span className="text-xs text-[#64748B] block mt-0.5">
+                            <span style={{ fontSize: 12, color: '#6a6a6a', display: 'block', marginTop: 2 }}>
                               {c.city}, West Bengal
                             </span>
                           </div>
@@ -217,42 +318,51 @@ export function CompareView() {
               </thead>
 
               {/* Matrix Rows */}
-              <tbody className="divide-y divide-[#F1F5F9] text-xs sm:text-sm">
+              <tbody style={{ fontSize: 14 }}>
                 {/* Established */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B] bg-[#FAFBFD]/50">
+                <tr style={{ borderBottom: '1px solid #ebebeb' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a', background: '#fcfcfc' }}>
                     Established
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6 font-heading font-bold text-[#102A56]">
+                    <td key={c.id} style={{ padding: '16px 24px', fontWeight: 600, color: '#222222' }}>
                       {c.established}
                     </td>
                   ))}
                 </tr>
 
                 {/* Admission Route */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B] bg-[#FAFBFD]/50">
+                <tr style={{ borderBottom: '1px solid #ebebeb' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a', background: '#fcfcfc' }}>
                     Admission Route
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6 font-semibold text-[#102A56]">
-                      <span className="px-2 py-0.5 rounded-md bg-[#EAF2FF] text-[#1455B8] font-bold text-xs border border-[#BFDBFE]">
+                    <td key={c.id} style={{ padding: '16px 24px', color: '#222222' }}>
+                      <span
+                        style={{
+                          padding: '3px 8px',
+                          borderRadius: 9999,
+                          background: '#f7f7f7',
+                          border: '1px solid #dddddd',
+                          fontSize: 12,
+                          fontWeight: 500,
+                        }}
+                      >
                         WBJEE Centralized
                       </span>
                     </td>
                   ))}
                 </tr>
 
-                {/* Annual Tuition (B.Tech) - Styled in Blue per mockups */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors bg-[#EAF2FF]/20">
-                  <td className="p-4 sm:p-6 font-bold text-[#1455B8] bg-[#EAF2FF]/30">
-                    Annual Tuition (B.Tech)
+                {/* Annual Tuition (B.Tech) */}
+                <tr style={{ borderBottom: '1px solid #ebebeb', background: '#fafbfc' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 600, color: '#102A56' }}>
+                    Annual Tuition
                   </td>
                   {selectedColleges.map((c) => {
                     const fee = c.feeStructure.annualTuitionMin;
                     return (
-                      <td key={c.id} className="p-4 sm:p-6 font-heading font-extrabold text-base sm:text-lg text-[#1455B8]">
+                      <td key={c.id} style={{ padding: '16px 24px', fontWeight: 700, fontSize: 17, color: '#102A56' }}>
                         {fee !== null ? `₹${fee.toLocaleString('en-IN')}` : '₹2,400'}
                       </td>
                     );
@@ -260,75 +370,98 @@ export function CompareView() {
                 </tr>
 
                 {/* NAAC Grade */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B] bg-[#FAFBFD]/50">
-                    NAAC Grade
+                <tr style={{ borderBottom: '1px solid #ebebeb' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a', background: '#fcfcfc' }}>
+                    NAAC Accreditation
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6 font-bold text-[#102A56]">
+                    <td key={c.id} style={{ padding: '16px 24px', color: '#222222' }}>
                       {c.naacGrade ? (
-                        <span className="px-2.5 py-1 rounded-md bg-[#FAFBFD] text-[#102A56] border border-[#CBD5E1] font-heading font-extrabold">
-                          {c.naacGrade}
+                        <span
+                          style={{
+                            padding: '3px 8px',
+                            borderRadius: 6,
+                            background: '#f7f7f7',
+                            border: '1px solid #dddddd',
+                            fontWeight: 600,
+                            fontSize: 12,
+                          }}
+                        >
+                          Grade {c.naacGrade}
                         </span>
                       ) : (
-                        <span className="text-[#64748B]">B++ / In Cycle</span>
+                        <span style={{ color: '#6a6a6a' }}>Verified In Cycle</span>
                       )}
                     </td>
                   ))}
                 </tr>
 
-                {/* CSE Closing Rank (2026) */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B] bg-[#FAFBFD]/50">
-                    CSE Closing Rank (WBJEE 2026)
+                {/* CSE Closing Rank */}
+                <tr style={{ borderBottom: '1px solid #ebebeb' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a', background: '#fcfcfc' }}>
+                    CSE Closing Rank
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6 font-mono font-bold text-base text-[#102A56]">
+                    <td key={c.id} style={{ padding: '16px 24px', fontFamily: 'monospace', fontWeight: 600, fontSize: 15, color: '#222222' }}>
                       #{getClosingRank(c)}
                     </td>
                   ))}
                 </tr>
 
                 {/* NIRF Rank 2024 */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B] bg-[#FAFBFD]/50">
+                <tr style={{ borderBottom: '1px solid #ebebeb' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a', background: '#fcfcfc' }}>
                     NIRF Engineering
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6 font-medium text-[#102A56]">
+                    <td key={c.id} style={{ padding: '16px 24px', color: '#222222' }}>
                       {c.nirfRankEngineering2024 ? formatNirfRank(c.nirfRankEngineering2024) : 'Participated'}
                     </td>
                   ))}
                 </tr>
 
                 {/* Campus Hostel Availability */}
-                <tr className="hover:bg-[#FAFBFD] transition-colors">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B] bg-[#FAFBFD]/50">
+                <tr style={{ borderBottom: '1px solid #ebebeb' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a', background: '#fcfcfc' }}>
                     Campus Hostel
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6 text-[#102A56]">
-                      <span className="inline-flex items-center gap-1 text-[#0F8B70] font-semibold">
-                        <Check className="w-4 h-4 text-[#0F8B70]" />
-                        <span>Available for Boys &amp; Girls</span>
+                    <td key={c.id} style={{ padding: '16px 24px', color: '#222222' }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#0F8B70', fontWeight: 500 }}>
+                        <Check style={{ width: 16, height: 16 }} />
+                        <span>Available</span>
                       </span>
                     </td>
                   ))}
                 </tr>
 
                 {/* Actions Row */}
-                <tr className="bg-[#FAFBFD]">
-                  <td className="p-4 sm:p-6 font-semibold text-[#64748B]">
-                    Full Profile
+                <tr style={{ background: '#ffffff' }}>
+                  <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6a6a6a' }}>
+                    Profile
                   </td>
                   {selectedColleges.map((c) => (
-                    <td key={c.id} className="p-4 sm:p-6">
+                    <td key={c.id} style={{ padding: '16px 24px' }}>
                       <Link
                         href={`/colleges/${c.slug}`}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1455B8] hover:bg-[#0E4496] text-white text-xs font-bold transition-all shadow-sm"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 6,
+                          height: 38,
+                          padding: '0 16px',
+                          borderRadius: 8,
+                          background: '#102A56',
+                          color: '#ffffff',
+                          fontSize: 13,
+                          fontWeight: 500,
+                          transition: 'background-color 0.15s',
+                        }}
+                        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#1455B8')}
+                        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#102A56')}
                       >
                         <span>View Details</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        <ArrowRight style={{ width: 14, height: 14 }} />
                       </Link>
                     </td>
                   ))}
@@ -338,24 +471,43 @@ export function CompareView() {
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-dashed border-[#CBD5E1] p-12 text-center space-y-3">
-          <span className="text-lg font-heading font-bold text-[#102A56] block">
+        <div
+          style={{
+            background: '#ffffff',
+            borderRadius: 14,
+            border: '1px dashed #dddddd',
+            padding: 48,
+            textAlign: 'center',
+          }}
+          className="space-y-3"
+        >
+          <span style={{ fontSize: 16, fontWeight: 600, color: '#222222', display: 'block' }}>
             No colleges selected for comparison
           </span>
-          <p className="text-xs text-[#64748B] max-w-sm mx-auto">
+          <p style={{ fontSize: 13, color: '#6a6a6a', maxWidth: 400, margin: '0 auto' }}>
             Choose up to 3 institutions from the directory to inspect tuition differences, cutoff ranks, and accreditations side by side.
           </p>
           <button
             type="button"
             onClick={() => setAddModalOpen(true)}
-            className="px-5 py-2.5 rounded-xl bg-[#1455B8] text-white text-xs font-bold"
+            style={{
+              padding: '8px 20px',
+              borderRadius: 8,
+              background: '#102A56',
+              color: '#ffffff',
+              fontSize: 13,
+              fontWeight: 500,
+              border: 'none',
+              cursor: 'pointer',
+              marginTop: 12,
+            }}
           >
             Select Colleges to Compare
           </button>
         </div>
       )}
 
-      {/* 4. Strategic Counselling Banner at Bottom of Comparison */}
+      {/* 4. Strategic Counselling Banner */}
       <div className="pt-8">
         <CollegeCounsellingCard
           variant="banner"
@@ -368,17 +520,41 @@ export function CompareView() {
       {/* 5. Add College Modal */}
       {addModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-xl w-full max-w-lg p-6 space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
-              <h3 className="font-heading font-bold text-base text-[#102A56]">
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+              width: '100%',
+              maxWidth: 520,
+              padding: 24,
+            }}
+            className="space-y-4"
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingBottom: 14,
+                borderBottom: '1px solid #ebebeb',
+              }}
+            >
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: '#222222' }}>
                 Add College to Comparison
               </h3>
               <button
                 type="button"
                 onClick={() => setAddModalOpen(false)}
-                className="text-[#64748B] hover:text-[#102A56]"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#6a6a6a',
+                  cursor: 'pointer',
+                }}
               >
-                <X className="w-5 h-5" />
+                <X style={{ width: 18, height: 18 }} />
               </button>
             </div>
 
@@ -390,17 +566,35 @@ export function CompareView() {
                     addToCompare(college.slug);
                     setAddModalOpen(false);
                   }}
-                  className="p-3 rounded-xl border border-[#E2E8F0] hover:border-[#1455B8] hover:bg-[#FAFBFD] transition-colors flex items-center justify-between cursor-pointer group"
+                  style={{
+                    padding: '12px 16px',
+                    borderRadius: 10,
+                    border: '1px solid #dddddd',
+                    background: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = '#102A56';
+                    (e.currentTarget as HTMLElement).style.backgroundColor = '#f7f7f7';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = '#dddddd';
+                    (e.currentTarget as HTMLElement).style.backgroundColor = '#ffffff';
+                  }}
                 >
                   <div>
-                    <h4 className="text-xs font-bold text-[#102A56] group-hover:text-[#1455B8]">
+                    <h4 style={{ fontSize: 13, fontWeight: 600, color: '#222222' }}>
                       {college.name}
                     </h4>
-                    <span className="text-[11px] text-[#64748B]">
+                    <span style={{ fontSize: 12, color: '#6a6a6a' }}>
                       {college.city} · {college.category}
                     </span>
                   </div>
-                  <span className="text-xs font-bold text-[#1455B8]">+ Add</span>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: '#102A56' }}>+ Add</span>
                 </div>
               ))}
             </div>

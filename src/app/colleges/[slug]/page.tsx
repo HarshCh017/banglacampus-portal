@@ -7,6 +7,7 @@ import { VERIFIED_CUTOFFS } from '@/data/cutoffs';
 import { CollegeDetailClient } from './CollegeDetailClient';
 import { CollegeCard } from '@/components/CollegeCard';
 import { CollegeCampusBanner } from '@/components/CollegeCampusBanner';
+import { CollegeHeaderEnquiry } from '@/components/college/CollegeHeaderEnquiry';
 import { CollegeGallery } from '@/components/CollegeGallery';
 import { CollegeCounsellingCard } from '@/components/college/CollegeCounsellingCard';
 import {
@@ -317,6 +318,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
         {/* Visual Campus Photography & Architecture Banner (Matches Mockup 3) */}
         <CollegeCampusBanner college={college} />
 
+        {/* Top of College Header Admission Guidance & Counselling Card */}
+        <CollegeHeaderEnquiry college={college} />
+
         {/* Sticky In-Page Navigation Bar (Matches Mockup 3) */}
         <div className="sticky top-16 z-20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-2.5 bg-white/95 backdrop-blur-md border-y border-slate-200 shadow-xs">
           <div className="max-w-7xl mx-auto flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar text-xs font-semibold text-slate-600">
@@ -448,23 +452,23 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                   <span>Key Facts & Admission Summary at a Glance</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 text-[11px]">
-                  <div className="p-2 rounded-lg bg-white border border-slate-200">
-                    <span className="text-slate-500 block">WBJEE Code</span>
-                    <strong className="text-slate-900 font-mono text-xs">#{college.wbjeebCode}</strong>
+                  <div className="p-2.5 rounded-lg bg-white border border-[#dddddd]">
+                    <span className="text-[#6a6a6a] block">WBJEE Code</span>
+                    <strong className="text-[#102A56] font-mono text-xs">#{college.wbjeebCode}</strong>
                   </div>
-                  <div className="p-2 rounded-lg bg-white border border-slate-200">
-                    <span className="text-slate-500 block">Status</span>
-                    <strong className="text-slate-900 text-xs">{college.category}</strong>
+                  <div className="p-2.5 rounded-lg bg-white border border-[#dddddd]">
+                    <span className="text-[#6a6a6a] block">Status</span>
+                    <strong className="text-[#222222] text-xs">{college.category}</strong>
                   </div>
-                  <div className="p-2 rounded-lg bg-white border border-slate-200">
-                    <span className="text-slate-500 block">Annual Tuition</span>
+                  <div className="p-2.5 rounded-lg bg-white border border-[#dddddd]">
+                    <span className="text-[#6a6a6a] block">Annual Tuition</span>
                     <strong className="text-[#1455B8] text-xs">
                       {college.feeStructure.annualTuitionMin ? `₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}` : 'Gazette'}
                     </strong>
                   </div>
-                  <div className="p-2 rounded-lg bg-white border border-slate-200">
-                    <span className="text-slate-500 block">Accreditation</span>
-                    <strong className="text-emerald-700 text-xs">
+                  <div className="p-2.5 rounded-lg bg-white border border-[#dddddd]">
+                    <span className="text-[#6a6a6a] block">Accreditation</span>
+                    <strong className="text-[#0B7A62] text-xs">
                       {college.naacGrade ? `NAAC Grade ${college.naacGrade}` : 'AICTE Approved'}
                     </strong>
                   </div>
@@ -491,13 +495,17 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             )}
 
             {/* Approved Programs & Intakes Matrix */}
-            <section id="programs" className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-5">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <section
+              id="programs"
+              style={{ borderRadius: 14, border: '1px solid #dddddd' }}
+              className="bg-white p-5 sm:p-7 shadow-xs space-y-5"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#eeeeee] pb-4">
                 <div>
-                  <h2 className="font-heading font-bold text-lg text-slate-900">
+                  <h2 className="font-heading font-bold text-lg sm:text-xl text-[#102A56]">
                     B.Tech Programs Offered
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-[#6a6a6a]">
                     Approved engineering disciplines under WBJEE centralized seat allocation matrix
                   </p>
                 </div>
@@ -505,10 +513,10 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                   href={college.provenance.programs.sourceUrl || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[11px] text-emerald-700 hover:text-emerald-800 font-medium flex items-center gap-1"
+                  className="text-xs text-[#1455B8] hover:underline font-medium flex items-center gap-1 shrink-0 self-start sm:self-auto"
                 >
                   <span>Source: WBJEEB Seat Matrix</span>
-                  <ExternalLink className="w-3 h-3" />
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
 
@@ -516,37 +524,65 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 {college.programs.map((program, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl border border-slate-200/90 bg-white hover:border-emerald-300 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group"
+                    style={{
+                      borderRadius: 12,
+                      border: '1px solid #dddddd',
+                      background: '#ffffff',
+                    }}
+                    className="p-4 hover:border-[#102A56]/40 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group"
                   >
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        <span
+                          style={{
+                            borderRadius: 6,
+                            border: '1px solid #dddddd',
+                            background: '#f7f7f7',
+                            color: '#102A56',
+                          }}
+                          className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5"
+                        >
                           B.Tech • 4-Year Degree
                         </span>
                         {program.nbaAccredited ? (
-                          <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-600 text-white flex items-center gap-1 shadow-2xs">
+                          <span
+                            style={{
+                              borderRadius: 9999,
+                              background: '#0F8B70',
+                              color: '#ffffff',
+                            }}
+                            className="text-[10px] font-bold px-2 py-0.5 flex items-center gap-1 shadow-2xs"
+                          >
                             <Check className="w-2.5 h-2.5" />
                             <span>NBA Accredited</span>
                           </span>
                         ) : (
-                          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                          <span
+                            style={{
+                              borderRadius: 9999,
+                              border: '1px solid #dddddd',
+                              background: '#f7f7f7',
+                              color: '#6a6a6a',
+                            }}
+                            className="text-[10px] font-medium px-2 py-0.5"
+                          >
                             AICTE Approved
                           </span>
                         )}
                       </div>
-                      <h3 className="font-bold text-sm text-slate-900 group-hover:text-emerald-800 transition-colors">
+                      <h3 className="font-bold text-sm text-[#222222] group-hover:text-[#102A56] transition-colors leading-snug">
                         {program.name}
                       </h3>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <div className="pt-2 border-t border-[#eeeeee] flex items-center justify-between text-xs text-[#6a6a6a]">
                       <span className="font-medium">
-                        Intake: <strong className="text-slate-800">{program.intakeEst ? `${program.intakeEst} seats` : 'Per AICTE'}</strong>
+                        Intake: <strong className="text-[#222222]">{program.intakeEst ? `${program.intakeEst} seats` : 'Per AICTE'}</strong>
                       </span>
                       <Link
                         href={`/counselling-simulator?preselect=${college.slug}&branch=${encodeURIComponent(program.name)}`}
                         rel="nofollow"
-                        className="text-emerald-700 hover:text-emerald-900 font-bold inline-flex items-center gap-1 text-[11px] hover:underline"
+                        className="text-[#1455B8] hover:underline font-bold inline-flex items-center gap-1 text-[11px]"
                       >
                         <span>Simulate Choice</span>
                         <ArrowRight className="w-3 h-3" />
@@ -558,91 +594,225 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             </section>
 
             {/* Historical WBJEE Cutoffs Section */}
-            <section id="cutoffs" className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="font-heading font-bold text-lg text-slate-900">
+            <section
+              id="cutoffs"
+              style={{ borderRadius: 14, border: '1px solid #dddddd' }}
+              className="bg-white p-5 sm:p-7 shadow-xs space-y-5"
+            >
+              {/* Section Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#eeeeee] pb-4">
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="font-heading font-bold text-lg sm:text-xl text-[#102A56]">
                       WBJEE Cutoff Ranks (Closing Rank Archives)
                     </h2>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
-                      WBJEE Allotment Benchmarks
+                    <span
+                      style={{
+                        borderRadius: 9999,
+                        border: '1px solid #dddddd',
+                        background: '#f7f7f7',
+                        color: '#102A56',
+                      }}
+                      className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5"
+                    >
+                      Official Benchmarks
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-[#6a6a6a]">
                     Official centralized allotment closing ranks across counselling rounds
                   </p>
                 </div>
                 <Link
                   href="/cutoffs"
-                  className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 shrink-0"
+                  style={{
+                    borderRadius: 9999,
+                    border: '1px solid #dddddd',
+                    background: '#ffffff',
+                    color: '#102A56',
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold hover:bg-[#f7f7f7] transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
                 >
                   <span>Open Cutoff Calculator</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#1455B8]" />
                 </Link>
               </div>
 
               {collegeCutoffs.length > 0 ? (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm">
-                    <thead>
-                      <tr className="border-b border-slate-100 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                        <th className="py-2.5">Branch Specialization</th>
-                        <th className="py-2.5">Seat Quota</th>
-                        <th className="py-2.5">Round 1 Cutoff</th>
-                        <th className="py-2.5">Final Round Cutoff</th>
-                        <th className="py-2.5 text-right">Cycle Source</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 text-slate-700">
-                      {collegeCutoffs.map((co, idx) => (
-                        <tr key={idx} className="hover:bg-slate-50/60 transition-colors">
-                          <td className="py-3 font-semibold text-slate-900">
+                <>
+                  {/* Mobile Cards View (Visible on screens < 768px) */}
+                  <div className="space-y-3 md:hidden">
+                    {collegeCutoffs.map((co, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          borderRadius: 12,
+                          border: '1px solid #dddddd',
+                          background: '#ffffff',
+                        }}
+                        className="p-3.5 space-y-3 shadow-xs"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <h3 className="font-bold text-sm text-[#222222] leading-snug">
                             {co.branchName}
-                          </td>
-                          <td className="py-3">
-                            <span
-                              className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                                co.quota === 'TFW'
-                                  ? 'bg-purple-50 text-purple-700 border-purple-200'
-                                  : 'bg-slate-100 text-slate-700 border-slate-200'
-                              }`}
-                            >
-                              {co.quota}
+                          </h3>
+                          <span
+                            style={{
+                              borderRadius: 6,
+                              border: '1px solid #dddddd',
+                              background: '#f7f7f7',
+                            }}
+                            className="text-[10px] font-bold px-2 py-0.5 text-[#222222] shrink-0"
+                          >
+                            {co.quota}
+                          </span>
+                        </div>
+
+                        {/* 2-Column Cutoff Metric Boxes */}
+                        <div className="grid grid-cols-2 gap-2">
+                          <div
+                            style={{
+                              borderRadius: 8,
+                              border: '1px solid #E2E8F0',
+                              background: '#FAFBFD',
+                            }}
+                            className="p-2.5"
+                          >
+                            <span className="text-[10px] uppercase font-bold tracking-wider text-[#6a6a6a] block">
+                              Round 1 Cutoff
                             </span>
-                          </td>
-                          <td className="py-3">
-                            <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200 font-mono text-xs">
+                            <span
+                              style={{
+                                borderRadius: 6,
+                                border: '1px solid #A8DAB5',
+                                background: '#E6F4EA',
+                                color: '#0B7A62',
+                              }}
+                              className="inline-block mt-1 px-2 py-0.5 font-mono font-bold text-xs whitespace-nowrap"
+                            >
                               GMR {co.approxClosingRankRound1.toLocaleString('en-IN')}
                             </span>
-                          </td>
-                          <td className="py-3">
-                            <span className="font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200 font-mono text-xs">
+                          </div>
+
+                          <div
+                            style={{
+                              borderRadius: 8,
+                              border: '1px solid #E2E8F0',
+                              background: '#FAFBFD',
+                            }}
+                            className="p-2.5"
+                          >
+                            <span className="text-[10px] uppercase font-bold tracking-wider text-[#6a6a6a] block">
+                              Final Round Cutoff
+                            </span>
+                            <span
+                              style={{
+                                borderRadius: 6,
+                                border: '1px solid #BFDBFE',
+                                background: '#EAF2FF',
+                                color: '#1455B8',
+                              }}
+                              className="inline-block mt-1 px-2 py-0.5 font-mono font-bold text-xs whitespace-nowrap"
+                            >
                               GMR {co.approxClosingRankFinalRound.toLocaleString('en-IN')}
                             </span>
-                          </td>
-                          <td className="py-3 text-right text-xs text-slate-400">
-                            {co.academicCycle}
-                          </td>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between text-[11px] text-[#888888] pt-2 border-t border-[#f1f1f1]">
+                          <span>Source: {co.academicCycle}</span>
+                          <span className="font-semibold text-[#102A56]">Centralized Allotment</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop Table View (Visible on md screens and above) */}
+                  <div className="hidden md:block overflow-x-auto">
+                    <table className="w-full text-left text-xs sm:text-sm">
+                      <thead>
+                        <tr className="border-b border-[#eeeeee] text-[11px] font-bold text-[#6a6a6a] uppercase tracking-wider">
+                          <th className="py-3 px-2 whitespace-nowrap">Branch Specialization</th>
+                          <th className="py-3 px-2 whitespace-nowrap">Seat Quota</th>
+                          <th className="py-3 px-2 whitespace-nowrap">Round 1 Cutoff</th>
+                          <th className="py-3 px-2 whitespace-nowrap">Final Round Cutoff</th>
+                          <th className="py-3 px-2 text-right whitespace-nowrap">Cycle Source</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                      </thead>
+                      <tbody className="divide-y divide-[#eeeeee] text-[#222222]">
+                        {collegeCutoffs.map((co, idx) => (
+                          <tr key={idx} className="hover:bg-[#f7f7f7] transition-colors">
+                            <td className="py-3.5 px-2 font-semibold text-[#222222]">
+                              {co.branchName}
+                            </td>
+                            <td className="py-3.5 px-2 whitespace-nowrap">
+                              <span
+                                style={{
+                                  borderRadius: 6,
+                                  border: '1px solid #dddddd',
+                                  background: '#f7f7f7',
+                                }}
+                                className="text-[10px] font-bold px-2 py-0.5 text-[#222222]"
+                              >
+                                {co.quota}
+                              </span>
+                            </td>
+                            <td className="py-3.5 px-2 whitespace-nowrap">
+                              <span
+                                style={{
+                                  borderRadius: 6,
+                                  border: '1px solid #A8DAB5',
+                                  background: '#E6F4EA',
+                                  color: '#0B7A62',
+                                }}
+                                className="inline-block px-2.5 py-1 font-mono font-bold text-xs whitespace-nowrap"
+                              >
+                                GMR {co.approxClosingRankRound1.toLocaleString('en-IN')}
+                              </span>
+                            </td>
+                            <td className="py-3.5 px-2 whitespace-nowrap">
+                              <span
+                                style={{
+                                  borderRadius: 6,
+                                  border: '1px solid #BFDBFE',
+                                  background: '#EAF2FF',
+                                  color: '#1455B8',
+                                }}
+                                className="inline-block px-2.5 py-1 font-mono font-bold text-xs whitespace-nowrap"
+                              >
+                                GMR {co.approxClosingRankFinalRound.toLocaleString('en-IN')}
+                              </span>
+                            </td>
+                            <td className="py-3.5 px-2 text-right text-xs text-[#6a6a6a] whitespace-nowrap">
+                              {co.academicCycle}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
               ) : (
-                <div className="bg-slate-50 rounded-xl p-4 text-xs text-slate-600 space-y-2 border border-slate-200/80">
-                  <p className="font-medium text-slate-800">
-                    Detailed branch closing ranks for WBJEE Code {college.wbjeebCode} ({college.shortName}) are currently being synchronized from the WBJEEB allotment reports.
+                <div
+                  style={{
+                    borderRadius: 12,
+                    border: '1px solid #dddddd',
+                    background: '#f7f7f7',
+                  }}
+                  className="p-4 text-xs text-[#6a6a6a] space-y-2"
+                >
+                  <p className="font-medium text-[#222222]">
+                    Detailed branch closing ranks for WBJEE Code {college.wbjeebCode} ({college.shortName}) are currently being synchronized from official WBJEEB allotment reports.
                   </p>
-                  <p className="text-slate-500">
+                  <p className="text-[#6a6a6a]">
                     Admissions are strictly merit-ranked through WBJEE centralized e-counselling. Enter your rank in our Cutoff Explorer to review comparable institutions.
                   </p>
                   <Link
                     href="/cutoffs"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:underline pt-1"
+                    style={{ color: '#102A56' }}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold hover:underline pt-1"
                   >
                     <span>Check All WBJEE Cutoffs</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#1455B8]" />
                   </Link>
                 </div>
               )}

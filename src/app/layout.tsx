@@ -4,12 +4,12 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { ComparisonDock } from '@/components/ComparisonDock';
-import { StudentEnquiryModal } from '@/components/StudentEnquiryModal';
-import { FloatingConsultationButton } from '@/components/FloatingConsultationButton';
 import { LoginModal } from '@/components/LoginModal';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { ComparisonProvider } from '@/context/ComparisonContext';
 import { AuthProvider } from '@/context/AuthContext';
+
+import { getSiteUrl } from '@/lib/site';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -18,8 +18,7 @@ export const viewport: Viewport = {
   themeColor: '#102A56',
 };
 
-const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-const siteUrl = rawSiteUrl && !rawSiteUrl.includes('localhost') ? rawSiteUrl : 'https://bengalcampus.in';
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -118,11 +117,11 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'BengalCampus',
-    url: 'https://bengalcampus.in',
+    url: siteUrl,
     description: 'Independent engineering-college discovery and admission intelligence for West Bengal.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://bengalcampus.in/colleges?q={search_term_string}',
+      target: `${siteUrl}/colleges?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   };
@@ -131,8 +130,8 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name: 'BengalCampus',
-    url: 'https://bengalcampus.in',
-    logo: 'https://bengalcampus.in/icon.svg',
+    url: siteUrl,
+    logo: `${siteUrl}/icon.svg`,
     description:
       'Independent higher education research and admission intelligence platform for West Bengal engineering institutions.',
     foundingDate: '2024',
@@ -199,8 +198,6 @@ export default function RootLayout({
             <Footer />
             <ComparisonDock />
             <CookieConsent />
-            <StudentEnquiryModal />
-            <FloatingConsultationButton />
             <LoginModal />
           </ComparisonProvider>
         </AuthProvider>

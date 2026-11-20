@@ -8,24 +8,39 @@
   --font-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
 
-  /* Sapphire-Blue, Deep Navy & Soft Ivory Design System */
-  --bg-canvas: #FAFBFD;
-  --bg-surface: #FFFFFF;
-  --bg-surface-raised: #FFFFFF;
-  --bg-highlight: #EAF2FF;
+  /* Design.md — Airbnb-inspired tokens */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f7f7f7;
+  --color-surface-strong: #f2f2f2;
+  --color-ink: #222222;
+  --color-body: #3f3f3f;
+  --color-muted: #6a6a6a;
+  --color-muted-soft: #929292;
+  --color-hairline: #dddddd;
+  --color-hairline-soft: #ebebeb;
+  --color-border-strong: #c1c1c1;
 
+  /* BengalCampus Brand (kept from AGENTS.md) */
   --color-navy: #102A56;
   --color-sapphire: #1455B8;
   --color-bright-blue: #2563EB;
   --color-light-blue: #EAF2FF;
+  --color-verified: #0B7A62;
+  --color-verified-fill: #0F8B70;
+
+  /* Legacy aliases (kept for existing component compatibility) */
+  --bg-canvas: #FAFBFD;
+  --bg-surface: #FFFFFF;
+  --bg-surface-raised: #FFFFFF;
+  --bg-highlight: #EAF2FF;
   --color-main-text: #172033;
   --color-muted-text: #64748B;
   --color-border: #E2E8F0;
-
   --color-teal: #0F8B70;
   --color-amber: #F4B740;
   --color-purple: #7864C8;
 
+  /* Tier colors */
   --tier-safe: #0F8B70;
   --tier-realistic: #2563EB;
   --tier-ambitious: #F4B740;
@@ -133,4 +148,15 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Design.md shadow tier — the ONE shadow in the system */
+.shadow-airbnb {
+  box-shadow: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0;
+}
+
+/* Smooth hover lift for cards */
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0;
 }

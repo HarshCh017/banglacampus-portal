@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { College } from '@/types/college';
 import {
   Headphones,
-  Sparkles,
   CheckCircle2,
   ArrowRight,
   User,
@@ -13,7 +12,6 @@ import {
   Award,
   ShieldCheck,
   Zap,
-  Users,
   GraduationCap,
   Loader2,
   Lock,
@@ -43,20 +41,25 @@ export function CollegeCounsellingCard({
   const collegeName = college ? college.name : 'West Bengal Engineering Admissions';
   const collegeShortName = college ? college.shortName : 'WB Engineering';
   const collegeSlug = college ? college.slug : 'general';
-  const programsList = college?.programs && college.programs.length > 0
-    ? college.programs
-    : [
-        { name: 'Computer Science & Engineering (CSE)', slug: 'cse', intakeEst: 180 },
-        { name: 'Information Technology (IT)', slug: 'it', intakeEst: 120 },
-        { name: 'Electronics & Communication (ECE)', slug: 'ece', intakeEst: 120 },
-        { name: 'Computer Science (AI & ML)', slug: 'cse-aiml', intakeEst: 60 },
-        { name: 'Electrical Engineering (EE)', slug: 'ee', intakeEst: 60 },
-        { name: 'Mechanical Engineering (ME)', slug: 'me', intakeEst: 60 },
-      ];
-  
+  const programsList =
+    college?.programs && college.programs.length > 0
+      ? college.programs
+      : [
+          { name: 'Computer Science & Engineering (CSE)', slug: 'cse', intakeEst: 180 },
+          { name: 'Information Technology (IT)', slug: 'it', intakeEst: 120 },
+          { name: 'Electronics & Communication (ECE)', slug: 'ece', intakeEst: 120 },
+          { name: 'Computer Science (AI & ML)', slug: 'cse-aiml', intakeEst: 60 },
+          { name: 'Electrical Engineering (EE)', slug: 'ee', intakeEst: 60 },
+          { name: 'Mechanical Engineering (ME)', slug: 'me', intakeEst: 60 },
+        ];
+
   // Default to CSE or first available program
   const defaultBranch =
-    programsList.find((p) => p.name.toLowerCase().includes('computer') || p.name.toLowerCase().includes('cse'))?.name ||
+    programsList.find(
+      (p) =>
+        p.name.toLowerCase().includes('computer') ||
+        p.name.toLowerCase().includes('cse')
+    )?.name ||
     programsList[0]?.name ||
     'Computer Science & Engineering (CSE)';
 
@@ -115,42 +118,104 @@ export function CollegeCounsellingCard({
     }
   };
 
-  // Reusable Form Content (used in both sidebar and banner variants)
+  // Reusable Form Content styled per DESIGN.md
   const formContent = (
-    <div className="relative">
+    <div>
       {!submitted ? (
         <form onSubmit={handleSubmit} className="space-y-3.5">
           {errorMsg && (
-            <div className="p-3 rounded-xl bg-red-500/25 border border-red-400/40 text-xs font-semibold text-red-100 backdrop-blur-sm animate-in fade-in">
+            <div
+              style={{
+                padding: '10px 14px',
+                borderRadius: 8,
+                background: '#FEF2F2',
+                border: '1px solid #FECACA',
+                color: '#991B1B',
+                fontSize: 13,
+                fontWeight: 500,
+              }}
+            >
               {errorMsg}
             </div>
           )}
 
           {/* Field 1: Full Name */}
           <div>
-            <label className="text-xs font-bold text-white/95 block mb-1">
-              Student Full Name <span className="text-amber-300">*</span>
+            <label
+              style={{
+                display: 'block',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                marginBottom: 6,
+              }}
+            >
+              Student Full Name <span style={{ color: '#E11D48' }}>*</span>
             </label>
             <div className="relative">
-              <User className="w-4 h-4 text-blue-200 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <User
+                style={{
+                  position: 'absolute',
+                  left: 12,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: 16,
+                  height: 16,
+                  color: '#929292',
+                  pointerEvents: 'none',
+                }}
+              />
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Rahul Sharma"
                 required
-                className="w-full pl-10 pr-3.5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-white/[0.14] hover:bg-white/[0.20] focus:bg-white focus:text-[#0C2340] border border-white/30 focus:border-[#38BDF8] focus:ring-2 focus:ring-[#38BDF8]/40 focus:outline-hidden text-white placeholder:text-blue-100/60 focus:placeholder:text-slate-400 backdrop-blur-md shadow-inner transition-all"
+                style={{
+                  width: '100%',
+                  height: 44,
+                  paddingLeft: 38,
+                  paddingRight: 14,
+                  borderRadius: 8,
+                  border: '1px solid #dddddd',
+                  background: '#ffffff',
+                  fontSize: 14,
+                  color: '#222222',
+                  outline: 'none',
+                  transition: 'border-color 0.15s',
+                }}
+                onFocus={(e) => (e.target.style.borderColor = '#102A56')}
+                onBlur={(e) => (e.target.style.borderColor = '#dddddd')}
               />
             </div>
           </div>
 
           {/* Field 2: Mobile / WhatsApp Number */}
           <div>
-            <label className="text-xs font-bold text-white/95 block mb-1">
-              WhatsApp / Mobile Number <span className="text-amber-300">*</span>
+            <label
+              style={{
+                display: 'block',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                marginBottom: 6,
+              }}
+            >
+              WhatsApp / Mobile Number <span style={{ color: '#E11D48' }}>*</span>
             </label>
             <div className="relative">
-              <Phone className="w-4 h-4 text-blue-200 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Phone
+                style={{
+                  position: 'absolute',
+                  left: 12,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: 16,
+                  height: 16,
+                  color: '#929292',
+                  pointerEvents: 'none',
+                }}
+              />
               <input
                 type="tel"
                 value={phone}
@@ -158,7 +223,21 @@ export function CollegeCounsellingCard({
                 placeholder="10-digit mobile number"
                 maxLength={10}
                 required
-                className="w-full pl-10 pr-3.5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-white/[0.14] hover:bg-white/[0.20] focus:bg-white focus:text-[#0C2340] border border-white/30 focus:border-[#38BDF8] focus:ring-2 focus:ring-[#38BDF8]/40 focus:outline-hidden text-white placeholder:text-blue-100/60 focus:placeholder:text-slate-400 backdrop-blur-md shadow-inner transition-all"
+                style={{
+                  width: '100%',
+                  height: 44,
+                  paddingLeft: 38,
+                  paddingRight: 14,
+                  borderRadius: 8,
+                  border: '1px solid #dddddd',
+                  background: '#ffffff',
+                  fontSize: 14,
+                  color: '#222222',
+                  outline: 'none',
+                  transition: 'border-color 0.15s',
+                }}
+                onFocus={(e) => (e.target.style.borderColor = '#102A56')}
+                onBlur={(e) => (e.target.style.borderColor = '#dddddd')}
               />
             </div>
           </div>
@@ -167,57 +246,115 @@ export function CollegeCounsellingCard({
           <div className={`grid ${variant === 'banner' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'} gap-3`}>
             {/* WBJEE Rank */}
             <div>
-              <label className="text-xs font-bold text-white/95 block mb-1">
-                WBJEE Rank / Score <span className="text-blue-200/70 font-normal">(Optional)</span>
+              <label
+                style={{
+                  display: 'block',
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: '#222222',
+                  marginBottom: 6,
+                }}
+              >
+                WBJEE Rank <span style={{ color: '#6a6a6a', fontWeight: 400 }}>(Optional)</span>
               </label>
               <div className="relative">
-                <Award className="w-4 h-4 text-blue-200 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Award
+                  style={{
+                    position: 'absolute',
+                    left: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: 16,
+                    height: 16,
+                    color: '#929292',
+                    pointerEvents: 'none',
+                  }}
+                />
                 <input
                   type="text"
                   value={rank}
                   onChange={(e) => setRank(e.target.value)}
-                  placeholder="e.g. 4500 (or Expected)"
-                  className="w-full pl-10 pr-3.5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-white/[0.14] hover:bg-white/[0.20] focus:bg-white focus:text-[#0C2340] border border-white/30 focus:border-[#38BDF8] focus:ring-2 focus:ring-[#38BDF8]/40 focus:outline-hidden text-white placeholder:text-blue-100/60 focus:placeholder:text-slate-400 backdrop-blur-md shadow-inner transition-all"
+                  placeholder="e.g. 4500"
+                  style={{
+                    width: '100%',
+                    height: 44,
+                    paddingLeft: 38,
+                    paddingRight: 14,
+                    borderRadius: 8,
+                    border: '1px solid #dddddd',
+                    background: '#ffffff',
+                    fontSize: 14,
+                    color: '#222222',
+                    outline: 'none',
+                    transition: 'border-color 0.15s',
+                  }}
+                  onFocus={(e) => (e.target.style.borderColor = '#102A56')}
+                  onBlur={(e) => (e.target.style.borderColor = '#dddddd')}
                 />
               </div>
             </div>
 
             {/* Target Branch */}
             <div>
-              <label className="text-xs font-bold text-white/95 block mb-1">
-                Target Branch <span className="text-amber-300">*</span>
+              <label
+                style={{
+                  display: 'block',
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: '#222222',
+                  marginBottom: 6,
+                }}
+              >
+                Target Branch <span style={{ color: '#E11D48' }}>*</span>
               </label>
               <div className="relative">
-                <GraduationCap className="w-4 h-4 text-blue-200 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <GraduationCap
+                  style={{
+                    position: 'absolute',
+                    left: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: 16,
+                    height: 16,
+                    color: '#929292',
+                    pointerEvents: 'none',
+                  }}
+                />
                 <select
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
-                  className="w-full pl-10 pr-8 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-[#0B2154] hover:bg-[#0E2A68] border border-white/30 focus:border-[#38BDF8] focus:ring-2 focus:ring-[#38BDF8]/40 focus:outline-hidden text-white backdrop-blur-md shadow-inner transition-all appearance-none cursor-pointer"
+                  style={{
+                    width: '100%',
+                    height: 44,
+                    paddingLeft: 38,
+                    paddingRight: 32,
+                    borderRadius: 8,
+                    border: '1px solid #dddddd',
+                    background: '#ffffff',
+                    fontSize: 13,
+                    color: '#222222',
+                    outline: 'none',
+                    appearance: 'none',
+                    cursor: 'pointer',
+                  }}
                 >
-                  {programsList.length > 0 ? (
-                    programsList.map((p, idx) => (
-                      <option key={idx} value={p.name} className="bg-[#0B2154] text-white">
-                        {p.name}
-                      </option>
-                    ))
-                  ) : (
-                    <>
-                      <option value="Computer Science (CSE)" className="bg-[#0B2154] text-white">
-                        Computer Science (CSE)
-                      </option>
-                      <option value="Information Technology (IT)" className="bg-[#0B2154] text-white">
-                        Information Technology (IT)
-                      </option>
-                      <option value="Electronics & Communication (ECE)" className="bg-[#0B2154] text-white">
-                        Electronics & Communication (ECE)
-                      </option>
-                      <option value="Mechanical Engineering" className="bg-[#0B2154] text-white">
-                        Mechanical Engineering
-                      </option>
-                    </>
-                  )}
+                  {programsList.map((p, idx) => (
+                    <option key={idx} value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
                 </select>
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-200">
+                <div
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: '#6a6a6a',
+                    pointerEvents: 'none',
+                    fontSize: 10,
+                  }}
+                >
                   ▼
                 </div>
               </div>
@@ -228,66 +365,121 @@ export function CollegeCounsellingCard({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-2 py-3 px-4 rounded-xl font-heading font-extrabold text-xs sm:text-sm bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+            style={{
+              width: '100%',
+              height: 48,
+              marginTop: 8,
+              borderRadius: 8,
+              background: '#102A56',
+              color: '#ffffff',
+              fontSize: 14,
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              border: 'none',
+              cursor: isSubmitting ? 'not-allowed' : 'pointer',
+              opacity: isSubmitting ? 0.7 : 1,
+              transition: 'background-color 0.15s',
+            }}
+            onMouseEnter={(e) => {
+              if (!isSubmitting) (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#1455B8';
+            }}
+            onMouseLeave={(e) => {
+              if (!isSubmitting) (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#102A56';
+            }}
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
-                <span>Scheduling Expert Call...</span>
+                <Loader2 className="w-4 h-4 animate-spin text-white" />
+                <span>Scheduling Consultation...</span>
               </>
             ) : (
               <>
-                <span>Get Free Counselling for {collegeShortName}</span>
-                <ArrowRight className="w-4 h-4 text-slate-950 stroke-[2.5]" />
+                <span>Request Free Counselling for {collegeShortName}</span>
+                <ArrowRight style={{ width: 16, height: 16 }} />
               </>
             )}
           </button>
 
-          {/* DPDP Act 2023 Consent Notice */}
-          <p className="text-[10px] text-blue-200/70 text-center leading-normal pt-1">
-            By submitting, you consent to receive admission updates &amp; guidance per our{' '}
-            <Link href="/privacy-policy" target="_blank" className="underline hover:text-white">
+          {/* Privacy Notice */}
+          <p style={{ fontSize: 11, color: '#6a6a6a', textAlign: 'center', marginTop: 8 }}>
+            By submitting, you consent to receive admission updates per our{' '}
+            <Link href="/privacy-policy" style={{ textDecoration: 'underline', color: '#1455B8' }}>
               Privacy Policy
-            </Link>{' '}
-            (DPDP Act 2023).
+            </Link>
+            . We never sell student data.
           </p>
 
           {/* Micro Trust Checklist */}
-          <div className="flex flex-wrap items-center justify-between gap-y-1.5 pt-2 text-[11px] text-blue-100/80 font-medium">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-              <span>Official WBJEE Cutoffs</span>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingTop: 10,
+              borderTop: '1px solid #ebebeb',
+              fontSize: 12,
+              color: '#6a6a6a',
+            }}
+          >
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              <ShieldCheck style={{ width: 14, height: 14, color: '#0F8B70' }} />
+              <span>Verified Cutoffs</span>
             </span>
-            <span className="flex items-center gap-1">
-              <Zap className="w-3.5 h-3.5 text-amber-300 shrink-0" />
-              <span>Zero Fees</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              <Zap style={{ width: 14, height: 14, color: '#102A56' }} />
+              <span>Zero Agent Fees</span>
             </span>
-            <span className="flex items-center gap-1">
-              <Lock className="w-3.5 h-3.5 text-blue-300 shrink-0" />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              <Lock style={{ width: 14, height: 14, color: '#6a6a6a' }} />
               <span>100% Confidential</span>
             </span>
           </div>
         </form>
       ) : (
         /* Thank You Confirmation State */
-        <div className="text-center py-6 px-3 space-y-4 animate-in fade-in duration-500">
-          <div className="w-14 h-14 rounded-full bg-emerald-400/20 border-2 border-emerald-400/50 flex items-center justify-center mx-auto text-emerald-300 shadow-lg shadow-emerald-500/20">
-            <CheckCircle2 className="w-8 h-8" />
+        <div style={{ textAlign: 'center', padding: '24px 12px' }} className="space-y-4">
+          <div
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: 9999,
+              background: '#E6F6F2',
+              color: '#0F8B70',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto',
+            }}
+          >
+            <CheckCircle2 style={{ width: 28, height: 28 }} />
           </div>
 
-          <div className="space-y-1.5">
-            <h4 className="text-lg font-heading font-extrabold text-white">
+          <div>
+            <h4 style={{ fontSize: 18, fontWeight: 600, color: '#222222' }}>
               Counselling Request Confirmed!
             </h4>
-            <p className="text-xs text-blue-100 leading-relaxed max-w-sm mx-auto">
-              Our dedicated admission counselor for{' '}
-              <strong className="text-amber-300 font-bold">{collegeShortName}</strong> will call or WhatsApp
-              you on <span className="font-mono text-white font-semibold">{phone}</span> within 15 minutes.
+            <p style={{ fontSize: 13, color: '#6a6a6a', marginTop: 6, lineHeight: 1.5 }}>
+              Our dedicated counsellor for <strong>{collegeShortName}</strong> will reach out to{' '}
+              <strong style={{ color: '#222222' }}>{phone}</strong> shortly.
             </p>
           </div>
 
-          <div className="p-3 rounded-xl bg-white/[0.08] border border-white/20 text-xs text-slate-300 font-mono inline-block">
-            Ref ID: <strong className="text-white">{submissionId || 'BC-COUNS-CONFIRMED'}</strong>
+          <div
+            style={{
+              display: 'inline-block',
+              padding: '6px 14px',
+              borderRadius: 9999,
+              background: '#f7f7f7',
+              border: '1px solid #dddddd',
+              fontSize: 12,
+              color: '#3f3f3f',
+              fontFamily: 'monospace',
+            }}
+          >
+            Ref ID: <strong>{submissionId || 'BC-CONFIRMED'}</strong>
           </div>
 
           <div>
@@ -299,7 +491,14 @@ export function CollegeCounsellingCard({
                 setPhone('');
                 setRank('');
               }}
-              className="text-xs text-blue-200 hover:text-white underline font-semibold transition-colors cursor-pointer"
+              style={{
+                fontSize: 13,
+                color: '#1455B8',
+                textDecoration: 'underline',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+              }}
             >
               Submit Another Query
             </button>
@@ -314,100 +513,149 @@ export function CollegeCounsellingCard({
     return (
       <div
         id={id || 'counselling-card-sidebar'}
-        className={`relative bg-gradient-to-br from-[#061433]/95 via-[#0A1E4A]/90 to-[#071538]/95 backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-white/25 shadow-[0_20px_50px_-10px_rgba(2,6,23,0.5),0_0_30px_rgba(37,99,235,0.2),inset_0_1px_2px_rgba(255,255,255,0.3)] text-white overflow-hidden transition-all duration-300 hover:border-blue-400/40 hover:shadow-[0_25px_60px_-10px_rgba(37,99,235,0.35)] ${className}`}
+        style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          padding: 24,
+          border: '1px solid #dddddd',
+          transition: 'box-shadow 0.2s',
+        }}
+        className={`hover:shadow-airbnb ${className}`}
       >
-        {/* Specular Top Glass Highlight Rim */}
-        <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
-
-        {/* Ambient Radial Glow Lighting */}
-        <div className="absolute -top-16 -right-16 w-36 h-36 bg-blue-500/25 rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute -bottom-16 -left-16 w-36 h-36 bg-cyan-400/15 rounded-full blur-2xl pointer-events-none" />
-
-        {/* Card Header */}
-        <div className="relative pb-3 mb-3 border-b border-white/15 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#102A56] to-[#1455B8] flex items-center justify-center border border-white/30 shadow-md shrink-0">
-              <Headphones className="w-5 h-5 text-white" />
+        {/* Header */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingBottom: 16,
+            marginBottom: 16,
+            borderBottom: '1px solid #ebebeb',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: 9999,
+                background: '#f7f7f7',
+                border: '1px solid #dddddd',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#102A56',
+              }}
+            >
+              <Headphones style={{ width: 18, height: 18 }} />
             </div>
             <div>
-              <h3 className="text-base font-heading font-extrabold text-white leading-tight">
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: '#222222', lineHeight: 1.2 }}>
                 {title || 'Free College Counselling'}
               </h3>
-              <p className="text-[11px] text-blue-200 font-medium">
+              <p style={{ fontSize: 12, color: '#6a6a6a' }}>
                 {subtitle || '1-on-1 WBJEE Cutoffs & Admission Desk'}
               </p>
             </div>
           </div>
 
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-400/20 text-emerald-300 border border-emerald-400/35 backdrop-blur-sm shrink-0">
+          <span
+            style={{
+              fontSize: 11,
+              fontWeight: 600,
+              padding: '3px 10px',
+              borderRadius: 9999,
+              background: '#E6F6F2',
+              color: '#0F8B70',
+              border: '1px solid #A7E3D4',
+            }}
+          >
             100% Free
           </span>
         </div>
 
-        {/* Form Body */}
         {formContent}
       </div>
     );
   }
 
-  // Variant B: Panoramic In-Content Showcase Banner (Placed below Cutoffs / Fees)
+  // Variant B: Panoramic Showcase Banner
   return (
     <section
       id={id || 'counselling-banner'}
-      className={`relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#061433] via-[#0A1E4A] to-[#08183E] text-white p-6 sm:p-8 lg:p-10 border border-white/20 shadow-2xl backdrop-blur-2xl ${className}`}
+      style={{
+        background: '#f7f7f7',
+        borderRadius: 20,
+        border: '1px solid #dddddd',
+        padding: '32px 24px',
+      }}
+      className={className}
     >
-      {/* Specular Top Glass Highlight Rim */}
-      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
-
-      {/* Atmospheric Ambient Glows */}
-      <div className="absolute top-0 right-1/4 w-[450px] h-[350px] bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-10 left-10 w-[350px] h-[250px] bg-cyan-400/15 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        {/* Left Column: Compelling High-Intent Value Props */}
-        <div className="lg:col-span-6 space-y-5 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs font-bold backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Left Column */}
+        <div className="lg:col-span-6 space-y-4">
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              padding: '4px 12px',
+              borderRadius: 9999,
+              background: '#ffffff',
+              border: '1px solid #dddddd',
+              fontSize: 12,
+              fontWeight: 500,
+              color: '#102A56',
+            }}
+          >
+            <ShieldCheck style={{ width: 14, height: 14, color: '#0F8B70' }} />
             <span>Dedicated {collegeShortName} Admissions Desk</span>
-          </div>
+          </span>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-heading font-extrabold text-white leading-tight tracking-tight">
+          <h2
+            style={{
+              fontSize: 24,
+              fontWeight: 600,
+              color: '#222222',
+              lineHeight: 1.25,
+            }}
+          >
             {title ? (
-              <span>{title}</span>
+              title
             ) : (
               <>
                 Wondering If Your Rank Secures A Seat At{' '}
-                <span className="text-[#F59E0B]">{collegeShortName}?</span>
+                <span style={{ color: '#102A56' }}>{collegeShortName}?</span>
               </>
             )}
           </h2>
 
-          <p className="text-sm text-slate-300 leading-relaxed font-sans">
+          <p style={{ fontSize: 14, color: '#6a6a6a', lineHeight: 1.5 }}>
             {subtitle || (
               <>
                 Our West Bengal engineering counsellors analyze your exact WBJEE score against official{' '}
-                <strong className="text-white font-semibold">{collegeName}</strong> closing cutoffs, category quotas
-                (General, TFW, OBC, SC, ST), and choice filling priority order.
+                <strong style={{ color: '#222222' }}>{collegeName}</strong> closing cutoffs, category quotas,
+                and choice-filling priority order.
               </>
             )}
           </p>
 
           {/* 3 Strategic Trust Pillars */}
-          <div className="space-y-2.5 pt-1 text-xs text-slate-200">
-            <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="space-y-2 pt-2" style={{ fontSize: 13, color: '#3f3f3f' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <CheckCircle2 style={{ width: 16, height: 16, color: '#0F8B70', flexShrink: 0 }} />
               <span>
                 <strong>Round-by-Round Cutoff Match:</strong> See if your rank fits Round 1, Round 2, or Mop-Up.
               </span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <CheckCircle2 style={{ width: 16, height: 16, color: '#0F8B70', flexShrink: 0 }} />
               <span>
                 <strong>TFW &amp; Scholarship Audit:</strong> Check eligibility for 100% Tuition Fee Waiver seats.
               </span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <CheckCircle2 style={{ width: 16, height: 16, color: '#0F8B70', flexShrink: 0 }} />
               <span>
                 <strong>Alternative College Plan:</strong> Compare {collegeShortName} with top peer institutions.
               </span>
@@ -415,24 +663,43 @@ export function CollegeCounsellingCard({
           </div>
         </div>
 
-        {/* Right Column: Ultra-Sheer Frosted Glass Form Card */}
+        {/* Right Column: Clean White Card */}
         <div className="lg:col-span-6">
-          <div className="relative bg-white/[0.12] sm:bg-white/[0.16] hover:bg-white/[0.20] backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-7 border border-white/35 shadow-[0_20px_50px_-10px_rgba(2,6,23,0.6),0_0_35px_rgba(37,99,235,0.25),inset_0_1px_2px_rgba(255,255,255,0.6)] text-white space-y-4 overflow-hidden transition-all duration-300">
-            <div className="flex items-center justify-between pb-2 border-b border-white/20">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#102A56] to-[#1455B8] flex items-center justify-center border border-white/30 text-white">
-                  <Headphones className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base font-heading font-extrabold text-white">
-                    Get Free 1-on-1 Guidance
-                  </h3>
-                  <p className="text-[11px] text-blue-100 font-medium">
-                    Fast response via WhatsApp / Phone
-                  </p>
-                </div>
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              padding: 24,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingBottom: 14,
+                marginBottom: 16,
+                borderBottom: '1px solid #ebebeb',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Headphones style={{ width: 18, height: 18, color: '#102A56' }} />
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#222222' }}>
+                  Get Free 1-on-1 Guidance
+                </h3>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-400/35">
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 600,
+                  padding: '2px 8px',
+                  borderRadius: 9999,
+                  background: '#E6F6F2',
+                  color: '#0F8B70',
+                }}
+              >
                 100% Free
               </span>
             </div>

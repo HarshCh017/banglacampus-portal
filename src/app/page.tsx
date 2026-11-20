@@ -8,19 +8,22 @@ import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { GuidesPreview } from '@/components/home/GuidesPreview';
 import { GuidanceCallout } from '@/components/home/GuidanceCallout';
 import { AnimatedFaqAccordion } from '@/components/home/AnimatedFaqAccordion';
+import { getSiteUrl } from '@/lib/site';
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   title: 'WBJEE Predictor & WB Engineering Colleges 2027 | BengalCampus',
   description:
     'Compare verified West Bengal engineering colleges. Audited WBJEE cutoffs, semester fees, NIRF & NAAC data, and choice-filling predictor for 2027.',
   alternates: {
-    canonical: 'https://bengalcampus.in',
+    canonical: siteUrl,
   },
   openGraph: {
     title: 'WBJEE Predictor & WB Engineering Colleges 2027 | BengalCampus',
     description:
       'Compare verified West Bengal engineering colleges. Audited WBJEE cutoffs, semester fees, NIRF & NAAC data, and choice-filling predictor for 2027.',
-    url: 'https://bengalcampus.in',
+    url: siteUrl,
     siteName: 'BengalCampus',
     images: [
       {

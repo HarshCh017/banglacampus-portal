@@ -15,10 +15,6 @@ export function CategoryCards() {
       href: '/colleges?type=university',
       image: '/images/colleges/jadavpur-university-engineering.jpg',
       icon: GraduationCap,
-      bgGradient: 'bg-gradient-to-br from-[#EAF2FE] to-[#DCEBFE] border-[#BFDBFE]',
-      iconColor: 'text-[#1455B8]',
-      badgeColor: 'text-[#1455B8] bg-white/90 border-[#BFDBFE]',
-      btnHover: 'hover:bg-[#1455B8] hover:text-white',
     },
     {
       title: 'Government Colleges',
@@ -28,10 +24,6 @@ export function CategoryCards() {
       href: '/colleges?type=government',
       image: '/images/colleges/kalyani-government-engineering-college.jpg',
       icon: Building2,
-      bgGradient: 'bg-gradient-to-br from-[#FFF9EE] to-[#FEF0D5] border-[#FDE68A]',
-      iconColor: 'text-[#D97706]',
-      badgeColor: 'text-[#D97706] bg-white/90 border-[#FDE68A]',
-      btnHover: 'hover:bg-[#D97706] hover:text-white',
     },
     {
       title: 'Autonomous / Private Colleges',
@@ -41,88 +33,177 @@ export function CategoryCards() {
       href: '/colleges?type=private',
       image: '/images/colleges/iem-kolkata.jpg',
       icon: Layers,
-      bgGradient: 'bg-gradient-to-br from-[#F5F1FD] to-[#ECE5FA] border-[#DDD6FE]',
-      iconColor: 'text-[#7C3AED]',
-      badgeColor: 'text-[#7C3AED] bg-white/90 border-[#DDD6FE]',
-      btnHover: 'hover:bg-[#7C3AED] hover:text-white',
     },
   ];
 
   return (
-    <section className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-6 sm:pb-8">
+    <section
+      style={{
+        maxWidth: 1240,
+        margin: '0 auto',
+        padding: '64px 24px 32px',
+      }}
+      className="px-4 sm:px-6 lg:px-8"
+    >
       {/* Section Heading */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-[#102A56] tracking-tight">
-          Explore Engineering Colleges in <span className="text-[#1455B8]">West Bengal</span>
+      <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 40px' }}>
+        <h2
+          style={{
+            fontSize: 22,
+            fontWeight: 500,
+            color: '#222222',
+            lineHeight: 1.3,
+            marginBottom: 8,
+          }}
+        >
+          Explore Engineering Colleges in West Bengal
         </h2>
-        <p className="text-xs sm:text-sm text-[#64748B] mt-2 leading-relaxed">
+        <p style={{ fontSize: 14, color: '#6a6a6a', lineHeight: 1.6 }}>
           Find the right type of institution based on your goals, budget and preferences.
         </p>
       </div>
 
-      {/* 3 Distinct Image-Led Colored Cards */}
+      {/* 3 Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {categories.map((cat, idx) => {
           const Icon = cat.icon;
           return (
-            <div
+            <Link
               key={idx}
-              className={`rounded-3xl border ${cat.bgGradient} p-5 sm:p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group`}
+              href={cat.href}
+              aria-label={`Browse ${cat.title}`}
+              style={{
+                borderRadius: 14,
+                border: '1px solid #dddddd',
+                background: '#f7f7f7',
+                padding: '20px 20px 16px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'box-shadow 0.2s, transform 0.2s',
+                textDecoration: 'none',
+                cursor: 'pointer',
+              }}
+              className="group hover:border-[#102A56]/30"
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  'rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.1) 0 4px 8px';
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+              }}
             >
-              {/* Upper Portion: Campus Thumbnail + Details */}
-              <div className="flex items-start gap-4">
-                {/* Rounded Campus Thumbnail */}
-                <div className="relative w-24 sm:w-28 h-32 sm:h-36 rounded-2xl overflow-hidden shrink-0 shadow-xs border border-white/60">
+              {/* Upper: thumbnail + text */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+                {/* Thumbnail */}
+                <div
+                  style={{
+                    position: 'relative',
+                    width: 96,
+                    height: 128,
+                    borderRadius: 10,
+                    overflow: 'hidden',
+                    flexShrink: 0,
+                    border: '1px solid #dddddd',
+                  }}
+                >
                   <Image
                     src={cat.image}
                     alt={cat.title}
                     fill
-                    sizes="(max-width: 768px) 112px, 128px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="96px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                 </div>
 
-                {/* Right Details */}
-                <div className="flex-1 min-w-0">
-                  {/* Category Icon */}
-                  <div className="w-9 h-9 rounded-xl bg-white/90 text-slate-800 flex items-center justify-center shadow-xs">
-                    <Icon className={`w-5 h-5 ${cat.iconColor}`} />
+                {/* Text */}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  {/* Icon circle */}
+                  <div
+                    style={{
+                      width: 36,
+                      height: 36,
+                      borderRadius: 9999,
+                      background: '#ffffff',
+                      border: '1px solid #dddddd',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: 10,
+                    }}
+                  >
+                    <Icon style={{ width: 18, height: 18, color: '#102A56' }} />
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-heading font-bold text-[#102A56] mt-2 group-hover:text-[#1455B8] transition-colors leading-tight">
+                  <h3
+                    style={{
+                      fontSize: 15,
+                      fontWeight: 600,
+                      color: '#222222',
+                      lineHeight: 1.3,
+                      marginBottom: 4,
+                    }}
+                    className="group-hover:text-[#102A56] transition-colors"
+                  >
                     {cat.title}
                   </h3>
-
-                  {/* Description */}
-                  <p className="text-xs text-[#64748B] mt-1 line-clamp-2 leading-relaxed font-sans">
+                  <p style={{ fontSize: 13, color: '#6a6a6a', lineHeight: 1.5, marginBottom: 4 }}>
                     {cat.description}
                   </p>
-
-                  {/* Examples */}
-                  <p className="text-[11px] font-medium text-slate-500 mt-2">
-                    {cat.examples}
-                  </p>
+                  <p style={{ fontSize: 12, color: '#6a6a6a' }}>{cat.examples}</p>
                 </div>
               </div>
 
-              {/* Lower Portion: Fee Pill + Circular Action Arrow */}
-              <div className="flex items-center justify-between pt-4 mt-3 border-t border-black/5">
-                <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full border text-xs font-bold shadow-xs ${cat.badgeColor}`}>
-                  <IndianRupee className="w-3 h-3" />
+              {/* Lower: fee pill + arrow */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingTop: 14,
+                  marginTop: 14,
+                  borderTop: '1px solid #dddddd',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 4,
+                    padding: '4px 12px',
+                    borderRadius: 9999,
+                    background: '#ffffff',
+                    border: '1px solid #dddddd',
+                    fontSize: 12,
+                    fontWeight: 500,
+                    color: '#3f3f3f',
+                  }}
+                >
+                  <IndianRupee style={{ width: 11, height: 11 }} />
                   <span>{cat.feeRange}</span>
                 </span>
 
-                <Link
-                  href={cat.href}
-                  className={`w-9 h-9 rounded-full bg-white text-[#102A56] flex items-center justify-center transition-all duration-200 shadow-xs ${cat.btnHover}`}
-                  aria-label={`Browse ${cat.title}`}
+                <div
+                  style={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: 9999,
+                    background: '#102A56',
+                    color: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'opacity 0.15s, transform 0.15s',
+                  }}
+                  className="group-hover:scale-105"
                 >
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <ArrowRight style={{ width: 15, height: 15 }} />
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -2,21 +2,16 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { VERIFIED_CUTOFFS, CollegeCutoffRecord } from '@/data/cutoffs';
+import { VERIFIED_CUTOFFS } from '@/data/cutoffs';
 import { CollegeCounsellingCard } from '@/components/college/CollegeCounsellingCard';
 import { useComparison } from '@/context/ComparisonContext';
 import {
-  Compass,
   Search,
   Scale,
   CheckCircle2,
   AlertTriangle,
   ExternalLink,
-  Building2,
-  Award,
   ChevronRight,
-  SlidersHorizontal,
-  Info,
 } from 'lucide-react';
 
 export function CutoffExplorerClient() {
@@ -76,80 +71,164 @@ export function CutoffExplorerClient() {
   const competitiveCount = matches.filter((m) => m.status === 'COMPETITIVE').length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
+    <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-6">
       {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1455B8]">
-          <Compass className="w-4 h-4 text-[#1455B8]" />
-          <span>WBJEE Counselling Intelligence</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold font-heading text-[#102A56] tracking-tight">
+      <div>
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#6a6a6a] mb-4">
+          <Link href="/" className="hover:text-[#102A56] transition-colors">
+            Home
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <span className="font-semibold text-[#222222]">Cutoff Explorer</span>
+        </nav>
+
+        <h1
+          style={{
+            fontSize: 28,
+            fontWeight: 600,
+            color: '#222222',
+            letterSpacing: '-0.02em',
+          }}
+        >
           WBJEE Rank &amp; Cutoff Explorer
         </h1>
-        <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
+        <p style={{ fontSize: 14, color: '#6a6a6a', marginTop: 4, maxWidth: 640 }}>
           Explore historical closing rank archives from official WBJEE centralized counselling rounds. Enter your General Merit Rank (GMR) to see which engineering programs historically aligned with your score.
         </p>
       </div>
 
-      {/* Official WBJEE 2026 Examination & Schedule Card (Cross-Referenced with wbjeeb.nic.in) */}
-      <div className="bg-gradient-to-r from-[#071638] via-[#0D265C] to-[#0A1E4A] rounded-2xl p-5 sm:p-6 text-white border border-blue-400/30 shadow-lg space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/15">
+      {/* Official WBJEE Schedule & Benchmarks Card */}
+      <div
+        style={{
+          background: '#f7f7f7',
+          borderRadius: 14,
+          border: '1px solid #dddddd',
+          padding: 24,
+        }}
+        className="space-y-4"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#ebebeb]">
           <div className="flex items-center gap-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            <h2 className="font-heading font-extrabold text-sm sm:text-base text-white">
-              Official WBJEE 2026 Schedule &amp; Examination Benchmarks
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: 9999,
+                background: '#0F8B70',
+                display: 'inline-block',
+              }}
+            />
+            <h2 style={{ fontSize: 15, fontWeight: 600, color: '#222222' }}>
+              Official WBJEE Schedule &amp; Examination Benchmarks
             </h2>
           </div>
           <a
             href="https://wbjeeb.nic.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-mono text-blue-200 bg-blue-500/20 hover:bg-blue-500/30 px-2.5 py-0.5 rounded-full border border-blue-400/30 inline-flex items-center gap-1 transition-colors"
+            style={{
+              fontSize: 12,
+              fontWeight: 500,
+              padding: '4px 12px',
+              borderRadius: 9999,
+              background: '#ffffff',
+              border: '1px solid #dddddd',
+              color: '#102A56',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+            }}
           >
             <span>Source: wbjeeb.nic.in</span>
-            <ExternalLink className="w-3 h-3" />
+            <ExternalLink style={{ width: 12, height: 12 }} />
           </a>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-1">
-          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-            <span className="text-slate-300 text-[11px] block">Application Window</span>
-            <strong className="text-white text-xs sm:text-sm font-semibold">March 10 – April 8, 2026</strong>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 8,
+              border: '1px solid #dddddd',
+              padding: 12,
+            }}
+          >
+            <span style={{ color: '#6a6a6a', fontSize: 11, display: 'block' }}>Application Window</span>
+            <strong style={{ color: '#222222', fontSize: 13, fontWeight: 600 }}>March 10 – April 8</strong>
           </div>
-          <div className="p-3 rounded-xl bg-emerald-950/50 border border-emerald-500/30">
-            <span className="text-emerald-300 text-[11px] block">WBJEE 2026 Exam Date</span>
-            <strong className="text-emerald-300 text-xs sm:text-sm font-extrabold">May 24, 2026 (Sunday)</strong>
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 8,
+              border: '1px solid #A7E3D4',
+              padding: 12,
+            }}
+          >
+            <span style={{ color: '#0B7A62', fontSize: 11, display: 'block' }}>Exam Date</span>
+            <strong style={{ color: '#0F8B70', fontSize: 13, fontWeight: 600 }}>May 24 (Sunday)</strong>
           </div>
-          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-            <span className="text-slate-300 text-[11px] block">Results &amp; GMR Ranks</span>
-            <strong className="text-white text-xs sm:text-sm font-semibold">June 2026</strong>
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 8,
+              border: '1px solid #dddddd',
+              padding: 12,
+            }}
+          >
+            <span style={{ color: '#6a6a6a', fontSize: 11, display: 'block' }}>Results &amp; GMR</span>
+            <strong style={{ color: '#222222', fontSize: 13, fontWeight: 600 }}>June</strong>
           </div>
-          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-            <span className="text-slate-300 text-[11px] block">e-Counselling Rounds</span>
-            <strong className="text-amber-300 text-xs sm:text-sm font-semibold">July – August 2026</strong>
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 8,
+              border: '1px solid #dddddd',
+              padding: 12,
+            }}
+          >
+            <span style={{ color: '#6a6a6a', fontSize: 11, display: 'block' }}>e-Counselling</span>
+            <strong style={{ color: '#102A56', fontSize: 13, fontWeight: 600 }}>July – August</strong>
           </div>
         </div>
-        <p className="text-[11px] text-blue-200/90 leading-relaxed pt-1">
-          * Note for Aspirants: The closing ranks below reflect official multi-round allotments audited from WBJEEB centralized counseling. Use these verified distributions as calibrated benchmarks for WBJEE 2026 and 2027 choice sheet sequencing.
+
+        <p style={{ fontSize: 12, color: '#6a6a6a', lineHeight: 1.5 }}>
+          The closing ranks below reflect official multi-round allotments audited from WBJEEB centralized counseling. Use these verified distributions as calibrated benchmarks.
         </p>
       </div>
 
-      {/* Mandatory Non-Determining Disclosure */}
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 text-xs text-amber-950 space-y-1.5 shadow-xs">
-        <div className="flex items-center gap-2 font-bold text-amber-950">
-          <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />
+      {/* Mandatory Regulatory Disclosure */}
+      <div
+        style={{
+          background: '#ffffff',
+          border: '1px solid #dddddd',
+          borderRadius: 14,
+          padding: '16px 20px',
+        }}
+        className="space-y-1 text-xs"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600, color: '#222222' }}>
+          <AlertTriangle style={{ width: 14, height: 14, color: '#F4B740', flexShrink: 0 }} />
           <span>Historical Guidance Only · Not a Guarantee of Seat Allotment</span>
         </div>
-        <p className="leading-relaxed">
-          Cutoffs shown on BengalCampus are referenced from official WBJEEB archived closing ranks. Seat matrices, reservation quotas, question paper standard, and candidate preferences fluctuate every year. This tool provides comparative context and does NOT promise or guarantee admission into any institution.
+        <p style={{ color: '#6a6a6a', lineHeight: 1.5 }}>
+          Cutoffs shown on BengalCampus are referenced from official WBJEEB archived closing ranks. Seat matrices, reservation quotas, and candidate preferences fluctuate every year. This tool provides comparative context and does not guarantee admission.
         </p>
       </div>
 
       {/* Rank Input & Filter Controls Card */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
+      <div
+        style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          border: '1px solid #dddddd',
+          padding: 24,
+        }}
+        className="space-y-6"
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
           {/* Rank Input */}
           <div className="space-y-2">
-            <label htmlFor="gmrRank" className="text-xs font-bold text-slate-800 block uppercase tracking-wider">
+            <label htmlFor="gmrRank" style={{ fontSize: 12, fontWeight: 600, color: '#222222', display: 'block' }}>
               Enter Your WBJEE GMR Rank
             </label>
             <div className="relative">
@@ -160,39 +239,59 @@ export function CutoffExplorerClient() {
                 max={100000}
                 value={inputRank}
                 onChange={(e) => setInputRank(Math.max(1, Number(e.target.value) || 1))}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                style={{
+                  width: '100%',
+                  height: 44,
+                  padding: '0 40px 0 14px',
+                  borderRadius: 8,
+                  border: '1px solid #dddddd',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: '#222222',
+                  outline: 'none',
+                }}
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
+              <span
+                style={{
+                  position: 'absolute',
+                  right: 14,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: '#929292',
+                }}
+              >
                 GMR
               </span>
             </div>
-            <span className="text-[11px] text-slate-500 block">
+            <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block' }}>
               Quick presets:{' '}
               <button
                 type="button"
                 onClick={() => setInputRank(350)}
-                className="text-emerald-700 font-bold underline mr-1.5"
+                style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', marginRight: 6, background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 350
               </button>
               <button
                 type="button"
                 onClick={() => setInputRank(2500)}
-                className="text-emerald-700 font-bold underline mr-1.5"
+                style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', marginRight: 6, background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 2,500
               </button>
               <button
                 type="button"
                 onClick={() => setInputRank(6500)}
-                className="text-emerald-700 font-bold underline mr-1.5"
+                style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', marginRight: 6, background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 6,500
               </button>
               <button
                 type="button"
                 onClick={() => setInputRank(12000)}
-                className="text-emerald-700 font-bold underline"
+                style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 12,000
               </button>
@@ -201,14 +300,25 @@ export function CutoffExplorerClient() {
 
           {/* Stream Selector */}
           <div className="space-y-2">
-            <label htmlFor="streamSelect" className="text-xs font-bold text-slate-800 block uppercase tracking-wider">
+            <label htmlFor="streamSelect" style={{ fontSize: 12, fontWeight: 600, color: '#222222', display: 'block' }}>
               Engineering Stream
             </label>
             <select
               id="streamSelect"
               value={selectedStream}
               onChange={(e) => setSelectedStream(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                outline: 'none',
+                background: '#ffffff',
+              }}
             >
               <option value="all">All Available Streams</option>
               <option value="cse">Computer Science & Engineering (CSE)</option>
@@ -220,14 +330,25 @@ export function CutoffExplorerClient() {
 
           {/* Category Selector */}
           <div className="space-y-2">
-            <label htmlFor="catSelect" className="text-xs font-bold text-slate-800 block uppercase tracking-wider">
+            <label htmlFor="catSelect" style={{ fontSize: 12, fontWeight: 600, color: '#222222', display: 'block' }}>
               Institution Category
             </label>
             <select
               id="catSelect"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                outline: 'none',
+                background: '#ffffff',
+              }}
             >
               <option value="all">All Institution Types</option>
               <option value="State University Faculty">State University Faculty</option>
@@ -238,76 +359,130 @@ export function CutoffExplorerClient() {
           </div>
         </div>
 
-        {/* Secondary Filter Row: Search by College & Probability Status Filter */}
-        <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        {/* Search & Status Filter Row */}
+        <div className="pt-4 border-t border-[#ebebeb] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
           <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search
+              style={{
+                position: 'absolute',
+                left: 14,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: 16,
+                height: 16,
+                color: '#929292',
+              }}
+            />
             <input
               type="text"
               value={collegeSearch}
               onChange={(e) => setCollegeSearch(e.target.value)}
               placeholder="Filter by college name or code (e.g. Jadavpur, 104)..."
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              style={{
+                width: '100%',
+                height: 40,
+                paddingLeft: 38,
+                paddingRight: 14,
+                borderRadius: 9999,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                fontSize: 13,
+                color: '#222222',
+                outline: 'none',
+              }}
             />
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="text-slate-500 font-semibold mr-1">Show:</span>
+            <span style={{ color: '#6a6a6a', fontWeight: 500, marginRight: 4 }}>Filter:</span>
             <button
               type="button"
               onClick={() => setStatusFilter('all')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                statusFilter === 'all'
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+              style={{
+                padding: '6px 14px',
+                borderRadius: 9999,
+                fontSize: 12,
+                fontWeight: 500,
+                cursor: 'pointer',
+                border: statusFilter === 'all' ? '1px solid #102A56' : '1px solid #dddddd',
+                background: statusFilter === 'all' ? '#102A56' : '#ffffff',
+                color: statusFilter === 'all' ? '#ffffff' : '#6a6a6a',
+              }}
             >
               All Matches
             </button>
             <button
               type="button"
               onClick={() => setStatusFilter('probable')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                statusFilter === 'probable'
-                  ? 'bg-emerald-700 text-white font-bold'
-                  : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
-              }`}
+              style={{
+                padding: '6px 14px',
+                borderRadius: 9999,
+                fontSize: 12,
+                fontWeight: 500,
+                cursor: 'pointer',
+                border: statusFilter === 'probable' ? '1px solid #0F8B70' : '1px solid #dddddd',
+                background: statusFilter === 'probable' ? '#E6F6F2' : '#ffffff',
+                color: '#0F8B70',
+              }}
             >
               Probable Only (Round 1)
             </button>
             <button
               type="button"
               onClick={() => setStatusFilter('competitive_above')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                statusFilter === 'competitive_above'
-                  ? 'bg-blue-700 text-white font-bold'
-                  : 'bg-blue-50 text-blue-800 hover:bg-blue-100'
-              }`}
+              style={{
+                padding: '6px 14px',
+                borderRadius: 9999,
+                fontSize: 12,
+                fontWeight: 500,
+                cursor: 'pointer',
+                border: statusFilter === 'competitive_above' ? '1px solid #1455B8' : '1px solid #dddddd',
+                background: statusFilter === 'competitive_above' ? '#EAF2FF' : '#ffffff',
+                color: '#1455B8',
+              }}
             >
-              Probable & Competitive
+              Probable &amp; Competitive
             </button>
           </div>
         </div>
 
         {/* Quick Summary Pill Row */}
-        <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="pt-4 border-t border-[#ebebeb] flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
-            <span className="font-medium text-slate-500">Analysis for GMR {inputRank.toLocaleString('en-IN')}:</span>
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">
+            <span style={{ color: '#6a6a6a' }}>Analysis for GMR #{inputRank.toLocaleString('en-IN')}:</span>
+            <span
+              style={{
+                padding: '3px 10px',
+                borderRadius: 9999,
+                background: '#E6F6F2',
+                color: '#0F8B70',
+                fontWeight: 600,
+                border: '1px solid #A7E3D4',
+              }}
+            >
               {targetCount} Round-1 Matches
             </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 font-bold">
+            <span
+              style={{
+                padding: '3px 10px',
+                borderRadius: 9999,
+                background: '#EAF2FF',
+                color: '#1455B8',
+                fontWeight: 600,
+                border: '1px solid #BFDBFE',
+              }}
+            >
               {competitiveCount} Later Round Possibilities
             </span>
           </div>
 
-          <span className="text-slate-400 font-medium">Source: WBJEE Centralized Allotment Archives</span>
+          <span style={{ color: '#929292' }}>Source: WBJEE Centralized Allotment Archives</span>
         </div>
       </div>
 
       {/* Results Matrix */}
       <div className="space-y-4">
-        <h2 className="font-heading font-bold text-xl text-slate-900">
+        <h2 style={{ fontSize: 20, fontWeight: 600, color: '#222222' }}>
           Historical Closing Rank Comparisons ({matches.length} programs)
         </h2>
 
@@ -319,64 +494,153 @@ export function CutoffExplorerClient() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
+                style={{
+                  background: '#ffffff',
+                  borderRadius: 14,
+                  border: '1px solid #dddddd',
+                  padding: 20,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  transition: 'box-shadow 0.2s',
+                }}
+                className="hover:shadow-airbnb"
               >
                 <div className="space-y-3">
                   {/* Status Badge */}
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        padding: '2px 8px',
+                        borderRadius: 9999,
+                        background: '#f7f7f7',
+                        color: '#6a6a6a',
+                        border: '1px solid #dddddd',
+                      }}
+                    >
                       Code: {record.wbjeebCode}
                     </span>
 
                     {record.status === 'PROBABLE' && (
-                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          padding: '2px 8px',
+                          borderRadius: 9999,
+                          background: '#E6F6F2',
+                          color: '#0F8B70',
+                          border: '1px solid #A7E3D4',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 4,
+                        }}
+                      >
+                        <CheckCircle2 style={{ width: 12, height: 12 }} />
                         <span>Probable Match</span>
                       </span>
                     )}
                     {record.status === 'COMPETITIVE' && (
-                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200">
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          padding: '2px 8px',
+                          borderRadius: 9999,
+                          background: '#EAF2FF',
+                          color: '#1455B8',
+                          border: '1px solid #BFDBFE',
+                        }}
+                      >
                         Competitive Target
                       </span>
                     )}
                     {record.status === 'ASPIRATIONAL' && (
-                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-                        Aspirational / Reach
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          padding: '2px 8px',
+                          borderRadius: 9999,
+                          background: '#FEF8EB',
+                          color: '#B45309',
+                          border: '1px solid #FDE4B0',
+                        }}
+                      >
+                        Aspirational
                       </span>
                     )}
                     {record.status === 'OUT_OF_RANGE' && (
-                      <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">
-                        Historically Stricter Cutoff
+                      <span
+                        style={{
+                          fontSize: 11,
+                          padding: '2px 8px',
+                          borderRadius: 9999,
+                          background: '#f7f7f7',
+                          color: '#929292',
+                        }}
+                      >
+                        Higher Cutoff Band
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <h3 className="font-heading font-bold text-base text-slate-900">
+                    <h3 style={{ fontSize: 16, fontWeight: 600, color: '#222222', lineHeight: 1.3 }}>
                       <Link
                         href={`/colleges/${record.collegeSlug}`}
-                        className="hover:text-emerald-700 transition-colors"
+                        className="hover:text-[#102A56] transition-colors"
                       >
                         {record.collegeName}
                       </Link>
                     </h3>
-                    <span className="text-xs text-slate-500 block mt-0.5">{record.category}</span>
+                    <span style={{ fontSize: 12, color: '#6a6a6a', display: 'block', marginTop: 2 }}>
+                      {record.category}
+                    </span>
                   </div>
 
                   {/* Branch & Rank Thresholds */}
-                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1 text-xs">
-                    <span className="font-bold text-emerald-800 block text-xs sm:text-sm">
+                  <div
+                    style={{
+                      background: '#f7f7f7',
+                      borderRadius: 10,
+                      padding: 12,
+                      border: '1px solid #ebebeb',
+                    }}
+                    className="space-y-1 text-xs"
+                  >
+                    <span style={{ fontWeight: 600, color: '#102A56', display: 'block' }}>
                       {record.branchName}
                     </span>
-                    <div className="flex items-center justify-between pt-1 text-[11px] text-slate-600">
-                      <span>Round 1 Cutoff: <strong>~{record.approxClosingRankRound1.toLocaleString('en-IN')}</strong></span>
-                      <span>Final Round: <strong>~{record.approxClosingRankFinalRound.toLocaleString('en-IN')}</strong></span>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        paddingTop: 4,
+                        fontSize: 11,
+                        color: '#6a6a6a',
+                      }}
+                    >
+                      <span>Round 1: <strong>~#{record.approxClosingRankRound1.toLocaleString('en-IN')}</strong></span>
+                      <span>Final Round: <strong>~#{record.approxClosingRankFinalRound.toLocaleString('en-IN')}</strong></span>
                     </div>
                   </div>
                 </div>
 
                 {/* Actions */}
-                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                <div
+                  style={{
+                    paddingTop: 12,
+                    marginTop: 14,
+                    borderTop: '1px solid #ebebeb',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <button
                     type="button"
                     onClick={() => {
@@ -387,24 +651,38 @@ export function CutoffExplorerClient() {
                       }
                     }}
                     disabled={!inCompare && !canAdd}
-                    className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all flex items-center gap-1.5 ${
-                      inCompare
-                        ? 'bg-emerald-600 text-white border-emerald-600'
-                        : canAdd
-                        ? 'bg-white text-slate-700 border-slate-200 hover:border-emerald-500 hover:text-emerald-700'
-                        : 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
-                    }`}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 500,
+                      padding: '4px 12px',
+                      borderRadius: 9999,
+                      border: inCompare ? '1px solid #102A56' : '1px solid #dddddd',
+                      background: inCompare ? '#102A56' : '#ffffff',
+                      color: inCompare ? '#ffffff' : '#222222',
+                      cursor: !inCompare && !canAdd ? 'not-allowed' : 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      transition: 'all 0.15s',
+                    }}
                   >
-                    <Scale className="w-3.5 h-3.5" />
+                    <Scale style={{ width: 13, height: 13 }} />
                     <span>{inCompare ? 'Added' : 'Compare'}</span>
                   </button>
 
                   <Link
                     href={`/colleges/${record.collegeSlug}`}
-                    className="text-xs font-bold text-emerald-700 hover:text-emerald-800 inline-flex items-center gap-1"
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 500,
+                      color: '#102A56',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 2,
+                    }}
                   >
                     <span>Full Profile</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <ChevronRight style={{ width: 14, height: 14 }} />
                   </Link>
                 </div>
               </div>
@@ -412,7 +690,7 @@ export function CutoffExplorerClient() {
           })}
         </div>
 
-        {/* Strategic Counselling Banner at Bottom of Cutoff Explorer */}
+        {/* Strategic Counselling Banner */}
         <div className="pt-8">
           <CollegeCounsellingCard
             variant="banner"
@@ -425,3 +703,5 @@ export function CutoffExplorerClient() {
     </div>
   );
 }
+
+export default CutoffExplorerClient;

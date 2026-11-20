@@ -3,24 +3,17 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { VERIFIED_CUTOFFS, CollegeCutoffRecord } from '@/data/cutoffs';
-import { VERIFIED_COLLEGES, getCollegeBySlug } from '@/data/colleges';
+import { getCollegeBySlug } from '@/data/colleges';
 import {
-  SlidersHorizontal,
   Compass,
-  ArrowRight,
   Printer,
   Sparkles,
   AlertTriangle,
-  CheckCircle2,
   ListOrdered,
-  Plus,
   Trash2,
   ChevronUp,
   ChevronDown,
-  Scale,
-  Building2,
-  ShieldCheck,
-  Award,
+  ChevronRight,
 } from 'lucide-react';
 
 export function CounsellingSimulatorClient() {
@@ -112,11 +105,8 @@ export function CounsellingSimulatorClient() {
 
   const autoGenerateBalancedList = () => {
     const list: Array<CollegeCutoffRecord & { tier: 'AMBITIOUS' | 'TARGET' | 'SAFE' }> = [];
-    // Top 3 ambitious
     ambitiousOptions.slice(0, 3).forEach((item) => list.push(item));
-    // Top 5 target
     targetOptions.slice(0, 5).forEach((item) => list.push(item));
-    // Top 4 safe
     safeOptions.slice(0, 4).forEach((item) => list.push(item));
     setChoiceList(list);
   };
@@ -142,18 +132,30 @@ export function CounsellingSimulatorClient() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 text-ink-primary">
+    <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-6">
+      {/* 1. Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#6a6a6a] mb-4">
+        <Link href="/" className="hover:text-[#102A56] transition-colors">
+          Home
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5" />
+        <span className="font-semibold text-[#222222]">Counselling Simulator</span>
+      </nav>
+
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-glass">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
-            <Compass className="w-4 h-4 text-emerald-400" />
-            <span>WBJEE Counselling Intelligence</span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-ink-primary tracking-tight">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#dddddd]">
+        <div>
+          <h1
+            style={{
+              fontSize: 28,
+              fontWeight: 600,
+              color: '#222222',
+              letterSpacing: '-0.02em',
+            }}
+          >
             Interactive Choice-Filling Simulator
           </h1>
-          <p className="text-xs sm:text-sm text-ink-secondary max-w-2xl">
+          <p style={{ fontSize: 14, color: '#6a6a6a', marginTop: 4, maxWidth: 640 }}>
             Simulate your WBJEE e-counselling preference sequence using verified historical allotment archives. Order safe, target, and reach choices to minimize seat forfeiture risks.
           </p>
         </div>
@@ -163,17 +165,41 @@ export function CounsellingSimulatorClient() {
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-ink-primary bg-canvas-overlay border border-glass rounded-xl hover:bg-canvas-highlight transition-colors shadow-xs"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '8px 16px',
+                borderRadius: 9999,
+                background: '#ffffff',
+                border: '1px solid #dddddd',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                cursor: 'pointer',
+              }}
             >
-              <Printer className="w-4 h-4 text-ink-muted" />
+              <Printer style={{ width: 14, height: 14 }} />
               <span>Print Choice Sheet ({choiceList.length})</span>
             </button>
             <button
               type="button"
               onClick={() => setChoiceList([])}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-rose-300 bg-rose-950/30 border border-rose-500/30 rounded-xl hover:bg-rose-950/50 transition-colors"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '8px 16px',
+                borderRadius: 9999,
+                background: '#ffffff',
+                border: '1px solid #dddddd',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#E11D48',
+                cursor: 'pointer',
+              }}
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 style={{ width: 14, height: 14 }} />
               <span>Reset List</span>
             </button>
           </div>
@@ -181,22 +207,42 @@ export function CounsellingSimulatorClient() {
       </div>
 
       {/* Mandatory Statutory Notice */}
-      <div className="bg-amber-950/20 border border-amber-500/20 rounded-2xl p-4 sm:p-5 text-xs text-amber-200/90 space-y-1 shadow-xs">
-        <div className="flex items-center gap-2 font-bold text-amber-300">
-          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+      <div
+        style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          border: '1px solid #dddddd',
+          padding: '16px 20px',
+        }}
+        className="space-y-1 text-xs"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600, color: '#222222' }}>
+          <AlertTriangle style={{ width: 14, height: 14, color: '#F4B740', flexShrink: 0 }} />
           <span>Statutory Counselling Guidance Notice</span>
         </div>
-        <p className="leading-relaxed">
-          This simulator is an educational planning aid based on official archived closing ranks from WBJEEB centralized counselling rounds. Actual seat allotments depend on annual candidate preferences, reservation rosters, and seat matrices on <a href="https://wbjeeb.nic.in" target="_blank" rel="noopener noreferrer" className="underline font-bold text-amber-300">wbjeeb.nic.in</a>. No outcome is guaranteed.
+        <p style={{ color: '#6a6a6a', lineHeight: 1.5 }}>
+          This simulator is an educational planning aid based on official archived closing ranks from WBJEEB centralized counselling rounds. Actual seat allotments depend on annual candidate preferences, reservation rosters, and seat matrices on{' '}
+          <a href="https://wbjeeb.nic.in" target="_blank" rel="noopener noreferrer" style={{ color: '#102A56', textDecoration: 'underline' }}>
+            wbjeeb.nic.in
+          </a>
+          . No outcome is guaranteed.
         </p>
       </div>
 
       {/* Simulator Inputs Grid */}
-      <div className="bg-canvas-raised rounded-3xl border border-glass p-6 sm:p-8 shadow-elevated-card space-y-6 no-print">
+      <div
+        style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          border: '1px solid #dddddd',
+          padding: 24,
+        }}
+        className="space-y-6 no-print"
+      >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
           {/* GMR Input */}
           <div className="space-y-2 md:col-span-1">
-            <label htmlFor="simGmr" className="text-xs font-bold text-ink-primary block uppercase tracking-wider">
+            <label htmlFor="simGmr" style={{ fontSize: 12, fontWeight: 600, color: '#222222', display: 'block' }}>
               Your WBJEE GMR Rank
             </label>
             <input
@@ -206,20 +252,30 @@ export function CounsellingSimulatorClient() {
               max={100000}
               value={gmrRank}
               onChange={(e) => setGmrRank(Math.max(1, Number(e.target.value) || 1))}
-              className="w-full px-4 py-2.5 bg-canvas border border-glass rounded-xl text-base font-bold text-ink-primary font-mono focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                fontSize: 15,
+                fontWeight: 600,
+                color: '#222222',
+                outline: 'none',
+              }}
             />
-            <div className="flex items-center gap-1.5 text-[11px] text-ink-muted">
+            <div className="flex items-center gap-1.5 text-xs text-[#6a6a6a]">
               <span>Presets:</span>
-              <button type="button" onClick={() => setGmrRank(1500)} className="text-emerald-400 font-bold underline">1.5k</button>
-              <button type="button" onClick={() => setGmrRank(4500)} className="text-emerald-400 font-bold underline">4.5k</button>
-              <button type="button" onClick={() => setGmrRank(8500)} className="text-emerald-400 font-bold underline">8.5k</button>
-              <button type="button" onClick={() => setGmrRank(15000)} className="text-emerald-400 font-bold underline">15k</button>
+              <button type="button" onClick={() => setGmrRank(1500)} style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>1.5k</button>
+              <button type="button" onClick={() => setGmrRank(4500)} style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>4.5k</button>
+              <button type="button" onClick={() => setGmrRank(8500)} style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>8.5k</button>
+              <button type="button" onClick={() => setGmrRank(15000)} style={{ color: '#102A56', fontWeight: 600, textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>15k</button>
             </div>
           </div>
 
           {/* Preferred Branches */}
           <div className="space-y-2 md:col-span-2">
-            <span className="text-xs font-bold text-ink-primary block uppercase tracking-wider">
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#222222', display: 'block' }}>
               Target Branches (Select multiple)
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -237,11 +293,17 @@ export function CounsellingSimulatorClient() {
                     key={b.slug}
                     type="button"
                     onClick={() => toggleBranch(b.slug)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      active
-                        ? 'bg-emerald-500 text-slate-950 shadow-md font-extrabold'
-                        : 'bg-canvas border border-glass text-ink-secondary hover:text-ink-primary hover:bg-canvas-overlay'
-                    }`}
+                    style={{
+                      padding: '6px 14px',
+                      borderRadius: 9999,
+                      fontSize: 12,
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      border: active ? '1px solid #102A56' : '1px solid #dddddd',
+                      background: active ? '#102A56' : '#ffffff',
+                      color: active ? '#ffffff' : '#6a6a6a',
+                      transition: 'all 0.15s',
+                    }}
                   >
                     {b.label}
                   </button>
@@ -252,27 +314,38 @@ export function CounsellingSimulatorClient() {
 
           {/* Max Annual Fee Filter */}
           <div className="space-y-2 md:col-span-1">
-            <label htmlFor="feeBudget" className="text-xs font-bold text-ink-primary block uppercase tracking-wider">
+            <label htmlFor="feeBudget" style={{ fontSize: 12, fontWeight: 600, color: '#222222', display: 'block' }}>
               Annual Fee Budget
             </label>
             <select
               id="feeBudget"
               value={maxAnnualFee ?? 'any'}
               onChange={(e) => setMaxAnnualFee(e.target.value === 'any' ? null : Number(e.target.value))}
-              className="w-full px-3 py-2.5 bg-canvas border border-glass rounded-xl text-xs sm:text-sm font-semibold text-ink-primary focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                outline: 'none',
+                background: '#ffffff',
+              }}
             >
-              <option value="any" className="bg-slate-900 text-white">Any Fee Band</option>
-              <option value="30000" className="bg-slate-900 text-white">Subsidized (&lt; ₹30,000/yr)</option>
-              <option value="60000" className="bg-slate-900 text-white">Moderate (&lt; ₹60,000/yr)</option>
-              <option value="130000" className="bg-slate-900 text-white">Private Standard (&lt; ₹1.3 Lakh/yr)</option>
+              <option value="any">Any Fee Band</option>
+              <option value="30000">Subsidized (&lt; ₹30,000/yr)</option>
+              <option value="60000">Moderate (&lt; ₹60,000/yr)</option>
+              <option value="130000">Private Standard (&lt; ₹1.3 Lakh/yr)</option>
             </select>
           </div>
         </div>
 
         {/* Categories Selector */}
-        <div className="pt-4 border-t border-glass flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="pt-4 border-t border-[#ebebeb] flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="font-semibold text-ink-secondary">Institution Categories:</span>
+            <span style={{ color: '#6a6a6a', fontWeight: 500 }}>Categories:</span>
             {[
               'State University Faculty',
               'Government Engineering College',
@@ -285,11 +358,17 @@ export function CounsellingSimulatorClient() {
                   key={cat}
                   type="button"
                   onClick={() => toggleCategory(cat)}
-                  className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all ${
-                    active
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                      : 'bg-canvas border border-glass text-ink-muted hover:text-ink-secondary'
-                  }`}
+                  style={{
+                    padding: '4px 10px',
+                    borderRadius: 9999,
+                    fontSize: 11,
+                    fontWeight: 500,
+                    cursor: 'pointer',
+                    border: active ? '1px solid #102A56' : '1px solid #dddddd',
+                    background: active ? '#f7f7f7' : '#ffffff',
+                    color: active ? '#102A56' : '#6a6a6a',
+                    transition: 'all 0.15s',
+                  }}
                 >
                   {cat}
                 </button>
@@ -300,48 +379,89 @@ export function CounsellingSimulatorClient() {
           <button
             type="button"
             onClick={autoGenerateBalancedList}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 rounded-lg transition-all shadow-md font-heading"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              padding: '8px 16px',
+              borderRadius: 8,
+              background: '#102A56',
+              color: '#ffffff',
+              fontSize: 12,
+              fontWeight: 600,
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
-            <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+            <Sparkles style={{ width: 14, height: 14 }} />
             <span>Auto-Generate 3-Tier Sequence</span>
           </button>
         </div>
       </div>
 
-      {/* Main 2-Column Interface: Choice Basket (Left/Right) & Available Matches */}
+      {/* Main 2-Column Interface: Choice Basket & Recommendations */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Personalized Choice Order */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-canvas-raised rounded-3xl border border-glass p-5 sm:p-6 shadow-elevated-card space-y-4">
-            <div className="flex items-center justify-between border-b border-glass pb-3">
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              padding: 20,
+            }}
+            className="space-y-4"
+          >
+            <div className="flex items-center justify-between border-b border-[#ebebeb] pb-3">
               <div>
-                <h2 className="font-heading font-bold text-base text-ink-primary flex items-center gap-2">
-                  <ListOrdered className="w-4 h-4 text-emerald-400" />
+                <h2 style={{ fontSize: 16, fontWeight: 600, color: '#222222', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <ListOrdered style={{ width: 18, height: 18, color: '#102A56' }} />
                   <span>My Preferred Choice List</span>
                 </h2>
-                <p className="text-[11px] text-ink-muted">
+                <p style={{ fontSize: 12, color: '#6a6a6a' }}>
                   {choiceList.length} choices locked · Sequential priority order
                 </p>
               </div>
 
               {choiceList.length > 0 && (
-                <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  Ready for wbjeeb.nic.in
+                <span
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 600,
+                    padding: '2px 8px',
+                    borderRadius: 9999,
+                    background: '#E6F6F2',
+                    color: '#0F8B70',
+                    border: '1px solid #A7E3D4',
+                  }}
+                >
+                  Ready
                 </span>
               )}
             </div>
 
             {choiceList.length === 0 ? (
-              <div className="text-center py-10 px-4 space-y-3">
-                <div className="w-12 h-12 rounded-xl bg-canvas-overlay text-ink-muted mx-auto flex items-center justify-center">
-                  <ListOrdered className="w-6 h-6" />
+              <div style={{ textAlign: 'center', padding: '36px 16px' }} className="space-y-2">
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 9999,
+                    background: '#f7f7f7',
+                    border: '1px solid #dddddd',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto',
+                    color: '#6a6a6a',
+                  }}
+                >
+                  <ListOrdered style={{ width: 22, height: 22 }} />
                 </div>
-                <div className="space-y-1">
-                  <p className="text-sm font-bold text-ink-primary">Your choice list is empty</p>
-                  <p className="text-xs text-ink-muted max-w-xs mx-auto">
-                    Click &ldquo;+ Add to Choice List&rdquo; on the recommended programs, or click &ldquo;Auto-Generate&rdquo; above.
-                  </p>
-                </div>
+                <p style={{ fontSize: 14, fontWeight: 600, color: '#222222' }}>Your choice list is empty</p>
+                <p style={{ fontSize: 12, color: '#6a6a6a', maxWidth: 280, margin: '0 auto' }}>
+                  Click &ldquo;+ Add&rdquo; on recommended programs, or click &ldquo;Auto-Generate&rdquo; above.
+                </p>
               </div>
             ) : (
               <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
@@ -349,17 +469,43 @@ export function CounsellingSimulatorClient() {
                   return (
                     <div
                       key={`${item.collegeSlug}-${item.branchSlug}-${idx}`}
-                      className="p-3 rounded-xl border border-glass bg-canvas hover:bg-canvas-overlay transition-all flex items-center justify-between gap-2 text-xs"
+                      style={{
+                        padding: 12,
+                        borderRadius: 10,
+                        border: '1px solid #dddddd',
+                        background: '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 8,
+                        fontSize: 13,
+                      }}
                     >
                       <div className="flex items-center gap-2.5 truncate">
-                        <span className="w-6 h-6 rounded-md bg-canvas-highlight text-emerald-400 font-mono font-bold text-xs flex items-center justify-center shrink-0 border border-glass">
+                        <span
+                          style={{
+                            width: 24,
+                            height: 24,
+                            borderRadius: 6,
+                            background: '#f7f7f7',
+                            border: '1px solid #dddddd',
+                            fontFamily: 'monospace',
+                            fontWeight: 600,
+                            fontSize: 11,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#102A56',
+                            flexShrink: 0,
+                          }}
+                        >
                           {idx + 1}
                         </span>
                         <div className="truncate">
-                          <span className="font-bold text-ink-primary block truncate">
+                          <span style={{ fontWeight: 600, color: '#222222', display: 'block' }} className="truncate">
                             {item.collegeShortName}
                           </span>
-                          <span className="text-[11px] text-ink-secondary block truncate">
+                          <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block' }} className="truncate">
                             {item.branchName} · Code {item.wbjeebCode}
                           </span>
                         </div>
@@ -370,27 +516,44 @@ export function CounsellingSimulatorClient() {
                           type="button"
                           onClick={() => moveUp(idx)}
                           disabled={idx === 0}
-                          className="p-1 text-ink-muted hover:text-ink-primary disabled:opacity-30"
-                          title="Move priority up"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: '#6a6a6a',
+                            cursor: idx === 0 ? 'not-allowed' : 'pointer',
+                            opacity: idx === 0 ? 0.3 : 1,
+                          }}
+                          title="Move up"
                         >
-                          <ChevronUp className="w-4 h-4" />
+                          <ChevronUp style={{ width: 16, height: 16 }} />
                         </button>
                         <button
                           type="button"
                           onClick={() => moveDown(idx)}
                           disabled={idx === choiceList.length - 1}
-                          className="p-1 text-ink-muted hover:text-ink-primary disabled:opacity-30"
-                          title="Move priority down"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: '#6a6a6a',
+                            cursor: idx === choiceList.length - 1 ? 'not-allowed' : 'pointer',
+                            opacity: idx === choiceList.length - 1 ? 0.3 : 1,
+                          }}
+                          title="Move down"
                         >
-                          <ChevronDown className="w-4 h-4" />
+                          <ChevronDown style={{ width: 16, height: 16 }} />
                         </button>
                         <button
                           type="button"
                           onClick={() => removeChoice(idx)}
-                          className="p-1 text-ink-muted hover:text-rose-400"
-                          title="Remove from choices"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: '#E11D48',
+                            cursor: 'pointer',
+                          }}
+                          title="Remove"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 style={{ width: 14, height: 14 }} />
                         </button>
                       </div>
                     </div>
@@ -400,9 +563,9 @@ export function CounsellingSimulatorClient() {
             )}
 
             {choiceList.length > 0 && (
-              <div className="pt-3 border-t border-glass flex items-center justify-between text-[11px] text-ink-muted">
+              <div className="pt-3 border-t border-[#ebebeb] flex items-center justify-between text-xs text-[#6a6a6a]">
                 <span>Total: {choiceList.length} Option(s)</span>
-                <span className="font-semibold text-emerald-400">
+                <span style={{ fontWeight: 600, color: '#102A56' }}>
                   {choiceList.filter((c) => c.tier === 'SAFE').length} Safe · {choiceList.filter((c) => c.tier === 'TARGET').length} Target · {choiceList.filter((c) => c.tier === 'AMBITIOUS').length} Ambitious
                 </span>
               </div>
@@ -410,23 +573,31 @@ export function CounsellingSimulatorClient() {
           </div>
         </div>
 
-        {/* Right Column: Recommended Programs Grouped by Strategic Tier */}
-        <div className="lg:col-span-7 space-y-6">
-          {/* Ambitious / Upgrade Tier */}
-          <div className="bg-canvas-raised rounded-3xl border border-glass p-5 sm:p-6 shadow-elevated-card space-y-3">
-            <div className="flex items-center justify-between border-b border-glass pb-2.5">
+        {/* Right Column: Recommendations Grouped by Tier */}
+        <div className="lg:col-span-7 space-y-4">
+          {/* Ambitious Tier */}
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              padding: 20,
+            }}
+            className="space-y-3"
+          >
+            <div className="flex items-center justify-between border-b border-[#ebebeb] pb-2.5">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-amber-400 shadow-glow-spark" />
-                <h3 className="font-heading font-bold text-sm sm:text-base text-ink-primary">
-                  Tier 1: Ambitious / Reach Preferences ({ambitiousOptions.length})
+                <span style={{ width: 8, height: 8, borderRadius: 9999, background: '#F4B740', display: 'inline-block' }} />
+                <h3 style={{ fontSize: 15, fontWeight: 600, color: '#222222' }}>
+                  Ambitious Choices ({ambitiousOptions.length})
                 </h3>
               </div>
-              <span className="text-[10px] font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded">
-                Round 2 / Mop-up Target
+              <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 9999, background: '#FEF8EB', color: '#B45309', border: '1px solid #FDE4B0' }}>
+                Reach Target
               </span>
             </div>
-            <p className="text-[11px] text-ink-secondary leading-relaxed">
-              Historical closing ranks are higher than GMR {gmrRank.toLocaleString('en-IN')}. Prioritize these in your top 1–5 choices so that if vacancy seats open up during centralized upgradation, you automatically qualify.
+            <p style={{ fontSize: 12, color: '#6a6a6a', lineHeight: 1.5 }}>
+              Closing ranks are higher than GMR #{gmrRank.toLocaleString('en-IN')}. Prioritize in your top choices for potential seat vacancy upgradation.
             </p>
 
             <div className="space-y-2 pt-1">
@@ -437,14 +608,23 @@ export function CounsellingSimulatorClient() {
                 return (
                   <div
                     key={`amb-${i}`}
-                    className="p-3 rounded-xl border border-glass flex items-center justify-between gap-3 text-xs bg-canvas hover:bg-canvas-overlay transition-colors"
+                    style={{
+                      padding: 12,
+                      borderRadius: 10,
+                      border: '1px solid #dddddd',
+                      background: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: 12,
+                    }}
                   >
                     <div className="truncate">
-                      <span className="font-bold text-ink-primary block truncate">
+                      <span style={{ fontWeight: 600, color: '#222222', fontSize: 13, display: 'block' }} className="truncate">
                         {opt.collegeShortName} · {opt.branchName}
                       </span>
-                      <span className="text-[11px] text-ink-muted block">
-                        Code: {opt.wbjeebCode} · R1 Cutoff: GMR ~{opt.approxClosingRankRound1.toLocaleString('en-IN')}
+                      <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block' }}>
+                        Code: {opt.wbjeebCode} · R1 Cutoff: ~#{opt.approxClosingRankRound1.toLocaleString('en-IN')}
                       </span>
                     </div>
 
@@ -452,11 +632,17 @@ export function CounsellingSimulatorClient() {
                       type="button"
                       onClick={() => addChoice(opt)}
                       disabled={added}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors ${
-                        added
-                          ? 'bg-canvas-overlay text-ink-muted cursor-default border border-glass'
-                          : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30'
-                      }`}
+                      style={{
+                        padding: '4px 12px',
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 500,
+                        border: added ? '1px solid #dddddd' : '1px solid #102A56',
+                        background: added ? '#f7f7f7' : '#ffffff',
+                        color: added ? '#929292' : '#102A56',
+                        cursor: added ? 'default' : 'pointer',
+                        flexShrink: 0,
+                      }}
                     >
                       {added ? 'Added' : '+ Add'}
                     </button>
@@ -466,21 +652,29 @@ export function CounsellingSimulatorClient() {
             </div>
           </div>
 
-          {/* Target / Realistic Tier */}
-          <div className="bg-canvas-raised rounded-3xl border border-glass p-5 sm:p-6 shadow-elevated-card space-y-3">
-            <div className="flex items-center justify-between border-b border-glass pb-2.5">
+          {/* Realistic Target Tier */}
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              padding: 20,
+            }}
+            className="space-y-3"
+          >
+            <div className="flex items-center justify-between border-b border-[#ebebeb] pb-2.5">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-cyan-400 shadow-glow-trust" />
-                <h3 className="font-heading font-bold text-sm sm:text-base text-ink-primary">
-                  Tier 2: Realistic Target Choices ({targetOptions.length})
+                <span style={{ width: 8, height: 8, borderRadius: 9999, background: '#1455B8', display: 'inline-block' }} />
+                <h3 style={{ fontSize: 15, fontWeight: 600, color: '#222222' }}>
+                  Realistic Target Choices ({targetOptions.length})
                 </h3>
               </div>
-              <span className="text-[10px] font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 px-2 py-0.5 rounded">
-                Prime Probability
+              <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 9999, background: '#EAF2FF', color: '#1455B8', border: '1px solid #BFDBFE' }}>
+                High Probability
               </span>
             </div>
-            <p className="text-[11px] text-ink-secondary leading-relaxed">
-              Your rank closely matches historical closing ranks. These programs represent high probability of allotment in Round 1 or Round 2.
+            <p style={{ fontSize: 12, color: '#6a6a6a', lineHeight: 1.5 }}>
+              Your rank closely matches historical closing ranks. These programs represent high probability of allotment.
             </p>
 
             <div className="space-y-2 pt-1">
@@ -491,14 +685,23 @@ export function CounsellingSimulatorClient() {
                 return (
                   <div
                     key={`tgt-${i}`}
-                    className="p-3 rounded-xl border border-glass flex items-center justify-between gap-3 text-xs bg-canvas hover:bg-canvas-overlay transition-colors"
+                    style={{
+                      padding: 12,
+                      borderRadius: 10,
+                      border: '1px solid #dddddd',
+                      background: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: 12,
+                    }}
                   >
                     <div className="truncate">
-                      <span className="font-bold text-ink-primary block truncate">
+                      <span style={{ fontWeight: 600, color: '#222222', fontSize: 13, display: 'block' }} className="truncate">
                         {opt.collegeShortName} · {opt.branchName}
                       </span>
-                      <span className="text-[11px] text-ink-muted block">
-                        Code: {opt.wbjeebCode} · Final Cutoff: GMR ~{opt.approxClosingRankFinalRound.toLocaleString('en-IN')}
+                      <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block' }}>
+                        Code: {opt.wbjeebCode} · Final Cutoff: ~#{opt.approxClosingRankFinalRound.toLocaleString('en-IN')}
                       </span>
                     </div>
 
@@ -506,11 +709,17 @@ export function CounsellingSimulatorClient() {
                       type="button"
                       onClick={() => addChoice(opt)}
                       disabled={added}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors ${
-                        added
-                          ? 'bg-canvas-overlay text-ink-muted cursor-default border border-glass'
-                          : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30'
-                      }`}
+                      style={{
+                        padding: '4px 12px',
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 500,
+                        border: added ? '1px solid #dddddd' : '1px solid #102A56',
+                        background: added ? '#f7f7f7' : '#ffffff',
+                        color: added ? '#929292' : '#102A56',
+                        cursor: added ? 'default' : 'pointer',
+                        flexShrink: 0,
+                      }}
                     >
                       {added ? 'Added' : '+ Add'}
                     </button>
@@ -520,21 +729,29 @@ export function CounsellingSimulatorClient() {
             </div>
           </div>
 
-          {/* Safe / Anchor Tier */}
-          <div className="bg-canvas-raised rounded-3xl border border-glass p-5 sm:p-6 shadow-elevated-card space-y-3">
-            <div className="flex items-center justify-between border-b border-glass pb-2.5">
+          {/* Safe Tier */}
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              padding: 20,
+            }}
+            className="space-y-3"
+          >
+            <div className="flex items-center justify-between border-b border-[#ebebeb] pb-2.5">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-emerald-400 shadow-glow-trust" />
-                <h3 className="font-heading font-bold text-sm sm:text-base text-ink-primary">
-                  Tier 3: Safe Anchor Choices ({safeOptions.length})
+                <span style={{ width: 8, height: 8, borderRadius: 9999, background: '#0F8B70', display: 'inline-block' }} />
+                <h3 style={{ fontSize: 15, fontWeight: 600, color: '#222222' }}>
+                  Safe Anchor Choices ({safeOptions.length})
                 </h3>
               </div>
-              <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">
-                High Security Allotment
+              <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 9999, background: '#E6F6F2', color: '#0F8B70', border: '1px solid #A7E3D4' }}>
+                Safe Anchor
               </span>
             </div>
-            <p className="text-[11px] text-ink-secondary leading-relaxed">
-              Your rank is comfortably ahead of Round 1 closing ranks. Add at least 3–4 safe anchors near the bottom of your preference list to eliminate any chance of remaining unallotted.
+            <p style={{ fontSize: 12, color: '#6a6a6a', lineHeight: 1.5 }}>
+              Your rank is comfortably ahead of closing ranks. Add 3–4 safe anchors to eliminate risk of remaining unallotted.
             </p>
 
             <div className="space-y-2 pt-1">
@@ -545,14 +762,23 @@ export function CounsellingSimulatorClient() {
                 return (
                   <div
                     key={`saf-${i}`}
-                    className="p-3 rounded-xl border border-glass flex items-center justify-between gap-3 text-xs bg-canvas hover:bg-canvas-overlay transition-colors"
+                    style={{
+                      padding: 12,
+                      borderRadius: 10,
+                      border: '1px solid #dddddd',
+                      background: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: 12,
+                    }}
                   >
                     <div className="truncate">
-                      <span className="font-bold text-ink-primary block truncate">
+                      <span style={{ fontWeight: 600, color: '#222222', fontSize: 13, display: 'block' }} className="truncate">
                         {opt.collegeShortName} · {opt.branchName}
                       </span>
-                      <span className="text-[11px] text-ink-muted block">
-                        Code: {opt.wbjeebCode} · R1 Cutoff: GMR ~{opt.approxClosingRankRound1.toLocaleString('en-IN')}
+                      <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block' }}>
+                        Code: {opt.wbjeebCode} · R1 Cutoff: ~#{opt.approxClosingRankRound1.toLocaleString('en-IN')}
                       </span>
                     </div>
 
@@ -560,11 +786,17 @@ export function CounsellingSimulatorClient() {
                       type="button"
                       onClick={() => addChoice(opt)}
                       disabled={added}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors ${
-                        added
-                          ? 'bg-canvas-overlay text-ink-muted cursor-default border border-glass'
-                          : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30'
-                      }`}
+                      style={{
+                        padding: '4px 12px',
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 500,
+                        border: added ? '1px solid #dddddd' : '1px solid #102A56',
+                        background: added ? '#f7f7f7' : '#ffffff',
+                        color: added ? '#929292' : '#102A56',
+                        cursor: added ? 'default' : 'pointer',
+                        flexShrink: 0,
+                      }}
                     >
                       {added ? 'Added' : '+ Add'}
                     </button>
@@ -578,3 +810,5 @@ export function CounsellingSimulatorClient() {
     </div>
   );
 }
+
+export default CounsellingSimulatorClient;

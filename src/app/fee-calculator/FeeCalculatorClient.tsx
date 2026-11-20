@@ -6,10 +6,8 @@ import {
   Calculator,
   ChevronRight,
   Info,
-  CheckCircle2,
   Building2,
   ArrowRight,
-  Sparkles,
 } from 'lucide-react';
 import { VERIFIED_COLLEGES } from '@/data/colleges';
 
@@ -46,44 +44,70 @@ export function FeeCalculatorClient() {
   return (
     <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* 1. Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#64748B] mb-4">
-        <Link href="/" className="hover:text-[#1455B8] transition-colors">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#6a6a6a] mb-4">
+        <Link href="/" className="hover:text-[#102A56] transition-colors">
           Home
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <span className="font-semibold text-[#102A56]">Fee Calculator</span>
+        <span className="font-semibold text-[#222222]">Fee Calculator</span>
       </nav>
 
       {/* 2. Page Header */}
       <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#102A56] tracking-tight">
+        <h1
+          style={{
+            fontSize: 28,
+            fontWeight: 600,
+            color: '#222222',
+            letterSpacing: '-0.02em',
+          }}
+        >
           Engineering Fee Calculator
         </h1>
-        <p className="text-sm sm:text-base text-[#64748B] mt-1.5">
-          Estimate your total education cost, including tuition, hostel and other expenses.
+        <p style={{ fontSize: 14, color: '#6a6a6a', marginTop: 4 }}>
+          Estimate your total education investment across 4 years, including verified tuition, hostel, and semester costs.
         </p>
       </div>
 
-      {/* 3. Two-Column Calculator Layout (Mockup 6 baseline) */}
+      {/* 3. Two-Column Calculator Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Form Inputs Card */}
-        <div className="lg:col-span-6 bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-6 sm:p-8 space-y-5">
-          <div className="flex items-center gap-2.5 pb-4 border-b border-[#F1F5F9]">
-            <Building2 className="w-5 h-5 text-[#1455B8]" />
-            <h2 className="font-heading font-bold text-lg text-[#102A56]">
+        <div
+          style={{
+            background: '#ffffff',
+            borderRadius: 14,
+            border: '1px solid #dddddd',
+            padding: 28,
+          }}
+          className="lg:col-span-6 space-y-5"
+        >
+          <div className="flex items-center gap-2.5 pb-4 border-b border-[#ebebeb]">
+            <Building2 style={{ width: 20, height: 20, color: '#102A56' }} />
+            <h2 style={{ fontSize: 16, fontWeight: 600, color: '#222222' }}>
               Select Program &amp; Preferences
             </h2>
           </div>
 
           {/* Input 1: Select College */}
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-[#102A56]">
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#222222' }}>
               Select College
             </label>
             <select
               value={selectedSlug}
               onChange={(e) => setSelectedSlug(e.target.value)}
-              className="w-full h-12 px-3.5 rounded-xl border border-[#CBD5E1] bg-[#FAFBFD] focus:bg-white text-sm font-semibold text-[#102A56] focus:border-[#1455B8] transition-colors"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#222222',
+                outline: 'none',
+              }}
             >
               {VERIFIED_COLLEGES.map((c) => (
                 <option key={c.id} value={c.slug}>
@@ -95,13 +119,23 @@ export function FeeCalculatorClient() {
 
           {/* Input 2: Course */}
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-[#102A56]">
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#222222' }}>
               Course
             </label>
             <select
               value={course}
               onChange={(e) => setCourse(e.target.value)}
-              className="w-full h-12 px-3.5 rounded-xl border border-[#CBD5E1] bg-[#FAFBFD] focus:bg-white text-sm font-medium text-[#102A56] focus:border-[#1455B8]"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                fontSize: 13,
+                color: '#222222',
+                outline: 'none',
+              }}
             >
               <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
               <option value="B.Tech Lateral">B.Tech Lateral Entry (JELET, 3 Years)</option>
@@ -110,13 +144,23 @@ export function FeeCalculatorClient() {
 
           {/* Input 3: Duration */}
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-[#102A56]">
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#222222' }}>
               Course Duration
             </label>
             <select
               value={durationYears}
               onChange={(e) => setDurationYears(Number(e.target.value))}
-              className="w-full h-12 px-3.5 rounded-xl border border-[#CBD5E1] bg-[#FAFBFD] focus:bg-white text-sm font-medium text-[#102A56] focus:border-[#1455B8]"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                fontSize: 13,
+                color: '#222222',
+                outline: 'none',
+              }}
             >
               <option value={4}>4 Years (Standard 8 Semesters)</option>
               <option value={3}>3 Years (Lateral Entry 6 Semesters)</option>
@@ -125,13 +169,23 @@ export function FeeCalculatorClient() {
 
           {/* Input 4: Hostel & Mess */}
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-[#102A56]">
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#222222' }}>
               Campus Hostel &amp; Mess Accommodation
             </label>
             <select
               value={includeHostel ? 'yes' : 'no'}
               onChange={(e) => setIncludeHostel(e.target.value === 'yes')}
-              className="w-full h-12 px-3.5 rounded-xl border border-[#CBD5E1] bg-[#FAFBFD] focus:bg-white text-sm font-medium text-[#102A56] focus:border-[#1455B8]"
+              style={{
+                width: '100%',
+                height: 44,
+                padding: '0 12px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                fontSize: 13,
+                color: '#222222',
+                outline: 'none',
+              }}
             >
               <option value="yes">Yes (Include Hostel &amp; Food Costs)</option>
               <option value="no">No (Day Scholar / Commuting From Home)</option>
@@ -141,10 +195,10 @@ export function FeeCalculatorClient() {
           {/* Input 5: Books & Contingencies */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs">
-              <label className="font-semibold text-[#102A56]">
+              <label style={{ fontWeight: 600, color: '#222222' }}>
                 Books, Exam Fees &amp; Supplies (per year)
               </label>
-              <span className="font-mono font-bold text-[#1455B8]">
+              <span style={{ fontFamily: 'monospace', fontWeight: 600, color: '#102A56' }}>
                 ₹{otherExpenses.toLocaleString('en-IN')}
               </span>
             </div>
@@ -155,7 +209,7 @@ export function FeeCalculatorClient() {
               step="5000"
               value={otherExpenses}
               onChange={(e) => setOtherExpenses(Number(e.target.value))}
-              className="w-full accent-[#1455B8] cursor-pointer"
+              className="w-full accent-[#102A56] cursor-pointer"
             />
           </div>
 
@@ -165,25 +219,59 @@ export function FeeCalculatorClient() {
               onClick={() => {
                 window.scrollTo({ top: 350, behavior: 'smooth' });
               }}
-              className="w-full h-12 rounded-xl bg-[#1455B8] hover:bg-[#0E4496] text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+              style={{
+                width: '100%',
+                height: 48,
+                borderRadius: 8,
+                background: '#102A56',
+                color: '#ffffff',
+                fontSize: 14,
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                border: 'none',
+                cursor: 'pointer',
+              }}
             >
               <span>Calculate Total Budget</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight style={{ width: 16, height: 16 }} />
             </button>
           </div>
         </div>
 
-        {/* Right Column: Estimated Cost Breakdown Card (Mockup 6 baseline) */}
-        <div className="lg:col-span-6 bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-6 sm:p-8 space-y-6">
-          <div className="flex items-center gap-3 pb-4 border-b border-[#F1F5F9]">
-            <div className="w-10 h-10 rounded-xl bg-[#EAF2FF] text-[#1455B8] flex items-center justify-center">
-              <Calculator className="w-5 h-5" />
+        {/* Right Column: Estimated Cost Breakdown Card */}
+        <div
+          style={{
+            background: '#ffffff',
+            borderRadius: 14,
+            border: '1px solid #dddddd',
+            padding: 28,
+          }}
+          className="lg:col-span-6 space-y-6"
+        >
+          <div className="flex items-center gap-3 pb-4 border-b border-[#ebebeb]">
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 9999,
+                background: '#f7f7f7',
+                border: '1px solid #dddddd',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#102A56',
+              }}
+            >
+              <Calculator style={{ width: 20, height: 20 }} />
             </div>
             <div>
-              <h2 className="font-heading font-bold text-lg text-[#102A56]">
+              <h2 style={{ fontSize: 16, fontWeight: 600, color: '#222222' }}>
                 Estimated Cost Breakdown
               </h2>
-              <span className="text-xs text-[#64748B]">
+              <span style={{ fontSize: 12, color: '#6a6a6a' }}>
                 {selectedCollege.name} ({durationYears} Years)
               </span>
             </div>
@@ -192,64 +280,84 @@ export function FeeCalculatorClient() {
           {/* Breakdown Items */}
           <div className="space-y-3.5 text-xs sm:text-sm">
             {/* Tuition */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
-              <span className="text-[#64748B] font-medium">
+            <div className="flex items-center justify-between pb-3 border-b border-[#ebebeb]">
+              <span style={{ color: '#6a6a6a', fontWeight: 500 }}>
                 Tuition Fee (per year)
               </span>
-              <span className="font-heading font-bold text-base text-[#1455B8]">
+              <span style={{ fontWeight: 600, fontSize: 16, color: '#222222' }}>
                 ₹{tuitionPerYear.toLocaleString('en-IN')}
               </span>
             </div>
 
             {/* Hostel */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
-              <span className="text-[#64748B] font-medium">
+            <div className="flex items-center justify-between pb-3 border-b border-[#ebebeb]">
+              <span style={{ color: '#6a6a6a', fontWeight: 500 }}>
                 Hostel &amp; Mess (per year)
               </span>
-              <span className="font-heading font-bold text-base text-[#1455B8]">
+              <span style={{ fontWeight: 600, fontSize: 16, color: '#222222' }}>
                 {includeHostel ? `₹${hostelPerYear.toLocaleString('en-IN')}` : '₹0 (Day Scholar)'}
               </span>
             </div>
 
             {/* Other Expenses */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
-              <span className="text-[#64748B] font-medium">
+            <div className="flex items-center justify-between pb-3 border-b border-[#ebebeb]">
+              <span style={{ color: '#6a6a6a', fontWeight: 500 }}>
                 Other Expenses (per year)
               </span>
-              <span className="font-heading font-bold text-base text-[#1455B8]">
+              <span style={{ fontWeight: 600, fontSize: 16, color: '#222222' }}>
                 ₹{otherExpenses.toLocaleString('en-IN')}
               </span>
             </div>
 
-            {/* Total Per Year Highlight Box */}
-            <div className="p-4 rounded-xl bg-[#FAFBFD] border border-[#E2E8F0] flex items-center justify-between">
-              <span className="font-bold text-[#102A56] text-sm">
+            {/* Total Per Year */}
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 10,
+                background: '#f7f7f7',
+                border: '1px solid #dddddd',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span style={{ fontWeight: 600, color: '#222222', fontSize: 14 }}>
                 Total per year
               </span>
-              <span className="font-heading font-extrabold text-xl text-[#1455B8]">
+              <span style={{ fontWeight: 700, fontSize: 18, color: '#102A56' }}>
                 ₹{totalPerYear.toLocaleString('en-IN')}
               </span>
             </div>
 
-            {/* Total 4-Year Course Cost (Amber accent highlight) */}
-            <div className="p-5 rounded-xl bg-[#FEF8EB] border border-[#FDE4B0] flex items-center justify-between">
+            {/* Total 4-Year Course Cost */}
+            <div
+              style={{
+                padding: 20,
+                borderRadius: 10,
+                background: '#ffffff',
+                border: '2px solid #102A56',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
               <div>
-                <span className="text-xs font-bold text-[#B45309] block uppercase tracking-wider">
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#102A56', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   Total for {durationYears} years
                 </span>
-                <span className="text-[11px] text-[#B45309]/80">
+                <span style={{ fontSize: 11, color: '#6a6a6a' }}>
                   Comprehensive education investment
                 </span>
               </div>
-              <span className="font-heading font-extrabold text-2xl sm:text-3xl text-[#102A56]">
+              <span style={{ fontWeight: 700, fontSize: 26, color: '#102A56' }}>
                 ₹{totalCourseCost.toLocaleString('en-IN')}
               </span>
             </div>
           </div>
 
-          {/* Disclaimer Note matching Mockup 6 */}
-          <div className="pt-2 flex items-start gap-2 text-[11px] text-[#64748B] leading-relaxed">
-            <Info className="w-4 h-4 text-[#1455B8] shrink-0 mt-0.5" />
+          {/* Disclaimer Note */}
+          <div className="pt-2 flex items-start gap-2 text-xs text-[#6a6a6a] leading-relaxed">
+            <Info style={{ width: 16, height: 16, color: '#102A56', flexShrink: 0, marginTop: 2 }} />
             <p>
               This is an estimated cost based on verified annual tuition circulars. Hostel and mess expenses vary depending on room type and mess plans. Please verify the latest schedule with the official college administration.
             </p>
@@ -258,10 +366,26 @@ export function FeeCalculatorClient() {
           <div className="pt-2">
             <Link
               href={`/colleges/${selectedCollege.slug}`}
-              className="w-full py-2.5 rounded-xl border border-[#CBD5E1] text-[#102A56] hover:bg-[#FAFBFD] text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 6,
+                width: '100%',
+                padding: '10px 16px',
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                color: '#222222',
+                fontSize: 13,
+                fontWeight: 500,
+                transition: 'all 0.15s',
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#f7f7f7')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#ffffff')}
             >
               <span>View Verified {selectedCollege.shortName} Fee Circulars</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight style={{ width: 14, height: 14 }} />
             </Link>
           </div>
         </div>

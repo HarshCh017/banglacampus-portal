@@ -10,16 +10,11 @@ import {
   ChevronRight,
   Check,
   Plus,
-  Sparkles,
   Building2,
-  Headphones,
-  Phone,
-  ShieldCheck,
 } from 'lucide-react';
 import { VERIFIED_COLLEGES } from '@/data/colleges';
 import { useComparison } from '@/context/ComparisonContext';
 
-// High-resolution authentic architectural campus photography mapping
 const FEATURED_IMAGES: Record<string, string> = {
   'jadavpur-university-engineering': '/images/colleges/jadavpur-university-engineering-2.jpg',
   'kalyani-government-engineering-college': '/images/colleges/kalyani-government-engineering-college.jpg',
@@ -33,7 +28,6 @@ export function FeaturedColleges() {
   const { isInCompare, addToCompare, removeFromCompare } = useComparison();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // 6 premier diverse institutions representing State, Govt, and Autonomous Private
   const featured = VERIFIED_COLLEGES.filter((c) =>
     [
       'jadavpur-university-engineering',
@@ -93,61 +87,83 @@ export function FeaturedColleges() {
   };
 
   return (
-    <section id="colleges" className="relative overflow-hidden py-10 sm:py-14 bg-gradient-to-b from-[#071538] via-[#0A1E4A] to-[#0D2255] border-t border-white/10">
-      {/* 1. Ambient Glassmorphism Lighting & Atmospheric Glow Orbs */}
-      <div className="absolute -top-32 right-1/4 w-[520px] h-[520px] bg-gradient-to-br from-blue-500/20 via-indigo-400/15 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-28 left-1/4 w-[460px] h-[460px] bg-gradient-to-tr from-cyan-500/15 via-emerald-400/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
-
-      <div className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header with Pill, Typography, and Glass Navigation Controls */}
+    <section
+      id="colleges"
+      style={{ paddingTop: 64, paddingBottom: 64, background: '#ffffff', borderTop: '1px solid #dddddd' }}
+    >
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-5">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs font-bold tracking-wide uppercase shadow-xs mb-2.5 backdrop-blur-sm">
-              <Sparkles className="w-3.5 h-3.5 text-blue-300" />
-              <span>Top Picks for WBJEE 2027</span>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <span className="w-2 h-7 bg-gradient-to-b from-blue-400 to-cyan-400 rounded-full shadow-xs"></span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-white tracking-tight">
-                Featured Colleges
-              </h2>
-            </div>
-            
-            <p className="text-xs sm:text-sm text-slate-300 mt-2 max-w-xl font-medium">
-              Top engineering colleges in West Bengal, based on reputation, academics and placements.
+            <h2
+              style={{
+                fontSize: 22,
+                fontWeight: 500,
+                color: '#222222',
+                lineHeight: 1.3,
+                marginBottom: 6,
+              }}
+            >
+              Featured Engineering Colleges
+            </h2>
+            <p style={{ fontSize: 14, color: '#6a6a6a', maxWidth: 480 }}>
+              Verified B.Tech institutions in West Bengal — ranked by academic standards, cutoffs, and audited fee schedules.
             </p>
           </div>
 
-          {/* Carousel Frosted Glass Desktop Buttons */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          {/* Navigation Controls */}
+          <div className="hidden sm:flex items-center gap-2">
             <button
               type="button"
               onClick={handlePrev}
               disabled={!canScrollLeft}
-              className="w-11 h-11 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 hover:border-blue-400/40 hover:text-blue-300 text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xs cursor-pointer active:scale-95"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: canScrollLeft ? 'pointer' : 'not-allowed',
+                opacity: canScrollLeft ? 1 : 0.35,
+                transition: 'all 0.15s',
+                color: '#3f3f3f',
+              }}
               aria-label="Previous colleges"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft style={{ width: 18, height: 18 }} />
             </button>
             <button
               type="button"
               onClick={handleNext}
               disabled={!canScrollRight}
-              className="w-11 h-11 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 hover:border-blue-400/40 hover:text-blue-300 text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xs cursor-pointer active:scale-95"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 8,
+                border: '1px solid #dddddd',
+                background: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: canScrollRight ? 'pointer' : 'not-allowed',
+                opacity: canScrollRight ? 1 : 0.35,
+                transition: 'all 0.15s',
+                color: '#3f3f3f',
+              }}
               aria-label="Next colleges"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight style={{ width: 18, height: 18 }} />
             </button>
           </div>
         </div>
 
-        {/* Horizontal Carousel Track with True Glassmorphism Cards */}
+        {/* Carousel / 3-col grid */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth pb-5 pt-1.5 px-0.5"
+          className="flex lg:grid lg:grid-cols-3 gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth pb-4 pt-1"
         >
           {featured.map((college) => {
             const selected = isInCompare(college.slug);
@@ -162,103 +178,168 @@ export function FeaturedColleges() {
             return (
               <div
                 key={college.slug}
-                className="w-[290px] sm:w-[330px] md:w-[350px] shrink-0 snap-start rounded-2xl overflow-hidden bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3),0_0_20px_rgba(37,99,235,0.15),inset_0_1px_1px_rgba(255,255,255,0.1)] hover:shadow-[0_25px_50px_-10px_rgba(37,99,235,0.35),0_0_35px_rgba(37,99,235,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)] hover:-translate-y-1 hover:border-blue-400/40 transition-all duration-500 group flex flex-col justify-between"
+                className="snap-start group w-[290px] min-w-[290px] lg:w-full lg:min-w-0 flex-shrink-0 lg:flex-shrink"
+                style={{
+                  borderRadius: 14,
+                  overflow: 'hidden',
+                  background: '#ffffff',
+                  border: '1px solid #dddddd',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'box-shadow 0.2s, transform 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    'rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.1) 0 4px 8px';
+                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
+                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                }}
               >
-                {/* Specular Top Glass Highlight Rim */}
-                <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-20" />
-
-                {/* Upper Campus Photography Section */}
-                <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 select-none">
+                {/* 16:9 Photo */}
+                <Link
+                  href={`/colleges/${college.slug}`}
+                  aria-label={`View ${college.name} profile`}
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '16 / 9',
+                    width: '100%',
+                    overflow: 'hidden',
+                    background: '#f7f7f7',
+                    display: 'block',
+                  }}
+                >
                   <Image
                     src={primaryImage}
                     alt={college.name}
                     fill
-                    sizes="(max-width: 640px) 290px, (max-width: 768px) 330px, 350px"
-                    className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 290px, (max-width: 1024px) 290px, 380px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  {/* Multi-stage organic vignette mask */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071538]/95 via-[#071538]/30 to-transparent pointer-events-none" />
 
-                  {/* Overlaid High-Contrast Institutional Badges */}
-                  <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
+                  {/* Category badge — top-left */}
+                  <div style={{ position: 'absolute', top: 10, left: 10, zIndex: 10 }}>
                     <span
-                      className={`text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md tracking-wide ${
-                        isGovt
-                          ? 'bg-emerald-600 text-white shadow-emerald-950/40 border border-emerald-400/40'
-                          : 'bg-violet-600 text-white shadow-violet-950/40 border border-violet-400/40'
-                      }`}
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 600,
+                        padding: '3px 10px',
+                        borderRadius: 9999,
+                        background: isGovt ? '#0F8B70' : '#102A56',
+                        color: '#ffffff',
+                        letterSpacing: '0.03em',
+                      }}
                     >
-                      {isGovt ? 'Government' : 'Private'}
+                      {isGovt ? 'Government' : 'Autonomous'}
                     </span>
+                  </div>
 
-                    {college.naacGrade && (
-                      <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-blue-600 text-white shadow-md shadow-blue-950/40 border border-blue-400/40 tracking-wide">
+                  {/* NAAC badge */}
+                  {college.naacGrade && (
+                    <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 10 }}>
+                      <span
+                        style={{
+                          fontSize: 10,
+                          fontWeight: 600,
+                          padding: '3px 8px',
+                          borderRadius: 9999,
+                          background: '#ffffff',
+                          color: '#3f3f3f',
+                          border: '1px solid #dddddd',
+                        }}
+                      >
                         NAAC {college.naacGrade}
                       </span>
-                    )}
-                  </div>
-
-                  {/* Overlaid Bottom Frosted Glass Strip (Inside Photo) */}
-                  <div className="absolute bottom-2.5 inset-x-2.5 px-3 py-1.5 rounded-xl bg-slate-950/65 backdrop-blur-md border border-white/20 flex items-center justify-between text-white text-xs shadow-xs z-10">
-                    <div className="flex items-center gap-1.5 truncate">
-                      <MapPin className="w-3.5 h-3.5 text-blue-300 shrink-0" />
-                      <span className="font-medium truncate">{college.city}, WB</span>
                     </div>
-                    <div className="flex items-center gap-1.5 shrink-0 pl-2">
-                      <Building2 className="w-3.5 h-3.5 text-slate-300 shrink-0" />
-                      <span className="font-semibold text-slate-200">Estd. {college.established}</span>
-                    </div>
-                  </div>
-                </div>
+                  )}
+                </Link>
 
-                {/* Lower Details Glass Container */}
-                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 space-y-3.5 bg-white/5 backdrop-blur-lg">
-                  {/* College Name & Affiliation */}
+                {/* Card Body */}
+                <div style={{ padding: '16px 16px', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                  {/* Name + location */}
                   <div>
                     <Link href={`/colleges/${college.slug}`}>
-                      <h3 className="font-heading font-extrabold text-base sm:text-[17px] text-white group-hover:text-blue-300 transition-colors leading-snug truncate">
+                      <h3
+                        style={{
+                          fontSize: 16,
+                          fontWeight: 600,
+                          color: '#222222',
+                          lineHeight: 1.3,
+                          marginBottom: 2,
+                        }}
+                        className="hover:text-[#102A56] transition-colors truncate"
+                      >
                         {college.shortName || college.name}
                       </h3>
                     </Link>
-                    <p className="text-xs text-slate-400 font-medium mt-1 truncate">
-                      {college.affiliation.replace(/\([^)]*\)/g, '').trim()}
-                    </p>
+                    <div
+                      style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#6a6a6a', fontSize: 14 }}
+                    >
+                      <MapPin style={{ width: 13, height: 13, flexShrink: 0 }} />
+                      <span className="truncate">{college.city}, West Bengal</span>
+                    </div>
                   </div>
 
-                  {/* Frosted Glass Metrics Surface (Tuition & Programs) */}
-                  <div className="p-3 sm:p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 shadow-xs flex items-center justify-between">
+                  {/* Metrics row */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '10px 12px',
+                      borderRadius: 10,
+                      background: '#f7f7f7',
+                    }}
+                  >
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                         Annual Tuition
                       </span>
-                      <span className="text-base sm:text-lg font-black text-blue-300 block tabular-nums tracking-tight">
+                      <span style={{ fontSize: 14, fontWeight: 600, color: '#222222', display: 'block' }}>
                         {college.feeStructure.annualTuitionMin
                           ? `₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}`
                           : 'Notice pending'}
                       </span>
                     </div>
-
-                    <div className="text-right">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block text-right">
-                        B.Tech Programs
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{ fontSize: 11, color: '#6a6a6a', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Branches
                       </span>
-                      <span className="text-base sm:text-lg font-black text-emerald-400 block tabular-nums tracking-tight text-right">
+                      <span style={{ fontSize: 14, fontWeight: 600, color: '#222222', display: 'block' }}>
                         {college.programs?.length || '—'}
                       </span>
                     </div>
                   </div>
 
-                  {/* Interactive Actions Row */}
-                  <div className="pt-2 flex items-center justify-between gap-2 border-t border-white/10">
+                  {/* Actions */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      paddingTop: 8,
+                      borderTop: '1px solid #dddddd',
+                    }}
+                  >
                     <Link
                       href={`/colleges/${college.slug}`}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        fontSize: 13,
+                        fontWeight: 500,
+                        color: '#102A56',
+                      }}
                       aria-label={`View profile and cutoffs for ${college.shortName}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-300 hover:text-blue-200 transition-colors group/link cursor-pointer"
                     >
                       <span>View Profile</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                      <ArrowRight style={{ width: 13, height: 13 }} />
                     </Link>
 
+                    {/* Compare pill button — navy outline */}
                     <button
                       type="button"
                       aria-label={`Compare ${college.shortName} with other colleges`}
@@ -269,103 +350,62 @@ export function FeaturedColleges() {
                           addToCompare(college.slug);
                         }
                       }}
-                      className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95 ${
-                        selected
-                          ? 'bg-[#1455B8] text-white shadow-blue-500/25 border border-blue-400/40'
-                          : 'bg-white/10 backdrop-blur-sm text-slate-300 hover:bg-white/20 hover:text-blue-300 hover:border-blue-400/40 border border-white/20'
-                      }`}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        padding: '4px 12px',
+                        borderRadius: 9999,
+                        fontSize: 12,
+                        fontWeight: 500,
+                        cursor: 'pointer',
+                        transition: 'all 0.15s',
+                        background: selected ? '#102A56' : 'transparent',
+                        color: selected ? '#ffffff' : '#102A56',
+                        border: `1px solid #102A56`,
+                      }}
                     >
                       {selected ? (
                         <>
-                          <Check className="w-3 h-3 stroke-[3]" />
+                          <Check style={{ width: 11, height: 11 }} />
                           <span>Added</span>
                         </>
                       ) : (
                         <>
-                          <Plus className="w-3 h-3 stroke-[2.5]" />
+                          <Plus style={{ width: 11, height: 11 }} />
                           <span>Compare</span>
                         </>
                       )}
                     </button>
                   </div>
                 </div>
-
               </div>
             );
           })}
         </div>
 
-        {/* Mobile Carousel Swipe Hints / Pagination Dots */}
-        <div className="flex sm:hidden items-center justify-center gap-1.5 pt-4">
-          {featured.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => scrollToIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === i ? 'w-6 bg-blue-400' : 'w-1.5 bg-slate-600'
-              }`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
+        {/* View All CTA */}
+        <div style={{ textAlign: 'center', paddingTop: 32 }}>
+          <Link
+            href="/colleges"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '10px 24px',
+              borderRadius: 9999,
+              border: '1px solid #dddddd',
+              background: '#ffffff',
+              color: '#222222',
+              fontSize: 14,
+              fontWeight: 500,
+              transition: 'all 0.15s',
+            }}
+          >
+            <span>Explore All 20 Verified Engineering Colleges</span>
+            <ArrowRight style={{ width: 15, height: 15, color: '#102A56' }} />
+          </Link>
         </div>
-
-        {/* Strategic Glassmorphism Free College Counselling Banner for Featured Colleges */}
-        <div className="relative mt-10 rounded-3xl overflow-hidden bg-white/[0.08] hover:bg-white/[0.12] backdrop-blur-2xl border border-white/20 p-6 sm:p-8 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5),0_0_30px_rgba(37,99,235,0.2),inset_0_1px_2px_rgba(255,255,255,0.3)] transition-all duration-300 text-white">
-          {/* Specular Top Glass Highlight Rim */}
-          <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
-
-          {/* Dual Glow Orbs */}
-          <div className="absolute -top-16 -right-16 w-52 h-52 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-52 h-52 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div className="space-y-2.5 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-400/35 text-amber-200 text-xs font-bold tracking-wide uppercase shadow-xs backdrop-blur-sm">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                <span>100% Free WBJEE Choice Filling Guidance</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-white tracking-tight">
-                Confused Between These 20 Engineering Colleges?
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Don&apos;t risk your 4-year engineering future on rumors. Get a verified 1-on-1 cutoff comparison, tuition fee breakdown, and branch placement analysis tailored to your WBJEE rank.
-              </p>
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 pt-1 text-xs text-slate-300 font-medium">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Audited Cutoffs &amp; Fees</span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Headphones className="w-4 h-4 text-blue-300 shrink-0" />
-                  <span>15-Minute Expert Call</span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  <span>Zero Consultancy Fees</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-              <a
-                href="#counselling-panel"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-extrabold text-sm shadow-lg shadow-amber-500/25 transition-all cursor-pointer active:scale-95"
-              >
-                <Phone className="w-4 h-4 text-slate-950 stroke-[2.5]" />
-                <span className="whitespace-nowrap">Get Free Counselling Call</span>
-              </a>
-              <Link
-                href="/colleges"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-bold text-xs sm:text-sm transition-all cursor-pointer"
-              >
-                <span>View All 20 Colleges</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   );

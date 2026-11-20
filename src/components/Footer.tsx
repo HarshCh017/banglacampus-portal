@@ -5,21 +5,9 @@ import Link from 'next/link';
 import {
   GraduationCap,
   ShieldCheck,
-  Shield,
-  Compass,
-  Scale,
-  Award,
-  Calculator,
-  BookOpen,
   ArrowUp,
   ArrowRight,
-  ExternalLink,
-  MapPin,
-  Phone,
-  Mail,
-  CheckCircle2,
 } from 'lucide-react';
-import { VERIFIED_COLLEGES } from '@/data/colleges';
 
 export function Footer() {
   const scrollToTop = () => {
@@ -34,273 +22,294 @@ export function Footer() {
     { name: 'WBFSC Fee Circulars', href: '/methodology', badge: 'Audited Gazettes' },
   ];
 
+  const linkStyle: React.CSSProperties = {
+    fontSize: '14px',
+    fontWeight: 400,
+    color: '#3f3f3f',
+    textDecoration: 'none',
+    transition: 'color 0.15s',
+    display: 'block',
+    lineHeight: '1.6',
+  };
+
+  const headStyle: React.CSSProperties = {
+    fontSize: '16px',
+    fontWeight: 500,
+    color: '#222222',
+    marginBottom: '12px',
+  };
+
   return (
-    <footer id="site-footer" className="bg-[#070F22] text-slate-300 pt-14 pb-10 border-t border-[#142954] relative z-20 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
-        {/* 1. Main 4-Column Grid (Inspired by iem-2027-28.vercel.app) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-[#142954]/80">
-          
-          {/* Column 1: Brand, Mission & Monospace Provenance Tags */}
+    <footer
+      id="site-footer"
+      className="font-sans relative z-20"
+      style={{
+        background: '#ffffff',
+        borderTop: '1px solid #dddddd',
+        paddingTop: '48px',
+        paddingBottom: '32px',
+      }}
+    >
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Main 4-Column Grid */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+          style={{ paddingBottom: '40px', borderBottom: '1px solid #dddddd' }}
+        >
+
+          {/* Column 1: Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-lg bg-[#0052CC] text-white flex items-center justify-center font-extrabold text-base shadow-sm group-hover:bg-[#146EF5] transition-colors">
+            <Link href="/" className="flex items-center gap-3 group" style={{ textDecoration: 'none' }}>
+              <div
+                className="w-10 h-10 flex items-center justify-center transition-colors"
+                style={{
+                  background: '#102A56',
+                  borderRadius: '10px',
+                }}
+              >
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-base leading-tight">
-                  Bengal<span className="text-[#388FFF]">Campus</span>
+                <h3
+                  className="font-heading leading-tight"
+                  style={{ fontSize: '18px', fontWeight: 700, color: '#222222' }}
+                >
+                  Bengal<span style={{ color: '#102A56' }}>Campus</span>
                 </h3>
-                <p className="text-xs text-slate-400">West Bengal Engineering Intelligence</p>
+                <p style={{ fontSize: '11px', color: '#6a6a6a', fontWeight: 400 }}>
+                  West Bengal Engineering Intelligence
+                </p>
               </div>
             </Link>
 
-            <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              Independent higher education research and admissions intelligence platform for West Bengal. Auditing B.Tech tuition fees, approved AICTE seat matrices, and official WBJEE closing cutoffs directly from verified regulatory gazettes.
+            <p style={{ fontSize: '13px', color: '#3f3f3f', lineHeight: '1.6' }}>
+              Independent admissions intelligence for West Bengal B.Tech students. Auditing
+              AICTE seat matrices, WBJEE cutoffs, and fee schedules from verified regulatory sources.
             </p>
 
-            {/* Monospace Provenance Badges (Matches iem-2027-28 styling) */}
-            <div className="pt-1 flex flex-wrap gap-1.5">
-              <span className="px-2 py-0.5 rounded bg-[#142954] text-[11px] text-slate-300 font-mono">
-                AICTE Audited
-              </span>
-              <span className="px-2 py-0.5 rounded bg-[#142954] text-[11px] text-slate-300 font-mono">
-                WBJEEB Sourced
-              </span>
-              <span className="px-2 py-0.5 rounded bg-[#142954] text-[11px] text-slate-300 font-mono">
-                Zero Commission
-              </span>
-              <span className="px-2 py-0.5 rounded bg-[#142954] text-[11px] text-slate-300 font-mono">
-                DPDP 2023 Compliant
-              </span>
-            </div>
-          </div>
-
-          {/* Column 2: Admissions & Guidance Decision Tools */}
-          <div className="space-y-3">
-            <h4 className="text-white font-semibold text-sm tracking-wide uppercase font-heading">
-              Admissions Tools
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link href="/wbjee-predictor" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                  <span>WBJEE Rank Predictor 2026</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/counselling-simulator" className="hover:text-white transition-colors">
-                  WBJEE Choice-Filling Simulator
-                </Link>
-              </li>
-              <li>
-                <Link href="/compare" className="hover:text-white transition-colors">
-                  Side-by-Side Comparison Engine
-                </Link>
-              </li>
-              <li>
-                <Link href="/fee-calculator" className="hover:text-white transition-colors">
-                  4-Year Transparent Fee Calculator
-                </Link>
-              </li>
-              <li>
-                <Link href="/cutoffs" className="hover:text-white transition-colors">
-                  Verified Opening &amp; Closing Cutoffs
-                </Link>
-              </li>
-              <li>
-                <Link href="/counselling" className="hover:text-white transition-colors">
-                  Free 1-on-1 Academic Advisory Desk
-                </Link>
-              </li>
-              <li className="pt-1">
-                <Link href="/guides" className="text-[#388FFF] font-semibold hover:underline inline-flex items-center gap-1">
-                  <span>View All Counselling Guides</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Verified Colleges Directory */}
-          <div className="space-y-3">
-            <h4 className="text-white font-semibold text-sm tracking-wide uppercase font-heading">
-              Premier Colleges
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link href="/colleges/jadavpur-university-engineering" className="hover:text-white transition-colors">
-                  Faculty of Engineering, Jadavpur University
-                </Link>
-              </li>
-              <li>
-                <Link href="/colleges/kalyani-government-engineering-college" className="hover:text-white transition-colors">
-                  Kalyani Govt Engineering College (KGEC)
-                </Link>
-              </li>
-              <li>
-                <Link href="/colleges/iem-kolkata" className="hover:text-white transition-colors">
-                  Institute of Engineering &amp; Management (IEM)
-                </Link>
-              </li>
-              <li>
-                <Link href="/colleges/heritage-institute-of-technology" className="hover:text-white transition-colors">
-                  Heritage Institute of Technology (HITK)
-                </Link>
-              </li>
-              <li>
-                <Link href="/colleges/jalpaiguri-government-engineering-college" className="hover:text-white transition-colors">
-                  Jalpaiguri Govt Engineering College (JGEC)
-                </Link>
-              </li>
-              <li>
-                <Link href="/colleges/techno-main-salt-lake" className="hover:text-white transition-colors">
-                  Techno Main Salt Lake (TMSL)
-                </Link>
-              </li>
-              <li className="pt-1">
-                <Link href="/colleges" className="text-[#388FFF] font-semibold hover:underline inline-flex items-center gap-1">
-                  <span>Explore All 20 Verified Institutions</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Official Advisory & Research Desk (Matches iem-2027-28 styling) */}
-          <div className="space-y-3">
-            <h4 className="text-white font-semibold text-sm tracking-wide uppercase font-heading">
-              Admissions Advisory Desk
-            </h4>
-            <div className="space-y-2.5 text-xs text-slate-300">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
-                <span>
-                  <strong>Admissions Research Cell</strong>
-                  <br />
-                  Sector V, Salt Lake Electronics Complex, Kolkata – 700 091, West Bengal, India.
+            {/* Monospace Provenance Tags */}
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {[
+                'AICTE Audited',
+                'WBJEEB Sourced',
+                'Zero Commission',
+                'DPDP 2023 Compliant',
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="font-mono"
+                  style={{
+                    fontSize: '11px',
+                    color: '#6a6a6a',
+                    background: '#f7f7f7',
+                    border: '1px solid #dddddd',
+                    borderRadius: '6px',
+                    padding: '3px 8px',
+                  }}
+                >
+                  {tag}
                 </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#14B8A6] shrink-0" />
-                <span>Helpline: Inquire Online or Request 1-on-1 Call</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#14B8A6] shrink-0" />
-                <a href="mailto:admissions@bengalcampus.in" className="hover:text-white text-[#388FFF]">
-                  admissions@bengalcampus.in
-                </a>
-              </div>
-              <p className="text-[11px] text-slate-400 pt-1">
-                Academic Research &amp; Advisory Desk (Mon–Sat: 09:30 AM – 06:00 PM IST)
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        {/* 2. All 20 Verified Engineering Colleges Directory Index (Full Search Engine Crawl Index) */}
-        <div className="pt-2">
-          <div className="flex flex-col gap-2.5">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-200">
-                Verified Engineering Colleges in West Bengal (Complete 20-Institution Index):
-              </span>
-              <span className="text-[11px] font-mono text-slate-400">WBJEE 2026–2027 Registry</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs text-slate-400">
-              {VERIFIED_COLLEGES.map((c, i) => (
-                <React.Fragment key={c.slug}>
-                  <Link
-                    href={`/colleges/${c.slug}`}
-                    className="hover:text-white transition-colors"
-                    title={`${c.name} (WBJEE Code: ${c.wbjeebCode})`}
-                  >
-                    {c.shortName}
-                  </Link>
-                  {i < VERIFIED_COLLEGES.length - 1 && (
-                    <span className="text-slate-600 select-none">•</span>
-                  )}
-                </React.Fragment>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* 3. Audited Regulatory Repositories & Compliance Badges (Stylized Interactive Grid) */}
-        <div className="pt-4 pb-2 border-t border-[#142954]/80">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <span className="font-semibold text-xs text-slate-200 shrink-0">
-                Audited Regulatory Repositories:
-              </span>
-              <div className="flex flex-wrap items-center gap-2">
-                {sources.map((s, idx) => (
+          {/* Column 2: Admissions Tools */}
+          <div>
+            <h4 style={headStyle}>Admissions Tools</h4>
+            <ul className="space-y-2">
+              {[
+                { href: '/wbjee-predictor', label: 'WBJEE Rank Predictor 2027' },
+                { href: '/counselling-simulator', label: 'Choice-Filling Strategy Simulator' },
+                { href: '/compare', label: 'Side-by-Side Comparison Engine' },
+                { href: '/cutoffs', label: 'WBJEE Opening & Closing Cutoffs' },
+                { href: '/fee-calculator', label: 'B.Tech 4-Year Fee Calculator' },
+                { href: '/counselling', label: 'Free 1-on-1 Guidance Helpdesk' },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    style={linkStyle}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#102A56'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#3f3f3f'; }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Verified Colleges */}
+          <div>
+            <h4 style={headStyle}>Verified Colleges</h4>
+            <ul className="space-y-2">
+              {[
+                { href: '/colleges/jadavpur-university-engineering', label: 'Jadavpur University (JU)', rank: '#101' },
+                { href: '/colleges/iem-kolkata', label: 'IEM Kolkata (Salt Lake)', rank: '#104' },
+                { href: '/colleges/heritage-institute-of-technology', label: 'Heritage Institute (HITK)', rank: '#108' },
+                { href: '/colleges/kalyani-government-engineering-college', label: 'Kalyani Govt. Engg. College', rank: '#102' },
+                { href: '/colleges/techno-main-salt-lake', label: 'Techno Main Salt Lake', rank: '#110' },
+                { href: '/colleges/haldia-institute-of-technology', label: 'Haldia Institute (HIT-Haldia)', rank: '#105' },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="flex items-center justify-between"
+                    style={linkStyle}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#102A56'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#3f3f3f'; }}
+                  >
+                    <span>{item.label}</span>
+                    <span className="font-mono" style={{ fontSize: '11px', color: '#6a6a6a' }}>{item.rank}</span>
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link
+                  href="/colleges"
+                  className="inline-flex items-center gap-1 font-semibold"
+                  style={{ fontSize: '14px', color: '#102A56', textDecoration: 'none' }}
+                >
+                  <span>View All 20 Verified Colleges</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Regulatory Citations */}
+          <div>
+            <h4 style={headStyle}>Regulatory Citations</h4>
+            <ul className="space-y-2">
+              {sources.map((s, idx) => (
+                <li key={idx}>
                   <a
-                    key={idx}
                     href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-md bg-[#0B1B3D] hover:bg-[#142954] border border-[#142954] hover:border-[#388FFF]/60 text-slate-300 hover:text-white text-xs transition-all inline-flex items-center gap-1.5 group"
+                    target={s.href.startsWith('http') ? '_blank' : undefined}
+                    rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="flex items-center justify-between"
+                    style={linkStyle}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#102A56'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#3f3f3f'; }}
                   >
                     <span>{s.name}</span>
-                    <span className="text-[10px] text-slate-500 font-mono group-hover:text-slate-300">
-                      ({s.badge})
+                    <span
+                      className="font-mono"
+                      style={{
+                        fontSize: '10px',
+                        color: '#6a6a6a',
+                        background: '#f7f7f7',
+                        border: '1px solid #dddddd',
+                        borderRadius: '4px',
+                        padding: '1px 5px',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {s.badge}
                     </span>
-                    <ExternalLink className="w-3 h-3 text-[#14B8A6] opacity-75 group-hover:opacity-100" />
                   </a>
-                ))}
-              </div>
-            </div>
+                </li>
+              ))}
+              <li className="pt-2">
+                <Link
+                  href="/methodology"
+                  className="inline-flex items-center gap-1 font-semibold"
+                  style={{ fontSize: '14px', color: '#102A56', textDecoration: 'none' }}
+                >
+                  <span>Audit Methodology Gazette</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#142954] hover:bg-[#1E3A74] text-white transition-all cursor-pointer text-xs self-start lg:self-auto font-medium shadow-xs"
+        </div>
+
+        {/* Middle Compliance Notice */}
+        <div
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mt-8"
+          style={{
+            background: '#f7f7f7',
+            border: '1px solid #dddddd',
+            borderRadius: '12px',
+            padding: '16px 20px',
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5" style={{ color: '#0B7A62' }} />
+            <div>
+              <p className="font-semibold" style={{ fontSize: '13px', color: '#222222' }}>
+                Independent Editorial Disclaimer &amp; Student Privacy Guarantee
+              </p>
+              <p className="mt-0.5 leading-relaxed" style={{ fontSize: '12px', color: '#6a6a6a' }}>
+                BengalCampus is an independent research platform. We do not participate in college
+                admission quotas, collect agent commissions, or operate commercial tie-ups. All student
+                records are governed under the Digital Personal Data Protection (DPDP) Act 2023.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="shrink-0 flex items-center gap-1.5 cursor-pointer transition-colors"
+            aria-label="Scroll to top of page"
+            style={{
+              fontSize: '12px',
+              fontWeight: 500,
+              color: '#3f3f3f',
+              background: '#ffffff',
+              border: '1px solid #dddddd',
+              borderRadius: '8px',
+              padding: '6px 14px',
+            }}
+          >
+            <ArrowUp className="w-3.5 h-3.5" />
+            <span>Top</span>
+          </button>
+        </div>
+
+        {/* Bottom Legal Band */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 mt-6"
+          style={{ borderTop: '1px solid #dddddd' }}
+        >
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span style={{ fontSize: '13px', fontWeight: 400, color: '#6a6a6a' }}>
+              &copy; 2027 BengalCampus. All rights reserved.
+            </span>
+            {[
+              { href: '/privacy-policy', label: 'Privacy Policy' },
+              { href: '/terms', label: 'Terms of Service' },
+              { href: '/disclaimer', label: 'Disclaimer' },
+              { href: '/cookie-policy', label: 'Cookie Policy' },
+            ].map((item) => (
+              <React.Fragment key={item.href}>
+                <span className="hidden sm:inline" style={{ color: '#dddddd' }}>•</span>
+                <Link
+                  href={item.href}
+                  style={{ fontSize: '13px', fontWeight: 400, color: '#6a6a6a', textDecoration: 'none' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#102A56'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#6a6a6a'; }}
+                >
+                  {item.label}
+                </Link>
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3" style={{ fontSize: '12px' }}>
+            <Link
+              href="/login"
+              rel="nofollow"
+              style={{ color: '#6a6a6a', textDecoration: 'none' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#3f3f3f'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#6a6a6a'; }}
             >
-              <span>Back to top</span>
-              <ArrowUp className="w-3.5 h-3.5 text-[#388FFF]" />
-            </button>
-          </div>
-        </div>
-
-        {/* 4. Structured Legal Disclosures & Operational Notice Box (Signature element from iem-2027-28.vercel.app) */}
-        <div className="p-4 rounded-xl bg-[#0B1B3D] border border-[#142954] text-[11px] leading-relaxed text-slate-400">
-          <div className="flex items-start gap-2.5">
-            <Shield className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
-            <div className="space-y-1.5">
-              <strong className="text-slate-200">Legal Disclosures &amp; Operational Sourcing Notice:</strong>
-              <p>
-                BengalCampus operates as an independent higher education research and candidate advisory platform for West Bengal engineering colleges. BengalCampus operates with zero commercial brokerages and zero sponsored placements. All published NIRF rankings, NAAC accreditations, approved intake matrices, and tuition fees are sourced directly from public gazettes published by the All India Council for Technical Education (AICTE), the West Bengal Joint Entrance Examinations Board (WBJEEB), and institutional accounts circulations.
-              </p>
-              <p>
-                Submitting a guidance inquiry form registers a request for admission consultation and does not constitute a formal grant of admission or seat reservation. Final admission to any institution is governed strictly by merit in recognized entrance examinations (WBJEE, JEE Main, institutional entrance exams), board eligibility, and seat allotment through centralized counselling. Never make cash payments or personal transfers to unauthorized third parties.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* 5. Copyright & Mandatory Policy Strip */}
-        <div className="pt-2 border-t border-[#142954]/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
-          <p>
-            © {new Date().getFullYear()} BengalCampus Academic Research Desk. All rights reserved. Truth in Admissions · Verified Sourcing.
-          </p>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2">
-            <Link href="/privacy-policy" className="hover:text-white underline py-1">
-              Privacy Policy (DPDP Act)
+              Staff Portal
             </Link>
-            <Link href="/terms" className="hover:text-white underline py-1">
-              Terms of Service
-            </Link>
-            <Link href="/disclaimer" className="hover:text-white underline py-1">
-              Non-Affiliation Disclaimer
-            </Link>
-            <Link href="/methodology" className="hover:text-white underline py-1">
-              Data Verification Methodology
-            </Link>
-            <Link href="/login" rel="nofollow" className="hover:text-white underline py-1 opacity-75">
-              Staff Console
-            </Link>
+            <span style={{ color: '#dddddd' }}>•</span>
+            <span style={{ color: '#6a6a6a' }}>WBJEE 2026–2027 Registry</span>
           </div>
         </div>
 

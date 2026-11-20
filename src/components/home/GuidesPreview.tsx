@@ -112,32 +112,34 @@ export function GuidesPreview() {
   }, [allGuides, activeCategory]);
 
   return (
-    <section id="guides-section" className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <section id="guides-section" className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-6 bg-[#1455B8] rounded-full"></span>
-            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#102A56] tracking-tight">
-              Admission Guides &amp; Insights
-            </h2>
-          </div>
-          <p className="text-xs sm:text-sm text-[#64748B] mt-1.5 font-medium">
-            Step-by-step guides, college comparisons, cutoff trends and regulatory insights for WBJEE candidates.
+          <h2
+            className="font-heading"
+            style={{ fontSize: '22px', fontWeight: 500, color: '#222222' }}
+          >
+            Admission Guides &amp; Insights
+          </h2>
+          <p className="mt-1.5" style={{ fontSize: '14px', color: '#6a6a6a' }}>
+            Step-by-step guides, college comparisons, cutoff trends and regulatory insights for
+            WBJEE candidates.
           </p>
         </div>
 
         <Link
           href={`/guides${activeCategory !== 'All' ? `?category=${encodeURIComponent(activeCategory)}` : ''}`}
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1455B8] hover:text-[#0E4496] transition-colors shrink-0 group"
+          className="inline-flex items-center gap-1.5 shrink-0 group"
+          style={{ fontSize: '14px', fontWeight: 600, color: '#102A56', textDecoration: 'none' }}
         >
           <span>View all guides</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
 
-      {/* Interactive Category Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8">
+      {/* Category Filter Pills */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-8" style={{ scrollbarWidth: 'none' }}>
         {categories.map((cat) => {
           const isActive = activeCategory === cat;
           return (
@@ -145,11 +147,16 @@ export function GuidesPreview() {
               key={cat}
               type="button"
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer border ${
-                isActive
-                  ? 'bg-[#1455B8] text-white border-[#1455B8] shadow-md shadow-blue-500/20 scale-[1.02]'
-                  : 'bg-white text-slate-600 border-slate-200 hover:border-[#1455B8]/50 hover:text-[#1455B8] hover:bg-slate-50'
-              }`}
+              className="whitespace-nowrap transition-all duration-200 cursor-pointer"
+              style={{
+                padding: '7px 16px',
+                borderRadius: '9999px',
+                fontSize: '13px',
+                fontWeight: isActive ? 600 : 400,
+                border: `1px solid ${isActive ? '#102A56' : '#dddddd'}`,
+                background: isActive ? '#102A56' : '#ffffff',
+                color: isActive ? '#ffffff' : '#3f3f3f',
+              }}
               aria-pressed={isActive}
             >
               {cat}
@@ -158,33 +165,60 @@ export function GuidesPreview() {
         })}
       </div>
 
-      {/* 3-Column Image-Led Editorial Grid with Instant Response */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
+      {/* 3-Column Editorial Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedGuides.map((guide) => (
           <article
             key={guide.slug}
-            className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between group p-4"
+            className="flex flex-col overflow-hidden group transition-all duration-300"
+            style={{
+              background: '#ffffff',
+              borderRadius: '14px',
+              border: '1px solid #dddddd',
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.boxShadow =
+                'rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.1) 0 4px 8px';
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+            }}
           >
-            <div>
-              {/* Thumbnail Image */}
-              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-900 mb-4 select-none">
-                <Image
-                  src={guide.image}
-                  alt={guide.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 360px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#1455B8] font-bold text-[11px] shadow-xs border border-white/80">
-                  {guide.tag}
-                </span>
-              </div>
+            {/* Thumbnail Image */}
+            <div
+              className="relative w-full overflow-hidden select-none"
+              style={{ aspectRatio: '16/10', background: '#f7f7f7' }}
+            >
+              <Image
+                src={guide.image}
+                alt={guide.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 360px"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              {/* Tag Pill */}
+              <span
+                className="absolute top-3 left-3 font-medium"
+                style={{
+                  padding: '3px 10px',
+                  borderRadius: '9999px',
+                  background: '#f7f7f7',
+                  fontSize: '11px',
+                  color: '#3f3f3f',
+                  border: '1px solid #dddddd',
+                }}
+              >
+                {guide.tag}
+              </span>
+            </div>
 
+            <div className="flex flex-col flex-1 p-4">
               {/* Publication Date & Read Time */}
-              <div className="flex items-center gap-3 text-xs text-slate-500 px-1 mb-2">
+              <div className="flex items-center gap-3 mb-2" style={{ fontSize: '12px', color: '#6a6a6a' }}>
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                  <Calendar className="w-3.5 h-3.5" style={{ color: '#6a6a6a' }} />
                   <span>
                     {new Date(guide.publishedAt).toLocaleDateString('en-US', {
                       month: 'short',
@@ -195,59 +229,94 @@ export function GuidesPreview() {
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-slate-400" />
+                  <Clock className="w-3.5 h-3.5" style={{ color: '#6a6a6a' }} />
                   <span>{guide.readTimeMinutes} min read</span>
                 </span>
               </div>
 
               {/* Guide Title */}
-              <h3 className="font-heading font-bold text-base sm:text-lg text-[#102A56] group-hover:text-[#1455B8] transition-colors leading-snug px-1 line-clamp-2">
-                <Link href={guide.href}>
+              <h3
+                className="font-heading font-semibold leading-snug line-clamp-2 mb-2 transition-colors"
+                style={{ fontSize: '16px', color: '#222222' }}
+              >
+                <Link href={guide.href} style={{ textDecoration: 'none', color: 'inherit' }}>
                   {guide.title}
                 </Link>
               </h3>
 
               {/* Guide Excerpt */}
-              <p className="text-xs text-[#64748B] mt-2 px-1 line-clamp-2 leading-relaxed">
+              <p
+                className="line-clamp-2 leading-relaxed flex-1"
+                style={{ fontSize: '13px', color: '#6a6a6a' }}
+              >
                 {guide.description}
               </p>
-            </div>
 
-            {/* Read Article Link */}
-            <div className="pt-4 mt-3 px-1 border-t border-slate-100 flex items-center justify-between">
-              <Link
-                href={guide.href}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1455B8] hover:text-[#0E4496] transition-colors group/link"
+              {/* Read Article Link */}
+              <div
+                className="pt-4 mt-3 flex items-center justify-between"
+                style={{ borderTop: '1px solid #f0f0f0' }}
               >
-                <span>Read Full Guide</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-              </Link>
+                <Link
+                  href={guide.href}
+                  className="inline-flex items-center gap-1.5 font-semibold group/link"
+                  style={{ fontSize: '13px', color: '#102A56', textDecoration: 'none' }}
+                >
+                  <span>Read Full Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           </article>
         ))}
 
-        {/* If Branches category is chosen, surface a dedicated Course Explorer card */}
+        {/* Branches category: dedicated Course Explorer card */}
         {activeCategory === 'Branches' && (
-          <div className="bg-gradient-to-br from-[#0F2850] to-[#1455B8] text-white rounded-2xl p-6 flex flex-col justify-between shadow-lg">
+          <div
+            className="flex flex-col justify-between p-6"
+            style={{
+              background: '#102A56',
+              borderRadius: '14px',
+              border: '1px solid #102A56',
+            }}
+          >
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center">
-                <Compass className="w-5 h-5 text-blue-200" />
+              <div
+                className="w-10 h-10 flex items-center justify-center"
+                style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '10px' }}
+              >
+                <Compass className="w-5 h-5" style={{ color: '#93c5fd' }} />
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-200 block">
+              <span
+                className="font-mono uppercase tracking-wider block"
+                style={{ fontSize: '10px', color: '#93c5fd' }}
+              >
                 Engineering Specializations
               </span>
-              <h3 className="text-lg font-heading font-extrabold text-white leading-tight">
+              <h3
+                className="font-heading font-bold leading-tight"
+                style={{ fontSize: '18px', color: '#ffffff' }}
+              >
                 Explore 50+ WBJEE Engineering Branches
               </h3>
-              <p className="text-xs text-blue-100/80 leading-relaxed">
-                Compare Computer Science, Electronics, Mechanical, Civil, and AI/Data Science across colleges with approved intake seats.
+              <p className="leading-relaxed" style={{ fontSize: '13px', color: 'rgba(219,234,254,0.8)' }}>
+                Compare Computer Science, Electronics, Mechanical, Civil, and AI/Data Science
+                across colleges with approved intake seats.
               </p>
             </div>
 
             <div className="pt-4">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-white text-[#102A56] font-bold text-xs hover:bg-blue-50 transition-colors shadow-xs"
+                className="inline-flex items-center justify-center gap-2 w-full font-semibold transition-colors"
+                style={{
+                  fontSize: '13px',
+                  color: '#102A56',
+                  background: '#ffffff',
+                  borderRadius: '8px',
+                  padding: '10px 16px',
+                  textDecoration: 'none',
+                }}
               >
                 <span>Browse All Branches</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -257,18 +326,28 @@ export function GuidesPreview() {
         )}
       </div>
 
-      {/* Dynamic Action Bar Directing to Guides Library */}
-      <div className="mt-8 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2 text-slate-600 font-medium">
-          <Sparkles className="w-4 h-4 text-[#1455B8] shrink-0" />
+      {/* Action Bar */}
+      <div
+        className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-3"
+        style={{
+          background: '#ffffff',
+          border: '1px solid #dddddd',
+          borderRadius: '12px',
+          padding: '14px 20px',
+        }}
+      >
+        <div className="flex items-center gap-2" style={{ fontSize: '13px', color: '#3f3f3f' }}>
+          <Sparkles className="w-4 h-4 shrink-0" style={{ color: '#102A56' }} />
           <span>
-            Viewing {displayedGuides.length} curated articles in <strong className="text-[#102A56]">{activeCategory}</strong>
+            Viewing {displayedGuides.length} curated articles in{' '}
+            <strong style={{ color: '#222222' }}>{activeCategory}</strong>
           </span>
         </div>
 
         <Link
           href={`/guides${activeCategory !== 'All' ? `?category=${encodeURIComponent(activeCategory)}` : ''}`}
-          className="inline-flex items-center gap-1.5 font-bold text-[#1455B8] hover:text-[#0E4496] transition-colors"
+          className="inline-flex items-center gap-1.5 font-semibold"
+          style={{ fontSize: '13px', color: '#102A56', textDecoration: 'none' }}
         >
           <span>Open all {activeCategory === 'All' ? 'admission' : activeCategory} guides in Library</span>
           <ArrowRight className="w-3.5 h-3.5" />

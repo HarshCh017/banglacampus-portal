@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://bengalcampus.in';
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const BASE_URL = rawSiteUrl && !rawSiteUrl.includes('localhost') ? rawSiteUrl.replace(/\/$/, '') : 'https://www.bengalcampus.in';
 
 export default function robots(): MetadataRoute.Robots {
   const privateRoutes = [
@@ -10,7 +11,6 @@ export default function robots(): MetadataRoute.Robots {
     '/dashboard',
     '/thank-you',
     '/data-deletion',
-    '/_next/',
     '/privacy', // Redirects to /privacy-policy
     '/blog', // Redirects to /guides
     '/*?*preselect=',
@@ -22,12 +22,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
+        allow: ['/', '/images/', '/icon*.png', '/apple-touch-icon.png', '/_next/static/'],
         disallow: privateRoutes,
       },
       {
         userAgent: 'Googlebot',
-        allow: ['/', '/images/', '/icon*.png', '/apple-touch-icon.png', '/google*.html'],
+        allow: ['/', '/images/', '/icon*.png', '/apple-touch-icon.png', '/google*.html', '/_next/static/'],
         disallow: privateRoutes,
       },
       {
@@ -36,7 +36,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: 'Bingbot',
-        allow: '/',
+        allow: ['/', '/images/', '/icon*.png', '/apple-touch-icon.png', '/_next/static/'],
         disallow: privateRoutes,
       },
       // Modern AI Search Crawlers (Perplexity, ChatGPT Search, Claude, Apple Intelligence)

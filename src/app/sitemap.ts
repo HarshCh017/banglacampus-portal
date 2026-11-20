@@ -3,8 +3,9 @@ import { VERIFIED_COLLEGES } from '@/data/colleges';
 import { VERIFIED_ARTICLES } from '@/data/articles';
 import { VERIFIED_BRANCHES } from '@/data/branches';
 import { RESOURCE_ARTICLES } from '@/data/resources';
+import { getSiteUrl } from '@/lib/site';
 
-const BASE_URL = 'https://bengalcampus.in';
+const BASE_URL = getSiteUrl();
 
 // Stable deterministic timestamps for accurate search engine crawl scheduling
 const CURRENT_DATE = new Date();

@@ -5,12 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import {
-  BookOpen,
   Calendar,
   Clock,
   ChevronRight,
-  ArrowRight,
-  Search,
 } from 'lucide-react';
 import { VERIFIED_ARTICLES } from '@/data/articles';
 
@@ -67,52 +64,83 @@ export function GuidesLibraryClient() {
   return (
     <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* 1. Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#64748B] mb-4">
-        <Link href="/" className="hover:text-[#1455B8] transition-colors">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#6a6a6a] mb-4">
+        <Link href="/" className="hover:text-[#102A56] transition-colors">
           Home
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <span className="font-semibold text-[#102A56]">Admission Guides</span>
+        <span className="font-semibold text-[#222222]">Admission Guides</span>
       </nav>
 
       {/* 2. Page Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#102A56] tracking-tight">
-          Admission Guides
+      <div className="mb-6">
+        <h1
+          style={{
+            fontSize: 28,
+            fontWeight: 600,
+            color: '#222222',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Admission Guides &amp; Regulatory Analysis
         </h1>
-        <p className="text-sm sm:text-base text-[#64748B] mt-1.5">
-          Step-by-step guides, college comparisons and expert insights for WBJEE aspirants.
+        <p style={{ fontSize: 14, color: '#6a6a6a', marginTop: 4 }}>
+          Audited editorial guides on WBJEE counseling procedures, accreditation verification, fee structures, and curriculum options.
         </p>
       </div>
 
-      {/* 3. Category Filter Pills matching Mockup 7 */}
+      {/* 3. Category Filter Pills */}
       <div className="flex flex-wrap items-center gap-2 mb-8">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             type="button"
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer border ${
-              selectedCategory === cat
-                ? 'bg-[#1455B8] text-white border-[#1455B8]'
-                : 'bg-white text-[#64748B] border-[#E2E8F0] hover:border-[#CBD5E1] hover:text-[#102A56]'
-            }`}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 9999,
+              fontSize: 13,
+              fontWeight: 500,
+              cursor: 'pointer',
+              border: selectedCategory === cat ? '1px solid #102A56' : '1px solid #dddddd',
+              background: selectedCategory === cat ? '#102A56' : '#ffffff',
+              color: selectedCategory === cat ? '#ffffff' : '#6a6a6a',
+              transition: 'all 0.15s',
+            }}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* 4. 3-Column Guides Grid matching Mockup 7 */}
+      {/* 4. 3-Column Guides Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredGuides.map((guide, idx) => (
           <article
             key={guide.slug}
-            className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between group"
+            style={{
+              background: '#ffffff',
+              borderRadius: 14,
+              border: '1px solid #dddddd',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'box-shadow 0.2s',
+            }}
+            className="hover:shadow-airbnb group"
           >
             <div>
               {/* Thumbnail Image Header */}
-              <div className="relative aspect-[16/10] w-full bg-[#FAFBFD] overflow-hidden">
+              <div
+                style={{
+                  position: 'relative',
+                  aspectRatio: '16/10',
+                  width: '100%',
+                  background: '#f7f7f7',
+                  overflow: 'hidden',
+                }}
+              >
                 <Image
                   src={
                     idx === 0
@@ -126,31 +154,53 @@ export function GuidesLibraryClient() {
                   sizes="(max-width: 768px) 100vw, 380px"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-md text-[#1455B8] font-bold text-[10px] shadow-2xs border border-white/50">
+                <div style={{ position: 'absolute', top: 12, left: 12 }}>
+                  <span
+                    style={{
+                      padding: '3px 10px',
+                      borderRadius: 9999,
+                      background: '#ffffff',
+                      color: '#102A56',
+                      fontWeight: 600,
+                      fontSize: 11,
+                      border: '1px solid #dddddd',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                    }}
+                  >
                     {guide.tags[0] || 'WBJEE'}
                   </span>
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="p-6">
-                <h2 className="text-base sm:text-lg font-heading font-bold text-[#102A56] group-hover:text-[#1455B8] transition-colors leading-snug">
-                  <Link href={`/guides/${guide.slug}`}>
+              <div style={{ padding: 20 }}>
+                <h2 style={{ fontSize: 16, fontWeight: 600, color: '#222222', lineHeight: 1.3 }}>
+                  <Link href={`/guides/${guide.slug}`} className="hover:text-[#102A56] transition-colors">
                     {guide.title}
                   </Link>
                 </h2>
 
-                <p className="text-xs sm:text-sm text-[#64748B] mt-2.5 line-clamp-3 leading-relaxed">
+                <p style={{ fontSize: 13, color: '#6a6a6a', marginTop: 8, lineHeight: 1.5 }} className="line-clamp-3">
                   {guide.description}
                 </p>
               </div>
             </div>
 
             {/* Footer Metadata */}
-            <div className="px-6 py-4 bg-[#FAFBFD] border-t border-[#F1F5F9] flex items-center justify-between text-xs text-[#64748B]">
-              <span className="flex items-center gap-1.5 text-[11px]">
-                <Calendar className="w-3 h-3 text-[#64748B]" />
+            <div
+              style={{
+                padding: '12px 20px',
+                background: '#f7f7f7',
+                borderTop: '1px solid #ebebeb',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                fontSize: 12,
+                color: '#6a6a6a',
+              }}
+            >
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Calendar style={{ width: 13, height: 13 }} />
                 <span>
                   {new Date(guide.publishedAt).toLocaleDateString('en-US', {
                     month: 'short',
@@ -160,8 +210,8 @@ export function GuidesLibraryClient() {
                 </span>
               </span>
 
-              <span className="flex items-center gap-1 text-[11px] font-medium text-[#1455B8]">
-                <Clock className="w-3 h-3 text-[#1455B8]" />
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontWeight: 500, color: '#102A56' }}>
+                <Clock style={{ width: 13, height: 13 }} />
                 <span>{guide.readTimeMinutes} min read</span>
               </span>
             </div>

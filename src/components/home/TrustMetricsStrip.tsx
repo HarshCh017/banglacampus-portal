@@ -3,87 +3,122 @@
 import React from 'react';
 import { Building2, Layers, ShieldCheck, Clock, Tag } from 'lucide-react';
 
+const metrics = [
+  {
+    icon: Building2,
+    number: '20 Verified',
+    label: 'Top Institutions',
+  },
+  {
+    icon: Layers,
+    number: '50+',
+    label: 'Branches Covered',
+  },
+  {
+    icon: ShieldCheck,
+    number: 'Verified',
+    label: 'Official Sources',
+  },
+  {
+    icon: Clock,
+    number: 'WBJEE 2027',
+    label: 'Data Updated',
+  },
+  {
+    icon: Tag,
+    number: '100% Free',
+    label: 'Predictor & Compare',
+  },
+];
+
 export function TrustMetricsStrip() {
   return (
-    <section className="relative z-30 -mt-10 sm:-mt-12 lg:-mt-14 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-full border border-slate-200/90 shadow-2xl shadow-slate-900/10 px-5 sm:px-8 lg:px-10 py-4 sm:py-5">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-0 items-center lg:divide-x divide-slate-200">
-          
-          {/* Metric 1: Engineering Colleges */}
-          <div className="flex items-center gap-3 lg:px-4">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1455B8] flex items-center justify-center shrink-0">
-              <Building2 className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-base sm:text-lg font-heading font-extrabold text-[#102A56] block leading-tight">
-                20 Verified
-              </span>
-              <span className="text-xs text-[#64748B] font-medium block">
-                Top Institutions
-              </span>
-            </div>
-          </div>
+    <section className="w-full py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+      <div
+        className="max-w-[1240px] mx-auto"
+      >
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            border: '1px solid #dddddd',
+            borderRadius: '9999px',
+            padding: '0 32px',
+          }}
+          className="hidden lg:grid grid-cols-5 divide-x divide-[#dddddd] items-center"
+        >
+          {metrics.map((m, i) => {
+            const Icon = m.icon;
+            return (
+              <div key={i} className="flex items-center gap-3 py-5 px-6">
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: '#EAF2FF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Icon style={{ width: '18px', height: '18px', color: '#1455B8' }} />
+                </div>
+                <div>
+                  <span style={{ fontSize: '16px', fontWeight: 700, color: '#102A56', display: 'block', lineHeight: 1.2 }}>
+                    {m.number}
+                  </span>
+                  <span style={{ fontSize: '14px', fontWeight: 400, color: '#6a6a6a', display: 'block', marginTop: '2px' }}>
+                    {m.label}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-          {/* Metric 2: Branches */}
-          <div className="flex items-center gap-3 lg:px-4">
-            <div className="w-10 h-10 rounded-xl bg-cyan-50 text-[#0284C7] flex items-center justify-center shrink-0">
-              <Layers className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-base sm:text-lg font-heading font-extrabold text-[#102A56] block leading-tight">
-                50+
-              </span>
-              <span className="text-xs text-[#64748B] font-medium block">
-                Branches
-              </span>
-            </div>
-          </div>
-
-          {/* Metric 3: Verified Information */}
-          <div className="flex items-center gap-3 lg:px-4">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#0B7A62] flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs sm:text-sm font-heading font-bold text-[#102A56] block leading-tight">
-                Verified Information
-              </span>
-              <span className="text-xs text-[#64748B] font-medium block">
-                from official sources
-              </span>
-            </div>
-          </div>
-
-          {/* Metric 4: Updated for WBJEE 2027 */}
-          <div className="flex items-center gap-3 lg:px-4">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1455B8] flex items-center justify-center shrink-0">
-              <Clock className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs sm:text-sm font-heading font-bold text-[#102A56] block leading-tight">
-                Updated for
-              </span>
-              <span className="text-xs text-[#64748B] font-medium block">
-                WBJEE 2027
-              </span>
-            </div>
-          </div>
-
-          {/* Metric 5: Free Tools */}
-          <div className="flex items-center gap-3 col-span-2 sm:col-span-1 lg:px-4">
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 text-[#4F46E5] flex items-center justify-center shrink-0">
-              <Tag className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xs sm:text-sm font-heading font-bold text-[#102A56] block leading-tight">
-                Free Tools
-              </span>
-              <span className="text-xs text-[#64748B] font-medium block">
-                Predictor, Compare, Calculator
-              </span>
-            </div>
-          </div>
-
+        {/* Mobile/tablet: grid card */}
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            border: '1px solid #dddddd',
+            borderRadius: '16px',
+          }}
+          className="lg:hidden grid grid-cols-2 sm:grid-cols-3 divide-y divide-x divide-[#dddddd]"
+        >
+          {metrics.map((m, i) => {
+            const Icon = m.icon;
+            return (
+              <div
+                key={i}
+                className="flex items-center gap-3 p-4"
+                style={i === metrics.length - 1 && metrics.length % 2 !== 0 ? { gridColumn: 'span 2' } : {}}
+              >
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: '#EAF2FF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Icon style={{ width: '18px', height: '18px', color: '#1455B8' }} />
+                </div>
+                <div>
+                  <span style={{ fontSize: '16px', fontWeight: 700, color: '#102A56', display: 'block', lineHeight: 1.2 }}>
+                    {m.number}
+                  </span>
+                  <span style={{ fontSize: '14px', fontWeight: 400, color: '#6a6a6a', display: 'block', marginTop: '2px' }}>
+                    {m.label}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
