@@ -22,6 +22,15 @@ export interface BTechProgram {
   nbaAccredited?: boolean;
 }
 
+export interface BranchFeeDetail {
+  branchName: string;
+  totalCourseFee: number;
+  admissionFirstSemFee?: number;
+  eligibility?: string;
+  admissionWithoutExam?: boolean; // Admission possible without JEE Main / WBJEE?
+  note?: string;
+}
+
 export interface FeeStructure {
   annualTuitionMin: number | null;
   annualTuitionMax: number | null;
@@ -29,6 +38,7 @@ export interface FeeStructure {
   cautionDeposit?: number | null;
   currency: string;
   disclaimer: string;
+  branchFees?: BranchFeeDetail[];
 }
 
 export interface College {

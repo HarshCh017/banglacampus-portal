@@ -166,14 +166,15 @@ export async function POST(req: NextRequest) {
     const quickData: any = {
       formType: 'COUNSELLING',
       fullName: rawName,
-      class10Percentage: rawRank ? `WBJEE Rank: ${rawRank}` : `Mobile: ${rawPhone}`,
-      class12Percentage: `WhatsApp: ${rawPhone}`,
+      class10Percentage: body.email ? `Email: ${body.email}` : (rawRank ? `WBJEE Rank: ${rawRank}` : `Mobile: ${rawPhone}`),
+      class12Percentage: body.examTaken ? `Exam: ${body.examTaken}` : `WhatsApp: ${rawPhone}`,
       state: body.state || 'West Bengal',
       preferredCollege,
       preferredBranch,
       sourceUrl: body.source || body.sourceUrl || 'Free College Counselling Form',
       consent: true,
       phone: rawPhone,
+      email: body.email,
       rank: rawRank,
     };
 

@@ -8,6 +8,7 @@ import { CollegeDetailClient } from './CollegeDetailClient';
 import { CollegeCard } from '@/components/CollegeCard';
 import { CollegeCampusBanner } from '@/components/CollegeCampusBanner';
 import { CollegeHeaderEnquiry } from '@/components/college/CollegeHeaderEnquiry';
+import { CollegeMobileHeroEnquiry } from '@/components/college/CollegeMobileHeroEnquiry';
 import { CollegeGallery } from '@/components/CollegeGallery';
 import { CollegeCounsellingCard } from '@/components/college/CollegeCounsellingCard';
 import {
@@ -302,7 +303,7 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-8">
         {/* Breadcrumb Trail */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500">
+        <nav aria-label="Breadcrumb" className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
           <Link href="/" className="hover:text-[#1455B8] flex items-center gap-1">
             <Home className="w-3.5 h-3.5" />
             <span>Home</span>
@@ -315,11 +316,16 @@ export default async function CollegeDetailPage({ params }: PageProps) {
           <span className="text-[#102A56] font-semibold truncate max-w-xs">{college.shortName}</span>
         </nav>
 
-        {/* Visual Campus Photography & Architecture Banner (Matches Mockup 3) */}
-        <CollegeCampusBanner college={college} />
+        {/* DESKTOP HEADER & BANNER (lg:block): Preserves user's exact "perfect position" */}
+        <div className="hidden lg:block space-y-8">
+          <CollegeCampusBanner college={college} />
+          <CollegeHeaderEnquiry college={college} />
+        </div>
 
-        {/* Top of College Header Admission Guidance & Counselling Card */}
-        <CollegeHeaderEnquiry college={college} />
+        {/* MOBILE TOP HERO & ENQUIRY FORM (lg:hidden): Matches user's uploaded reference image */}
+        <div className="lg:hidden space-y-4">
+          <CollegeMobileHeroEnquiry college={college} />
+        </div>
 
         {/* Sticky In-Page Navigation Bar (Matches Mockup 3) */}
         <div className="sticky top-16 z-20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-2.5 bg-white/95 backdrop-blur-md border-y border-slate-200 shadow-xs">
@@ -392,32 +398,6 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 Similar Colleges
               </a>
             )}
-          </div>
-        </div>
-
-        {/* Provenance Audit Notice */}
-        <div className="bg-[#102A56] text-white rounded-2xl p-4 sm:p-5 border border-[#1E3A8A] shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex items-start gap-3">
-            <ShieldCheck className="w-5 h-5 text-[#34D399] mt-0.5 shrink-0" />
-            <div className="text-xs space-y-1">
-              <p className="font-bold text-white text-sm">Verified Data Provenance Statement</p>
-              <p className="text-slate-300 leading-relaxed">
-                Facts on this profile are referenced from the official university portal, AICTE Extension of Approval records, and WBJEEB centralized seat matrices.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            <div className="inline-flex items-center gap-1.5 text-xs text-white font-semibold bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#34D399] shrink-0" />
-              <span>100% Audited Regulatory Citations</span>
-            </div>
-            <div className="text-[11px] text-slate-300 font-mono bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-              Audit Date: {new Date(college.provenance.fees.retrievedAt).toLocaleDateString('en-IN', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </div>
           </div>
         </div>
 
@@ -889,6 +869,137 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 </div>
                 <p className="leading-relaxed">{college.feeStructure.disclaimer}</p>
               </div>
+
+              {/* Branch-Wise Total Course Fee & Admission Breakdown Table */}
+              {college.feeStructure.branchFees && college.feeStructure.branchFees.length > 0 && (
+                <div className="space-y-3 pt-3 border-t border-slate-100">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <div>
+                      <h3 className="text-base font-heading font-extrabold text-[#102A56]">
+                        Branch-Wise Course Fees &amp; 1st Semester Breakdown
+                      </h3>
+                      <p className="text-xs text-[#6a6a6a]">
+                        Verified 4-year total course cost, 1st sem admission amount, and eligibility criteria
+                      </p>
+                    </div>
+                    <span
+                      style={{ borderRadius: 9999, border: '1px solid #BFDBFE', background: '#EAF2FF', color: '#1455B8' }}
+                      className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 shrink-0 self-start sm:self-auto"
+                    >
+                      Updated Fee Matrix
+                    </span>
+                  </div>
+
+                  {/* Desktop Table View */}
+                  <div className="hidden md:block overflow-x-auto rounded-xl border border-[#dddddd]">
+                    <table className="w-full text-left text-xs">
+                      <thead className="bg-[#f7f7f7] border-b border-[#dddddd] text-[#6a6a6a] uppercase text-[10px] font-bold tracking-wider">
+                        <tr>
+                          <th className="py-3 px-3.5">Branch Specialization</th>
+                          <th className="py-3 px-3.5">Total Course Fee</th>
+                          <th className="py-3 px-3.5">At Admission / 1st Sem</th>
+                          <th className="py-3 px-3.5">Eligibility Criteria</th>
+                          <th className="py-3 px-3.5 text-center">Admission without JEE?</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-[#eeeeee] text-[#222222]">
+                        {college.feeStructure.branchFees.map((bf, idx) => (
+                          <tr key={idx} className="hover:bg-[#fafbfd] transition-colors">
+                            <td className="py-3 px-3.5">
+                              <span className="font-bold text-[#102A56] block">{bf.branchName}</span>
+                              {bf.note && (
+                                <span className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded font-medium inline-block mt-0.5">
+                                  {bf.note}
+                                </span>
+                              )}
+                            </td>
+                            <td className="py-3 px-3.5 font-extrabold text-[#1455B8] whitespace-nowrap">
+                              ₹{bf.totalCourseFee.toLocaleString('en-IN')}
+                            </td>
+                            <td className="py-3 px-3.5 font-semibold text-[#0B7A62] whitespace-nowrap">
+                              {bf.admissionFirstSemFee ? `₹${bf.admissionFirstSemFee.toLocaleString('en-IN')}` : '—'}
+                            </td>
+                            <td className="py-3 px-3.5 text-[#3f3f3f] text-[11px] max-w-xs">
+                              {bf.eligibility || 'Pass in 10+2 with required PCM percentage'}
+                            </td>
+                            <td className="py-3 px-3.5 text-center whitespace-nowrap">
+                              <span
+                                style={{
+                                  borderRadius: 9999,
+                                  background: bf.admissionWithoutExam ? '#E6F6F2' : '#FEE2E2',
+                                  color: bf.admissionWithoutExam ? '#0F8B70' : '#DC2626',
+                                  border: bf.admissionWithoutExam ? '1px solid #A7E3D4' : '1px solid #FECACA',
+                                }}
+                                className="inline-block text-[10px] font-bold px-2 py-0.5"
+                              >
+                                {bf.admissionWithoutExam ? 'YES' : 'NO'}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Mobile Cards View */}
+                  <div className="md:hidden space-y-2.5">
+                    {college.feeStructure.branchFees.map((bf, idx) => (
+                      <div
+                        key={idx}
+                        style={{ borderRadius: 10, border: '1px solid #dddddd' }}
+                        className="p-3 bg-[#fafbfd] space-y-2 shadow-2xs"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <span className="font-bold text-xs text-[#102A56] block">{bf.branchName}</span>
+                            {bf.note && (
+                              <span className="text-[9px] text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded font-medium inline-block mt-0.5">
+                                {bf.note}
+                              </span>
+                            )}
+                          </div>
+                          <span
+                            style={{
+                              borderRadius: 9999,
+                              background: bf.admissionWithoutExam ? '#E6F6F2' : '#FEE2E2',
+                              color: bf.admissionWithoutExam ? '#0F8B70' : '#DC2626',
+                              border: bf.admissionWithoutExam ? '1px solid #A7E3D4' : '1px solid #FECACA',
+                            }}
+                            className="text-[9px] font-bold px-1.5 py-0.5 shrink-0"
+                          >
+                            Direct: {bf.admissionWithoutExam ? 'YES' : 'NO'}
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 text-xs pt-1 border-t border-[#eeeeee]">
+                          <div>
+                            <span className="text-[10px] text-[#6a6a6a] uppercase font-medium block">
+                              Total Course Fee
+                            </span>
+                            <span className="font-extrabold text-sm text-[#1455B8]">
+                              ₹{bf.totalCourseFee.toLocaleString('en-IN')}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-[#6a6a6a] uppercase font-medium block">
+                              1st Sem / Admission
+                            </span>
+                            <span className="font-bold text-xs text-[#0B7A62]">
+                              {bf.admissionFirstSemFee ? `₹${bf.admissionFirstSemFee.toLocaleString('en-IN')}` : '—'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {bf.eligibility && (
+                          <div className="text-[10px] text-[#3f3f3f] pt-1 border-t border-[#eeeeee]">
+                            <strong className="text-[#6a6a6a]">Eligibility:</strong> {bf.eligibility}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* Placement Statistics & Sourced Highlights */}

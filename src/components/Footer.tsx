@@ -299,16 +299,6 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-3" style={{ fontSize: '12px' }}>
-            <Link
-              href="/login"
-              rel="nofollow"
-              style={{ color: '#6a6a6a', textDecoration: 'none' }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#3f3f3f'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#6a6a6a'; }}
-            >
-              Staff Portal
-            </Link>
-            <span style={{ color: '#dddddd' }}>•</span>
             <span style={{ color: '#6a6a6a' }}>WBJEE 2026–2027 Registry</span>
           </div>
         </div>

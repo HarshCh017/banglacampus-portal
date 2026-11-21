@@ -8,7 +8,6 @@ import { useComparison } from '@/context/ComparisonContext';
 import {
   MapPin,
   Check,
-  Plus,
   Sparkles,
   ExternalLink,
   Building2,
@@ -38,8 +37,8 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      {/* 1. Large, Vibrant, Authentic Campus Photo Banner (Matches Mockup 3) */}
-      <div className="relative h-64 sm:h-80 md:h-96 w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm bg-slate-900 group">
+      {/* 1. Authentic Campus Photo Banner */}
+      <div className="relative h-44 sm:h-72 md:h-96 w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#dddddd] shadow-sm bg-slate-900 group">
         {!imageError ? (
           <Image
             src={primaryPath}
@@ -59,7 +58,7 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
         )}
 
         {/* Subtle Bottom Shade for Photo Depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
         {/* Verified Caption on Bottom-Right */}
         <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-medium border border-white/20">
@@ -67,64 +66,101 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
         </div>
       </div>
 
-      {/* 2. College Profile Header Card (Matches Mockup 3) */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 p-5 sm:p-7 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-5">
-        {/* Left: Name, Location, Badges */}
+      {/* 2. College Profile Header Card */}
+      <div
+        style={{ borderRadius: '14px', border: '1px solid #dddddd' }}
+        className="bg-white p-5 sm:p-7 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-5"
+      >
+        {/* Left: Eyebrow, Title, Description & Badges */}
         <div className="space-y-2.5">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#1455B8] block">
+            By BengalCampus — Independent Education Counsellors
+          </span>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-[#102A56] tracking-tight leading-tight">
-            {college.name}
+            {college.name} Review: Fees, Placements &amp; Admission Guidance
           </h1>
+          <p className="text-xs sm:text-sm text-[#6a6a6a] max-w-2xl leading-relaxed">
+            Considering {college.shortName}? Check which campus and branch your rank qualifies for, verified 4-year tuition fees, and audited placement benchmarks. BengalCampus provides independent guidance while you compare your options.
+          </p>
 
-          {/* Location & Badges Row (Matches Mockup 3: Location, Government/Private, WBJEE, NAAC, UGC) */}
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
+          {/* Location & Badges Row */}
+          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 pt-1">
             <span className="flex items-center gap-1 font-medium text-slate-500 mr-1">
-              <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
+              <MapPin className="w-4 h-4 text-[#102A56] shrink-0" />
               <span>{college.city}, West Bengal</span>
             </span>
 
             <span
-              className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${
-                isGovt
-                  ? 'bg-[#E6F6F2] text-[#0F8B70] border-[#A7E3D4]'
-                  : 'bg-[#F3F0FB] text-[#7864C8] border-[#D9D1F2]'
-              }`}
+              style={{
+                borderRadius: 9999,
+                background: isGovt ? '#E6F6F2' : '#F3F0FB',
+                color: isGovt ? '#0F8B70' : '#7864C8',
+                border: isGovt ? '1px solid #A7E3D4' : '1px solid #D9D1F2',
+              }}
+              className="text-[11px] font-bold px-2.5 py-0.5"
             >
               {isGovt ? 'Government' : 'Private'}
             </span>
 
-            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#EAF2FF] text-[#1455B8] border border-[#BFDBFE]">
-              WBJEE
+            <span
+              style={{
+                borderRadius: 9999,
+                background: '#EAF2FF',
+                color: '#1455B8',
+                border: '1px solid #BFDBFE',
+              }}
+              className="text-[11px] font-bold px-2.5 py-0.5"
+            >
+              WBJEE Code #{college.wbjeebCode}
             </span>
 
             {college.naacGrade && (
-              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#EAF2FF] text-[#1455B8] border border-[#BFDBFE]">
+              <span
+                style={{
+                  borderRadius: 9999,
+                  background: '#f7f7f7',
+                  color: '#222222',
+                  border: '1px solid #dddddd',
+                }}
+                className="text-[11px] font-bold px-2.5 py-0.5"
+              >
                 NAAC {college.naacGrade}
               </span>
             )}
 
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-50 text-slate-600 border border-slate-200">
-              UGC
+            <span
+              style={{
+                borderRadius: 9999,
+                background: '#f7f7f7',
+                color: '#6a6a6a',
+                border: '1px solid #dddddd',
+              }}
+              className="text-[11px] font-semibold px-2 py-0.5"
+            >
+              AICTE / UGC
             </span>
           </div>
         </div>
 
-        {/* Right Actions: Compare & Check My Rank CTA (Matches Mockup 3) */}
-        <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+        {/* Right Actions: Compare & Check Rank */}
+        <div className="flex flex-wrap items-center gap-2.5 shrink-0 self-start md:self-auto">
           {/* Compare Button */}
           <button
             type="button"
             onClick={handleToggleCompare}
-            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all flex items-center gap-2 cursor-pointer ${
-              selected
-                ? 'bg-[#EAF2FF] text-[#1455B8] border-[#BFDBFE] font-bold shadow-xs'
-                : 'bg-white text-slate-700 border-slate-300 hover:border-[#1455B8] hover:text-[#1455B8]'
-            }`}
+            style={{
+              borderRadius: '9999px',
+              border: '1px solid #102A56',
+              background: selected ? '#102A56' : '#ffffff',
+              color: selected ? '#ffffff' : '#102A56',
+            }}
+            className="px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 cursor-pointer shadow-xs"
           >
             <div
               className={`w-4 h-4 rounded border flex items-center justify-center ${
                 selected
-                  ? 'bg-[#1455B8] border-[#1455B8] text-white'
-                  : 'border-slate-400'
+                  ? 'bg-white border-white text-[#102A56]'
+                  : 'border-[#102A56]'
               }`}
             >
               {selected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
@@ -135,22 +171,32 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
           {/* Primary CTA: Check My Rank Match */}
           <Link
             href={`/wbjee-predictor?preselect=${college.slug}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1455B8] hover:bg-[#0E4496] active:scale-[0.98] text-white font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer"
+            style={{
+              borderRadius: '9999px',
+              background: '#102A56',
+            }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-white font-bold text-xs sm:text-sm transition-all hover:bg-[#0a1c38] shadow-xs cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-white" />
             <span>Check My Rank Match</span>
           </Link>
 
           {/* Official Portal Link */}
-          <a
-            href={college.officialWebsite}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 transition-colors"
-            title="Visit official college website"
-          >
-            <ExternalLink className="w-4 h-4" />
-          </a>
+          {college.officialWebsite && (
+            <a
+              href={college.officialWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                borderRadius: '9999px',
+                border: '1px solid #dddddd',
+              }}
+              className="p-2.5 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-800 transition-colors"
+              title="Visit official college website"
+            >
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          )}
         </div>
       </div>
     </div>

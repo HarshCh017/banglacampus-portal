@@ -58,57 +58,56 @@ export function Header() {
 
   return (
     <>
-      {/* Header */}
+      {/* Header — Deep Navy #102A56 per DESIGN.md & AGENTS.md Brand Standard */}
       <header
-        style={{ height: '80px', borderBottom: '1px solid #dddddd' }}
-        className="sticky top-0 z-40 bg-white flex items-center"
+        style={{
+          height: '80px',
+          backgroundColor: '#102A56',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+          boxShadow: '0 2px 12px rgba(16, 42, 86, 0.25)',
+        }}
+        className="sticky top-0 z-40 flex items-center transition-colors"
       >
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <GraduationCap
-              className="w-7 h-7"
-              style={{ color: '#102A56' }}
-              aria-hidden="true"
-            />
-            <span
-              className="font-extrabold text-xl tracking-tight leading-none"
-              style={{ color: '#102A56' }}
+          {/* Brand Logo */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+            <div
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+              }}
+              className="w-10 h-10 rounded-xl flex items-center justify-center transition-all group-hover:bg-white/20"
             >
-              Bengal<span style={{ fontWeight: 800 }}>Campus</span>
+              <GraduationCap
+                className="w-6 h-6 text-[#F4B740] transition-transform group-hover:scale-105"
+                aria-hidden="true"
+              />
+            </div>
+            <span className="font-extrabold text-xl tracking-tight leading-none text-white">
+              Bengal<span className="text-[#60A5FA]">Campus</span>
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+          {/* Desktop Nav Pills */}
+          <nav className="hidden lg:flex items-center gap-1.5" aria-label="Main navigation">
             {NAV_LINKS.map(({ href, label, matchFn, hasCompareCount }) => {
               const isActive = matchFn(pathname);
               return (
                 <Link
                   key={href}
                   href={href}
-                  className="relative flex items-center gap-1.5 px-4 py-2 transition-colors duration-150"
-                  style={{
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    color: '#222222',
-                    textDecoration: 'none',
-                  }}
+                  className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm transition-all duration-150 ${
+                    isActive
+                      ? 'bg-white/15 text-white font-bold shadow-xs'
+                      : 'text-slate-200 hover:text-white hover:bg-white/10 font-medium'
+                  }`}
                 >
-                  <span
-                    style={{
-                      borderBottom: isActive ? '2px solid #102A56' : '2px solid transparent',
-                      paddingBottom: '2px',
-                      color: isActive ? '#102A56' : '#222222',
-                    }}
-                  >
-                    {label}
-                  </span>
+                  <span>{label}</span>
                   {hasCompareCount && selectedSlugs.length > 0 && (
                     <span
-                      className="flex items-center justify-center w-5 h-5 rounded-full text-white text-[11px] font-bold"
-                      style={{ background: '#102A56' }}
+                      className="flex items-center justify-center w-5 h-5 rounded-full text-white text-[11px] font-bold shadow-xs"
+                      style={{ background: '#2563EB' }}
                     >
                       {selectedSlugs.length}
                     </span>
@@ -119,41 +118,40 @@ export function Header() {
           </nav>
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0">
             {/* Search pill — desktop */}
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="hidden md:flex items-center gap-2 px-4 py-2 text-sm transition-colors duration-150 cursor-pointer"
+              className="hidden md:flex items-center gap-2 px-4 py-2 text-sm rounded-full cursor-pointer transition-all duration-150 text-white/90 hover:text-white"
               style={{
-                borderRadius: '9999px',
-                border: '1px solid #dddddd',
-                background: '#ffffff',
-                color: '#6a6a6a',
-                fontWeight: 500,
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
               }}
               aria-label="Search colleges (⌘K)"
             >
-              <Search className="w-4 h-4" aria-hidden="true" />
-              <span>Search</span>
+              <Search className="w-4 h-4 text-white/80" aria-hidden="true" />
+              <span className="font-medium text-xs">Search colleges</span>
               <kbd
                 className="text-[10px] font-mono px-1.5 py-0.5 rounded"
-                style={{ background: '#f5f5f5', border: '1px solid #dddddd', color: '#999' }}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  color: '#ffffff',
+                }}
               >
                 ⌘K
               </kbd>
             </button>
 
-            {/* Search icon — mobile */}
+            {/* Search icon button — mobile */}
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="md:hidden flex items-center justify-center w-10 h-10 cursor-pointer transition-colors duration-150"
+              className="md:hidden flex items-center justify-center w-10 h-10 cursor-pointer rounded-full transition-colors text-white"
               style={{
-                borderRadius: '9999px',
-                border: '1px solid #dddddd',
-                background: '#ffffff',
-                color: '#6a6a6a',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
               }}
               aria-label="Search colleges"
             >
@@ -163,10 +161,9 @@ export function Header() {
             {/* CTA: Predict College */}
             <Link
               href="/wbjee-predictor"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 text-sm font-bold text-white transition-colors duration-150"
+              className="hidden sm:inline-flex items-center px-5 py-2.5 text-sm font-bold text-[#102A56] rounded-full shadow-sm hover:bg-slate-100 active:scale-95 transition-all duration-150"
               style={{
-                borderRadius: '9999px',
-                background: '#102A56',
+                backgroundColor: '#ffffff',
               }}
             >
               Predict College
@@ -176,12 +173,10 @@ export function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="lg:hidden flex items-center justify-center w-10 h-10 cursor-pointer transition-colors duration-150"
+              className="lg:hidden flex items-center justify-center w-10 h-10 cursor-pointer rounded-full transition-colors text-white"
               style={{
-                borderRadius: '9999px',
-                border: '1px solid #dddddd',
-                background: '#ffffff',
-                color: '#222222',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
               }}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
@@ -197,7 +192,7 @@ export function Header() {
         <div className="lg:hidden fixed inset-0 z-50">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity duration-200"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-200"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
@@ -210,22 +205,28 @@ export function Header() {
               borderTop: '1px solid #dddddd',
             }}
           >
-            {/* Header / Drag handle row */}
-            <div className="flex items-center justify-between px-5 pt-4 pb-2 border-b border-[#eeeeee]">
-              <span className="font-extrabold text-base" style={{ color: '#102A56' }}>
-                BengalCampus Navigation
-              </span>
+            {/* Header / Title row */}
+            <div
+              style={{ backgroundColor: '#102A56', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}
+              className="flex items-center justify-between px-5 py-4 text-white"
+            >
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-5 h-5 text-[#F4B740]" />
+                <span className="font-extrabold text-base tracking-tight text-white">
+                  Bengal<span className="text-[#60A5FA]">Campus</span>
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 rounded-full hover:bg-slate-100 text-[#6a6a6a] cursor-pointer"
+                className="p-1.5 rounded-full hover:bg-white/10 text-white cursor-pointer transition-colors"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <nav className="p-4 space-y-2" aria-label="Mobile navigation">
+            <nav className="p-4 space-y-2 bg-[#FAFBFD]" aria-label="Mobile navigation">
               {MOBILE_NAV_LINKS.map(({ href, label, icon: Icon, hasCompareCount }) => {
                 const isActive = pathname === href || (href !== '/' && pathname.startsWith(href));
                 return (
@@ -233,10 +234,10 @@ export function Header() {
                     key={href}
                     href={href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl transition-colors duration-150"
+                    className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl transition-all duration-150"
                     style={{
-                      background: isActive ? '#EAF2FF' : '#fafafa',
-                      border: `1px solid ${isActive ? '#BFDBFE' : '#eeeeee'}`,
+                      background: isActive ? '#EAF2FF' : '#ffffff',
+                      border: `1px solid ${isActive ? '#BFDBFE' : '#dddddd'}`,
                       color: isActive ? '#102A56' : '#222222',
                       fontWeight: 600,
                       fontSize: '15px',
@@ -269,10 +270,9 @@ export function Header() {
                   setMobileMenuOpen(false);
                   setSearchOpen(true);
                 }}
-                className="flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl transition-colors duration-150 cursor-pointer"
+                className="flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl transition-colors duration-150 cursor-pointer bg-white"
                 style={{
-                  background: '#fafafa',
-                  border: '1px solid #eeeeee',
+                  border: '1px solid #dddddd',
                   color: '#222222',
                   fontWeight: 600,
                   fontSize: '15px',
@@ -287,7 +287,7 @@ export function Header() {
                 <Link
                   href="/wbjee-predictor"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center py-3.5 text-white font-bold text-sm rounded-2xl transition-colors duration-150"
+                  className="block w-full text-center py-3.5 text-white font-bold text-sm rounded-2xl transition-colors duration-150 shadow-sm"
                   style={{ background: '#102A56' }}
                 >
                   Predict My College

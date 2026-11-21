@@ -13,6 +13,7 @@ import {
   Award,
   GraduationCap,
   MapPin,
+  ExternalLink,
 } from 'lucide-react';
 
 interface CollegeHeaderEnquiryProps {
@@ -112,7 +113,7 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
     return (
       <div
         style={{ borderRadius: '14px', border: '1px solid #dddddd' }}
-        className="bg-white p-8 text-center space-y-4"
+        className="bg-white p-6 sm:p-8 text-center space-y-4 shadow-xs"
       >
         <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-8 h-8 text-[#0F8B70]" />
@@ -169,107 +170,17 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
     );
   }
 
-  /* ── Main Two-Column Layout ── */
+  /* ── Main Two-Column Layout (Responsive Order: On Mobile Form is TOP, on Desktop Form is RIGHT) ── */
   return (
     <div
+      id="college-header-enquiry"
       style={{ borderRadius: '14px', border: '1px solid #dddddd' }}
-      className="bg-white overflow-hidden"
+      className="bg-white overflow-hidden shadow-xs"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2">
 
-        {/* ── LEFT: College Info ── */}
-        <div className="p-6 sm:p-8 space-y-5 bg-[#f7f7f7] lg:border-r border-b lg:border-b-0"
-          style={{ borderColor: '#dddddd' }}
-        >
-          {/* College identity */}
-          <div className="space-y-1">
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#1455B8] bg-[#EAF2FF] px-2.5 py-0.5 rounded-full">
-              <GraduationCap className="w-3.5 h-3.5" />
-              Free Admission Guidance
-            </span>
-            <h2 className="text-xl font-heading font-extrabold text-[#102A56] leading-tight mt-2">
-              {college.name}
-            </h2>
-            <p className="text-xs text-[#6a6a6a] flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 shrink-0" />
-              {college.city}, West Bengal · WBJEE Code #{college.wbjeebCode}
-            </p>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 gap-3">
-            <div
-              style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-              className="bg-white p-3 space-y-0.5"
-            >
-              <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
-                Annual Tuition
-              </span>
-              <span className="text-sm font-extrabold text-[#102A56]">
-                {college.feeStructure.annualTuitionMin
-                  ? `₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}`
-                  : 'Gazette'}
-              </span>
-            </div>
-            <div
-              style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-              className="bg-white p-3 space-y-0.5"
-            >
-              <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
-                Programs
-              </span>
-              <span className="text-sm font-extrabold text-[#102A56]">
-                {college.programs.length} Branches
-              </span>
-            </div>
-            {college.naacGrade && (
-              <div
-                style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                className="bg-white p-3 space-y-0.5"
-              >
-                <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
-                  NAAC Grade
-                </span>
-                <span className="text-sm font-extrabold text-[#0B7A62] flex items-center gap-1">
-                  <Award className="w-3.5 h-3.5" />
-                  {college.naacGrade}
-                </span>
-              </div>
-            )}
-            {college.nirfRankEngineering2024 && (
-              <div
-                style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                className="bg-white p-3 space-y-0.5"
-              >
-                <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
-                  NIRF Rank
-                </span>
-                <span className="text-sm font-extrabold text-[#102A56]">
-                  {typeof college.nirfRankEngineering2024 === 'number'
-                    ? `#${college.nirfRankEngineering2024}`
-                    : college.nirfRankEngineering2024}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Trust bullets */}
-          <ul className="space-y-2">
-            {[
-              'Free 1-on-1 counselling — zero agent commission',
-              'Verified WBJEE cutoffs & TFW eligibility check',
-              'WhatsApp/Phone response within 24 hours',
-            ].map((bullet) => (
-              <li key={bullet} className="flex items-start gap-2 text-xs text-[#3f3f3f]">
-                <ShieldCheck className="w-4 h-4 text-[#0F8B70] shrink-0 mt-0.5" />
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* ── RIGHT: Enquiry Form ── */}
-        <div className="p-6 sm:p-8">
+        {/* ── ENQUIRY FORM: order-1 on Mobile (TOP), order-2 on Desktop (RIGHT) ── */}
+        <div className="p-5 sm:p-7 order-1 lg:order-2 bg-white">
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Honeypot */}
             <input
@@ -282,13 +193,45 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
               autoComplete="off"
             />
 
-            <div>
-              <h3 className="text-base font-heading font-bold text-[#222222]">
-                Request Free Guidance
+            {/* Header info matching reference layout */}
+            <div className="space-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1455B8] block">
+                By BengalCampus — Independent Education Counsellors
+              </span>
+              <h3 className="text-lg sm:text-xl font-heading font-extrabold text-[#102A56] leading-tight">
+                Get {college.shortName} counselling
               </h3>
-              <p className="text-xs text-[#6a6a6a] mt-0.5">
-                Get personalised admission advice for {college.shortName} (2027)
+              <p className="text-xs text-[#6a6a6a]">
+                Independent BengalCampus counselling. Not an official {college.shortName} or WBJEEB form.{' '}
+                {college.officialWebsite && (
+                  <a
+                    href={college.officialWebsite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1455B8] underline hover:text-[#0E4496] inline-flex items-center gap-0.5 font-medium"
+                  >
+                    Official {college.shortName} site
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                )}
               </p>
+            </div>
+
+            {/* Disclaimer Callout Box (Matches reference mockup) */}
+            <div
+              style={{
+                borderRadius: '8px',
+                border: '1px solid #E2E8F0',
+                background: '#FAFBFD',
+                padding: '10px 14px',
+              }}
+              className="text-xs text-[#222222] leading-relaxed"
+            >
+              Independent BengalCampus counselling. Not an official college or exam form.{' '}
+              <Link href="/privacy-policy" className="text-[#1455B8] underline font-semibold">
+                Privacy Policy
+              </Link>
+              .
             </div>
 
             {/* Error banner */}
@@ -302,34 +245,34 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
               </div>
             )}
 
-            {/* Form grid */}
+            {/* Form Fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* Full Name */}
               <div className="sm:col-span-2">
                 <label htmlFor="enq-fullName" className="block text-xs font-semibold text-[#222222] mb-1">
-                  Full Name <span className="text-red-500">*</span>
+                  Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="enq-fullName"
                   type="text"
                   required
-                  placeholder="e.g. Rahul Sharma"
+                  placeholder="Your Name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                  className="w-full px-3.5 py-2.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
+                  style={{ borderRadius: '8px', border: '1px solid #dddddd', height: '44px' }}
+                  className="w-full px-3.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
                 />
               </div>
 
-              {/* Phone */}
+              {/* Mobile Phone */}
               <div className="sm:col-span-2">
                 <label htmlFor="enq-phone" className="block text-xs font-semibold text-[#222222] mb-1">
-                  Mobile Number <span className="text-red-500">*</span>
+                  Phone <span className="text-red-500">*</span>
                 </label>
                 <div className="flex">
                   <span
-                    style={{ borderRadius: '8px 0 0 8px', border: '1px solid #dddddd', borderRight: 'none' }}
-                    className="inline-flex items-center px-3 bg-[#f7f7f7] text-[#6a6a6a] text-xs font-medium"
+                    style={{ borderRadius: '8px 0 0 8px', border: '1px solid #dddddd', borderRight: 'none', height: '44px' }}
+                    className="inline-flex items-center px-3.5 bg-[#f7f7f7] text-[#6a6a6a] text-xs font-semibold"
                   >
                     +91
                   </span>
@@ -338,11 +281,11 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                     type="tel"
                     required
                     maxLength={10}
-                    placeholder="10-digit number"
+                    placeholder="10-digit mobile number"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/[^0-9]/g, ''))}
-                    style={{ borderRadius: '0 8px 8px 0', border: '1px solid #dddddd' }}
-                    className="w-full px-3.5 py-2.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
+                    style={{ borderRadius: '0 8px 8px 0', border: '1px solid #dddddd', height: '44px' }}
+                    className="w-full px-3.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
                   />
                 </div>
               </div>
@@ -362,8 +305,8 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                   placeholder="e.g. 85.5"
                   value={class10Percentage}
                   onChange={(e) => setClass10Percentage(e.target.value)}
-                  style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                  className="w-full px-3.5 py-2.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
+                  style={{ borderRadius: '8px', border: '1px solid #dddddd', height: '44px' }}
+                  className="w-full px-3.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
                 />
               </div>
 
@@ -382,23 +325,23 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                   placeholder="e.g. 82.0"
                   value={class12Percentage}
                   onChange={(e) => setClass12Percentage(e.target.value)}
-                  style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                  className="w-full px-3.5 py-2.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
+                  style={{ borderRadius: '8px', border: '1px solid #dddddd', height: '44px' }}
+                  className="w-full px-3.5 bg-white text-xs text-[#222222] placeholder:text-[#929292] focus:outline-none focus:border-[#1455B8] focus:ring-2 focus:ring-[#1455B8]/10 transition-all"
                 />
               </div>
 
               {/* Branch */}
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="enq-branch" className="block text-xs font-semibold text-[#222222] mb-1">
-                  Target Branch
+                  Target B.Tech Branch
                 </label>
                 <div className="relative">
                   <select
                     id="enq-branch"
                     value={preferredBranch}
                     onChange={(e) => setPreferredBranch(e.target.value)}
-                    style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                    className="w-full px-3.5 py-2.5 bg-white text-xs text-[#222222] focus:outline-none focus:border-[#1455B8] transition-all appearance-none cursor-pointer"
+                    style={{ borderRadius: '8px', border: '1px solid #dddddd', height: '44px' }}
+                    className="w-full px-3.5 bg-white text-xs text-[#222222] focus:outline-none focus:border-[#1455B8] transition-all appearance-none cursor-pointer pr-10"
                   >
                     {college.programs.map((p) => (
                       <option key={p.slug} value={p.name}>
@@ -406,22 +349,22 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="w-4 h-4 text-[#6a6a6a] absolute right-3 top-3 pointer-events-none" />
+                  <ChevronDown className="w-4 h-4 text-[#6a6a6a] absolute right-3 top-3.5 pointer-events-none" />
                 </div>
               </div>
 
               {/* State */}
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="enq-state" className="block text-xs font-semibold text-[#222222] mb-1">
-                  Home State / UT
+                  Home State / Domicile
                 </label>
                 <div className="relative">
                   <select
                     id="enq-state"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
-                    className="w-full px-3.5 py-2.5 bg-white text-xs text-[#222222] focus:outline-none focus:border-[#1455B8] transition-all appearance-none cursor-pointer"
+                    style={{ borderRadius: '8px', border: '1px solid #dddddd', height: '44px' }}
+                    className="w-full px-3.5 bg-white text-xs text-[#222222] focus:outline-none focus:border-[#1455B8] transition-all appearance-none cursor-pointer pr-10"
                   >
                     {INDIAN_STATES_AND_UTS.map((st) => (
                       <option key={st.name} value={st.name}>
@@ -429,13 +372,13 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="w-4 h-4 text-[#6a6a6a] absolute right-3 top-3 pointer-events-none" />
+                  <ChevronDown className="w-4 h-4 text-[#6a6a6a] absolute right-3 top-3.5 pointer-events-none" />
                 </div>
               </div>
             </div>
 
             {/* Consent */}
-            <label className="flex items-start gap-2 cursor-pointer text-[11px] text-[#6a6a6a]">
+            <label className="flex items-start gap-2 cursor-pointer text-[11px] text-[#6a6a6a] pt-1">
               <input
                 type="checkbox"
                 checked={consent}
@@ -443,15 +386,15 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                 className="mt-0.5 rounded border-[#dddddd] text-[#1455B8] focus:ring-[#1455B8] cursor-pointer"
               />
               <span>
-                I agree to the{' '}
+                I agree to receive independent admission counselling under the{' '}
                 <Link href="/privacy-policy" className="text-[#1455B8] underline hover:text-[#0E4496]">
                   Privacy Policy
                 </Link>{' '}
-                (DPDP Act 2023). No marketing spam.
+                (DPDP Act 2023). Zero spam guarantee.
               </span>
             </label>
 
-            {/* Submit */}
+            {/* Submit CTA */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -460,19 +403,118 @@ export function CollegeHeaderEnquiry({ college }: CollegeHeaderEnquiryProps) {
                 borderRadius: '8px',
                 height: '48px',
               }}
-              className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm transition-all hover:bg-[#0a1c38] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm transition-all hover:bg-[#0a1c38] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer shadow-sm"
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Submitting…</span>
+                  <span>Submitting Details…</span>
                 </>
               ) : (
-                <span>Request Free Guidance</span>
+                <span>Request Free Counselling Guidance</span>
               )}
             </button>
           </form>
         </div>
+
+        {/* ── COLLEGE INFO & STATS: order-2 on Mobile (BELOW), order-1 on Desktop (LEFT) ── */}
+        <div
+          style={{ borderColor: '#dddddd' }}
+          className="p-5 sm:p-7 space-y-5 bg-[#f7f7f7] lg:border-r border-t lg:border-t-0 order-2 lg:order-1 flex flex-col justify-between"
+        >
+          {/* Identity & Accreditation Overview */}
+          <div className="space-y-1.5">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#1455B8] bg-[#EAF2FF] px-2.5 py-0.5 rounded-full">
+              <GraduationCap className="w-3.5 h-3.5" />
+              Verified Institutional Summary
+            </span>
+            <h2 className="text-xl font-heading font-extrabold text-[#102A56] leading-tight">
+              {college.name}
+            </h2>
+            <p className="text-xs text-[#6a6a6a] flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 shrink-0 text-[#102A56]" />
+              {college.city}, West Bengal · WBJEE Code #{college.wbjeebCode}
+            </p>
+          </div>
+
+          {/* Quick Stats Grid */}
+          <div className="grid grid-cols-2 gap-2.5">
+            <div
+              style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
+              className="bg-white p-3 space-y-0.5 shadow-2xs"
+            >
+              <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
+                Annual Tuition
+              </span>
+              <span className="text-sm font-extrabold text-[#102A56]">
+                {college.feeStructure.annualTuitionMin
+                  ? `₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}`
+                  : 'Gazette'}
+              </span>
+            </div>
+            <div
+              style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
+              className="bg-white p-3 space-y-0.5 shadow-2xs"
+            >
+              <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
+                Approved Programs
+              </span>
+              <span className="text-sm font-extrabold text-[#102A56]">
+                {college.programs.length} Branches
+              </span>
+            </div>
+            {college.naacGrade && (
+              <div
+                style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
+                className="bg-white p-3 space-y-0.5 shadow-2xs"
+              >
+                <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
+                  NAAC Grade
+                </span>
+                <span className="text-sm font-extrabold text-[#0B7A62] flex items-center gap-1">
+                  <Award className="w-3.5 h-3.5" />
+                  {college.naacGrade}
+                </span>
+              </div>
+            )}
+            {college.nirfRankEngineering2024 && (
+              <div
+                style={{ borderRadius: '8px', border: '1px solid #dddddd' }}
+                className="bg-white p-3 space-y-0.5 shadow-2xs"
+              >
+                <span className="text-[10px] text-[#6a6a6a] font-medium uppercase tracking-wide block">
+                  NIRF 2024 Rank
+                </span>
+                <span className="text-sm font-extrabold text-[#102A56]">
+                  {typeof college.nirfRankEngineering2024 === 'number'
+                    ? `#${college.nirfRankEngineering2024}`
+                    : college.nirfRankEngineering2024}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Trust Guarantees */}
+          <div className="pt-2 border-t border-[#eeeeee]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#102A56] block mb-2">
+              BengalCampus Advisory Standard
+            </span>
+            <ul className="space-y-2">
+              {[
+                'Free 1-on-1 counselling — zero agent commission',
+                'Verified WBJEE cutoffs & TFW fee-waiver analysis',
+                'WhatsApp / Phone response within 24 hours',
+                'Unbiased, deterministic choice-filling strategy',
+              ].map((bullet) => (
+                <li key={bullet} className="flex items-start gap-2 text-xs text-[#3f3f3f]">
+                  <ShieldCheck className="w-4 h-4 text-[#0B7A62] shrink-0 mt-0.5" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { ComparisonDock } from '@/components/ComparisonDock';
-import { LoginModal } from '@/components/LoginModal';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { ComparisonProvider } from '@/context/ComparisonContext';
 import { AuthProvider } from '@/context/AuthContext';
@@ -198,7 +197,6 @@ export default function RootLayout({
             <Footer />
             <ComparisonDock />
             <CookieConsent />
-            <LoginModal />
           </ComparisonProvider>
         </AuthProvider>
       </body>
