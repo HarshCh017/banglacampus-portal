@@ -171,7 +171,7 @@ export function Footer() {
                   className="inline-flex items-center gap-1 font-semibold"
                   style={{ fontSize: '14px', color: '#102A56', textDecoration: 'none' }}
                 >
-                  <span>View All 27 Verified Colleges</span>
+                  <span>View All 29 Verified Colleges</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </li>
