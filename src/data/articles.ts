@@ -104,14 +104,14 @@ Prospectuses and digital campaigns frequently display badges like "NAAC Accredit
 
 ### 1. Auditing AICTE Approval (Extension of Approval - EoA)
 Every technical institution in India must renew its Extension of Approval annually with AICTE.
-- Go to the official portal: \`aicte-india.org\` $\\to$ **Approved Institutes**.
+- Go to the official portal: \`aicte-india.org\` → **Approved Institutes**.
 - Select State (*West Bengal*) and District.
 - Download the annual **Extension of Approval (EoA) Letter**.
 - Check the approved intake column for each specific B.Tech program. If a branch is advertised with 180 seats but the EoA lists 120, only 120 are legally valid.
 
 ### 2. Checking NBA Accreditation (Program-Specific)
 The National Board of Accreditation (NBA) evaluates **individual academic programs**, not the overall institution.
-- Visit: \`nbaind.org\` $\\to$ **Accredited Programs**.
+- Visit: \`nbaind.org\` → **Accredited Programs**.
 - Search for the college name.
 - Check the **Validity Period** and the exact branch. For example, a college may have NBA accreditation for B.Tech CSE, while newly launched branches (such as AI or IoT) may not yet be eligible for NBA review because graduating batches are required first.
 

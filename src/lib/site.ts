@@ -1,4 +1,4 @@
-export const DEFAULT_SITE_URL = 'https://www.bengalcampus.in';
+export const DEFAULT_SITE_URL = 'https://bengalcampus.in';
 
 export function getSiteUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL;

@@ -9,14 +9,14 @@ import { formatLocation } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'Top Engineering Colleges in West Bengal 2027 | WBJEE & NIRF',
   description:
-    'Search and filter 20 verified engineering institutions in West Bengal. Compare audited B.Tech tuition fees, NIRF ranks, NAAC grades, and WBJEE cutoffs.',
+    'Search and filter 27 verified engineering institutions in West Bengal. Compare audited B.Tech tuition fees, NIRF ranks, NAAC grades, and WBJEE cutoffs.',
   alternates: {
     canonical: 'https://bengalcampus.in/colleges',
   },
   openGraph: {
     title: 'Top Engineering Colleges in West Bengal 2027 | BengalCampus Directory',
     description:
-      'Explore 20 verified engineering colleges in West Bengal with field-level provenance, official cutoffs, and transparent tuition fee structures.',
+      'Explore 27 verified engineering colleges in West Bengal with field-level provenance, official cutoffs, and transparent tuition fee structures.',
     url: 'https://bengalcampus.in/colleges',
     type: 'website',
     images: [
@@ -86,7 +86,7 @@ export default function CollegesPage() {
           Engineering Colleges in West Bengal (2027 Admissions)
         </h1>
         <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-3xl leading-relaxed">
-          Comprehensive directory of 20 verified engineering institutions across West Bengal for 2027 admissions. Filter by government vs autonomous status, district location, tuition fee ceiling, and NIRF / NAAC accreditation.
+          Comprehensive directory of 27 verified engineering institutions across West Bengal for 2027 admissions. Filter by government vs autonomous status, district location, tuition fee ceiling, and NIRF / NAAC accreditation.
         </p>
       </div>
 

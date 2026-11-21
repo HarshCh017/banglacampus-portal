@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-const BASE_URL = rawSiteUrl && !rawSiteUrl.includes('localhost') ? rawSiteUrl.replace(/\/$/, '') : 'https://www.bengalcampus.in';
+const BASE_URL = rawSiteUrl && !rawSiteUrl.includes('localhost') ? rawSiteUrl.replace(/\/$/, '') : 'https://bengalcampus.in';
 
 export default function robots(): MetadataRoute.Robots {
   const privateRoutes = [
@@ -11,8 +11,6 @@ export default function robots(): MetadataRoute.Robots {
     '/dashboard',
     '/thank-you',
     '/data-deletion',
-    '/privacy', // Redirects to /privacy-policy
-    '/blog', // Redirects to /guides
     '/*?*preselect=',
     '/*?*branch=',
     '/*?*colleges=',

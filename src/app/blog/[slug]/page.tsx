@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 import { VERIFIED_ARTICLES } from '@/data/articles';
 
 interface PageProps {
@@ -13,5 +13,5 @@ export async function generateStaticParams() {
 
 export default async function BlogSlugRedirectPage({ params }: PageProps) {
   const { slug } = await params;
-  redirect(`/guides/${slug}`);
+  permanentRedirect(`/guides/${slug}`);
 }

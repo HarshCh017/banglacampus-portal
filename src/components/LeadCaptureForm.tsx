@@ -419,7 +419,7 @@ export function LeadCaptureForm({
             />
             <span>
               I agree to be contacted about I.E.M admissions and counselling via Call, SMS, and WhatsApp.{' '}
-              <a href="/privacy" target="_blank" className="text-brandBlue-600 underline font-medium hover:text-brandBlue-700">
+              <a href="/privacy-policy" target="_blank" className="text-brandBlue-600 underline font-medium hover:text-brandBlue-700">
                 Privacy Policy
               </a>
               .

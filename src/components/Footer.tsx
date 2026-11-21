@@ -119,7 +119,7 @@ export function Footer() {
             <h4 style={headStyle}>Admissions Tools</h4>
             <ul className="space-y-2">
               {[
-                { href: '/wbjee-predictor', label: 'WBJEE Rank Predictor 2027' },
+                { href: '/wbjee-predictor', label: 'WBJEE College Predictor 2027' },
                 { href: '/counselling-simulator', label: 'Choice-Filling Strategy Simulator' },
                 { href: '/compare', label: 'Side-by-Side Comparison Engine' },
                 { href: '/cutoffs', label: 'WBJEE Opening & Closing Cutoffs' },
@@ -171,7 +171,7 @@ export function Footer() {
                   className="inline-flex items-center gap-1 font-semibold"
                   style={{ fontSize: '14px', color: '#102A56', textDecoration: 'none' }}
                 >
-                  <span>View All 20 Verified Colleges</span>
+                  <span>View All 27 Verified Colleges</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </li>

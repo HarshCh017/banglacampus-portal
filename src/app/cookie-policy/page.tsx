@@ -99,10 +99,16 @@ export default function CookiePolicyPage() {
           <p>
             You can also block or purge cookies and local storage through your browser settings:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Google Chrome: Settings $\to$ Privacy and security $\to$ Third-party cookies $\to$ See all site data.</li>
-            <li>Mozilla Firefox: Settings $\to$ Privacy & Security $\to$ Cookies and Site Data.</li>
-            <li>Apple Safari: Settings $\to$ Privacy $\to$ Manage Website Data.</li>
+          <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
+            <li>
+              <strong>Google Chrome:</strong> Settings → Privacy and security → Third-party cookies → See all site data.
+            </li>
+            <li>
+              <strong>Mozilla Firefox:</strong> Settings → Privacy &amp; Security → Cookies and Site Data.
+            </li>
+            <li>
+              <strong>Apple Safari:</strong> Settings → Privacy → Manage Website Data.
+            </li>
           </ul>
         </section>
       </div>
