@@ -71,14 +71,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   let metaDesc: string;
 
   if (college.slug === 'haldia-institute-of-technology') {
-    metaTitle = 'Haldia Institute of Technology (HIT Haldia): WBJEE Cutoff 2026, Fees & B.Tech Courses | BengalCampus';
-    metaDesc = "Compare Haldia Institute of Technology's historical WBJEE 2026 branch cutoffs, 2026–27 B.Tech fee information, approved intake, accreditation and hostel details. Review source links and verification dates before applying.";
+    metaTitle = 'Haldia Institute of Technology: Fees, Cutoff & Placements 2026–27';
+    metaDesc =
+      'Explore Haldia Institute of Technology (HIT Haldia): 2026–27 B.Tech fees, WBJEE and JEE Main cutoff data, courses, placements, hostel details and official-source links.';
   } else if (college.slug === 'asansol-engineering-college') {
     metaTitle = 'Asansol Engineering College: WBJEE Cutoff 2026, Fees & B.Tech Courses | BengalCampus';
     metaDesc = "Explore Asansol Engineering College's WBJEE admission information, available B.Tech branches, fee details and historical cutoff data. Check academic-year labels and official sources before applying.";
   } else if (college.slug === 'iem-kolkata') {
-    metaTitle = 'IEM Kolkata: WBJEE Cutoff 2026, Fees & B.Tech Admissions | BengalCampus';
-    metaDesc = 'Verified IEM Kolkata guide: WBJEE closing ranks, semester fees (₹90k-1.18L), 4-year B.Tech fee (₹7.2-9.44L), seat matrix, and admission roadmap for 2026–2027.';
+    metaTitle = 'IEM Kolkata: Admission 2027, Fees, Courses & Placements | BengalCampus';
+    metaDesc =
+      'Explore IEM Kolkata (Institute of Engineering & Management): B.Tech courses, IEMJEE 2027 admission information, latest published fees, historical WBJEE cutoff context, NIRF placement data, rankings and campus facilities. Check sources and academic-year labels.';
   } else {
     metaTitle = `${college.name} (${college.shortName}): WBJEE Cutoff 2026, Fees & Courses | BengalCampus`;
     metaDesc = `Verified WBJEE cutoffs, 2026–27 tuition fees, seat intake, and AICTE/NAAC accreditation for ${college.name} (Code #${college.wbjeebCode}). Historical closing rank benchmarks.`;
@@ -169,7 +171,16 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             'Institute of Engineering & Management',
             'Institute of Engineering and Management',
             'IEM Salt Lake Sector V',
-            'IEM Ashram Building'
+            'IEM Ashram Building',
+          ]
+        : college.slug === 'haldia-institute-of-technology'
+        ? [
+            'HIT Haldia',
+            'HIT College Haldia',
+            'Haldia Engineering College',
+            'Haldia Institute of Technology Purba Medinipur',
+            'MAKAUT College Code 103',
+            'WBJEE Code 106',
           ]
         : [`${college.shortName} College`]),
     ],
@@ -225,43 +236,116 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     ? `For B.Tech in Computer Science & Engineering (CSE) under the General quota, official WBJEE closing ranks were ${cseCutoff.approxClosingRankRound1.toLocaleString('en-IN')} in Round 1 and ${cseCutoff.approxClosingRankFinalRound.toLocaleString('en-IN')} in the Final / Mop-Up round.`
     : `Historical closing ranks vary by academic branch and reservation quota (General, TFW, OBC, SC, ST). Check our verified cutoffs table above for round-by-round statistics.`;
 
-  const faqs = [
-    {
-      question: `What is the official WBJEE counselling code for ${college.name} (${college.shortName})?`,
-      answer: `The official West Bengal Joint Entrance Examination Board (WBJEEB) counselling code for ${college.name} is ${college.wbjeebCode}. When filling choice options during centralized e-counselling at wbjeeb.nic.in, search for code ${college.wbjeebCode} to select this institution.`,
-    },
-    {
-      question: `What is the annual B.Tech tuition fee at ${college.shortName}?`,
-      answer: college.feeStructure.annualTuitionMin
-        ? `According to audited institutional accounts circulars and West Bengal Higher Education Fee Committee notices, the annual tuition fee at ${college.name} is ₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${college.feeStructure.annualTuitionMax.toLocaleString('en-IN')}` : ''} per academic year (₹${Math.round(college.feeStructure.annualTuitionMin / 2).toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${Math.round(college.feeStructure.annualTuitionMax / 2).toLocaleString('en-IN')}` : ''} per semester), totalling approximately ₹${(college.feeStructure.annualTuitionMin * 4).toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${(college.feeStructure.annualTuitionMax * 4).toLocaleString('en-IN')}` : ''} across the 4-year degree course. All figures follow statutory regulatory schedules without undisclosed caps.`
-        : `Official regulatory fee notices for ${college.name} are pending publication by the state fee committee. Please refer to our verified fee circular citation above or consult the institutional admissions desk.`,
-    },
-    {
-      question: `What WBJEE rank is required for admission to Computer Science (CSE) at ${college.shortName}?`,
-      answer: cseCutoffText,
-    },
-    {
-      question: `What regulatory accreditations and university affiliations does ${college.shortName} hold?`,
-      answer: `${college.name} is recognized as an ${college.regulatoryApproval || 'AICTE Approved'} technical institution and is affiliated with ${college.affiliation || 'MAKAUT (Maulana Abul Kalam Azad University of Technology)'}.${college.naacGrade ? ` The institution holds a NAAC accreditation grade of ${college.naacGrade}.` : ''}${college.nirfRankEngineering2024 ? ` In NIRF 2024 Engineering rankings, it achieved ${typeof college.nirfRankEngineering2024 === 'number' ? `#${college.nirfRankEngineering2024} across India` : college.nirfRankEngineering2024}.` : ''}`,
-    },
-    {
-      question: `Which entrance examinations are accepted for admission to ${college.shortName}?`,
-      answer: `Undergraduate B.Tech admissions to ${college.name} are primarily conducted through ${college.acceptedExams.join(', ')}. Seats are allocated via centralized WBJEEB counseling based on merit ranks, alongside recognized decentralized quotas.`,
-    },
-    {
-      question: `How do I apply for B.Tech admission at ${college.shortName} for the 2027 academic session?`,
-      answer: `For the 2027 academic session, undergraduate engineering admissions at ${college.name} will be administered through the WBJEE 2027 centralized e-counselling process (WBJEEB Code #${college.wbjeebCode}) and JEE Main quotas. Candidates must register at wbjeeb.nic.in, participate in choice filling, and lock ${college.shortName} based on verified closing cutoff ranks. Free 1-on-1 counseling is available on BengalCampus.`,
-    },
-    ...(college.slug === 'iem-kolkata'
+  const faqs =
+    college.slug === 'iem-kolkata'
       ? [
           {
-            question: 'What are the average and highest placement packages at IEM Kolkata?',
+            question: 'What is the full name and campus location of IEM Kolkata?',
             answer:
-              'According to audited NIRF 2024 institutional data and the official IEM placement report, IEM Kolkata achieves a 90%+ placement rate with a median package of ₹5.50 LPA. The average package for CSE and IT disciplines is approximately ₹6.80 LPA, and the highest domestic offer reached ₹32 LPA (with international off-campus offers up to ₹72 LPA). Major recurring recruiters include TCS, Cognizant, PwC India, Oracle, Adobe, and Infosys.',
+              'IEM Kolkata stands for the Institute of Engineering & Management. It is located at GN-34/2, Ashram Building, Sector V, Bidhannagar (Salt Lake), Kolkata, West Bengal 700091, situated directly within Kolkata’s premier IT hub. Note that IEM’s Salt Lake campus is administratively and geographically distinct from the University of Engineering & Management (UEM) campus in New Town.',
+          },
+          {
+            question: 'Which university is IEM Kolkata affiliated with?',
+            answer:
+              'IEM Kolkata operates under the IEM-UEM Group and is affiliated with the University of Engineering & Management (UEM), Kolkata. Historically, IEM was affiliated with Maulana Abul Kalam Azad University of Technology (MAKAUT, formerly WBUT) before its university integration.',
+          },
+          {
+            question: 'How can candidates apply for B.Tech admission at IEM Kolkata for the 2027 session?',
+            answer:
+              'Undergraduate B.Tech admissions at IEM Kolkata for the 2027 cycle are conducted through the IEMJEE (IEM Joint Entrance Examination) entrance test at exam.iem.edu.in, which has ₹0 application fee. Qualified candidates participate in institutional counselling at the Salt Lake Ashram campus for branch allotment. Historical WBJEE allotment records (Code #104) serve as comparative benchmarks.',
+          },
+          {
+            question: 'What is the published fee structure for B.Tech at IEM Kolkata?',
+            answer:
+              'According to the published fee schedule, the Semester 1 admission and tuition fee is ₹1,40,000, followed by ₹1,15,000 per semester for Semesters 2 through 8. The total course fee for the 8-semester (4-year) B.Tech degree is ₹9,45,000. This excludes university examination fees, uniform, study material, and hostel accommodation.',
+          },
+          {
+            question: 'What is the audited NIRF placement record and median salary at IEM Kolkata?',
+            answer:
+              'In the NIRF 2026 data submission (for the 2024–25 graduating cohort), 787 out of 907 eligible undergraduate students were placed with an audited median salary of ₹6.00 LPA, while 102 students opted for higher studies. For the 2023–24 cohort, 774 of 885 students were placed at the same ₹6.00 LPA median. Peak individual offers reached ₹72 LPA (international/off-campus) and ₹32 LPA (domestic). Major recurring recruiters include TCS, Cognizant, PwC India, Oracle, Adobe, and Infosys.',
+          },
+          {
+            question: 'What is IEM Kolkata’s NAAC and NBA accreditation status?',
+            answer:
+              'IEM Kolkata was accredited by NAAC with Grade A; that 5-year accreditation cycle concluded on December 31, 2024, and the institutional renewal process is actively underway. NBA accreditation applies to its B.Tech programmes in Computer Science & Engineering (CSE), Information Technology (IT), Electronics & Communication Engineering (ECE), and Electrical Engineering (EE). Mechanical Engineering is AICTE-approved but does not hold NBA accreditation.',
+          },
+          {
+            question: 'What is IEM Kolkata’s NIRF Engineering ranking?',
+            answer:
+              'In the official NIRF Engineering rankings published by the Ministry of Education, IEM Kolkata is placed in the 151–200 rank band across India.',
           },
         ]
-      : []),
-  ];
+      : college.slug === 'haldia-institute-of-technology'
+      ? [
+          {
+            question: 'What is the WBJEE code and MAKAUT college code for Haldia Institute of Technology (HIT Haldia)?',
+            answer:
+              'The official WBJEEB counselling code for Haldia Institute of Technology is 106. When filling choice options during WBJEE centralized counselling, candidates must select Code 106. Separately, the college code designated by Maulana Abul Kalam Azad University of Technology (MAKAUT) for university examinations and registration is 103.',
+          },
+          {
+            question: 'What are the complete 2026–27 B.Tech tuition fees and hostel charges at HIT Haldia?',
+            answer:
+              'For the 2026–27 academic cycle, the complete 4-year (8-semester) B.Tech fee at HIT Haldia without hostel is ₹6,12,700 for computing and circuit branches. With on-campus hostel accommodation, the total 4-year cost is ₹7,61,700. The core tuition fee is ₹60,500 per semester (₹1,21,000 per academic year). First semester admission fees total ₹98,700 (including tuition, admission charges, and refundable caution deposit). Semester hostel seat rent is ₹18,000 with a one-time refundable hostel deposit of ₹5,000. Semester autonomous examination fees are charged separately as notified.',
+          },
+          {
+            question: 'Which 14 B.Tech engineering programmes are offered at HIT Haldia?',
+            answer:
+              'Haldia Institute of Technology offers 14 AICTE-approved B.Tech engineering branches: (1) Computer Science & Engineering (420 seats), (2) CSE AI & ML (240 seats), (3) CSE Data Science (120 seats), (4) CSE Cyber Security (120 seats), (5) Information Technology (180 seats), (6) Electronics & Communication Engineering (180 seats), (7) Electrical Engineering (120 seats), (8) Applied Electronics & Instrumentation (60 seats), (9) Mechanical Engineering (120 seats), (10) Chemical Engineering (120 seats), (11) Civil Engineering (90 seats), (12) Biotechnology (60 seats), (13) Food Technology (60 seats), and (14) Agricultural Engineering (30 seats). The total sanctioned annual intake is 1,920 seats.',
+          },
+          {
+            question: 'What WBJEE rank is required for admission to Computer Science (CSE) at HIT Haldia?',
+            answer:
+              'In historical WBJEE centralized counselling archives under the General Open quota, B.Tech Computer Science & Engineering (CSE) had an opening closing rank around ~8,500 in Round 1 and closed at approximately ~14,200 in the Final/Mop-Up round. For candidates under the Tuition Fee Waiver (TFW) quota, closing ranks closed tighter around ~6,800. For the 10% All-India JEE Main quota, CSE closes around ~45,000 CRL.',
+          },
+          {
+            question: 'What is the NIRF placement record and median salary at Haldia Institute of Technology?',
+            answer:
+              'According to the official NIRF 2026 Engineering institutional submission (2024–25 graduating cohort), 1,105 out of 1,380 eligible undergraduate students were placed through campus recruitment with an audited median salary of ₹4,50,000 (₹4.50 LPA), while 32 graduates progressed to higher studies. In the preceding 2023–24 cohort, 758 of 1,378 students were placed with a ₹3.00 LPA median. Major campus recruiters include Haldia Petrochemicals, IOCL, Wipro, TCS, Cognizant, Tech Mahindra, Infosys, and Praxair.',
+          },
+          {
+            question: 'What is HIT Haldia’s NAAC and NBA accreditation status?',
+            answer:
+              'HIT Haldia was awarded NAAC Grade A with a CGPA of 3.31 in 2018; the institutional accreditation certificate linked on the official portal states validity through 31 December 2025 (institutional renewal and extension documentation is currently pending public verification). At the programme level, NBA Tier-I accreditation is valid through 30 June 2028 for AEIE, Electrical Engineering (EE), and Electronics & Communication Engineering (ECE). Programmes in CSE, Chemical, Mechanical, Biotechnology, Civil, IT, and Food Technology held accreditation valid through 30 June 2026 and are undergoing renewal.',
+          },
+          {
+            question: 'What is HIT Haldia’s NIRF Engineering ranking?',
+            answer:
+              'In the Ministry of Education’s official National Institutional Ranking Framework (NIRF) Engineering evaluations, Haldia Institute of Technology was placed in the Rank Band 201–300 in both the 2024 and 2025 rankings.',
+          },
+          {
+            question: 'How do hostel facilities and campus accommodation work at HIT Haldia?',
+            answer:
+              'HIT Haldia operates 11 on-campus residential hostels across its 37-acre campus (separate for boys and girls) with 24/7 security, high-speed Wi-Fi, indoor sports, and dining mess facilities. Hostel seat rent is ₹18,000 per semester with a ₹5,000 refundable caution deposit. Food and mess charges are operated on a cooperative cost basis by student committees.',
+          },
+        ]
+      : [
+          {
+            question: `What is the official WBJEE counselling code for ${college.name} (${college.shortName})?`,
+            answer: `The official West Bengal Joint Entrance Examination Board (WBJEEB) counselling code for ${college.name} is ${college.wbjeebCode}. When filling choice options during centralized e-counselling at wbjeeb.nic.in, search for code ${college.wbjeebCode} to select this institution.`,
+          },
+          {
+            question: `What is the annual B.Tech tuition fee at ${college.shortName}?`,
+            answer: college.feeStructure.annualTuitionMin
+              ? `According to audited institutional accounts circulars and West Bengal Higher Education Fee Committee notices, the annual tuition fee at ${college.name} is ₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${college.feeStructure.annualTuitionMax.toLocaleString('en-IN')}` : ''} per academic year (₹${Math.round(college.feeStructure.annualTuitionMin / 2).toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${Math.round(college.feeStructure.annualTuitionMax / 2).toLocaleString('en-IN')}` : ''} per semester), totalling approximately ₹${(college.feeStructure.annualTuitionMin * 4).toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${(college.feeStructure.annualTuitionMax * 4).toLocaleString('en-IN')}` : ''} across the 4-year degree course. All figures follow statutory regulatory schedules without undisclosed caps.`
+              : `Official regulatory fee notices for ${college.name} are pending publication by the state fee committee. Please refer to our verified fee circular citation above or consult the institutional admissions desk.`,
+          },
+          {
+            question: `What WBJEE rank is required for admission to Computer Science (CSE) at ${college.shortName}?`,
+            answer: cseCutoffText,
+          },
+          {
+            question: `What regulatory accreditations and university affiliations does ${college.shortName} hold?`,
+            answer: `${college.name} is recognized as an ${college.regulatoryApproval || 'AICTE Approved'} technical institution and is affiliated with ${college.affiliation || 'MAKAUT (Maulana Abul Kalam Azad University of Technology)'}.${college.naacGrade ? ` The institution holds a NAAC accreditation grade of ${college.naacGrade}.` : ''}${college.nirfRankEngineering2024 ? ` In NIRF 2024 Engineering rankings, it achieved ${typeof college.nirfRankEngineering2024 === 'number' ? `#${college.nirfRankEngineering2024} across India` : college.nirfRankEngineering2024}.` : ''}`,
+          },
+          {
+            question: `Which entrance examinations are accepted for admission to ${college.shortName}?`,
+            answer: `Undergraduate B.Tech admissions to ${college.name} are primarily conducted through ${college.acceptedExams.join(', ')}. Seats are allocated via centralized WBJEEB counseling based on merit ranks, alongside recognized decentralized quotas.`,
+          },
+          {
+            question: `How do I apply for B.Tech admission at ${college.shortName} for the 2027 academic session?`,
+            answer: `For the 2027 academic session, undergraduate engineering admissions at ${college.name} will be administered through the WBJEE 2027 centralized e-counselling process (WBJEEB Code #${college.wbjeebCode}) and JEE Main quotas. Candidates must register at wbjeeb.nic.in, participate in choice filling, and lock ${college.shortName} based on verified closing cutoff ranks. Free 1-on-1 counseling is available on BengalCampus.`,
+          },
+        ];
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -574,7 +658,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <h2 className="font-heading font-bold text-lg sm:text-xl text-[#102A56]">
-                      WBJEE Cutoff Ranks (Closing Rank Archives)
+                      {college.slug === 'iem-kolkata'
+                        ? 'Historical WBJEE Cutoff Ranks (Archive Reference)'
+                        : 'WBJEE Cutoff Ranks (Closing Rank Archives)'}
                     </h2>
                     <span
                       style={{
@@ -585,11 +671,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       }}
                       className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5"
                     >
-                      Official Benchmarks
+                      {college.slug === 'iem-kolkata' ? 'Historical Archive' : 'Official Benchmarks'}
                     </span>
                   </div>
                   <p className="text-xs text-[#6a6a6a]">
-                    Official centralized allotment closing ranks across counselling rounds
+                    {college.slug === 'iem-kolkata'
+                      ? 'Historical centralized allotment closing ranks across counselling rounds (WBJEE Code #104 archive)'
+                      : 'Official centralized allotment closing ranks across counselling rounds'}
                   </p>
                 </div>
                 <Link
@@ -606,6 +694,34 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                   <ArrowRight className="w-3.5 h-3.5 text-[#1455B8]" />
                 </Link>
               </div>
+
+              {college.slug === 'iem-kolkata' && (
+                <div className="p-3.5 rounded-xl bg-amber-50/90 border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
+                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <div className="space-y-0.5">
+                    <p className="font-bold">Historical Archive Note for IEM Kolkata (WBJEE Code #104)</p>
+                    <p className="text-amber-800 leading-relaxed">
+                      The closing ranks displayed below represent historical WBJEEB centralized counselling cutoffs for archive and benchmark comparison. The primary published admission route for the upcoming academic cycle is through the{' '}
+                      <Link href="/iemjee" className="font-bold text-[#1455B8] underline">
+                        IEMJEE entrance examination
+                      </Link>{' '}
+                      and direct institutional counselling at the Salt Lake Ashram campus.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {college.slug === 'haldia-institute-of-technology' && (
+                <div className="p-3.5 rounded-xl bg-blue-50/90 border border-blue-200 text-xs text-blue-950 flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#1455B8] shrink-0 mt-0.5" />
+                  <div className="space-y-0.5">
+                    <p className="font-bold">Official WBJEE Code #106 &amp; JEE Main Allotment Benchmarks</p>
+                    <p className="text-blue-900 leading-relaxed">
+                      HIT Haldia admits 90% of undergraduate B.Tech seats through centralized WBJEE counselling (Institute Code 106) and 10% through NTA JEE Main CRL ranks. Below are verified round-wise closing ranks from official allotment archives.
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {collegeCutoffs.length > 0 ? (
                 <>
@@ -860,6 +976,107 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 <p className="leading-relaxed">{college.feeStructure.disclaimer}</p>
               </div>
 
+              {/* Haldia 8-Semester Detailed Fee Breakdown Table */}
+              {college.slug === 'haldia-institute-of-technology' && (
+                <div className="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-3 text-xs">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-sm">
+                        Official 8-Semester Fee Schedule (2026–27 Academic Cycle)
+                      </h3>
+                      <p className="text-slate-500 text-[11px]">
+                        Statutory semester-wise breakdown for B.Tech computing, circuit &amp; allied programmes
+                      </p>
+                    </div>
+                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 self-start sm:self-auto">
+                      Official Gazette
+                    </span>
+                  </div>
+
+                  <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white">
+                    <table className="w-full text-left text-xs">
+                      <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px]">
+                        <tr>
+                          <th className="py-2.5 px-3">Semester</th>
+                          <th className="py-2.5 px-3">Fee (Without Hostel)</th>
+                          <th className="py-2.5 px-3">Hostel Seat Rent</th>
+                          <th className="py-2.5 px-3">Total (With Hostel)</th>
+                          <th className="py-2.5 px-3">Component Highlights</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 text-slate-700">
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 1 (Admission)</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹98,700</td>
+                          <td className="py-2 px-3 font-mono">₹18,000 + ₹5,000*</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹1,21,700</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Admission ₹15k + Caution ₹8k + Univ/Lib fees</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 2</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹73,500</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹91,500</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹11k + Library/Student fund</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 3</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹76,000</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹94,000</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹11k + Annual university dev fee</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 4</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹73,500</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹91,500</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹11k + Library/Student fund</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 5</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹76,000</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹94,000</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹11k + Annual university dev fee</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 6</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹73,500</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹91,500</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹11k + Library/Student fund</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 7</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹72,000</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹90,000</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹11k + Training fee</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-semibold text-slate-900">Semester 8</td>
+                          <td className="py-2 px-3 font-mono font-bold text-[#1455B8]">₹69,500</td>
+                          <td className="py-2 px-3 font-mono">₹18,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-emerald-800">₹87,500</td>
+                          <td className="py-2 px-3 text-slate-500 text-[11px]">Tuition ₹60.5k + Development fee ₹9k</td>
+                        </tr>
+                        <tr className="bg-slate-50 font-bold border-t-2 border-slate-300 text-slate-900">
+                          <td className="py-2.5 px-3">Total (8 Semesters)</td>
+                          <td className="py-2.5 px-3 font-mono text-base text-[#1455B8]">₹6,12,700</td>
+                          <td className="py-2.5 px-3 font-mono text-slate-700">₹1,49,000</td>
+                          <td className="py-2.5 px-3 font-mono text-base text-emerald-800">₹7,61,700</td>
+                          <td className="py-2.5 px-3 text-[11px] text-slate-500">*Includes ₹5,000 refundable hostel caution deposit</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-relaxed">
+                    <em>Notice:</em> Autonomy examination fees are charged separately per semester as notified by the controller of examinations. Mess and food expenses are managed directly through student-run mess committees. Civil and Agriculture Engineering have a subsidized course total of ₹4,67,500.
+                  </p>
+                </div>
+              )}
+
               {/* Branch-Wise Total Course Fee & Admission Breakdown Table */}
               {college.feeStructure.branchFees && college.feeStructure.branchFees.length > 0 && (
                 <div className="space-y-3 pt-3 border-t border-slate-100">
@@ -1004,7 +1221,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                   </p>
                 </div>
                 <a
-                  href={college.slug === 'iem-kolkata' ? 'https://iem.edu.in/placement/' : (college.officialWebsite || '#')}
+                  href={
+                    college.slug === 'iem-kolkata'
+                      ? 'https://iem.edu.in/placements/'
+                      : college.slug === 'haldia-institute-of-technology'
+                      ? 'https://hithaldia.ac.in/training-placement/'
+                      : (college.officialWebsite || '#')
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[11px] text-emerald-700 hover:text-emerald-800 font-medium flex items-center gap-1"
@@ -1020,12 +1243,12 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                     <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
                       <span className="text-[11px] text-slate-500 font-medium block">Highest Package</span>
                       <strong className="text-slate-900 font-extrabold text-base">₹72 LPA</strong>
-                      <span className="text-[10px] text-slate-400 block">₹32 LPA Domestic</span>
+                      <span className="text-[10px] text-slate-400 block">Peak Individual (₹32L Domestic)</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
                       <span className="text-[11px] text-slate-500 font-medium block">Median Package (NIRF)</span>
-                      <strong className="text-emerald-700 font-extrabold text-base">₹5.50 LPA</strong>
-                      <span className="text-[10px] text-slate-400 block">NIRF 2024 Filing</span>
+                      <strong className="text-emerald-700 font-extrabold text-base">₹6.00 LPA</strong>
+                      <span className="text-[10px] text-slate-400 block">NIRF 2026 Data (2024-25)</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
                       <span className="text-[11px] text-slate-500 font-medium block">CSE/IT Average</span>
@@ -1034,15 +1257,89 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                     </div>
                     <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
                       <span className="text-[11px] text-slate-500 font-medium block">Placement Rate</span>
-                      <strong className="text-slate-900 font-extrabold text-base">90%+</strong>
-                      <span className="text-[10px] text-slate-400 block">Eligible students</span>
+                      <strong className="text-slate-900 font-extrabold text-base">86.8% Placed</strong>
+                      <span className="text-[10px] text-slate-400 block">787 of 907; 102 Higher Studies</span>
                     </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-3">
+                    <span className="font-bold text-slate-900 block">Official NIRF 2026 Institutional Placement Filing:</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-600">
+                      <div className="p-3 bg-white rounded-lg border border-slate-200">
+                        <strong className="text-slate-900 block font-semibold">2024–25 Graduating Cohort (UG 4-Year):</strong>
+                        <p className="mt-1">907 Graduated • 787 Placed • ₹6,00,000 Median Salary • 102 Selected for Higher Studies</p>
+                      </div>
+                      <div className="p-3 bg-white rounded-lg border border-slate-200">
+                        <strong className="text-slate-900 block font-semibold">2023–24 Graduating Cohort (UG 4-Year):</strong>
+                        <p className="mt-1">885 Graduated • 774 Placed • ₹6,00,000 Median Salary • 85 Selected for Higher Studies</p>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-slate-500 pt-1">
+                      <em>Note on compensation benchmarks:</em> Peak individual offers (up to ₹72 LPA in international / off-campus drives and ₹32 LPA domestic) reflect exceptional individual achievements. The audited institutional median across all graduating students is ₹6.00 LPA.
+                    </p>
                   </div>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-2">
                     <span className="font-bold text-slate-900 block">Top Corporate Recruiters at {college.shortName}:</span>
                     <div className="flex flex-wrap gap-2">
                       {['TCS (Digital & Ninja)', 'Cognizant', 'PwC India', 'Oracle', 'Adobe', 'Infosys', 'Capgemini', 'Wipro', 'Amazon India', 'LTIMindtree'].map((recruiter) => (
+                        <span key={recruiter} className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-800 font-semibold text-xs shadow-2xs">
+                          {recruiter}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : college.slug === 'haldia-institute-of-technology' ? (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                      <span className="text-[11px] text-slate-500 font-medium block">Highest Package</span>
+                      <strong className="text-slate-900 font-extrabold text-base">₹40 LPA</strong>
+                      <span className="text-[10px] text-slate-400 block">Peak Product / Off-Campus</span>
+                    </div>
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                      <span className="text-[11px] text-slate-500 font-medium block">Median Package (NIRF)</span>
+                      <strong className="text-emerald-700 font-extrabold text-base">₹4.50 LPA</strong>
+                      <span className="text-[10px] text-slate-400 block">NIRF 2026 Data (2024-25)</span>
+                    </div>
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                      <span className="text-[11px] text-slate-500 font-medium block">Students Placed</span>
+                      <strong className="text-[#1455B8] font-extrabold text-base">1,105 Placed</strong>
+                      <span className="text-[10px] text-slate-400 block">80.1% of 1,380 graduates</span>
+                    </div>
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                      <span className="text-[11px] text-slate-500 font-medium block">Higher Studies</span>
+                      <strong className="text-slate-900 font-extrabold text-base">32 Students</strong>
+                      <span className="text-[10px] text-slate-400 block">M.Tech / MS / MBA</span>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-3">
+                    <span className="font-bold text-slate-900 block">Official NIRF 2026 Consolidated Placement History (UG 4-Year):</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-slate-600">
+                      <div className="p-3 bg-white rounded-lg border border-slate-200">
+                        <strong className="text-slate-900 block font-semibold">2024–25 Graduating Cohort:</strong>
+                        <p className="mt-1">1,380 Graduated • 1,105 Placed (80.1%) • ₹4,50,000 Median Salary • 32 Higher Studies</p>
+                      </div>
+                      <div className="p-3 bg-white rounded-lg border border-slate-200">
+                        <strong className="text-slate-900 block font-semibold">2023–24 Graduating Cohort:</strong>
+                        <p className="mt-1">1,378 Graduated • 758 Placed (55.0%) • ₹3,00,000 Median Salary • 31 Higher Studies</p>
+                      </div>
+                      <div className="p-3 bg-white rounded-lg border border-slate-200">
+                        <strong className="text-slate-900 block font-semibold">2022–23 Graduating Cohort:</strong>
+                        <p className="mt-1">1,217 Graduated • 656 Placed (53.9%) • ₹4,00,000 Median Salary • 8 Higher Studies</p>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-slate-500 pt-1">
+                      <em>Placement Methodology Note:</em> All salary medians represent audited statutory filings submitted to the National Institutional Ranking Framework (NIRF). The median salary is the middle value of all accepted graduate offers, representing typical student outcomes. Peak individual offers (up to ₹40 LPA) reflect exceptional off-campus or niche product company selections.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-2">
+                    <span className="font-bold text-slate-900 block">Key Industrial &amp; IT Recruiters at {college.shortName}:</span>
+                    <div className="flex flex-wrap gap-2">
+                      {['Haldia Petrochemicals', 'Indian Oil (IOCL)', 'TCS (Digital & Ninja)', 'Cognizant', 'Wipro Technologies', 'Infosys', 'Tech Mahindra', 'IBM India', 'Praxair', 'Mitsubishi Chemical', 'L&T', 'Capgemini'].map((recruiter) => (
                         <span key={recruiter} className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-800 font-semibold text-xs shadow-2xs">
                           {recruiter}
                         </span>
@@ -1146,74 +1443,142 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             <section id="roadmap" className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
               <div className="border-b border-slate-100 pb-3">
                 <h2 className="font-heading font-bold text-lg text-slate-900">
-                  Admission & Counselling Roadmap
+                  {college.slug === 'iem-kolkata'
+                    ? 'IEM Kolkata Admission Roadmap (IEMJEE 2027)'
+                    : 'Admission & Counselling Roadmap'}
                 </h2>
                 <p className="text-xs text-slate-500">
-                  Step-by-step statutory process for seat allotment at {college.shortName}
+                  {college.slug === 'iem-kolkata'
+                    ? 'Official 5-step admission process through IEMJEE entrance test and institutional counselling'
+                    : `Step-by-step statutory process for seat allotment at ${college.shortName}`}
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    1
+              {college.slug === 'iem-kolkata' ? (
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-blue-100 text-[#1455B8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      1
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Academic Eligibility Verification</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Passed 10+2 Examination with Physics and Mathematics along with Chemistry / Computer Science / Biotechnology with minimum 45% marks in aggregate (40% for reserved category candidates) and passed English.
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-xs space-y-0.5">
-                    <p className="font-bold text-slate-900 text-sm">Academic Eligibility Verification</p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Passed 10+2 Examination with Physics and Mathematics along with Chemistry / Biotechnology / Computer Science with at least 45% aggregate (40% for SC/ST/OBC-A/OBC-B candidates) and passed English with min 30%.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    2
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-blue-100 text-[#1455B8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      2
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Free Online Registration for IEMJEE (exam.iem.edu.in)</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Register online on the official exam portal (<a href="https://exam.iem.edu.in" target="_blank" rel="noopener noreferrer" className="text-[#1455B8] underline font-semibold">exam.iem.edu.in</a>). There is <strong>₹0 application fee</strong> for all candidates. Select your preferred examination mode (online proctored or offline test center).
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-xs space-y-0.5">
-                    <p className="font-bold text-slate-900 text-sm">Qualify in WBJEE or JEE Main</p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Secure a valid General Merit Rank (GMR) in West Bengal Joint Entrance Examination. (90% state quota through WBJEE; 10% AI quota in private institutes through JEE Main).
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    3
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-blue-100 text-[#1455B8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      3
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Appear for IEMJEE 2027 Examination</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Appear for the 2-hour objective test covering Physics, Chemistry, and Mathematics (mirroring CBSE Class 11 and Class 12 curriculum). Exam slots are scheduled across rolling admission phases.
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-xs space-y-0.5">
-                    <p className="font-bold text-slate-900 text-sm">Online Choice Filling (wbjeeb.nic.in)</p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Register during centralized e-counselling. Add <strong className="text-slate-900">{college.name}</strong> using WBJEE Institute Code <strong className="text-emerald-800 font-mono font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{college.wbjeebCode}</strong> and lock your branch preferences.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    4
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-blue-100 text-[#1455B8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      4
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Download Digital Rank Card & Score Report</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Access your verified rank and scorecard directly from the portal. Merit ranks are calculated based on subject performance and determine branch availability during counselling.
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-xs space-y-0.5">
-                    <p className="font-bold text-slate-900 text-sm">Seat Allotment & Document Verification</p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Upon allotment, pay seat acceptance fee and report with originals: WB Domicile Certificate (Proforma A1/A2/B), 10th Admit Card (DOB proof), 12th Marksheet, Rank Card, and Allotment Letter.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    5
-                  </div>
-                  <div className="text-xs space-y-0.5">
-                    <p className="font-bold text-slate-900 text-sm">Physical Campus Admission & Enrollment</p>
-                    <p className="text-slate-600 leading-relaxed">
-                      Report to the {college.shortName} campus admission desk ({college.city}), complete institutional registration, and collect your university student identity kit.
-                    </p>
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-blue-100 text-[#1455B8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      5
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Institutional Counselling &amp; Enrollment at Salt Lake Campus</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Attend institutional counselling at IEM Ashram Building (GN-34/2, Sector V, Salt Lake, Kolkata 700091) for branch allocation, document verification, payment of 1st semester fees (₹1,40,000 published schedule), and enrollment.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      1
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Academic Eligibility Verification</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Passed 10+2 Examination with Physics and Mathematics along with Chemistry / Biotechnology / Computer Science with at least 45% aggregate (40% for SC/ST/OBC-A/OBC-B candidates) and passed English with min 30%.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      2
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Qualify in WBJEE or JEE Main</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Secure a valid General Merit Rank (GMR) in West Bengal Joint Entrance Examination. (90% state quota through WBJEE; 10% AI quota in private institutes through JEE Main).
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      3
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Online Choice Filling (wbjeeb.nic.in)</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Register during centralized e-counselling. Add <strong className="text-slate-900">{college.name}</strong> using WBJEE Institute Code <strong className="text-emerald-800 font-mono font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{college.wbjeebCode}</strong> and lock your branch preferences.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      4
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Seat Allotment & Document Verification</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Upon allotment, pay seat acceptance fee and report with originals: WB Domicile Certificate (Proforma A1/A2/B), 10th Admit Card (DOB proof), 12th Marksheet, Rank Card, and Allotment Letter.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      5
+                    </div>
+                    <div className="text-xs space-y-0.5">
+                      <p className="font-bold text-slate-900 text-sm">Physical Campus Admission & Enrollment</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        Report to the {college.shortName} campus admission desk ({college.city}), complete institutional registration, and collect your university student identity kit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* Campus Amenities & Student Facilities */}
@@ -1556,30 +1921,80 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {comparisonPeers.map((peer) => (
-              <Link
-                key={peer.slug}
-                href={`/compare?colleges=${college.slug},${peer.slug}`}
-                rel="nofollow"
-                className="group p-5 rounded-2xl bg-white border border-slate-200/90 hover:border-[#1455B8] hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-[11px] font-bold text-[#1455B8] uppercase tracking-wider block mb-1">
-                    Head-to-Head
-                  </span>
-                  <h3 className="font-heading font-extrabold text-sm text-[#102A56] group-hover:text-[#1455B8] transition-colors">
-                    {college.shortName} vs {peer.shortName}
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                    Align {college.name} against {peer.name} across cutoffs, NIRF rankings, and annual tuition bands.
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1455B8]">
-                  <span>Launch Comparison Matrix</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
+            {college.slug === 'iem-kolkata' ? (
+              <>
+                <Link
+                  href="/compare/iem-kolkata-vs-heritage"
+                  className="group p-5 rounded-2xl bg-white border-2 border-[#1455B8]/80 hover:border-[#102A56] hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-[11px] font-bold text-[#1455B8] uppercase tracking-wider block mb-1">
+                      Featured Head-to-Head
+                    </span>
+                    <h3 className="font-heading font-extrabold text-sm text-[#102A56] group-hover:text-[#1455B8] transition-colors">
+                      IEM Kolkata vs Heritage Institute of Technology
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-2 line-clamp-3 leading-relaxed">
+                      Comprehensive evaluation of Salt Lake vs Anandapur campus, ₹9.45L vs ₹5.46L tuition fees, IEMJEE vs WBJEE routes, and NIRF median placement records.
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1455B8]">
+                    <span>Open Side-by-Side Analysis</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+
+                {comparisonPeers.filter((p) => p.slug !== 'heritage-institute-of-technology').slice(0, 2).map((peer) => (
+                  <Link
+                    key={peer.slug}
+                    href={`/compare?colleges=${college.slug},${peer.slug}`}
+                    rel="nofollow"
+                    className="group p-5 rounded-2xl bg-white border border-slate-200/90 hover:border-[#1455B8] hover:shadow-md transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <span className="text-[11px] font-bold text-[#1455B8] uppercase tracking-wider block mb-1">
+                        Head-to-Head
+                      </span>
+                      <h3 className="font-heading font-extrabold text-sm text-[#102A56] group-hover:text-[#1455B8] transition-colors">
+                        {college.shortName} vs {peer.shortName}
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                        Align {college.name} against {peer.name} across cutoffs, NIRF rankings, and annual tuition bands.
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1455B8]">
+                      <span>Launch Comparison Matrix</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
+                ))}
+              </>
+            ) : (
+              comparisonPeers.map((peer) => (
+                <Link
+                  key={peer.slug}
+                  href={`/compare?colleges=${college.slug},${peer.slug}`}
+                  rel="nofollow"
+                  className="group p-5 rounded-2xl bg-white border border-slate-200/90 hover:border-[#1455B8] hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-[11px] font-bold text-[#1455B8] uppercase tracking-wider block mb-1">
+                      Head-to-Head
+                    </span>
+                    <h3 className="font-heading font-extrabold text-sm text-[#102A56] group-hover:text-[#1455B8] transition-colors">
+                      {college.shortName} vs {peer.shortName}
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                      Align {college.name} against {peer.name} across cutoffs, NIRF rankings, and annual tuition bands.
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1455B8]">
+                    <span>Launch Comparison Matrix</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </section>
 

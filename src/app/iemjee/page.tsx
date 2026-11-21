@@ -120,27 +120,61 @@ export default function IemjeePage() {
 
               {/* Syllabus Overview */}
               <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-3 text-xs text-slate-700">
-                <h3 className="text-base font-bold text-slate-900 font-heading flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-brandBlue-600" />
-                  <span>Subject &amp; Syllabus Distribution</span>
-                </h3>
-                <p className="text-slate-600">
-                  The examination syllabus mirrors the CBSE Class 11 and Class 12 Science curriculum:
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-bold text-slate-900 font-heading flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-brandBlue-600" />
+                    <span>Subject &amp; Syllabus Distribution</span>
+                  </h3>
+                  <Link
+                    href="/resources/iemjee-syllabus-preparation-strategy"
+                    className="text-[11px] font-bold text-brandBlue-600 hover:underline"
+                  >
+                    Read Preparation Strategy →
+                  </Link>
+                </div>
+                <p className="text-slate-600 leading-relaxed">
+                  For B.Tech applicants, the examination consists of 120 multiple-choice questions (120 marks, 2 hours duration) aligned with CBSE and West Bengal Higher Secondary syllabi:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                  <div className="p-3 bg-slate-50 rounded border border-slate-100">
-                    <strong className="text-slate-900 block mb-1">Physics</strong>
-                    <span className="text-slate-600">Mechanics, Thermodynamics, Electromagnetism, Optics, Modern Physics</span>
+                  <div className="p-3 bg-slate-50 rounded border border-slate-100 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <strong className="text-slate-900 block font-semibold">Physics</strong>
+                      <span className="text-[10px] font-bold text-[#1455B8] bg-blue-50 px-1.5 py-0.5 rounded">30 Questions</span>
+                    </div>
+                    <span className="text-slate-600 block text-[11px]">Mechanics, Thermodynamics, Electromagnetism, Optics, Modern Physics</span>
                   </div>
-                  <div className="p-3 bg-slate-50 rounded border border-slate-100">
-                    <strong className="text-slate-900 block mb-1">Chemistry</strong>
-                    <span className="text-slate-600">Physical Chemistry, Organic Mechanisms, Inorganic Elements &amp; Periodic Trends</span>
+                  <div className="p-3 bg-slate-50 rounded border border-slate-100 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <strong className="text-slate-900 block font-semibold">Chemistry</strong>
+                      <span className="text-[10px] font-bold text-[#1455B8] bg-blue-50 px-1.5 py-0.5 rounded">30 Questions</span>
+                    </div>
+                    <span className="text-slate-600 block text-[11px]">Physical Chemistry, Organic Mechanisms, Inorganic Elements &amp; Periodic Trends</span>
                   </div>
-                  <div className="p-3 bg-slate-50 rounded border border-slate-100">
-                    <strong className="text-slate-900 block mb-1">Mathematics</strong>
-                    <span className="text-slate-600">Calculus, Vectors &amp; 3D Geometry, Algebra, Coordinate Geometry</span>
+                  <div className="p-3 bg-slate-50 rounded border border-slate-100 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <strong className="text-slate-900 block font-semibold">Mathematics</strong>
+                      <span className="text-[10px] font-bold text-[#1455B8] bg-blue-50 px-1.5 py-0.5 rounded">60 Questions</span>
+                    </div>
+                    <span className="text-slate-600 block text-[11px]">Calculus, Vectors &amp; 3D Geometry, Algebra, Coordinate Geometry</span>
                   </div>
                 </div>
+                <div className="pt-2 text-[11px] text-slate-500">
+                  <em>Note on Rolling Phases:</em> IEMJEE is conducted across multiple rolling phases from February through July. Candidates may appear in subsequent phases to improve their rank score. Confirm active slot availability at <a href="https://exam.iem.edu.in" target="_blank" rel="noopener noreferrer" className="text-brandBlue-600 underline font-medium">exam.iem.edu.in</a>.
+                </div>
+              </div>
+
+              {/* Related College Link */}
+              <div className="p-4 rounded-xl bg-slate-100/80 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <strong className="text-slate-900 block font-bold">Researching IEM Kolkata Admissions?</strong>
+                  <p className="text-slate-600 text-[11px]">Explore verified fee structures, NBA-accredited B.Tech branches, and NIRF placement records.</p>
+                </div>
+                <Link
+                  href="/colleges/iem-kolkata"
+                  className="px-3 py-2 rounded-lg bg-[#102A56] hover:bg-[#1455B8] text-white font-bold text-center text-xs transition-colors shrink-0"
+                >
+                  View IEM Kolkata Profile
+                </Link>
               </div>
 
               {/* How to Download Hall Ticket */}

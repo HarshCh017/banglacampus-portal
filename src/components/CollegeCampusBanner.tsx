@@ -74,13 +74,21 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
         {/* Left: Eyebrow, Title, Description & Badges */}
         <div className="space-y-2.5">
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#1455B8] block">
-            By BengalCampus — Independent Education Counsellors
+            By BengalCampus — Independent Education Resource
           </span>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-[#102A56] tracking-tight leading-tight">
-            {college.name} Review: Fees, Placements &amp; Admission Guidance
+            {college.slug === 'iem-kolkata'
+              ? 'IEM Kolkata (Institute of Engineering & Management), Kolkata'
+              : college.slug === 'haldia-institute-of-technology'
+              ? 'Haldia Institute of Technology (HIT Haldia)'
+              : `${college.name} Review: Fees, Placements & Admission Guidance`}
           </h1>
           <p className="text-xs sm:text-sm text-[#6a6a6a] max-w-2xl leading-relaxed">
-            Considering {college.shortName}? Check which campus and branch your rank qualifies for, verified 4-year tuition fees, and audited placement benchmarks. BengalCampus provides independent guidance while you compare your options.
+            {college.slug === 'iem-kolkata'
+              ? 'Explore Institute of Engineering & Management (IEM Kolkata) in Salt Lake Sector V: B.Tech programmes, official IEMJEE 2027 entrance route, verified ₹9.45L semester fee schedule, and audited NIRF placement records. BengalCampus is an independent research guide.'
+              : college.slug === 'haldia-institute-of-technology'
+              ? 'Explore Haldia Institute of Technology (HIT Haldia) in Hatiberia, Purba Medinipur: 14 B.Tech programmes, official 2026–27 fee schedule (₹6.12L without hostel / ₹7.61L with hostel), WBJEE & JEE Main closing cutoffs, and NIRF placement benchmarks. BengalCampus provides independent research guidance.'
+              : `Considering ${college.shortName}? Check which campus and branch your rank qualifies for, verified 4-year tuition fees, and audited placement benchmarks. BengalCampus provides independent guidance while you compare your options.`}
           </p>
 
           {/* Location & Badges Row */}
@@ -99,33 +107,134 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
               }}
               className="text-[11px] font-bold px-2.5 py-0.5"
             >
-              {isGovt ? 'Government' : 'Private'}
+              {isGovt ? 'Government' : 'Private Autonomous'}
             </span>
 
-            <span
-              style={{
-                borderRadius: 9999,
-                background: '#EAF2FF',
-                color: '#1455B8',
-                border: '1px solid #BFDBFE',
-              }}
-              className="text-[11px] font-bold px-2.5 py-0.5"
-            >
-              WBJEE Code #{college.wbjeebCode}
-            </span>
+            {college.slug === 'iem-kolkata' ? (
+              <>
+                <Link
+                  href="/iemjee"
+                  className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#EAF2FF] text-[#1455B8] border border-[#BFDBFE] hover:bg-[#D8E7FF] transition-colors"
+                >
+                  IEMJEE 2027 (Current Route)
+                </Link>
 
-            {college.naacGrade && (
-              <span
-                style={{
-                  borderRadius: 9999,
-                  background: '#f7f7f7',
-                  color: '#222222',
-                  border: '1px solid #dddddd',
-                }}
-                className="text-[11px] font-bold px-2.5 py-0.5"
-              >
-                NAAC {college.naacGrade}
-              </span>
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#f7f7f7',
+                    color: '#475569',
+                    border: '1px solid #dddddd',
+                  }}
+                  className="text-[11px] font-medium px-2 py-0.5"
+                >
+                  Historical WBJEE #{college.wbjeebCode}
+                </span>
+
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#FEF8EB',
+                    color: '#B45309',
+                    border: '1px solid #FDE4B0',
+                  }}
+                  className="text-[11px] font-bold px-2.5 py-0.5"
+                  title="Previous NAAC Grade A cycle concluded Dec 31, 2024; renewal in progress"
+                >
+                  NAAC Grade A (Historical Cycle)
+                </span>
+
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#FAF5FF',
+                    color: '#6B21A8',
+                    border: '1px solid #E9D5FF',
+                  }}
+                  className="text-[11px] font-semibold px-2 py-0.5"
+                >
+                  Affiliated to UEM Kolkata
+                </span>
+              </>
+            ) : college.slug === 'haldia-institute-of-technology' ? (
+              <>
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#EAF2FF',
+                    color: '#1455B8',
+                    border: '1px solid #BFDBFE',
+                  }}
+                  className="text-[11px] font-bold px-2.5 py-0.5"
+                >
+                  WBJEE Code #106
+                </span>
+
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#f7f7f7',
+                    color: '#475569',
+                    border: '1px solid #dddddd',
+                  }}
+                  className="text-[11px] font-semibold px-2 py-0.5"
+                >
+                  MAKAUT Code #103
+                </span>
+
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#FEF8EB',
+                    color: '#B45309',
+                    border: '1px solid #FDE4B0',
+                  }}
+                  className="text-[11px] font-bold px-2.5 py-0.5"
+                  title="Awarded 2018; certificate validity stated through Dec 31, 2025; renewal in progress"
+                >
+                  NAAC Grade A (Historical Cycle)
+                </span>
+
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#FAF5FF',
+                    color: '#6B21A8',
+                    border: '1px solid #E9D5FF',
+                  }}
+                  className="text-[11px] font-semibold px-2 py-0.5"
+                >
+                  NIRF 201–300 Rank Band
+                </span>
+              </>
+            ) : (
+              <>
+                <span
+                  style={{
+                    borderRadius: 9999,
+                    background: '#EAF2FF',
+                    color: '#1455B8',
+                    border: '1px solid #BFDBFE',
+                  }}
+                  className="text-[11px] font-bold px-2.5 py-0.5"
+                >
+                  WBJEE Code #{college.wbjeebCode}
+                </span>
+
+                {college.naacGrade && (
+                  <span
+                    style={{
+                      borderRadius: 9999,
+                      background: '#f7f7f7',
+                      color: '#222222',
+                      border: '1px solid #dddddd',
+                    }}
+                    className="text-[11px] font-bold px-2.5 py-0.5"
+                  >
+                    NAAC {college.naacGrade}
+                  </span>
+                )}
+              </>
             )}
 
             <span
@@ -137,7 +246,7 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
               }}
               className="text-[11px] font-semibold px-2 py-0.5"
             >
-              AICTE / UGC
+              AICTE Approved
             </span>
           </div>
         </div>
@@ -168,9 +277,9 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
             <span>{selected ? 'In Compare Deck' : 'Compare'}</span>
           </button>
 
-          {/* Primary CTA: Check My Rank Match */}
+          {/* Primary CTA */}
           <Link
-            href={`/wbjee-predictor?preselect=${college.slug}`}
+            href={college.slug === 'iem-kolkata' ? '/iemjee' : `/wbjee-predictor?preselect=${college.slug}`}
             style={{
               borderRadius: '9999px',
               background: '#102A56',
@@ -178,7 +287,7 @@ export function CollegeCampusBanner({ college }: CollegeCampusBannerProps) {
             className="inline-flex items-center gap-2 px-5 py-2.5 text-white font-bold text-xs sm:text-sm transition-all hover:bg-[#0a1c38] shadow-xs cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-white" />
-            <span>Check My Rank Match</span>
+            <span>{college.slug === 'iem-kolkata' ? 'IEMJEE 2027 Admission Desk' : 'Check My Rank Match'}</span>
           </Link>
 
           {/* Official Portal Link */}

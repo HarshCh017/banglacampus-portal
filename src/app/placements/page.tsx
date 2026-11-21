@@ -110,6 +110,35 @@ export default function PlacementsPage() {
                     Institutions situated in Salt Lake Sector V (such as IEM Kolkata and Techno Main Salt Lake) benefit from proximity to major multinational software delivery centers for internships and industrial projects.
                   </p>
                 </div>
+
+                {/* IEM Kolkata Spotlight Box */}
+                <div className="p-5 rounded-xl bg-[#EAF2FF]/70 border border-[#BFDBFE] space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-bold text-[#102A56]">
+                      IEM Kolkata Placement Statistics (NIRF Data)
+                    </h3>
+                    <Link
+                      href="/colleges/iem-kolkata"
+                      className="text-[11px] font-bold text-[#1455B8] hover:underline"
+                    >
+                      View Full College Profile →
+                    </Link>
+                  </div>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    According to the audited NIRF 2026 submission for the 2024–25 undergraduate graduating cohort, IEM Kolkata placed <strong>787 out of 907 students (86.8%)</strong> with an audited median salary of <strong>₹6.00 LPA</strong>, while 102 students opted for higher studies. Peak individual packages reached ₹72 LPA off-campus/international and ₹32 LPA domestic.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1 text-[11px]">
+                    <span className="px-2.5 py-1 rounded bg-white border border-[#BFDBFE] text-[#102A56] font-semibold">
+                      NIRF Median: ₹6.00 LPA
+                    </span>
+                    <span className="px-2.5 py-1 rounded bg-white border border-[#BFDBFE] text-emerald-800 font-semibold">
+                      Placement Rate: 86.8%
+                    </span>
+                    <span className="px-2.5 py-1 rounded bg-white border border-[#BFDBFE] text-purple-800 font-semibold">
+                      Higher Studies: 102
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-start gap-3">

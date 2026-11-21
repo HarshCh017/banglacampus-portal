@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useComparison } from '@/context/ComparisonContext';
 import { VERIFIED_COLLEGES, getCollegeBySlug } from '@/data/colleges';
+import { VERIFIED_CUTOFFS } from '@/data/cutoffs';
 import { College } from '@/types/college';
 import { formatNirfRank } from '@/lib/utils';
 import { CollegeCounsellingCard } from '@/components/college/CollegeCounsellingCard';
@@ -66,10 +67,19 @@ export function CompareView() {
   };
 
   const getClosingRank = (college: College) => {
+    const cse = VERIFIED_CUTOFFS.find(
+      (c) =>
+        c.collegeSlug === college.slug &&
+        c.quota === 'General' &&
+        (c.branchSlug === 'cse' || c.branchName.toLowerCase().includes('computer science'))
+    );
+    if (cse) {
+      return cse.approxClosingRankFinalRound.toLocaleString('en-IN');
+    }
     if (college.slug === 'jadavpur-university-engineering') return '1,850';
     if (college.slug === 'kalyani-government-engineering-college') return '3,650';
-    if (college.slug === 'iem-kolkata') return '12,600';
-    if (college.slug === 'heritage-institute-of-technology') return '9,450';
+    if (college.slug === 'iem-kolkata') return '4,620';
+    if (college.slug === 'heritage-institute-of-technology') return '6,500';
     return '14,200';
   };
 
@@ -342,13 +352,14 @@ export function CompareView() {
                         style={{
                           padding: '3px 8px',
                           borderRadius: 9999,
-                          background: '#f7f7f7',
-                          border: '1px solid #dddddd',
+                          background: c.slug === 'iem-kolkata' ? '#EAF2FF' : '#f7f7f7',
+                          color: c.slug === 'iem-kolkata' ? '#1455B8' : '#222222',
+                          border: c.slug === 'iem-kolkata' ? '1px solid #BFDBFE' : '1px solid #dddddd',
                           fontSize: 12,
-                          fontWeight: 500,
+                          fontWeight: 600,
                         }}
                       >
-                        WBJEE Centralized
+                        {c.slug === 'iem-kolkata' ? 'IEMJEE 2027 (Current)' : 'WBJEE Centralized'}
                       </span>
                     </td>
                   ))}

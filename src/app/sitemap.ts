@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/colleges`, lastModified: RECENT_CONTENT_DATE, changeFrequency: 'daily', priority: 0.95 },
     { url: `${BASE_URL}/wbjee-predictor`, lastModified: RECENT_CONTENT_DATE, changeFrequency: 'daily', priority: 0.95 },
     { url: `${BASE_URL}/compare`, lastModified: RECENT_CONTENT_DATE, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/compare/iem-kolkata-vs-heritage`, lastModified: RECENT_CONTENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/cutoffs`, lastModified: RECENT_CONTENT_DATE, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/counselling-simulator`, lastModified: ARCHIVE_REFRESH_DATE, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/fee-calculator`, lastModified: RECENT_CONTENT_DATE, changeFrequency: 'weekly', priority: 0.85 },
@@ -51,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/colleges/${c.slug}`,
       lastModified,
       changeFrequency: 'weekly' as const,
-      priority: c.slug === 'iem-kolkata' ? 0.95 : 0.9,
+      priority: c.slug === 'iem-kolkata' || c.slug === 'haldia-institute-of-technology' ? 0.95 : 0.9,
     };
   });
 
