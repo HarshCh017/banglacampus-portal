@@ -3,34 +3,35 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PlacementsSummary } from '@/components/PlacementsSummary';
 import { LeadCaptureForm } from '@/components/LeadCaptureForm';
-import { ChevronRight, ShieldCheck, Building2, TrendingUp, Users, AlertCircle } from 'lucide-react';
+import { ChevronRight, ShieldCheck, AlertCircle, Building2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'IEM Kolkata Placements | Highest Package, Average CTC & Top Recruiters',
+  title: 'West Bengal Engineering College Placements: Average Packages, Top Recruiters & Salary Benchmarks | BengalCampus',
   description:
-    'Verified placement records for IEM Kolkata (Institute of Engineering & Management). Highest package, average CTC, top corporate recruiters, and branch-wise placement percentages.',
+    'Compare verified placement records, median salary packages (NIRF-sourced), and recruiter footprints across top West Bengal engineering colleges, including Jadavpur University, KGEC, IEM, and Heritage.',
   keywords: [
-    'IEM college placement',
+    'West Bengal engineering college placements',
+    'WBJEE college salary packages',
+    'Jadavpur University engineering placement',
     'IEM Kolkata placement package',
-    'IEM highest package',
-    'IEM average package',
-    'IEM Kolkata top recruiters',
-    'IEM Salt Lake placements 2026',
-    'Institute of Engineering and Management placements',
+    'Heritage Institute of Technology placements',
+    'Haldia Institute of Technology placements',
+    'BTech average package West Bengal',
   ],
   alternates: {
     canonical: 'https://bengalcampus.in/placements',
   },
   openGraph: {
-    title: 'IEM Kolkata Placement Records & Salary Packages | BengalCampus',
-    description: 'Audited placement statistics, salary packages, and prominent recruiters at IEM Kolkata.',
+    title: 'West Bengal Engineering College Placement Records & Salary Packages | BengalCampus',
+    description:
+      'Compare verified placement records, median salary packages (NIRF-sourced), and recruiter footprints across top West Bengal engineering colleges.',
     url: 'https://bengalcampus.in/placements',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'IEM Kolkata Placements | Average Package & Top Recruiters',
-    description: 'Verified placement audit for IEM Kolkata: highest CTC, median packages, and recruiter list.',
+    title: 'West Bengal Engineering College Placements | Median Packages & Recruiters',
+    description: 'Verified placement audit for West Bengal engineering colleges: median CTCs, NIRF-reported figures, and campus hiring cells.',
   },
   robots: {
     index: true,
@@ -42,79 +43,81 @@ export default function PlacementsPage() {
   return (
     <>
       {/* Breadcrumb Navigation */}
-      <div className="bg-slate-100 border-b border-slate-200 py-2.5 px-4 text-xs text-slate-600">
+      <div className="bg-[#FAFBFD] border-b border-[#E2E8F0] py-3 px-4 text-xs text-[#64748B]">
         <div className="max-w-7xl mx-auto flex items-center gap-1.5">
-          <Link href="/" className="hover:text-brandBlue-600 font-medium">Home</Link>
+          <Link href="/" className="hover:text-[#1455B8] font-medium transition-colors">
+            Home
+          </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-semibold">Placement Records</span>
+          <span className="text-[#102A56] font-semibold">Engineering Placements</span>
         </div>
       </div>
 
       {/* Hero Header */}
-      <section className="bg-navy-950 text-white py-14 md:py-18 engineering-grid relative">
+      <section className="bg-[#102A56] text-white py-12 md:py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-900 border border-navy-700 text-xs font-semibold text-brandTeal-500">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Sourced &amp; Regulatory Audited Data</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-emerald-300">
+              <ShieldCheck className="w-4 h-4 text-[#0F8B70]" />
+              <span>Sourced &amp; Regulatory Audited Placement Records</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
-              B.Tech Placement Statistics &amp; Recruiter Reality
+              West Bengal Engineering College Placements &amp; Salary Benchmarks
             </h1>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
-              Review honest, sourced placement metrics. We share verified institutional medians and legitimate corporate recruiters without unsubstantiated superlatives.
+              Review honest, sourced placement metrics across West Bengal government institutions and autonomous private engineering colleges. We share verified institutional medians and legitimate corporate recruiters without unsubstantiated superlatives.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Placements Component */}
+      {/* Placements Comparison Component */}
       <PlacementsSummary />
 
-      {/* Training & Corporate Cell Section */}
-      <section className="py-14 md:py-18 bg-white border-t border-slate-200">
+      {/* Corporate Hiring & Preparation Section */}
+      <section className="py-14 md:py-18 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
             <div className="lg:col-span-7 space-y-6 text-xs text-slate-700 leading-relaxed">
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 font-heading">
+                <h2 className="text-2xl font-bold text-[#102A56] font-heading">
                   Training &amp; Placement Cell Architecture
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                  How IEM prepares engineering undergraduates for competitive corporate hiring cycles:
+                <p className="text-xs sm:text-sm text-[#64748B] mt-1">
+                  How leading West Bengal engineering colleges prepare undergraduates for competitive campus placement drives:
                 </p>
               </div>
 
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                  <h3 className="text-sm font-bold text-slate-900 mb-1">Pre-Placement Training (From 3rd Year)</h3>
-                  <p className="text-slate-600">
-                    Mandatory modules in Data Structures &amp; Algorithms (DSA), System Design, Quantitative Aptitude, Technical Communication, and Mock Technical Interviews.
+                <div className="p-4 rounded-xl bg-[#FAFBFD] border border-[#E2E8F0]">
+                  <h3 className="text-sm font-bold text-[#102A56] mb-1">Pre-Placement Training Modules</h3>
+                  <p className="text-[#64748B]">
+                    Colleges conduct structured training in Data Structures &amp; Algorithms (DSA), System Design, Quantitative Aptitude, Technical Communication, and Mock Coding Interviews starting from the 5th semester.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                  <h3 className="text-sm font-bold text-slate-900 mb-1">Industry Tie-Ups &amp; Certifications</h3>
-                  <p className="text-slate-600">
-                    Collaborations with IBM, Oracle, AWS Academy, and NPTEL providing certified skill pathways for cloud computing, cybersecurity, and artificial intelligence.
+                <div className="p-4 rounded-xl bg-[#FAFBFD] border border-[#E2E8F0]">
+                  <h3 className="text-sm font-bold text-[#102A56] mb-1">Industry Tie-Ups &amp; Certifications</h3>
+                  <p className="text-[#64748B]">
+                    Authorized training tracks in AWS Cloud, IBM AI, Oracle Database, and NPTEL Swayam provide verified credentials for software engineering and cloud infrastructure roles.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                  <h3 className="text-sm font-bold text-slate-900 mb-1">Sector V Location Dividend</h3>
-                  <p className="text-slate-600">
-                    Situated in Salt Lake Electronics Complex (Sector V), students enjoy close proximity to major tech delivery centers for internships, hackathons, and corporate guest lectures.
+                <div className="p-4 rounded-xl bg-[#FAFBFD] border border-[#E2E8F0]">
+                  <h3 className="text-sm font-bold text-[#102A56] mb-1">Sector V Location Dividend for Kolkata Colleges</h3>
+                  <p className="text-[#64748B]">
+                    Institutions situated in Salt Lake Sector V (such as IEM Kolkata and Techno Main Salt Lake) benefit from proximity to major multinational software delivery centers for internships and industrial projects.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
                 <div>
-                  <strong>Important Ethical Disclaimer:</strong>
-                  <p className="mt-0.5 text-amber-800">
-                    Admission to IEM does not imply guaranteed placement. Employment offers depend entirely upon individual academic performance, technical proficiency, attendance compliance, and employer selection criteria.
+                  <strong className="font-bold">Important Admission &amp; Outcome Advisory:</strong>
+                  <p className="mt-0.5 text-amber-800 text-[11px] leading-relaxed">
+                    College enrollment does not guarantee placement. Employment offers depend entirely upon individual academic performance, coding ability, project portfolio, attendance compliance, and employer selection rounds.
                   </p>
                 </div>
               </div>
@@ -124,8 +127,8 @@ export default function PlacementsPage() {
               <LeadCaptureForm
                 id="placements-lead-form"
                 sourceCtaId="placements-audit-page"
-                headline="Download Placement Audit Guide"
-                subheadline="Receive branch-wise recruiter distribution &amp; average package reports."
+                headline="Download West Bengal Placement Audit"
+                subheadline="Receive branch-wise recruiter distribution &amp; median CTC reports."
               />
             </div>
 

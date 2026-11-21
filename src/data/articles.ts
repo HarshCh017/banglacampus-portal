@@ -11,7 +11,8 @@ export interface Article {
   };
   readTimeMinutes: number;
   tags: string[];
-  content: string; // Markdown or rich formatted text
+  heroImage?: string;
+  content: string; // Markdown formatted text
 }
 
 export const VERIFIED_ARTICLES: Article[] = [
@@ -28,6 +29,7 @@ export const VERIFIED_ARTICLES: Article[] = [
     },
     readTimeMinutes: 7,
     tags: ['WBJEE', 'Counselling', 'Admissions', 'TFW Quota'],
+    heroImage: '/images/colleges/jadavpur-university-engineering.jpg',
     content: `## The Strategic Significance of the Choice Order
 
 In the West Bengal Joint Entrance Examinations (WBJEE) centralized e-counselling system, candidate choices are processed strictly sequentially from Option 1 downwards. If you are allotted Option 4 in Round 1, choices 5 and lower are automatically locked out for subsequent rounds. Therefore, your choice sheet must always reflect **true preference order**, rather than an arbitrary guess of what your rank can attain.
@@ -49,7 +51,7 @@ After official WBJEE centralized rounds conclude, government and private college
   },
   {
     slug: 'autonomous-vs-makaut-affiliated-colleges',
-    title: 'Autonomous vs Non-Autonomous Engineering Colleges in West Bengal: What It Means for Syllabus and Degree',
+    title: 'Autonomous vs MAKAUT-Affiliated Engineering Colleges in West Bengal: Syllabus, Exams & Degree Explained',
     description:
       'An objective breakdown of UGC autonomous status in West Bengal engineering colleges, how question papers are set, and who awards your final B.Tech degree.',
     publishedAt: '2026-07-22T08:30:00Z',
@@ -60,14 +62,15 @@ After official WBJEE centralized rounds conclude, government and private college
     },
     readTimeMinutes: 6,
     tags: ['MAKAUT', 'Autonomous Colleges', 'Academic Regulation', 'Curriculum'],
+    heroImage: '/images/colleges/heritage-institute-of-technology.jpg',
     content: `## What Does UGC Autonomous Status Entail?
 
 When an engineering college in West Bengal is granted **Autonomous Status** by the University Grants Commission (UGC) with approval from the state government and MAKAUT, it gains the academic freedom to design its own curriculum and conduct internal examinations.
 
 ### Crucial Fact: Who Awards the Degree?
 A common misconception among parents is that an autonomous private college awards its own independent degree. This is incorrect:
-- An autonomous college (such as IEM Kolkata, Heritage Institute of Technology, or Haldia Institute of Technology) **remains affiliated with MAKAUT** (Maulana Abul Kalam Azad University of Technology, formerly WBUT).
-- The final degree certificate is officially conferred by **MAKAUT**, bearing the university seal and noting the college of study.
+- An autonomous college (such as [IEM Kolkata](/colleges/iem-kolkata), [Heritage Institute of Technology](/colleges/heritage-institute-of-technology), or [Haldia Institute of Technology](/colleges/haldia-institute-of-technology)) **remains affiliated with MAKAUT** (Maulana Abul Kalam Azad University of Technology, formerly WBUT).
+- The final degree certificate is officially conferred by **MAKAUT**, bearing the state university seal and noting the college of study.
 
 ### Key Differences at a Glance
 
@@ -77,6 +80,10 @@ A common misconception among parents is that an autonomous private college award
 | **Examination Papers** | Drafted and evaluated internally by department faculty & external examiners | Centralized semester papers issued by MAKAUT controller |
 | **Academic Calendar** | Institutional semester schedule; less vulnerable to centralized delays | Governed strictly by centralized university notifications |
 | **Degree Awarded By** | MAKAUT, West Bengal | MAKAUT, West Bengal |
+| **Grading System** | Continuous Internal Evaluation (CIE) + End-Sem | Centralized University Evaluation |
+
+### Regulatory Authority & Statutory Acts
+Autonomy is governed by the UGC (Conferment of Autonomous Status upon Colleges and Measures for Maintenance of Standards in Autonomous Colleges) Regulations. Autonomous colleges must submit periodic compliance audits to the UGC Joint Review Committee and MAKAUT Academic Council.
 
 ### Is Autonomy an Indicator of Quality?
 While autonomy allows colleges to integrate modern computing modules (such as cloud architectures, generative AI, or specialized robotics tracks) faster than a centralized university syllabus, candidates should still verify:
@@ -98,26 +105,27 @@ While autonomy allows colleges to integrate modern computing modules (such as cl
     },
     readTimeMinutes: 8,
     tags: ['AICTE', 'NBA', 'NAAC', 'Accreditation', 'Student Consumer Rights'],
+    heroImage: '/images/colleges/kalyani-government-engineering-college.jpg',
     content: `## Why Independent Verification is Essential
 
 Prospectuses and digital campaigns frequently display badges like "NAAC Accredited", "NBA Approved", or "AICTE Recognized". However, accreditations expire, and some apply only to specific branches rather than the entire campus. Here is how any applicant can audit these claims in five minutes.
 
 ### 1. Auditing AICTE Approval (Extension of Approval - EoA)
 Every technical institution in India must renew its Extension of Approval annually with AICTE.
-- Go to the official portal: \`aicte-india.org\` → **Approved Institutes**.
+- Go to the official portal: [aicte-india.org](https://www.aicte-india.org) → **Approved Institutes**.
 - Select State (*West Bengal*) and District.
 - Download the annual **Extension of Approval (EoA) Letter**.
 - Check the approved intake column for each specific B.Tech program. If a branch is advertised with 180 seats but the EoA lists 120, only 120 are legally valid.
 
 ### 2. Checking NBA Accreditation (Program-Specific)
 The National Board of Accreditation (NBA) evaluates **individual academic programs**, not the overall institution.
-- Visit: \`nbaind.org\` → **Accredited Programs**.
+- Visit: [nbaind.org](https://www.nbaind.org) → **Accredited Programs**.
 - Search for the college name.
 - Check the **Validity Period** and the exact branch. For example, a college may have NBA accreditation for B.Tech CSE, while newly launched branches (such as AI or IoT) may not yet be eligible for NBA review because graduating batches are required first.
 
 ### 3. Checking NAAC Grade (Institutional)
 The National Assessment and Accreditation Council (NAAC) assesses the entire university or college.
-- Visit: \`naac.gov.in\`.
+- Visit: [naac.gov.in](http://www.naac.gov.in).
 - Check the institutional grade (A++, A+, A, B++, etc.) and the validity expiration date.
 - Review the CGPA on the 4-point scale (e.g., 3.25 or above corresponds to Grade A).
 
@@ -131,7 +139,7 @@ Under AICTE regulations, every approved engineering institution must publish a s
   },
   {
     slug: 'wb-scholarships-svmcm-credit-card-guide',
-    title: 'West Bengal Engineering Scholarships & Credit Card: SVMCM, TFW, and WBSCC Guide',
+    title: 'West Bengal SVMCM Scholarship: B.Tech Eligibility, Documents & Application Guide | BengalCampus',
     description:
       'Complete eligibility criteria, required documents, and application steps for the ₹60,000/yr Swami Vivekananda scholarship, 100% Tuition Fee Waiver, and the ₹10 Lakh student credit card.',
     publishedAt: '2026-09-01T10:00:00Z',
@@ -142,16 +150,17 @@ Under AICTE regulations, every approved engineering institution must publish a s
     },
     readTimeMinutes: 9,
     tags: ['Scholarships', 'SVMCM', 'Student Credit Card', 'TFW Quota', 'West Bengal'],
+    heroImage: '/images/colleges/iem-salt-lake-campus.jpg',
     content: `## Financing Engineering Education in West Bengal
 
-Pursuing a four-year B.Tech degree involves tuition fees ranging from ₹12,000 (at government universities like Jadavpur) to ₹4,50,000 – ₹6,50,000 (at private autonomous colleges). The Government of West Bengal and central agencies run multiple financial aid mechanisms to ensure no deserving student is turned away due to financial constraints.
+Pursuing a four-year B.Tech degree involves tuition fees ranging from ₹12,000 (at government universities like [Jadavpur University](/colleges/jadavpur-university-engineering)) to ₹4,50,000 – ₹6,50,000 (at private autonomous colleges like [IEM Kolkata](/colleges/iem-kolkata) or [HIT Haldia](/colleges/haldia-institute-of-technology)). The Government of West Bengal and central agencies run multiple financial aid mechanisms to ensure no deserving student is turned away due to financial constraints.
 
 ### 1. Swami Vivekananda Merit-cum-Means Scholarship (SVMCM)
 The SVMCM is the premier merit-means scholarship program funded by the Higher Education Department, Government of West Bengal.
 - **Disbursement Amount**: **₹60,000 per year** (₹5,000 per month) for undergraduate engineering (B.Tech / B.E.) students.
 - **Academic Eligibility**: Minimum **60% aggregate marks** in Class 12 (Higher Secondary / CBSE / ISC) examination.
 - **Family Income Ceiling**: Gross annual family income from all sources must not exceed **₹2,50,000 per annum**.
-- **Official Application Portal**: \`svmcm.wbhed.gov.in\`.
+- **Official Application Portal**: [svmcm.wbhed.gov.in](https://svmcm.wbhed.gov.in).
 - **Key Documents**: Family income certificate issued by an officer not below the rank of BDO / SDO / Joint BDO / Executive Officer of Municipality, Class 10 admit card, Class 12 marksheet, and institutional admission receipt.
 
 ### 2. AICTE Tuition Fee Waiver (TFW) Quota
@@ -165,7 +174,15 @@ The SVMCM is the premier merit-means scholarship program funded by the Higher Ed
 - **Interest Rate**: Fixed **4% simple interest per annum** (concession available for female students and timely payers).
 - **Repayment Moratorium**: Repayment begins **1 year after course completion** or after securing employment (whichever is earlier), with an extended repayment window of up to **15 years**.
 - **Covered Expenses**: College tuition, hostel accommodation, laptop/computer purchases, and examination books.
-- **Application Portal**: \`wbscc.wb.gov.in\`.
+- **Official Portal**: [wbscc.wb.gov.in](https://wbscc.wb.gov.in).
+
+### Comparative Aid Summary
+
+| Scheme | Type | Benefit | Income Limit | Administering Body |
+| :--- | :--- | :--- | :--- | :--- |
+| **SVMCM** | Merit-cum-Means Grant | ₹60,000 / year direct cash | ≤ ₹2.50 Lakh/yr | Higher Education Dept, WB |
+| **AICTE TFW** | Tuition Waiver | 100% Tuition Fee Waived | ≤ ₹2.50 Lakh/yr | WBJEEB Centralized Merit |
+| **WBSCC** | Concessional Loan | Up to ₹10 Lakhs @ 4% interest | No ceiling | State & Commercial Banks |
 `,
   },
   {
@@ -181,9 +198,10 @@ The SVMCM is the premier merit-means scholarship program funded by the Higher Ed
     },
     readTimeMinutes: 7,
     tags: ['WBJEE', 'Domicile', 'Proforma', 'Counselling Verification', 'Eligibility'],
+    heroImage: '/images/colleges/haldia-institute-of-technology.jpg',
     content: `## Why West Bengal Domicile is Critical in WBJEE
 
-In West Bengal engineering admissions, **100% of seats in state government engineering colleges and universities** (such as Jadavpur University FET, KGEC Kalyani, JGEC Jalpaiguri, and Government College of Engineering and Ceramic Technology) and **90% of seats in private colleges** are strictly reserved for candidates with confirmed West Bengal domicile. Furthermore, Tuition Fee Waiver (TFW) and caste reservation quotas (SC, ST, OBC-A, OBC-B, EWS) require state domicile verification without exception.
+In West Bengal engineering admissions, **100% of seats in state government engineering colleges and universities** (such as [Jadavpur University](/colleges/jadavpur-university-engineering), [KGEC Kalyani](/colleges/kalyani-government-engineering-college), and [JGEC Jalpaiguri](/colleges/jalpaiguri-government-engineering-college)) and **90% of seats in private colleges** are strictly reserved for candidates with confirmed West Bengal domicile. Furthermore, Tuition Fee Waiver (TFW) and caste reservation quotas (SC, ST, OBC-A, OBC-B, EWS) require state domicile verification without exception.
 
 ### The Three Official Proformas
 
@@ -206,6 +224,11 @@ The West Bengal Joint Entrance Examinations Board (WBJEEB) prescribes three dist
 #### 3. Proforma b (Candidate residing outside WB, but parents are permanent WB residents)
 - **Who uses it**: Candidates who did NOT reside in West Bengal continuously for 10 years, but whose parent(s) are permanent residents of West Bengal having a permanent residence in the state for at least 10 continuous years.
 - **Who can sign**: Must be certified by the authorized government officials listed under Proforma a1 (DM, SDO, BDO, etc.). Parent's voter ID, land deeds (porcha), or residential proof must be produced.
+
+### Common Document Verification Mistakes
+1. Obtaining signatures from unauthorized local representatives (Ward Members, Panchayat Members).
+2. Missing official designation seals or dispatch numbers on government certificates.
+3. Submitting domicile certificates that do not match the exact prescribed WBJEEB layout.
 `,
   },
   {
@@ -221,6 +244,7 @@ The West Bengal Joint Entrance Examinations Board (WBJEEB) prescribes three dist
     },
     readTimeMinutes: 6,
     tags: ['WBJEE 2026', 'Exam Dates', 'Counselling Schedule', 'WBJEEB Gazette'],
+    heroImage: '/images/colleges/jadavpur-university-engineering.jpg',
     content: `## Official WBJEE 2026 Examination & Admission Timetable
 
 The West Bengal Joint Entrance Examinations Board (WBJEEB) officially conducts the state-level entrance assessment for admission into undergraduate engineering, technology, pharmacy, and architecture programs.
@@ -229,11 +253,11 @@ The West Bengal Joint Entrance Examinations Board (WBJEEB) officially conducts t
 
 | Event / Stage | Official Schedule Window | Authority Portal |
 | :--- | :--- | :--- |
-| **Online Application Form Submission** | March 10 – April 8, 2026 | \`wbjeeb.nic.in\` |
+| **Online Application Form Submission** | March 10 – April 8, 2026 | [wbjeeb.nic.in](https://wbjeeb.nic.in) |
 | **Application Correction Window** | April 10 – April 12, 2026 | Candidate Dashboard |
 | **Admit Card Download Availability** | May 14 – May 24, 2026 | WBJEEB Portal |
 | **WBJEE 2026 Examination Date** | **May 24, 2026 (Sunday)** | Offline OMR Centers |
-| **Provisional Model Answer Key** | First Week of June 2026 | \`wbjeeb.nic.in\` |
+| **Provisional Model Answer Key** | First Week of June 2026 | [wbjeeb.nic.in](https://wbjeeb.nic.in) |
 | **Official Results & GMR Ranks** | Third Week of June 2026 | Rank Card Release |
 | **Centralized e-Counselling Registration** | July 2026 | NIC Centralized Desk |
 | **Round 1 Allotment & Document Verification** | Mid-July 2026 | Reporting Centers |
@@ -258,6 +282,7 @@ The West Bengal Joint Entrance Examinations Board (WBJEEB) officially conducts t
     },
     readTimeMinutes: 8,
     tags: ['WBJEE Cutoffs', 'Computer Science', 'CSE Ranks', 'Closing Ranks'],
+    heroImage: '/images/colleges/iem-salt-lake-campus.jpg',
     content: `## Computer Science & Engineering (CSE) Cutoff Benchmarks
 
 Computer Science & Engineering remains the most competitive engineering discipline in the WBJEE centralized e-counselling process, accounting for the sharpest closing rank thresholds in Round 1 and Round 2.
@@ -266,13 +291,13 @@ Computer Science & Engineering remains the most competitive engineering discipli
 
 | Institution | Category | Round 1 Closing (GMR) | Final / Mop-Up Closing | Annual Tuition |
 | :--- | :--- | :--- | :--- | :--- |
-| **Jadavpur University (FET)** | State University | ~65 | **155 – 309** | ₹2,400 |
-| **KGEC Kalyani** | Govt Engineering College | ~1,100 | **2,090** | ₹12,000 |
-| **JGEC Jalpaiguri** | Govt Engineering College | ~2,100 | **3,950** | ₹12,000 |
-| **IEM Kolkata** | Autonomous Private | ~2,950 | **6,400** | ₹1,75,000 |
-| **Heritage Institute of Tech (HITK)** | Autonomous Private | ~3,800 | **5,906** | ₹1,40,000 |
-| **Techno Main Salt Lake (TMSL)** | Private College | ~5,100 | **8,900** | ₹1,25,000 |
-| **Haldia Institute of Tech (HIT)** | Autonomous Private | ~6,600 | **13,800** | ₹1,18,000 |
+| **[Jadavpur University (FET)](/colleges/jadavpur-university-engineering)** | State University | ~65 | **155 – 309** | ₹2,400 |
+| **[KGEC Kalyani](/colleges/kalyani-government-engineering-college)** | Govt Engineering College | ~1,100 | **2,090** | ₹12,000 |
+| **[JGEC Jalpaiguri](/colleges/jalpaiguri-government-engineering-college)** | Govt Engineering College | ~2,100 | **3,950** | ₹12,000 |
+| **[IEM Kolkata](/colleges/iem-kolkata)** | Autonomous Private | ~2,950 | **6,400** | ₹1,75,000 |
+| **[Heritage Institute of Tech (HITK)](/colleges/heritage-institute-of-technology)** | Autonomous Private | ~3,800 | **5,906** | ₹1,40,000 |
+| **[Techno Main Salt Lake (TMSL)](/colleges/techno-main-salt-lake)** | Private College | ~5,100 | **8,900** | ₹1,25,000 |
+| **[Haldia Institute of Tech (HIT)](/colleges/haldia-institute-of-technology)** | Autonomous Private | ~6,600 | **13,800** | ₹1,18,000 |
 | **GCELT Kolkata** | Govt Engineering College | ~3,200 | **5,850** | ₹12,000 |
 
 ### Key Observations
@@ -293,9 +318,10 @@ Computer Science & Engineering remains the most competitive engineering discipli
     },
     readTimeMinutes: 9,
     tags: ['JU vs IEM', 'College Comparison', 'Jadavpur University', 'IEM Kolkata'],
+    heroImage: '/images/colleges/jadavpur-university-engineering.jpg',
     content: `## Jadavpur University FET vs IEM Kolkata: Head-to-Head
 
-Choosing between Jadavpur University Faculty of Engineering & Technology (FET) and Institute of Engineering & Management (IEM Kolkata) is one of the most common decision points for high-ranking WBJEE students.
+Choosing between [Jadavpur University Faculty of Engineering & Technology (FET)](/colleges/jadavpur-university-engineering) and [Institute of Engineering & Management (IEM Kolkata)](/colleges/iem-kolkata) is one of the most common decision points for high-ranking WBJEE students.
 
 ### Comparative Evaluation Matrix
 
@@ -307,7 +333,7 @@ Choosing between Jadavpur University Faculty of Engineering & Technology (FET) a
 | **NIRF Engineering 2024** | **#10 in India** | **Rank Band 151–200 in India** |
 | **NAAC Grade** | NAAC Grade A | NAAC Grade A |
 | **Annual Tuition Fee** | **₹2,400 / year** (IT: ₹30,000/yr) | **₹1,75,000 / year** |
-| **CSE Closing Rank (WBJEE)** | Round 1: ~65 | Final: ~309 | Round 1: ~2,950 | Final: ~6,400 |
+| **CSE Closing Rank (WBJEE)** | Round 1: ~65 \| Final: ~309 | Round 1: ~2,950 \| Final: ~6,400 |
 | **Highest Reported Package** | ₹85.0 LPA | ₹72.0 LPA |
 | **Average Package (CSE/IT)** | ₹15.5 LPA | ₹6.5 LPA – ₹7.2 LPA |
 | **Primary Domicile Quota** | 100% West Bengal Domicile (B.Tech) | 90% WBJEE Centralized + 10% JEE Main |

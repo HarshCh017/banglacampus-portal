@@ -5,6 +5,7 @@ export interface ResourceArticle {
   category: string;
   readTime: string;
   publishedDate: string;
+  updatedAt?: string;
   content: string[];
 }
 
@@ -16,6 +17,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     category: 'Exam Preparation',
     readTime: '4 min read',
     publishedDate: 'Cycle 2027',
+    updatedAt: '2026-10-15',
     content: [
       'The IEM Joint Entrance Examination (IEMJEE) is conducted for admission into undergraduate engineering programs across the IEM-UEM Group. Unlike many national entrance examinations, registration and appearance for IEMJEE is 100% free of charge.',
       'The examination tests foundational aptitude and conceptual mastery across Class 11 and Class 12 curricula in Physics, Chemistry, and Mathematics.',
@@ -32,8 +34,9 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     category: 'Admission Strategy',
     readTime: '5 min read',
     publishedDate: 'Cycle 2027',
+    updatedAt: '2026-10-18',
     content: [
-      'Prospective engineering applicants in West Bengal often ask whether they should appear for WBJEE, IEMJEE, or both when aiming for the Institute of Engineering & Management (IEM), Kolkata.',
+      'Prospective engineering applicants in West Bengal often ask whether they should appear for WBJEE, IEMJEE, or both when aiming for the [Institute of Engineering & Management (IEM), Kolkata](/colleges/iem-kolkata).',
       'WBJEE (West Bengal Joint Entrance Examination): Conducted by WBJEEB, this is the primary centralized state entrance exam. IEM Kolkata participates under College Code 104, allotting seats across General, TFW, and domicile categories based on state ranks.',
       'IEMJEE (IEM Joint Entrance Examination): Conducted directly by the IEM-UEM group. Because registration carries zero fee, it serves as an excellent concurrent pathway for students seeking merit-based institutional counselling.',
       'JEE Main All-India Quota: In addition to WBJEE and IEMJEE, a designated proportion of seats are allotted based on All-India ranks achieved in NTA JEE Main.',
@@ -42,17 +45,19 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   },
   {
     slug: 'btech-cse-vs-it-vs-aiml-guide',
-    title: 'B.Tech CSE vs IT vs CSE (AI & ML): Which Computing Branch Fits You?',
-    excerpt: 'A detailed curriculum and career comparison to help students and parents choose between core computing and specialized AI programs.',
+    title: 'B.Tech CSE vs IT vs CSE (AI & ML) vs IoT: Curriculum, Scope & Career Comparison',
+    excerpt: 'A detailed curriculum and career comparison to help students and parents choose between core computing, enterprise IT, and specialized AI/IoT programs in West Bengal.',
     category: 'Branch Selection',
-    readTime: '6 min read',
-    publishedDate: 'Cycle 2027',
+    readTime: '8 min read',
+    publishedDate: 'Cycle 2026-2027',
+    updatedAt: '2026-11-21',
     content: [
-      'With the rapid expansion of specialized computing degrees, deciding between Computer Science & Engineering (Core), Information Technology (IT), and CSE with Artificial Intelligence & Machine Learning (AI & ML) is one of the most critical decisions for applicants.',
-      'Computer Science & Engineering (CSE): The classical foundational degree. Focuses on theoretical computer science, operating systems, compilers, computer architecture, and full-stack software development. Accredited by NBA.',
-      'Information Technology (IT): Closely aligned with enterprise software infrastructure. Emphasizes database administration, enterprise network architecture, cybersecurity operations, and cloud solutions. Also NBA-accredited at IEM.',
-      'CSE (Artificial Intelligence & Machine Learning): An applied specialization focusing on neural networks, statistical inference, natural language processing (NLP), computer vision, and machine learning pipelines.',
-      'Recruiter Perspective: Major global employers (TCS, Cognizant, Wipro, Capgemini, PwC) typically evaluate candidates from all three computing branches on equal technical footing, prioritizing core programming and problem-solving skills.',
+      'With the rapid introduction of emerging computing specializations in AICTE and MAKAUT affiliated colleges across West Bengal, deciding between [B.Tech in Computer Science & Engineering (Core)](/courses/cse), [Information Technology (IT)](/courses/it), [CSE with Artificial Intelligence & Machine Learning](/courses/cse-aiml), and [CSE with Internet of Things (IoT)](/courses/cse-iot-cs-bt) is one of the most consequential decisions for students and parents during WBJEE counselling.',
+      '**1. Core Academic Foundations & Differences:**\n• **Computer Science & Engineering (CSE Core)**: The classical, universally recognized computing degree. Focuses on theoretical computer science, compiler design, discrete mathematics, operating systems, computer architecture, algorithm design, and full-stack software development. It provides the broadest foundation for software engineering and graduate research (GATE/MS).\n• **Information Technology (IT)**: Closely aligned with enterprise software systems, data infrastructure, and network architecture. Emphasizes database management systems (DBMS), enterprise networking, web services, information security, and cloud deployment pipelines. Recruiter acceptance for IT is virtually identical to CSE Core in major corporate drives.\n• **CSE (AI & ML)**: An applied computing degree focusing heavily on statistics, linear algebra, supervised and unsupervised machine learning, deep neural networks, computer vision, natural language processing (NLP), and automated data pipelines.\n• **CSE (IoT & Embedded Systems)**: Focuses on physical computing, microcontrollers (ARM, ESP32), sensor interfacing, IoT networking protocols (MQTT, CoAP), edge AI inference, and cloud telemetry.',
+      '**2. Mathematics & Theoretical Depth:**\n• CSE Core requires Discrete Mathematics, Formal Language & Automata Theory (FLAT), and Graph Theory.\n• CSE (AI & ML) requires rigorous multivariate calculus, linear algebra, probability theory, and statistical inference.\n• IT balances discrete structures with relational algebra and applied network mathematics.\n• CSE (IoT) requires signal processing basics, embedded timing mathematics, and sensor data analysis.',
+      '**3. Systems, Networking & Cloud Coverage:**\n• IT and CSE (IoT) allocate significant coursework to network layers, client-server models, socket programming, and cloud virtualization.\n• In IoT programs, students build physical prototypes with sensors and wireless sensor networks (WSN) that feed telemetry into cloud services like AWS IoT Core or Microsoft Azure.',
+      '**4. College Availability in West Bengal:**\n• CSE Core and IT are available across government colleges ([Jadavpur University](/colleges/jadavpur-university-engineering), [KGEC](/colleges/kalyani-government-engineering-college), [JGEC](/colleges/jalpaiguri-government-engineering-college)) and autonomous private colleges ([IEM Kolkata](/colleges/iem-kolkata), [Heritage](/colleges/heritage-institute-of-technology), [HIT Haldia](/colleges/haldia-institute-of-technology)).\n• CSE (AI & ML) and CSE (IoT) are primarily offered in autonomous private colleges and private university faculties approved by AICTE in recent academic cycles.',
+      '**5. Recruiter & Placement Reality:**\n• Major national and multinational IT recruiters (TCS, Cognizant, Wipro, Capgemini, PwC, Infosys, Deloitte) allow students from CSE, IT, CSE (AI & ML), and CSE (IoT) to sit for common campus coding assessments.\n• Core product companies (Google, Amazon, Microsoft) test Data Structures and Algorithms (DSA) and Low-Level/High-Level System Design (LLD/HLD), regardless of whether your degree suffix says Core, IT, or AI/ML.\n• Therefore, choose based on genuine interest in software vs applied data science vs hardware-connected systems, while maintaining strong problem-solving skills in C++, Java, or Python.',
     ],
   },
 ];

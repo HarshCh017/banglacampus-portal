@@ -67,14 +67,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : `https://bengalcampus.in${rawImage}`;
   const pageUrl = `https://bengalcampus.in/colleges/${college.slug}`;
 
-  const isIem = college.slug === 'iem-kolkata';
-  const metaTitle = isIem
-    ? 'IEM Kolkata: WBJEE Cutoffs, Fees & Admission 2027'
-    : `${college.shortName}: Cutoffs, Fees & Admission 2027`;
+  let metaTitle: string;
+  let metaDesc: string;
 
-  const metaDesc = isIem
-    ? 'Verified IEM Kolkata guide: WBJEE closing ranks, semester fees (₹90k-1.18L), 4-year B.Tech fee (₹7.2-9.44L), seat matrix, and admission roadmap for 2027.'
-    : `Verified WBJEE cutoffs, semester fees, seat matrix, and AICTE/NAAC accreditation for ${college.name} (Code #${college.wbjeebCode}). 2027 choice filling benchmarks.`;
+  if (college.slug === 'haldia-institute-of-technology') {
+    metaTitle = 'Haldia Institute of Technology (HIT Haldia): WBJEE Cutoff 2026, Fees & B.Tech Courses | BengalCampus';
+    metaDesc = "Compare Haldia Institute of Technology's historical WBJEE 2026 branch cutoffs, 2026–27 B.Tech fee information, approved intake, accreditation and hostel details. Review source links and verification dates before applying.";
+  } else if (college.slug === 'asansol-engineering-college') {
+    metaTitle = 'Asansol Engineering College: WBJEE Cutoff 2026, Fees & B.Tech Courses | BengalCampus';
+    metaDesc = "Explore Asansol Engineering College's WBJEE admission information, available B.Tech branches, fee details and historical cutoff data. Check academic-year labels and official sources before applying.";
+  } else if (college.slug === 'iem-kolkata') {
+    metaTitle = 'IEM Kolkata: WBJEE Cutoff 2026, Fees & B.Tech Admissions | BengalCampus';
+    metaDesc = 'Verified IEM Kolkata guide: WBJEE closing ranks, semester fees (₹90k-1.18L), 4-year B.Tech fee (₹7.2-9.44L), seat matrix, and admission roadmap for 2026–2027.';
+  } else {
+    metaTitle = `${college.name} (${college.shortName}): WBJEE Cutoff 2026, Fees & Courses | BengalCampus`;
+    metaDesc = `Verified WBJEE cutoffs, 2026–27 tuition fees, seat intake, and AICTE/NAAC accreditation for ${college.name} (Code #${college.wbjeebCode}). Historical closing rank benchmarks.`;
+  }
 
   return {
     title: metaTitle,
@@ -146,19 +154,6 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   // Total verified approved intake
   const totalIntake = college.programs.reduce((acc, p) => acc + (p.intakeEst || 0), 0);
 
-  // Verified editorial rating calculation for Google SERP Golden Stars
-  const ratingValue =
-    college.naacGrade === 'A++'
-      ? '4.8'
-      : college.naacGrade === 'A+'
-      ? '4.6'
-      : college.naacGrade === 'A'
-      ? '4.4'
-      : college.category.toLowerCase().includes('government') || college.category.toLowerCase().includes('state')
-      ? '4.5'
-      : '4.3';
-  const reviewCount = Math.floor(130 + ((college.established || 2000) % 40) * 3);
-
   const jsonLdCollege = {
     '@context': 'https://schema.org',
     '@type': ['CollegeOrUniversity', 'EducationalOrganization'],
@@ -193,13 +188,6 @@ export default async function CollegeDetailPage({ params }: PageProps) {
       addressCountry: 'IN',
     },
     identifier: college.wbjeebCode,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue,
-      reviewCount,
-      bestRating: '5',
-      worstRating: '1',
-    },
   };
 
   const breadcrumbsSchema = {
@@ -244,7 +232,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     },
     {
       question: `What is the annual B.Tech tuition fee at ${college.shortName}?`,
-      answer: `According to audited institutional accounts circulars and West Bengal Higher Education Fee Committee notices, the annual tuition fee at ${college.name} is ₹${college.feeStructure.annualTuitionMin ? college.feeStructure.annualTuitionMin.toLocaleString('en-IN') : 'Official circular pending'}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${college.feeStructure.annualTuitionMax.toLocaleString('en-IN')}` : ''} per academic year (₹${Math.round((college.feeStructure.annualTuitionMin || 180000) / 2).toLocaleString('en-IN')} to ₹${Math.round((college.feeStructure.annualTuitionMax || 236000) / 2).toLocaleString('en-IN')} per semester), totalling approximately ₹${((college.feeStructure.annualTuitionMin || 180000) * 4).toLocaleString('en-IN')} to ₹${((college.feeStructure.annualTuitionMax || 236000) * 4).toLocaleString('en-IN')} across the 4-year degree course. All figures follow statutory regulatory schedules without undisclosed caps.`,
+      answer: college.feeStructure.annualTuitionMin
+        ? `According to audited institutional accounts circulars and West Bengal Higher Education Fee Committee notices, the annual tuition fee at ${college.name} is ₹${college.feeStructure.annualTuitionMin.toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${college.feeStructure.annualTuitionMax.toLocaleString('en-IN')}` : ''} per academic year (₹${Math.round(college.feeStructure.annualTuitionMin / 2).toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${Math.round(college.feeStructure.annualTuitionMax / 2).toLocaleString('en-IN')}` : ''} per semester), totalling approximately ₹${(college.feeStructure.annualTuitionMin * 4).toLocaleString('en-IN')}${college.feeStructure.annualTuitionMax && college.feeStructure.annualTuitionMax !== college.feeStructure.annualTuitionMin ? ` to ₹${(college.feeStructure.annualTuitionMax * 4).toLocaleString('en-IN')}` : ''} across the 4-year degree course. All figures follow statutory regulatory schedules without undisclosed caps.`
+        : `Official regulatory fee notices for ${college.name} are pending publication by the state fee committee. Please refer to our verified fee circular citation above or consult the institutional admissions desk.`,
     },
     {
       question: `What WBJEE rank is required for admission to Computer Science (CSE) at ${college.shortName}?`,

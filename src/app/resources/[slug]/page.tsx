@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { RESOURCE_ARTICLES, getResourceBySlug } from '@/data/resources';
 import { LeadCaptureForm } from '@/components/LeadCaptureForm';
+import { renderInline } from '@/components/MarkdownArticleRenderer';
 import { ChevronRight, Clock, BookOpen, Share2, ArrowLeft, ShieldCheck, Phone } from 'lucide-react';
 
 interface ResourceArticlePageProps {
@@ -126,9 +127,9 @@ export default async function ResourceArticlePage({ params }: ResourceArticlePag
           {/* Article Content */}
           <div className="py-8 space-y-5 text-sm sm:text-base text-slate-700 leading-relaxed">
             {article.content.map((para, i) => (
-              <p key={i} className="leading-relaxed">
-                {para}
-              </p>
+              <div key={i} className="leading-relaxed whitespace-pre-line">
+                {renderInline(para)}
+              </div>
             ))}
           </div>
 

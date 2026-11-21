@@ -4,23 +4,23 @@ import { CutoffExplorerClient } from './CutoffExplorerClient';
 import { Loader2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'WBJEE Cutoffs 2027: College Closing Ranks | BengalCampus',
+  title: 'WBJEE 2026 Cutoff: College-Wise Opening & Closing Ranks | BengalCampus',
   description:
-    'Explore official WBJEE 2027 closing ranks across West Bengal engineering colleges. Analyze GMR cutoffs for Jadavpur University, KGEC, IEM, Heritage (HITK), and HIT Haldia.',
+    'Explore historical WBJEE 2026 college-wise and branch-wise cutoff data. Compare published counselling records by college and branch, and verify official notices before making admission choices.',
   alternates: {
     canonical: 'https://bengalcampus.in/cutoffs',
   },
   openGraph: {
-    title: 'WBJEE Cutoffs 2027: College Closing Ranks | BengalCampus',
+    title: 'WBJEE 2026 Cutoff: College-Wise Opening & Closing Ranks | BengalCampus',
     description:
-      'Explore official WBJEE Round 1, Round 2, and Mop-Up closing ranks across top West Bengal engineering colleges.',
+      'Compare published WBJEE 2026 Round 1, Round 2, and Mop-Up closing ranks across top West Bengal engineering colleges.',
     url: 'https://bengalcampus.in/cutoffs',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WBJEE Cutoffs 2027: College Closing Ranks | BengalCampus',
-    description: 'Find WBJEE cutoffs for all engineering branches and category reservations.',
+    title: 'WBJEE 2026 Cutoff: College-Wise Opening & Closing Ranks | BengalCampus',
+    description: 'Historical WBJEE 2026 closing rank archives for all engineering branches and category reservations.',
   },
   robots: {
     index: true,
